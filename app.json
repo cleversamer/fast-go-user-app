@@ -1,8 +1,21 @@
 {
   "expo": {
-    "name": "fast-go",
+    "name": "Fast Go",
     "slug": "blank",
     "version": "1.0.0",
+    "icon": "./icon.png",
+    "splash": {
+      "image": "./src/assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff",
+      "statusBar": {
+        "backgroundColor": "#000000",
+        "style": "light"
+      },
+      "orientation": "portrait",
+      "fadeInDuration": 500,
+      "fadeOutDuration": 500
+    },
     "platforms": ["ios", "android", "web"]
   }
 }
