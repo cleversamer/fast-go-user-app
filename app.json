@@ -1,12 +1,8 @@
 {
   "expo": {
-    "name": "blank",
+    "name": "fast-go",
     "slug": "blank",
     "version": "1.0.0",
-    "platforms": [
-      "ios",
-      "android",
-      "web"
-    ]
+    "platforms": ["ios", "android", "web"]
   }
 }

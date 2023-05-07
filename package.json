@@ -1,13 +1,21 @@
 {
-  "dependencies": {
-    "expo": "^48.0.7",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-native": "0.71.3",
-    "react-native-web": "~0.18.7"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.19.3"
+  "name": "fast-go-mobile",
+  "description": "An application with the same idea as Uber",
+  "publisher": "Thirty Digits",
+  "keywords": [
+    "Fast Go",
+    "Uber",
+    "Driver",
+    "Taxi",
+    "Thirty Digits"
+  ],
+  "displayName": "Fast Go - Request a ride",
+  "version": "1.0.0",
+  "private": true,
+  "author": {
+    "name": "Thirty Digits Inc.",
+    "url": "https://thirtydigits.tech",
+    "email": "digitsthirty@gmail.com"
   },
   "scripts": {
     "start": "expo start",
@@ -15,7 +23,14 @@
     "ios": "expo start --ios",
     "web": "expo start --web"
   },
-  "version": "1.0.0",
-  "private": true,
-  "name": "-fast-go-mobile"
+  "dependencies": {
+    "expo": "^48.0.7",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-native": "0.71.7",
+    "react-native-web": "~0.18.11"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.0"
+  }
 }
