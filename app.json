@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "icon": "./icon.png",
     "splash": {
-      "image": "./src/assets/splash.png",
+      "image": "./src/assets/images/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff",
       "statusBar": {
