@@ -4,6 +4,7 @@ import useFonts from "./src/hooks/useFonts";
 
 import Onboarding from "./src/screens/onboarding";
 import WelcomeScreen from "./src/screens/welcome";
+import LoginScreen from "./src/screens/login";
 
 export default function App() {
   const { fontLoaded } = useFonts();
@@ -23,7 +24,8 @@ export default function App() {
 
   return (
     <>
-      <WelcomeScreen />
+      {/* <WelcomeScreen /> */}
+      <LoginScreen />
     </>
   );
 }
