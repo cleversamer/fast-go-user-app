@@ -1,7 +1,9 @@
 import { useState } from "react";
-import { StyleSheet, View, SafeAreaView, Text } from "react-native";
+import { StyleSheet, SafeAreaView, Text } from "react-native";
 import useFonts from "./src/hooks/useFonts";
+
 import Onboarding from "./src/screens/onboarding";
+import WelcomeScreen from "./src/screens/welcome";
 
 export default function App() {
   const { fontLoaded } = useFonts();
@@ -16,26 +18,18 @@ export default function App() {
   }
 
   if (!showHomeScreen) {
-    return (
-      <View style={{ flex: 1 }}>
-        <Onboarding onDone={handleShowHomeScreen} />
-      </View>
-    );
+    return <Onboarding onDone={handleShowHomeScreen} />;
   }
 
   return (
-    <SafeAreaView>
-      <View style={styles.container}>
-        <Text>Home screen</Text>
-      </View>
-    </SafeAreaView>
+    <>
+      <WelcomeScreen />
+    </>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
   },
 });

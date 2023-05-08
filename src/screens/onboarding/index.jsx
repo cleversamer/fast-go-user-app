@@ -1,4 +1,4 @@
-import { StyleSheet, View, Image, Text } from "react-native";
+import { StyleSheet, View, Image, Text, SafeAreaView } from "react-native";
 import AppIntroSlider from "react-native-app-intro-slider";
 import { AntDesign } from "@expo/vector-icons";
 import * as theme from "../../constants/theme";
@@ -45,31 +45,36 @@ export default function Onboarding({ onDone }) {
   };
 
   return (
-    <AppIntroSlider
-      data={slides}
-      activeDotStyle={styles.activeDotStyle}
-      renderNextButton={renderNextButton}
-      renderSkipButton={renderSkipButton}
-      showSkipButton
-      renderDoneButton={renderNextButton}
-      onDone={onDone}
-      onSkip={onDone}
-      renderItem={({ item }) => (
-        <View style={styles.sliderContainer}>
-          <Image
-            source={item.image}
-            style={styles.sliderImage}
-            resizeMode="contain"
-          />
-          <Text style={styles.sliderTitle}>{item.title}</Text>
-          <Text style={styles.sliderDescription}>{item.description}</Text>
-        </View>
-      )}
-    />
+    <SafeAreaView style={styles.container}>
+      <AppIntroSlider
+        data={slides}
+        activeDotStyle={styles.activeDotStyle}
+        renderNextButton={renderNextButton}
+        renderSkipButton={renderSkipButton}
+        showSkipButton
+        renderDoneButton={renderNextButton}
+        onDone={onDone}
+        onSkip={onDone}
+        renderItem={({ item }) => (
+          <View style={styles.sliderContainer}>
+            <Image
+              source={item.image}
+              style={styles.sliderImage}
+              resizeMode="contain"
+            />
+            <Text style={styles.sliderTitle}>{item.title}</Text>
+            <Text style={styles.sliderDescription}>{item.description}</Text>
+          </View>
+        )}
+      />
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   sliderContainer: {
     flex: 1,
     alignItems: "center",
