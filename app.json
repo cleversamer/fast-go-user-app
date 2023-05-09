@@ -4,6 +4,14 @@
     "slug": "blank",
     "version": "1.0.0",
     "icon": "./icon.png",
+    "android": {
+      "config": {
+        "googleMaps": {
+          "apiKey": ""
+        }
+      },
+      "package": "com.thirtydigits.fastgo"
+    },
     "splash": {
       "image": "./src/assets/images/splash.png",
       "resizeMode": "cover",
@@ -16,6 +24,14 @@
       "fadeInDuration": 500,
       "fadeOutDuration": 500
     },
-    "platforms": ["ios", "android", "web"]
+    "platforms": ["ios", "android", "web"],
+    "extra": {
+      "eas": {
+        "projectId": "919a3e7d-bc2b-4d5a-893d-f90605d4fdb6"
+      }
+    },
+    "ios": {
+      "bundleIdentifier": "com.thirtydigits.fastgo"
+    }
   }
 }
