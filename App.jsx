@@ -1,10 +1,13 @@
 import { useState } from "react";
-import { StyleSheet, SafeAreaView, Text } from "react-native";
+import { StyleSheet } from "react-native";
 import useFonts from "./src/hooks/useFonts";
 
 import Onboarding from "./src/screens/onboarding";
 import WelcomeScreen from "./src/screens/welcome";
-import LoginScreen from "./src/screens/login";
+import LoginScreen1 from "./src/screens/login/LoginScreen1";
+import LoginScreen2 from "./src/screens/login/LoginScreen2";
+import LoginScreen3 from "./src/screens/login/LoginScreen3";
+import LoginScreen4 from "./src/screens/login/LoginScreen4";
 
 export default function App() {
   const { fontLoaded } = useFonts();
@@ -25,7 +28,10 @@ export default function App() {
   return (
     <>
       {/* <WelcomeScreen /> */}
-      <LoginScreen />
+      {/* <LoginScreen1 /> */}
+      {/* <LoginScreen2 /> */}
+      {/* <LoginScreen3 /> */}
+      <LoginScreen4 />
     </>
   );
 }

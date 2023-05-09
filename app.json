@@ -6,7 +6,7 @@
     "icon": "./icon.png",
     "splash": {
       "image": "./src/assets/images/splash.png",
-      "resizeMode": "contain",
+      "resizeMode": "cover",
       "backgroundColor": "#ffffff",
       "statusBar": {
         "backgroundColor": "#000000",

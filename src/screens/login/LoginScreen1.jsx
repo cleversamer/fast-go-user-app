@@ -6,7 +6,7 @@ import CustomButton from "../../components/button";
 import HorizontalLines from "../../components/horizontalLines";
 import ContinueButton from "../../components/continueButton";
 
-export default function LoginScreen() {
+export default function LoginScreen1() {
   const [phone, setPhone] = useState({ icc: "+218", nsn: "" });
 
   const handleKeyChange = (key) => (value) =>
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 15,
-    paddingTop: 60,
+    paddingTop: 50,
   },
   title: {
     fontSize: theme.sizes.h1,

@@ -9,7 +9,7 @@ export default function NSNInput({ value, onChange }) {
         onChangeText={onChange}
         placeholder="91 7763190"
         style={styles.input}
-        keyboardType="numeric"
+        keyboardType="number-pad"
         value={value}
       />
 
@@ -27,7 +27,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: 110,
-
     borderRadius: 8,
     backgroundColor: "#fff",
     borderWidth: 2,
