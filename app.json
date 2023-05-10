@@ -4,6 +4,14 @@
     "slug": "blank",
     "version": "1.0.0",
     "icon": "./icon.png",
+    "plugins": [
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow Fast Go to use your location."
+        }
+      ]
+    ],
     "android": {
       "config": {
         "googleMaps": {

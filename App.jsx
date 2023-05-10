@@ -1,3 +1,4 @@
+import "react-native-gesture-handler";
 import { useState } from "react";
 import { StyleSheet } from "react-native";
 import useFonts from "./src/hooks/useFonts";
