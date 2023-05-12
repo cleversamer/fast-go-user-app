@@ -5,7 +5,7 @@ import Location from "../location";
 import AddLocation from "../addLocation";
 import CustomButton from "../button";
 
-export default function HomeBottomSheet() {
+export default function HomeBottomSheet1() {
   const handleRequestNow = () => {};
 
   return (

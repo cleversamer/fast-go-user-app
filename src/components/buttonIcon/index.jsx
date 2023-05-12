@@ -1,18 +1,13 @@
-import { StyleSheet, TouchableOpacity, View, Text } from "react-native";
+import { StyleSheet, TouchableOpacity } from "react-native";
 import * as theme from "../../constants/theme";
 
-export default function CustomButton({
-  text,
-  onPress,
-  containerStyle,
-  textStyle,
-}) {
+export default function ButtonIcon({ onPress, containerStyle, children }) {
   return (
     <TouchableOpacity
       onPress={onPress}
       style={[styles.container, containerStyle || {}]}
     >
-      <Text style={[styles.text, textStyle || {}]}>{text}</Text>
+      {children}
     </TouchableOpacity>
   );
 }
@@ -23,11 +18,5 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 10,
     backgroundColor: theme.primaryColor,
-  },
-  text: {
-    color: "#fff",
-    fontFamily: "cairo-400",
-    fontSize: 15,
-    textAlign: "center",
   },
 });

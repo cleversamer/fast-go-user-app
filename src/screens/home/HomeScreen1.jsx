@@ -1,14 +1,14 @@
 import { SafeAreaView, StyleSheet } from "react-native";
 import Map from "../../components/map";
-import HomeBottomSheet from "../../components/homeBottomSheet";
+import HomeBottomSheet1 from "../../components/homeBottomSheet1";
 import HamburgerMenu from "../../components/hamburgerMenu";
 
-export default function HomeScreen() {
+export default function HomeScreen1() {
   return (
     <SafeAreaView style={styles.container}>
       <HamburgerMenu />
       <Map />
-      <HomeBottomSheet />
+      <HomeBottomSheet1 />
     </SafeAreaView>
   );
 }
