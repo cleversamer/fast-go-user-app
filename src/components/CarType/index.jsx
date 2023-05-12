@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   selected: {
     backgroundColor: theme.primaryColorLight,
     borderRadius: 15,
-    padding: 5,
+    padding: 3,
   },
   amount: {
     fontFamily: "cairo-600",
