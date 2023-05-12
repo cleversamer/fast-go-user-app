@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { RadioButton } from "react-native-paper";
 import StaticBottomSheet from "../bottomSheet/StaticBottomSheet";
@@ -9,31 +8,35 @@ import ButtonIcon from "../buttonIcon";
 import * as theme from "../../constants/theme";
 import { AntDesign } from "@expo/vector-icons";
 
-export default function HomeBottomSheet1() {
-  const [paymentType, setPaymentType] = useState("cash");
-
-  const handleRequestNow = () => {};
-
-  const handlePaymentTypeChange = (paymentType) => {
-    setPaymentType(paymentType);
-  };
-
+export default function HomeBottomSheet1({
+  paymentType,
+  onPaymentTypeChange,
+  carType,
+  onCarTypeChange,
+  onRequestNow,
+}) {
   return (
     <StaticBottomSheet contentStyle={styles.container} snapPoints={["51%"]}>
       <View style={styles.carTypesContainer}>
         <CarType
+          selected={carType === "luxury"}
+          onPress={() => onCarTypeChange("luxury")}
           amount={63.21}
           title="سيارة فاخرة"
           image={require("../../assets/images/luxury-car.png")}
         />
 
         <CarType
+          selected={carType === "women"}
+          onPress={() => onCarTypeChange("women")}
           amount={16.21}
           title="سيارة نسائية"
           image={require("../../assets/images/women-car.png")}
         />
 
         <CarType
+          selected={carType === "commercial"}
+          onPress={() => onCarTypeChange("commercial")}
           amount={17.21}
           title="سيارة تجارية"
           image={require("../../assets/images/commercial-car.png")}
@@ -44,7 +47,7 @@ export default function HomeBottomSheet1() {
         <View style={styles.breakLine}></View>
 
         <RadioButton.Group
-          onValueChange={handlePaymentTypeChange}
+          onValueChange={onPaymentTypeChange}
           value={paymentType}
         >
           <View style={styles.radioButtonsContainer}>
@@ -76,7 +79,7 @@ export default function HomeBottomSheet1() {
 
         <CustomButton
           text="اطلب الآن"
-          onPress={handleRequestNow}
+          onPress={onRequestNow}
           containerStyle={styles.submitButtonContainer}
           textStyle={styles.submitButtonText}
         />

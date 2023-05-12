@@ -1,16 +1,28 @@
+import { useState } from "react";
 import { SafeAreaView, StyleSheet, Text } from "react-native";
 import AddressInput from "../../components/addressInput";
 import Location from "../../components/location";
-import AddLocation from "../../components/addLocation";
 import CustomButton from "../../components/button";
 
-const locations = [
+const _locations = [
   "فلسطين,قطاع غزة,غزة,محافظةغزةالزيتون,890",
   "فلسطين,قطاع غزة,غزة,محافظةغزةالزيتون,890",
   "فلسطين,قطاع غزة,غزة,محافظةغزةالزيتون,890",
 ];
 
-export default function HomeScreen2() {
+export default function HomeScreen2({ navigation }) {
+  const [locations, setLocations] = useState(_locations);
+
+  const handleDeleteLocation = (locationIndex) => {
+    const newLocations = [...locations];
+    newLocations.splice(locationIndex, 1);
+    setLocations(newLocations);
+  };
+
+  const handleContinue = () => {
+    navigation.navigate("HomeScreen3");
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.title}>إلى أين الوجهة ؟</Text>
@@ -18,12 +30,20 @@ export default function HomeScreen2() {
       <AddressInput placeholder="أين وجهتك؟" />
 
       {locations.map((location, index) => (
-        <Location key={index} title={location} />
+        <Location
+          key={index}
+          title={location}
+          showDelete
+          onDelete={() => handleDeleteLocation(index)}
+        />
       ))}
 
-      <AddLocation />
-
-      <CustomButton text="متابعة" textStyle={styles.buttonText} />
+      <CustomButton
+        text="متابعة"
+        textStyle={styles.buttonText}
+        disabled={!locations.length}
+        onPress={handleContinue}
+      />
     </SafeAreaView>
   );
 }

@@ -1,18 +1,25 @@
 import { TouchableOpacity, StyleSheet, View, Text } from "react-native";
 import { EvilIcons } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
 import * as theme from "../../constants/theme";
 
-export default function Location({ title, onPress }) {
+export default function Location({ title, onPress, showDelete, onDelete }) {
   return (
-    <TouchableOpacity onPress={onPress}>
-      <View style={styles.container}>
+    <View onPress={onPress} style={styles.container}>
+      {showDelete && (
+        <TouchableOpacity onPress={onDelete}>
+          <MaterialIcons name="delete" size={30} color={theme.primaryColor} />
+        </TouchableOpacity>
+      )}
+
+      <TouchableOpacity style={styles.container} onPress={onPress}>
         <Text style={styles.title}>{title}</Text>
 
         <View style={styles.iconContainer}>
           <EvilIcons name="location" size={34} color={theme.primaryColor} />
         </View>
-      </View>
-    </TouchableOpacity>
+      </TouchableOpacity>
+    </View>
   );
 }
 

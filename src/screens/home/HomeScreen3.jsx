@@ -1,18 +1,42 @@
-import { TouchableOpacity, SafeAreaView, StyleSheet, View } from "react-native";
+import { useState } from "react";
+import { TouchableOpacity, SafeAreaView, StyleSheet } from "react-native";
 import Map from "../../components/map";
 import HomeBottomSheet2 from "../../components/homeBottomSheet2";
 import { AntDesign } from "@expo/vector-icons";
 
-export default function HomeScreen3() {
+export default function HomeScreen3({ navigation }) {
+  const [paymentType, setPaymentType] = useState("cash");
+  const [carType, setCarType] = useState("luxury");
+
+  const handleRequestNow = () => {};
+
+  const handlePaymentTypeChange = (paymentType) => {
+    setPaymentType(paymentType);
+  };
+
+  const handleCarTypeChange = (carType) => {
+    setCarType(carType);
+  };
+
+  const handleGoBack = () => {
+    navigation.goBack();
+  };
+
   return (
     <SafeAreaView style={styles.container}>
-      <TouchableOpacity style={styles.iconContainer}>
+      <TouchableOpacity style={styles.iconContainer} onPress={handleGoBack}>
         <AntDesign name="arrowright" size={24} color="black" />
       </TouchableOpacity>
 
       <Map />
 
-      <HomeBottomSheet2 />
+      <HomeBottomSheet2
+        paymentType={paymentType}
+        onPaymentTypeChange={handlePaymentTypeChange}
+        carType={carType}
+        onCarTypeChange={handleCarTypeChange}
+        onRequestNow={handleRequestNow}
+      />
     </SafeAreaView>
   );
 }

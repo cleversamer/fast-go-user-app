@@ -52,6 +52,7 @@ export default function LoginScreen2({ navigation }) {
           setReadyPin={setReadyPin}
           maxLength={MAX_CODE_LENGTH}
           containerStyle={styles.otpInputContainer}
+          onSubmit={handleSubmit}
         />
 
         {isTimerDone ? (

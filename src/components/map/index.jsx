@@ -10,8 +10,8 @@ Geocoder.init("AIzaSyAo9_6OiQ96Z-D2V8a4iiq5Yz3LDmrrM78");
 // AIzaSyAo9_6OiQ96Z-D2V8a4iiq5Yz3LDmrrM78
 
 const initialRegion = {
-  latitude: 37.78825,
-  longitude: -122.4324,
+  latitude: 32.86806972,
+  longitude: 13.1172586594,
   latitudeDelta: 0.0922,
   longitudeDelta: 0.0421,
 };
@@ -35,21 +35,34 @@ export default function Map({
   }, [location]);
 
   const handleSelectLocation = async (event) => {
-    const location = {
-      latitude: event.nativeEvent.coordinate.latitude,
-      longitude: event.nativeEvent.coordinate.longitude,
-      title: "غير معروف",
-    };
+    try {
+      const location = {
+        latitude:
+          event?.nativeEvent?.coordinate?.latitude || initialRegion.latitude,
 
-    Geocoder.from(location.latitude, location.longitude)
-      .then((response) => {
-        const address = response.results[0].formatted_address;
-        location.title = address;
-        onSelectLocation(location);
-      })
-      .catch((error) => {
-        onSelectLocation(location);
-      });
+        longitude:
+          event?.nativeEvent?.coordinate?.longitude || initialRegion.longitude,
+
+        title: "غير معروف",
+      };
+
+      Geocoder.from(location.latitude, location.longitude)
+        .then((response) => {
+          try {
+            const address = response?.results[0]?.formatted_address;
+            if (address) {
+              location.title = address;
+            }
+
+            onSelectLocation?.(location);
+          } catch (err) {}
+        })
+        .catch((error) => {
+          try {
+            onSelectLocation?.(location);
+          } catch (err) {}
+        });
+    } catch (err) {}
   };
 
   return (
@@ -68,7 +81,7 @@ export default function Map({
             latitude: location.latitude,
             longitude: location.longitude,
           }}
-          onPress={onMarkerPress}
+          onPress={() => onMarkerPress?.(location)}
         />
       ))}
     </MapView>

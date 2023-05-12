@@ -1,8 +1,12 @@
 import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
+import * as theme from "../../constants/theme";
 
-export default function CarType({ amount, title, image }) {
+export default function CarType({ amount, title, image, selected, onPress }) {
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity
+      onPress={onPress}
+      style={[styles.container, selected ? styles.selected : {}]}
+    >
       <Text style={styles.amount}>{amount} LYD</Text>
 
       <View style={styles.infoContainer}>
@@ -18,6 +22,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+  },
+  selected: {
+    backgroundColor: theme.primaryColorLight,
+    borderRadius: 15,
+    padding: 5,
   },
   amount: {
     fontFamily: "cairo-600",

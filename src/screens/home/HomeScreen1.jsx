@@ -19,12 +19,7 @@ export default function HomeScreen1({ navigation }) {
     setLocations([location]);
   };
 
-  const handleDeleteLocation = (event) => {
-    const markerLocation = {
-      latitude: event.nativeEvent.coordinate.latitude,
-      longitude: event.nativeEvent.coordinate.longitude,
-    };
-
+  const handleDeleteLocation = (markerLocation) => {
     const newLocations = locations.filter(
       (location) =>
         location.latitude !== markerLocation.latitude &&

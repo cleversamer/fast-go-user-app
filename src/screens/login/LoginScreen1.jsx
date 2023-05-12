@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { SafeAreaView, View, Text, StyleSheet } from "react-native";
+import { SafeAreaView, ScrollView, View, Text, StyleSheet } from "react-native";
 import * as theme from "../../constants/theme";
 import PhoneInput from "../../components/phoneInput";
 import CustomButton from "../../components/button";
@@ -30,61 +30,63 @@ export default function LoginScreen1({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.title}>مرحبًا بك!</Text>
-      <Text style={styles.subtitle}>قم بتسجيل الدخول للمتابعة</Text>
+      <ScrollView>
+        <Text style={styles.title}>مرحبًا بك!</Text>
+        <Text style={styles.subtitle}>قم بتسجيل الدخول للمتابعة</Text>
 
-      <View style={styles.phoneContainer}>
-        <PhoneInput
-          icc={phone.icc}
-          nsn={phone.nsn}
-          onICCChange={handleKeyChange("icc")}
-          onNSNChange={handleKeyChange("nsn")}
-        />
-      </View>
+        <View style={styles.phoneContainer}>
+          <PhoneInput
+            icc={phone.icc}
+            nsn={phone.nsn}
+            onICCChange={handleKeyChange("icc")}
+            onNSNChange={handleKeyChange("nsn")}
+          />
+        </View>
 
-      <CustomButton
-        text="متابعة"
-        onPress={handleContinue}
-        containerStyle={styles.buttonContainer}
-        textStyle={styles.buttonText}
-      />
-
-      <HorizontalLines
-        text="أو"
-        containerStyle={styles.horizontalLinesContainer}
-        textStyle={styles.horizontalLinesText}
-      />
-
-      <View style={styles.loginButtonsContainer}>
-        <ContinueButton
-          text="متابعة باستخدام جوجل"
-          icon={require("../../assets/images/google.png")}
-          onPress={handleContinueWithGoogle}
+        <CustomButton
+          text="متابعة"
+          onPress={handleContinue}
+          containerStyle={styles.buttonContainer}
+          textStyle={styles.buttonText}
         />
 
-        <ContinueButton
-          text="متابعة باستخدام فيسبوك"
-          icon={require("../../assets/images/facebook.png")}
-          onPress={handleContinueWithGoogle}
+        <HorizontalLines
+          text="أو"
+          containerStyle={styles.horizontalLinesContainer}
+          textStyle={styles.horizontalLinesText}
         />
 
-        <ContinueButton
-          text="متابعة باستخدام آبل"
-          icon={require("../../assets/images/apple.png")}
-          onPress={handleContinueWithGoogle}
-        />
-      </View>
+        <View style={styles.loginButtonsContainer}>
+          <ContinueButton
+            text="متابعة باستخدام جوجل"
+            icon={require("../../assets/images/google.png")}
+            onPress={handleContinueWithGoogle}
+          />
 
-      <Text style={styles.conditionsText}>
-        بالمتابعة، فإنك توافق على تلقِّ مكالمات واتساب أو رسائل SMS بالوسائل
-        الآلية من Fast Go.
-      </Text>
+          <ContinueButton
+            text="متابعة باستخدام فيسبوك"
+            icon={require("../../assets/images/facebook.png")}
+            onPress={handleContinueWithFacebook}
+          />
 
-      <Text style={styles.privacyPolicyText}>
-        هذا الموقع محمي بواسطة reCAPTCHA{" "}
-        <Text style={styles.blueText}>وسياسة خصوصية Google</Text> وتطبق{" "}
-        <Text style={styles.blueText}>شروط الخدمة.</Text>
-      </Text>
+          <ContinueButton
+            text="متابعة باستخدام آبل"
+            icon={require("../../assets/images/apple.png")}
+            onPress={handleContinueWithApple}
+          />
+        </View>
+
+        <Text style={styles.conditionsText}>
+          بالمتابعة، فإنك توافق على تلقِّ مكالمات واتساب أو رسائل SMS بالوسائل
+          الآلية من Fast Go.
+        </Text>
+
+        <Text style={styles.privacyPolicyText}>
+          هذا الموقع محمي بواسطة reCAPTCHA{" "}
+          <Text style={styles.blueText}>وسياسة خصوصية Google</Text> وتطبق{" "}
+          <Text style={styles.blueText}>شروط الخدمة.</Text>
+        </Text>
+      </ScrollView>
     </SafeAreaView>
   );
 }

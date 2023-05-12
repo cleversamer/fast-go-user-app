@@ -8,6 +8,7 @@ export default function OTPInput({
   setReadyPin,
   maxLength,
   containerStyle,
+  onSubmit,
 }) {
   const textInputRef = useRef(null);
   const [isFocused, setIsFocused] = useState(false);
@@ -67,6 +68,7 @@ export default function OTPInput({
         returnKeyType="done"
         textContentType="oneTimeCode"
         onBlur={handleOnBlur}
+        onEndEditing={onSubmit}
       />
     </View>
   );
