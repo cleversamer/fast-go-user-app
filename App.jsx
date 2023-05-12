@@ -2,6 +2,7 @@ import "react-native-gesture-handler";
 import { useState } from "react";
 import { StyleSheet } from "react-native";
 import useFonts from "./src/hooks/useFonts";
+import useLocation from "./src/hooks/useLocation";
 
 import Onboarding from "./src/screens/onboarding";
 import WelcomeScreen from "./src/screens/welcome";
@@ -13,6 +14,7 @@ import HomeScreen from "./src/screens/home";
 
 export default function App() {
   const { fontLoaded } = useFonts();
+  useLocation();
   const [showHomeScreen, setShowHomeScreen] = useState(false);
 
   const handleShowHomeScreen = () => {

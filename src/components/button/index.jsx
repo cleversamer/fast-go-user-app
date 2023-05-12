@@ -19,7 +19,7 @@ export default function CustomButton({
 const styles = StyleSheet.create({
   container: {
     borderRadius: 8,
-    paddingVertical: 14,
+    paddingVertical: 12,
     paddingHorizontal: 10,
     backgroundColor: theme.primaryColor,
   },

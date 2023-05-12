@@ -1,22 +1,42 @@
 import { StyleSheet, Text } from "react-native";
-import BottomSheet from "../bottomSheet";
+import StaticBottomSheet from "../bottomSheet/StaticBottomSheet";
+import AddressInput from "../addressInput";
+import Location from "../location";
+import AddLocation from "../addLocation";
+import CustomButton from "../button";
 
 export default function HomeBottomSheet() {
+  const handleRequestNow = () => {};
+
   return (
-    <BottomSheet contentStyle={styles.container}>
+    <StaticBottomSheet contentStyle={styles.container} snapPoints={["40%"]}>
       <Text style={styles.title}>إلى أين الوجهة ؟</Text>
-    </BottomSheet>
+
+      <AddressInput placeholder="أين وجهتك؟" />
+
+      <Location title="فلسطين,قطاع غزة,غزة,محافظةغزةالزيتون,890" />
+
+      <AddLocation />
+
+      <CustomButton
+        text="اطلب الآن"
+        onPress={handleRequestNow}
+        textStyle={styles.buttonText}
+      />
+    </StaticBottomSheet>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: "flex-end",
-    paddingTop: 0,
-    paddingHorizontal: 20,
+    gap: 15,
   },
   title: {
     fontFamily: "cairo-800",
     fontSize: 15,
+  },
+  buttonText: {
+    fontFamily: "cairo-800",
+    fontSize: 16,
   },
 });

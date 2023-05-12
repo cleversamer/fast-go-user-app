@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { ScrollView, View, StyleSheet } from "react-native";
 import {
   BottomSheetModal,
   BottomSheetModalProvider,
@@ -8,7 +8,7 @@ import * as theme from "../../constants/theme";
 
 const defaultSnapPoints = ["25%", "50%"];
 
-export default function BottomSheet({
+export default function StaticBottomSheet({
   contentStyle,
   snapPoints = defaultSnapPoints,
   children,
@@ -29,9 +29,14 @@ export default function BottomSheet({
         handleIndicatorStyle={styles.indicatorStyle}
         backgroundStyle={styles.modal}
       >
-        <View style={[styles.contentContainer, contentStyle || {}]}>
-          {children}
-        </View>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}
+        >
+          <View style={[styles.contentContainer, contentStyle || {}]}>
+            {children}
+          </View>
+        </ScrollView>
       </BottomSheetModal>
     </BottomSheetModalProvider>
   );
@@ -50,5 +55,7 @@ const styles = StyleSheet.create({
   contentContainer: {
     flex: 1,
     padding: 10,
+    paddingHorizontal: 15,
+    gap: 10,
   },
 });
