@@ -4,11 +4,19 @@ import ScreenSteps from "../../components/screenSteps";
 import Checkbox from "../../components/checkbox";
 import PopupError from "../../components/popup/PopupError";
 
-export default function LoginScreen2() {
+export default function LoginScreen2({ navigation }) {
   const [error, setError] = useState(true);
   const [isPrivacyApproved, setIsPrivacyApproved] = useState(false);
 
   const handleClosePopup = () => setError(false);
+
+  const handleGoBack = () => {
+    navigation.goBack();
+  };
+
+  const handleNext = () => {
+    navigation.navigate("LoginScreen4");
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -33,12 +41,18 @@ export default function LoginScreen2() {
 
       <View style={styles.screenStepsContainer}>
         <View style={styles.breakLine}></View>
+
         <Checkbox
           text="أوافق على الشروط"
           checked={isPrivacyApproved}
           onCheck={() => setIsPrivacyApproved(!isPrivacyApproved)}
         />
-        <ScreenSteps disableNext={!isPrivacyApproved} />
+
+        <ScreenSteps
+          disableNext={!isPrivacyApproved}
+          onNext={handleNext}
+          onPrev={handleGoBack}
+        />
       </View>
     </SafeAreaView>
   );

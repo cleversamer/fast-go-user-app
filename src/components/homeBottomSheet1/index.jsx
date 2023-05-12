@@ -5,23 +5,35 @@ import Location from "../location";
 import AddLocation from "../addLocation";
 import CustomButton from "../button";
 
-export default function HomeBottomSheet1() {
-  const handleRequestNow = () => {};
+const userFavLocations = ["فلسطين,قطاع غزة,غزة,محافظةغزةالزيتون,890"];
 
+export default function HomeBottomSheet1({
+  onRequestNow,
+  disableButton,
+  disableAddLocation,
+  locationTitle,
+}) {
   return (
     <StaticBottomSheet contentStyle={styles.container} snapPoints={["40%"]}>
       <Text style={styles.title}>إلى أين الوجهة ؟</Text>
 
-      <AddressInput placeholder="أين وجهتك؟" />
+      <AddressInput
+        placeholder="أين وجهتك؟"
+        value={locationTitle}
+        onFocus={onRequestNow}
+      />
 
-      <Location title="فلسطين,قطاع غزة,غزة,محافظةغزةالزيتون,890" />
+      {userFavLocations.map((location, index) => (
+        <Location key={index} title={location} onPress={onRequestNow} />
+      ))}
 
-      <AddLocation />
+      <AddLocation disabled={disableAddLocation} />
 
       <CustomButton
         text="اطلب الآن"
-        onPress={handleRequestNow}
+        onPress={onRequestNow}
         textStyle={styles.buttonText}
+        disabled={disableButton}
       />
     </StaticBottomSheet>
   );

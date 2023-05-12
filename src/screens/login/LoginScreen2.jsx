@@ -4,7 +4,15 @@ import CustomTextInput from "../../components/textInput";
 import PhoneInput from "../../components/phoneInput";
 import ScreenSteps from "../../components/screenSteps";
 
-export default function LoginScreen2() {
+export default function LoginScreen2({ navigation }) {
+  const handleGoBack = () => {
+    navigation.goBack();
+  };
+
+  const handleNext = () => {
+    navigation.navigate("LoginScreen3");
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.title}>مرحبًا بك!</Text>
@@ -20,7 +28,7 @@ export default function LoginScreen2() {
       </View>
 
       <View style={styles.screenStepsContainer}>
-        <ScreenSteps />
+        <ScreenSteps onNext={handleNext} onPrev={handleGoBack} />
       </View>
     </SafeAreaView>
   );

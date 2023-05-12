@@ -6,11 +6,16 @@ export default function CustomButton({
   onPress,
   containerStyle,
   textStyle,
+  disabled,
 }) {
   return (
     <TouchableOpacity
       onPress={onPress}
-      style={[styles.container, containerStyle || {}]}
+      style={[
+        disabled ? styles.disabledContainer : styles.enabledContainer,
+        containerStyle || {},
+      ]}
+      disabled={disabled}
     >
       <Text style={[styles.text, textStyle || {}]}>{text}</Text>
     </TouchableOpacity>
@@ -18,11 +23,17 @@ export default function CustomButton({
 }
 
 const styles = StyleSheet.create({
-  container: {
+  enabledContainer: {
     borderRadius: 8,
     paddingVertical: 12,
     paddingHorizontal: 10,
     backgroundColor: theme.primaryColor,
+  },
+  disabledContainer: {
+    borderRadius: 8,
+    paddingVertical: 12,
+    paddingHorizontal: 10,
+    backgroundColor: "#747474",
   },
   text: {
     color: "#fff",

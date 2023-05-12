@@ -6,17 +6,27 @@ import CustomButton from "../../components/button";
 import HorizontalLines from "../../components/horizontalLines";
 import ContinueButton from "../../components/continueButton";
 
-export default function LoginScreen1() {
+export default function LoginScreen1({ navigation }) {
   const [phone, setPhone] = useState({ icc: "+218", nsn: "" });
 
   const handleKeyChange = (key) => (value) =>
     setPhone({ ...phone, [key]: value });
 
-  const handleContinueWithGoogle = () => {};
+  const handleContinue = () => {
+    navigation.navigate("LoginScreen2");
+  };
 
-  const handleContinueWithFacebook = () => {};
+  const handleContinueWithGoogle = () => {
+    navigation.navigate("LoginScreen2");
+  };
 
-  const handleContinueWithApple = () => {};
+  const handleContinueWithFacebook = () => {
+    navigation.navigate("LoginScreen2");
+  };
+
+  const handleContinueWithApple = () => {
+    navigation.navigate("LoginScreen2");
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -34,6 +44,7 @@ export default function LoginScreen1() {
 
       <CustomButton
         text="متابعة"
+        onPress={handleContinue}
         containerStyle={styles.buttonContainer}
         textStyle={styles.buttonText}
       />

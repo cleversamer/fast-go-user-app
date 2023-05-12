@@ -10,12 +10,22 @@ import {
 import ScreenSteps from "../../components/screenSteps";
 import OTPInput from "../../components/otpInput";
 import useTimer from "../../hooks/useTimer";
+import useAuth from "../../auth/useAuth";
 
-export default function LoginScreen2() {
+export default function LoginScreen2({ navigation }) {
+  const { login } = useAuth();
   const { remainingSeconds, resetTimer, isTimerDone } = useTimer(150);
   const [code, setCode] = useState("");
   const [readyPin, setReadyPin] = useState(false);
   const MAX_CODE_LENGTH = 4;
+
+  const handleGoBack = () => {
+    navigation.goBack();
+  };
+
+  const handleSubmit = () => {
+    login();
+  };
 
   const handleResendCode = () => {
     // TODO: resend code
@@ -58,7 +68,11 @@ export default function LoginScreen2() {
         )}
 
         <View style={styles.screenStepsContainer}>
-          <ScreenSteps disableNext={!readyPin || !isTimerDone} />
+          <ScreenSteps
+            disableNext={!readyPin}
+            onPrev={handleGoBack}
+            onNext={handleSubmit}
+          />
         </View>
       </Pressable>
     </SafeAreaView>

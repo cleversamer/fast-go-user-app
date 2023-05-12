@@ -2,9 +2,9 @@ import { TouchableOpacity, StyleSheet, View, Text } from "react-native";
 import { EvilIcons } from "@expo/vector-icons";
 import * as theme from "../../constants/theme";
 
-export default function Location({ title }) {
+export default function Location({ title, onPress }) {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={onPress}>
       <View style={styles.container}>
         <Text style={styles.title}>{title}</Text>
 

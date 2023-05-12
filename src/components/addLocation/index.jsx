@@ -1,11 +1,13 @@
 import { TouchableOpacity, StyleSheet, View, Text } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 
-export default function AddLocation() {
+export default function AddLocation({ disabled }) {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity disabled={disabled}>
       <View style={styles.container}>
-        <Text style={styles.title}>إضافة الموقع للمفضلة</Text>
+        <Text style={disabled ? styles.disabledTitle : styles.enabledTitle}>
+          إضافة الموقع للمفضلة
+        </Text>
 
         <View style={styles.iconContainer}>
           <AntDesign name="plus" size={26} color="#000" />
@@ -22,9 +24,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 10,
   },
-  title: {
+  enabledTitle: {
     fontFamily: "cairo-500",
     fontSize: 12,
+  },
+  disabledTitle: {
+    fontFamily: "cairo-500",
+    fontSize: 12,
+    color: "#747474",
   },
   iconContainer: {
     backgroundColor: "#EFEFEF",

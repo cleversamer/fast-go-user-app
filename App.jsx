@@ -4,45 +4,48 @@ import { StyleSheet } from "react-native";
 import useFonts from "./src/hooks/useFonts";
 import useLocation from "./src/hooks/useLocation";
 
+import { NavigationContainer } from "@react-navigation/native";
+import AuthNavigation from "./src/navigation/AuthNavigation";
+import AppNavigation from "./src/navigation/AppNavigation";
+
+import AuthContext from "./src/auth/context";
+
 import Onboarding from "./src/screens/onboarding";
-import WelcomeScreen from "./src/screens/welcome";
-import LoginScreen1 from "./src/screens/login/LoginScreen1";
-import LoginScreen2 from "./src/screens/login/LoginScreen2";
-import LoginScreen3 from "./src/screens/login/LoginScreen3";
-import LoginScreen4 from "./src/screens/login/LoginScreen4";
-import HomeScreen1 from "./src/screens/home/HomeScreen1";
-import HomeScreen2 from "./src/screens/home/HomeScreen2";
-import HomeScreen3 from "./src/screens/home/HomeScreen3";
 
 export default function App() {
   const { fontLoaded } = useFonts();
   useLocation();
   const [showHomeScreen, setShowHomeScreen] = useState(false);
-
-  const handleShowHomeScreen = () => {
-    setShowHomeScreen(true);
-  };
+  const [user, setUser] = useState(null);
 
   if (!fontLoaded) {
     return null;
   }
 
   if (!showHomeScreen) {
-    return <Onboarding onDone={handleShowHomeScreen} />;
+    return <Onboarding onDone={() => setShowHomeScreen(true)} />;
   }
 
   return (
-    <>
-      {/* <WelcomeScreen /> */}
-      {/* <LoginScreen1 /> */}
-      {/* <LoginScreen2 /> */}
-      {/* <LoginScreen3 /> */}
-      {/* <LoginScreen4 /> */}
-      {/* <HomeScreen1 /> */}
-      {/* <HomeScreen2 /> */}
-      <HomeScreen3 />
-    </>
+    <AuthContext.Provider value={{ user, setUser }}>
+      <NavigationContainer>
+        {user ? <AppNavigation /> : <AuthNavigation />}
+      </NavigationContainer>
+    </AuthContext.Provider>
   );
+
+  // return (
+  //   <>
+  //     {/* <WelcomeScreen /> */}
+  //     {/* <LoginScreen1 /> */}
+  //     {/* <LoginScreen2 /> */}
+  //     {/* <LoginScreen3 /> */}
+  //     {/* <LoginScreen4 /> */}
+  //     {/* <HomeScreen1 /> */}
+  //     {/* <HomeScreen2 /> */}
+  //     {/* <HomeScreen3 /> */}
+  //   </>
+  // );
 }
 
 const styles = StyleSheet.create({
