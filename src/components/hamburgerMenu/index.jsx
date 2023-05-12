@@ -1,9 +1,9 @@
 import { StyleSheet, View, TouchableOpacity } from "react-native";
 import * as theme from "../../constants/theme";
 
-export default function HamburgerMenu() {
+export default function HamburgerMenu({ onPress }) {
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       <View style={styles.line}></View>
       <View style={styles.line}></View>
       <View style={styles.line}></View>

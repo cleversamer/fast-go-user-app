@@ -29,9 +29,13 @@ export default function HomeScreen1({ navigation }) {
     setLocations(newLocations);
   };
 
+  const handleOpenDrawer = () => {
+    navigation.openDrawer();
+  };
+
   return (
     <SafeAreaView style={styles.container}>
-      <HamburgerMenu />
+      <HamburgerMenu onPress={handleOpenDrawer} />
       <Map
         locations={locations}
         onSelectLocation={handleSelectLocation}

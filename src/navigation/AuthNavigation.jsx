@@ -6,10 +6,7 @@ import LoginScreen4 from "../screens/login/LoginScreen4";
 import WelcomeScreen from "../screens/welcome";
 
 const globalScreenOptions = {
-  headerStyle: { backgroundColor: "#fff" },
   contentStyle: { backgroundColor: "#fff" },
-  headerTitleStyle: { color: "#fff" },
-  headerTintColor: "#fff",
   headerShown: false,
 };
 

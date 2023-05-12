@@ -29,23 +29,11 @@ export default function App() {
   return (
     <AuthContext.Provider value={{ user, setUser }}>
       <NavigationContainer>
-        {user ? <AppNavigation /> : <AuthNavigation />}
+        {/* {user ? <AppNavigation /> : <AuthNavigation />} */}
+        <AppNavigation />
       </NavigationContainer>
     </AuthContext.Provider>
   );
-
-  // return (
-  //   <>
-  //     {/* <WelcomeScreen /> */}
-  //     {/* <LoginScreen1 /> */}
-  //     {/* <LoginScreen2 /> */}
-  //     {/* <LoginScreen3 /> */}
-  //     {/* <LoginScreen4 /> */}
-  //     {/* <HomeScreen1 /> */}
-  //     {/* <HomeScreen2 /> */}
-  //     {/* <HomeScreen3 /> */}
-  //   </>
-  // );
 }
 
 const styles = StyleSheet.create({
