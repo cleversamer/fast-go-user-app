@@ -3,7 +3,10 @@ import { StyleSheet, View, Text } from "react-native";
 export default function Copyrights() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Copyright © 2023 Fast Go</Text>
+      <Text style={styles.text}>
+        Copyright © {new Date().getFullYear()} Fast Go
+      </Text>
+
       <Text style={styles.text}>All rights reserved.</Text>
     </View>
   );

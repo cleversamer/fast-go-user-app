@@ -1,7 +1,11 @@
 import { TouchableOpacity, StyleSheet, View, Text, Image } from "react-native";
 import * as theme from "../../constants/theme";
+import useDateTimer from "../../hooks/useDateTimer";
+
+const _lastLogin = new Date();
 
 export default function DrawerHeader() {
+  const { value: lastLogin } = useDateTimer(_lastLogin);
   const getWelcomingMssg = () => {
     const currentHour = new Date().getHours();
     return currentHour < 12 ? "صباح الخير" : "مساء الخير";
@@ -28,7 +32,7 @@ export default function DrawerHeader() {
         </TouchableOpacity>
       </View>
 
-      <Text style={styles.lastLoginText}>آخر دخول منذ 30 دقيقة</Text>
+      <Text style={styles.lastLoginText}>آخر دخول منذ {lastLogin}</Text>
     </View>
   );
 }
