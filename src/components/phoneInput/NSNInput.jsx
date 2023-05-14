@@ -16,7 +16,7 @@ export default function NSNInput({ value, onChange }) {
       <Ionicons
         name="call-outline"
         size={24}
-        color="black"
+        color={theme.primaryColor}
         style={styles.icon}
       />
     </View>
