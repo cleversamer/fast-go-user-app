@@ -14,8 +14,10 @@ import InputIcon from "../../components/inputIcon";
 import PhoneInput from "../../components/phoneInput";
 import SelectInput from "../../components/selectInput";
 import CustomButton from "../../components/button";
+import PopupConfirm from "../../components/popup/PopupConfirm";
 
 export default function ProfileScreen({ navigation }) {
+  const [showPopup, setShowPopup] = useState(false);
   const [selectedGender, setSelectedGender] = useState("male");
 
   const handleSelectGender = (gender) => {
@@ -27,13 +29,30 @@ export default function ProfileScreen({ navigation }) {
   };
 
   const handleRequestAccountDeletion = () => {
-    alert("Request account deletion?");
+    setShowPopup(true);
+  };
+
+  const handleConfirmAccountDeletion = () => {
+    alert("Confirmed");
   };
 
   const handleChangeAvatar = () => {};
 
+  const handleClosePopup = () => {
+    setShowPopup(false);
+  };
+
   return (
     <SafeAreaView style={styles.container}>
+      <PopupConfirm
+        title="حذف حسابك"
+        subtitle="هل أنت متاكد أنك تريد حذف حسابك؟"
+        hint="تفقد بريدك الإلكتروني للتأكيد على حذف الحساب"
+        visible={showPopup}
+        onClose={handleClosePopup}
+        onConfirm={handleConfirmAccountDeletion}
+      />
+
       <ScrollView>
         <ProfileScreenTitle
           title="الملف الشخصي"
