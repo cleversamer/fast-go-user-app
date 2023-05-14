@@ -22,7 +22,7 @@ export default function DrawerItems({ navigation }) {
     >
       <DrawerItem
         title="الملف الشخصي"
-        onPress={navigateTo("home")}
+        onPress={navigateTo("ProfileScreen")}
         Icon={() => <Ionicons name="person" style={styles.itemIcon} />}
       />
 

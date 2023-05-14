@@ -4,15 +4,22 @@ import useDateTimer from "../../hooks/useDateTimer";
 
 const _lastLogin = new Date();
 
-export default function DrawerHeader() {
+export default function DrawerHeader({ navigation }) {
   const { value: lastLogin } = useDateTimer(_lastLogin);
+
   const getWelcomingMssg = () => {
-    const currentHour = new Date().getHours();
-    return currentHour < 12 ? "صباح الخير" : "مساء الخير";
+    try {
+      const currentHour = new Date().getHours();
+      return currentHour < 12 ? "صباح الخير" : "مساء الخير";
+    } catch (err) {
+      return "مرحبًا بك";
+    }
   };
 
   const handleAvatarPress = () => {
-    // TODO: go to personal profile screen
+    try {
+      navigation.navigate("ProfileScreen");
+    } catch (err) {}
   };
 
   return (

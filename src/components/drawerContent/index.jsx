@@ -5,9 +5,9 @@ import Copyrights from "./Copyrights";
 
 export default function DrawerContent(props) {
   return (
-    <View style={styles.container} {...props}>
-      <DrawerHeader />
-      <DrawerItems />
+    <View style={styles.container}>
+      <DrawerHeader navigation={props.navigation} />
+      <DrawerItems navigation={props.navigation} />
       <Copyrights />
     </View>
   );
