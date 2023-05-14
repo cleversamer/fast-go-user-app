@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   SafeAreaView,
   ScrollView,
@@ -11,9 +12,16 @@ import { FontAwesome, Ionicons, Feather } from "@expo/vector-icons";
 import * as theme from "../../constants/theme";
 import InputIcon from "../../components/inputIcon";
 import PhoneInput from "../../components/phoneInput";
+import SelectInput from "../../components/selectInput";
 import CustomButton from "../../components/button";
 
 export default function ProfileScreen({ navigation }) {
+  const [selectedGender, setSelectedGender] = useState("male");
+
+  const handleSelectGender = (gender) => {
+    setSelectedGender(gender);
+  };
+
   const handleGoBack = () => {
     navigation.goBack();
   };
@@ -70,6 +78,8 @@ export default function ProfileScreen({ navigation }) {
           />
 
           <PhoneInput />
+
+          <SelectInput onChange={handleSelectGender} placeholder="اختر الجنس" />
 
           <CustomButton
             text="حفظ"
