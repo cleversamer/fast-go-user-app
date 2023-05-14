@@ -28,7 +28,7 @@ export default function DrawerItems({ navigation }) {
 
       <DrawerItem
         title="الإشعارات"
-        onPress={navigateTo("home")}
+        onPress={navigateTo("NotificationsScreen")}
         badge
         badgeCount={7}
         Icon={() => <Ionicons name="notifications" style={styles.itemIcon} />}

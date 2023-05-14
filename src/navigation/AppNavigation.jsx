@@ -3,6 +3,7 @@ import HomeScreen1 from "../screens/home/HomeScreen1";
 import HomeScreen2 from "../screens/home/HomeScreen2";
 import HomeScreen3 from "../screens/home/HomeScreen3";
 import ProfileScreen from "../screens/profile";
+import NotificationsScreen from "../screens/notifications";
 
 import DrawerNavigation from "./DrawerNavigation";
 
@@ -21,6 +22,10 @@ export default function AppNavigation() {
       <Stack.Screen name="HomeScreen2" component={HomeScreen2} />
       <Stack.Screen name="HomeScreen3" component={HomeScreen3} />
       <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
+      <Stack.Screen
+        name="NotificationsScreen"
+        component={NotificationsScreen}
+      />
     </Stack.Navigator>
   );
 }
