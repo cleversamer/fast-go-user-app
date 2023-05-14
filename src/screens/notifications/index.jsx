@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 15,
-    paddingTop: 30,
+    paddingTop: 50,
   },
   notificationsContainer: {
     flex: 1,
