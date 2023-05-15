@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { View, Text, StyleSheet, TextInput } from "react-native";
+import { View, StyleSheet, TextInput } from "react-native";
 
 export default function OTPInput() {
   const digit1Ref = useRef(null);

@@ -1,4 +1,4 @@
-import { StyleSheet, TouchableOpacity, View, Text } from "react-native";
+import { StyleSheet, TouchableOpacity, Text } from "react-native";
 import * as theme from "../../constants/theme";
 
 export default function CustomButton({
