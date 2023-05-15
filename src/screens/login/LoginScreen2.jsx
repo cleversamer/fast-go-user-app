@@ -1,8 +1,9 @@
 import { SafeAreaView, Text, StyleSheet, View } from "react-native";
 import * as theme from "../../constants/theme";
-import CustomTextInput from "../../components/textInput";
+import InputIcon from "../../components/inputIcon";
 import PhoneInput from "../../components/phoneInput";
 import ScreenSteps from "../../components/screenSteps";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function LoginScreen2({ navigation }) {
   const handleGoBack = () => {
@@ -20,8 +21,16 @@ export default function LoginScreen2({ navigation }) {
 
       <View style={styles.inputsContainer}>
         <View style={styles.textInputsContainer}>
-          <CustomTextInput placeholder="الإسم الأخير" />
-          <CustomTextInput placeholder="الإسم الأول" />
+          <InputIcon
+            Icon={() => <Ionicons name="person" style={styles.inputIcon} />}
+            placeholder="الإسم الأخير"
+            containerStyles={styles.inputContainer}
+          />
+          <InputIcon
+            Icon={() => <Ionicons name="person" style={styles.inputIcon} />}
+            placeholder="الإسم الأول"
+            containerStyles={styles.inputContainer}
+          />
         </View>
 
         <PhoneInput />
@@ -58,6 +67,15 @@ const styles = StyleSheet.create({
   textInputsContainer: {
     flexDirection: "row",
     gap: 10,
+    alignItems: "center",
+  },
+  inputContainer: {
+    flex: 1,
+  },
+  inputIcon: {
+    marginRight: 10,
+    fontSize: 20,
+    color: theme.primaryColor,
   },
   screenStepsContainer: {
     position: "absolute",

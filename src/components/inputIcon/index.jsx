@@ -8,9 +8,10 @@ export default function InputIcon({
   title,
   onChange,
   keyboardType,
+  containerStyles,
 }) {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, containerStyles || {}]}>
       {title && <Text style={styles.title}>{title}</Text>}
 
       <View style={styles.inputContainer}>

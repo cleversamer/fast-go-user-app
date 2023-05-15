@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "flex-end",
-    paddingBottom: 30,
+    paddingTop: 60,
     padding: 15,
   },
   image: {
