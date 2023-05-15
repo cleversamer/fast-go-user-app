@@ -1,4 +1,10 @@
-import { StyleSheet, SafeAreaView, Text, Image } from "react-native";
+import {
+  StyleSheet,
+  ScrollView,
+  SafeAreaView,
+  Text,
+  Image,
+} from "react-native";
 import CustomButton from "../../components/button";
 import * as theme from "../../constants/theme";
 
@@ -11,32 +17,37 @@ export default function WelcomeScreen({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Image
-        source={require("../../assets/images/welcoming.png")}
-        resizeMode="contain"
-        style={styles.image}
-      />
+      <ScrollView
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+      >
+        <Image
+          source={require("../../assets/images/welcoming.png")}
+          resizeMode="contain"
+          style={styles.image}
+        />
 
-      <Text style={styles.title}>أهلاً وسهلاً بك!</Text>
+        <Text style={styles.title}>أهلاً وسهلاً بك!</Text>
 
-      <Text style={styles.text}>
-        نضمن لك سرعة الوصول نضمن لك سرعة الوصول نضمن لك سرعة الوصول نضمن لك سرعة
-        الوصول نضمن لك سرعة الوصول
-      </Text>
+        <Text style={styles.text}>
+          نضمن لك سرعة الوصول نضمن لك سرعة الوصول نضمن لك سرعة الوصول نضمن لك
+          سرعة الوصول نضمن لك سرعة الوصول
+        </Text>
 
-      <CustomButton
-        text="تسجيل كراكب"
-        containerStyle={styles.loginButtonContainer}
-        textStyle={styles.loginButtonText}
-        onPress={handleGoToLoginScreen}
-      />
+        <CustomButton
+          text="تسجيل كراكب"
+          containerStyle={styles.loginButtonContainer}
+          textStyle={styles.loginButtonText}
+          onPress={handleGoToLoginScreen}
+        />
 
-      <CustomButton
-        text="تسجيل كسائق"
-        containerStyle={styles.registerButtonContainer}
-        textStyle={styles.registerButtonText}
-        onPress={handleGoToRegisterScreen}
-      />
+        <CustomButton
+          text="تسجيل كسائق"
+          containerStyle={styles.registerButtonContainer}
+          textStyle={styles.registerButtonText}
+          onPress={handleGoToRegisterScreen}
+        />
+      </ScrollView>
     </SafeAreaView>
   );
 }
