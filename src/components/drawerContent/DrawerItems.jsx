@@ -6,8 +6,11 @@ import {
   FontAwesome,
 } from "@expo/vector-icons";
 import DrawerItem from "./DrawerItem";
+import useAuth from "../../auth/useAuth";
 
 export default function DrawerItems({ navigation }) {
+  const { logout } = useAuth();
+
   const navigateTo = (screen) => () => {
     try {
       navigation.navigate(screen);
@@ -96,7 +99,7 @@ export default function DrawerItems({ navigation }) {
 
       <DrawerItem
         title="تسجيل الخروج"
-        onPress={navigateTo("home")}
+        onPress={logout}
         Icon={() => (
           <MaterialCommunityIcons name="logout" style={styles.itemIcon} />
         )}

@@ -15,11 +15,11 @@ const Stack = createNativeStackNavigator();
 export default function AuthNavigation() {
   return (
     <Stack.Navigator screenOptions={globalScreenOptions}>
+      <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
       <Stack.Screen name="LoginScreen1" component={LoginScreen1} />
       <Stack.Screen name="LoginScreen2" component={LoginScreen2} />
       <Stack.Screen name="LoginScreen3" component={LoginScreen3} />
       <Stack.Screen name="LoginScreen4" component={LoginScreen4} />
-      <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
     </Stack.Navigator>
   );
 }

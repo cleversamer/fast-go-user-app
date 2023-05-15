@@ -1,9 +1,11 @@
-import { StyleSheet, SafeAreaView, View, Text, Image } from "react-native";
+import { StyleSheet, SafeAreaView, Text, Image } from "react-native";
 import CustomButton from "../../components/button";
 import * as theme from "../../constants/theme";
 
-export default function WelcomeScreen() {
-  const handleGoToLoginScreen = () => {};
+export default function WelcomeScreen({ navigation }) {
+  const handleGoToLoginScreen = () => {
+    navigation.navigate("LoginScreen1");
+  };
 
   const handleGoToRegisterScreen = () => {};
 
@@ -23,14 +25,14 @@ export default function WelcomeScreen() {
       </Text>
 
       <CustomButton
-        text="تسجيل دخول"
+        text="تسجيل كراكب"
         containerStyle={styles.loginButtonContainer}
         textStyle={styles.loginButtonText}
         onPress={handleGoToLoginScreen}
       />
 
       <CustomButton
-        text="إنشاء حساب"
+        text="تسجيل كسائق"
         containerStyle={styles.registerButtonContainer}
         textStyle={styles.registerButtonText}
         onPress={handleGoToRegisterScreen}
