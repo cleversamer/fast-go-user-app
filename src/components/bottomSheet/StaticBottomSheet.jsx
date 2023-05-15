@@ -1,59 +1,44 @@
-import { useEffect, useRef } from "react";
 import { ScrollView, View, StyleSheet } from "react-native";
-import {
-  BottomSheetModal,
-  BottomSheetModalProvider,
-} from "@gorhom/bottom-sheet";
 import * as theme from "../../constants/theme";
 
-const defaultSnapPoints = ["25%", "50%"];
-
 export default function StaticBottomSheet({
+  containerStyle,
   contentStyle,
-  snapPoints = defaultSnapPoints,
   children,
 }) {
-  const bottomSheetModalRef = useRef(null);
-
-  useEffect(() => {
-    if (bottomSheetModalRef) {
-      bottomSheetModalRef.current.present();
-    }
-  }, [bottomSheetModalRef]);
-
   return (
-    <BottomSheetModalProvider>
-      <BottomSheetModal
-        ref={bottomSheetModalRef}
-        snapPoints={snapPoints}
-        handleIndicatorStyle={styles.indicatorStyle}
-        backgroundStyle={styles.modal}
-      >
-        <ScrollView
-          showsVerticalScrollIndicator={false}
-          showsHorizontalScrollIndicator={false}
-        >
-          <View style={[styles.contentContainer, contentStyle || {}]}>
-            {children}
-          </View>
-        </ScrollView>
-      </BottomSheetModal>
-    </BottomSheetModalProvider>
+    <View style={[styles.container, containerStyle || {}]}>
+      <ScrollView>
+        <View style={styles.indicatorStyle}></View>
+        <View style={[styles.contentContainer, contentStyle || {}]}>
+          {children}
+        </View>
+      </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  indicatorStyle: {
-    width: 65,
-    height: 6,
-    backgroundColor: theme.primaryColor,
-  },
-  modal: {
+  container: {
+    paddingVertical: 20,
+    paddingHorizontal: 10,
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
+    backgroundColor: "#fff",
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0,
+    width: theme.sizes.width,
+  },
+  indicatorStyle: {
+    alignSelf: "center",
+    width: 65,
+    height: 6,
+    borderRadius: 8,
+    backgroundColor: theme.primaryColor,
   },
   contentContainer: {
-    flex: 1,
     padding: 10,
     paddingHorizontal: 15,
     gap: 10,
