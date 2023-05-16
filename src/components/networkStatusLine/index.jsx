@@ -1,45 +1,18 @@
-import { useEffect, useState } from "react";
 import { StyleSheet, SafeAreaView, Text, StatusBar } from "react-native";
 import useLocale from "../../hooks/useLocale";
-import * as theme from "../../constants/theme";
-import useAuth from "../../auth/useAuth";
+import useNetworkStatus from "../../hooks/useNetworkStatus";
 
 export default function NetworkStatusLine() {
-  const [showComponent, setShowComponent] = useState(true);
   const { i18n } = useLocale();
-  const { isOnline } = useAuth();
+  const isOnline = useNetworkStatus();
 
-  useEffect(() => {
-    let timeoutId;
-
-    if (isOnline) {
-      timeoutId = setTimeout(() => {
-        setShowComponent(false);
-      }, 2000);
-    } else {
-      setShowComponent(true);
-      clearTimeout(timeoutId);
-    }
-
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, [isOnline]);
-
-  if (!showComponent) {
+  if (isOnline) {
     return null;
   }
 
   return (
-    <SafeAreaView
-      style={[
-        styles.container,
-        isOnline ? styles.onlineContainer : styles.offlineContainer,
-      ]}
-    >
-      <Text style={styles.text}>
-        {isOnline ? i18n("online") : i18n("offline")}
-      </Text>
+    <SafeAreaView style={styles.container}>
+      <Text style={styles.text}>{i18n("offline")}</Text>
     </SafeAreaView>
   );
 }
@@ -51,11 +24,6 @@ const styles = StyleSheet.create({
     top: StatusBar.currentHeight || 0,
     left: 0,
     right: 0,
-  },
-  onlineContainer: {
-    backgroundColor: theme.primaryColor,
-  },
-  offlineContainer: {
     backgroundColor: "#f00",
   },
   text: {

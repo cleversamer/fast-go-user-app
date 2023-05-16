@@ -343,10 +343,6 @@
     "en": "Unknown location",
     "ar": "موقع غير معروف"
   },
-  "online": {
-    "en": "You're now online",
-    "ar": "أنت متصل بالإنترنت"
-  },
   "offline": {
     "en": "You're now offline",
     "ar": "أنت غير متصل بالإنترنت"
