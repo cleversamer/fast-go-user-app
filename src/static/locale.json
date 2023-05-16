@@ -1,0 +1,41 @@
+{
+  "main": {
+    "en": "Main",
+    "ar": "الرئيسي"
+  },
+
+  "work": {
+    "en": "Work",
+    "ar": "العمل"
+  },
+
+  "club": {
+    "en": "Club",
+    "ar": "النادي"
+  },
+
+  "cafe": {
+    "en": "Cafe",
+    "ar": "مقهى"
+  },
+
+  "park": {
+    "en": "Park",
+    "ar": "حديقة"
+  },
+
+  "family-home": {
+    "en": "Famil house",
+    "ar": "بيت العائلة"
+  },
+
+  "partners": {
+    "en": "Partners",
+    "ar": "شركاء"
+  },
+
+  "other": {
+    "en": "Other",
+    "ar": "أخرى"
+  }
+}

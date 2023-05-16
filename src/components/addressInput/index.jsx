@@ -16,6 +16,7 @@ export default function AddressInput({
         style={styles.input}
         value={value}
         onFocus={onFocus}
+        editable={false}
       />
 
       <EvilIcons name="location" size={34} color={theme.primaryColor} />

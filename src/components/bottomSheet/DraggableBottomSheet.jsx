@@ -9,19 +9,22 @@ export default function DraggableBottomSheet({
   contentStyle,
   height = defaultHeight,
   children,
+  visible,
+  onClose,
 }) {
   const ref = useRef(null);
 
   useEffect(() => {
-    if (ref) {
+    if (ref && visible) {
       ref.current.open();
     }
-  }, []);
+  }, [visible]);
 
   return (
     <RBSheet
       ref={ref}
       height={height}
+      onClose={onClose}
       closeOnDragDown={true}
       closeOnPressMask={false}
       closeOnPressBack
@@ -29,18 +32,9 @@ export default function DraggableBottomSheet({
       closeDuration={200}
       animationType="fade"
       customStyles={{
-        wrapper: {
-          backgroundColor: "transparent",
-        },
-        container: {
-          borderTopLeftRadius: 25,
-          borderTopRightRadius: 25,
-        },
-        draggableIcon: {
-          width: 65,
-          height: 6,
-          backgroundColor: theme.primaryColor,
-        },
+        wrapper: styles.wrapper,
+        container: styles.container,
+        draggableIcon: styles.draggableIcon,
       }}
     >
       <View style={[styles.contentContainer, contentStyle || {}]}>
@@ -52,7 +46,7 @@ export default function DraggableBottomSheet({
 
 const styles = StyleSheet.create({
   wrapper: {
-    backgroundColor: "transparent",
+    backgroundColor: "rgba(0, 0, 0, 0.65)",
   },
   container: {
     borderTopLeftRadius: 25,

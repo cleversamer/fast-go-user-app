@@ -4,6 +4,7 @@ import HomeScreen2 from "../screens/home/HomeScreen2";
 import HomeScreen3 from "../screens/home/HomeScreen3";
 import ProfileScreen from "../screens/profile";
 import NotificationsScreen from "../screens/notifications";
+import SavedPlaces from "../screens/savedPlaces";
 
 import DrawerNavigation from "./DrawerNavigation";
 
@@ -26,6 +27,7 @@ export default function AppNavigation() {
         name="NotificationsScreen"
         component={NotificationsScreen}
       />
+      <Stack.Screen name="SavedPlaces" component={SavedPlaces} />
     </Stack.Navigator>
   );
 }

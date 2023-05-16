@@ -1,12 +1,14 @@
 import { TouchableOpacity, StyleSheet, View, Text } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 
-export default function AddLocation({ disabled }) {
+const defaultText = "إضافة الموقع للمفضلة";
+
+export default function AddLocation({ text = defaultText, disabled, onPress }) {
   return (
-    <TouchableOpacity disabled={disabled}>
+    <TouchableOpacity disabled={disabled} onPress={onPress}>
       <View style={styles.container}>
         <Text style={disabled ? styles.disabledTitle : styles.enabledTitle}>
-          إضافة الموقع للمفضلة
+          {text}
         </Text>
 
         <View style={styles.iconContainer}>

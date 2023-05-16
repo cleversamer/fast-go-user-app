@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
   dropdownTextStyles: {
     fontFamily: "cairo-600",
     fontSize: 13,
+    textAlign: "right",
   },
   inputStyles: {
     fontFamily: "cairo-600",

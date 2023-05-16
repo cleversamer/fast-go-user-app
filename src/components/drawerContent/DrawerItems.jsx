@@ -7,9 +7,11 @@ import {
 } from "@expo/vector-icons";
 import DrawerItem from "./DrawerItem";
 import useAuth from "../../auth/useAuth";
+import useLocale from "../../hooks/useLocale";
 
 export default function DrawerItems({ navigation }) {
   const { logout } = useAuth();
+  const { switchLang } = useLocale();
 
   const navigateTo = (screen) => () => {
     try {
@@ -50,7 +52,7 @@ export default function DrawerItems({ navigation }) {
 
       <DrawerItem
         title="الأماكن المحفوظة"
-        onPress={navigateTo("home")}
+        onPress={navigateTo("SavedPlaces")}
         Icon={() => <Ionicons name="compass" style={styles.itemIcon} />}
       />
 
@@ -76,7 +78,7 @@ export default function DrawerItems({ navigation }) {
 
       <DrawerItem
         title="تغيير اللغة"
-        onPress={navigateTo("home")}
+        onPress={switchLang}
         Icon={() => (
           <MaterialCommunityIcons
             name="google-translate"
