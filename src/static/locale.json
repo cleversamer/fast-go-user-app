@@ -338,5 +338,9 @@
   "chooseLocationPlaceholder": {
     "en": "Choose address on map",
     "ar": "اختر عنوانًا على الخريطة"
+  },
+  "unknownLocation": {
+    "en": "Unknown location",
+    "ar": "موقع غير معروف"
   }
 }

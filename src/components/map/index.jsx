@@ -3,6 +3,7 @@ import { StyleSheet } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import useLocation from "../../hooks/useLocation";
 import Geocoder from "react-native-geocoding";
+import useLocale from "../../hooks/useLocale";
 
 Geocoder.init("AIzaSyAo9_6OiQ96Z-D2V8a4iiq5Yz3LDmrrM78");
 
@@ -21,6 +22,7 @@ export default function Map({
   onSelectLocation,
   onMarkerPress,
 }) {
+  const { i18n } = useLocale();
   const [region, setRegion] = useState(initialRegion);
   const location = useLocation();
 
@@ -43,7 +45,7 @@ export default function Map({
         longitude:
           event?.nativeEvent?.coordinate?.longitude || initialRegion.longitude,
 
-        title: "غير معروف",
+        title: i18n("unknownLocation"),
       };
 
       Geocoder.from(location.latitude, location.longitude)
