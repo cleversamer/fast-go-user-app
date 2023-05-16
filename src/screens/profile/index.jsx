@@ -16,6 +16,7 @@ import SelectInput from "../../components/selectInput";
 import CustomButton from "../../components/button";
 import PopupConfirm from "../../components/popup/PopupConfirm";
 import useLocale from "../../hooks/useLocale";
+import NetworkStatusLine from "../../components/networkStatusLine";
 
 export default function ProfileScreen({ navigation }) {
   const { i18n, lang } = useLocale();
@@ -46,6 +47,8 @@ export default function ProfileScreen({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
+      <NetworkStatusLine />
+
       <PopupConfirm
         title={i18n("popupDeleteAccountTitle")}
         subtitle={i18n("popupDeleteAccountSubtitle")}

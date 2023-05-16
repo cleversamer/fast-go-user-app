@@ -4,6 +4,7 @@ import ScreenSteps from "../../components/screenSteps";
 import Checkbox from "../../components/checkbox";
 import PopupError from "../../components/popup/PopupError";
 import useLocale from "../../hooks/useLocale";
+import NetworkStatusLine from "../../components/networkStatusLine";
 
 export default function LoginScreen2({ navigation }) {
   const { i18n, lang } = useLocale();
@@ -22,6 +23,8 @@ export default function LoginScreen2({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
+      <NetworkStatusLine />
+
       <PopupError visible={error} onClose={handleClosePopup} />
 
       <View

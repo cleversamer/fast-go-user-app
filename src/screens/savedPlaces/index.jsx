@@ -5,6 +5,7 @@ import AddLocation from "../../components/addLocation";
 import Place from "../../components/place";
 import AddPlaceBottomSheet from "../../components/addPlaceBottomSheet";
 import useLocale from "../../hooks/useLocale";
+import NetworkStatusLine from "../../components/networkStatusLine";
 
 const _savedPlaces = [
   {
@@ -67,6 +68,8 @@ export default function SavedPlacesScreen({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
+      <NetworkStatusLine />
+
       <ScrollView>
         <ScreenTitle title={i18n("savedPlaces")} onPrev={handleGoBack} />
 

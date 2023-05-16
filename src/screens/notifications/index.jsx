@@ -9,6 +9,7 @@ import {
 import NotificationsScreenTitle from "../../components/notificationsScreenTitle";
 import Notification from "../../components/notification";
 import useLocale from "../../hooks/useLocale";
+import NetworkStatusLine from "../../components/networkStatusLine";
 
 const notifications = [
   {
@@ -126,6 +127,8 @@ export default function NotificationsScreen({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
+      <NetworkStatusLine />
+
       <NotificationsScreenTitle
         title={i18n("notifications")}
         onPrev={handleGoBack}

@@ -12,6 +12,7 @@ import OTPInput from "../../components/otpInput";
 import useTimer from "../../hooks/useTimer";
 import useAuth from "../../auth/useAuth";
 import useLocale from "../../hooks/useLocale";
+import NetworkStatusLine from "../../components/networkStatusLine";
 
 export default function LoginScreen2({ navigation }) {
   const { i18n } = useLocale();
@@ -45,6 +46,8 @@ export default function LoginScreen2({ navigation }) {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
+      <NetworkStatusLine />
+
       <Pressable style={styles.container} onPress={Keyboard.dismiss}>
         <Text style={styles.title}>{i18n("enterSixDigitsCode")}</Text>
 

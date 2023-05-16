@@ -3,6 +3,7 @@ import AppIntroSlider from "react-native-app-intro-slider";
 import { AntDesign } from "@expo/vector-icons";
 import * as theme from "../../constants/theme";
 import useLocale from "../../hooks/useLocale";
+import NetworkStatusLine from "../../components/networkStatusLine";
 
 export default function Onboarding({ onDone }) {
   const { i18n } = useLocale();
@@ -46,6 +47,8 @@ export default function Onboarding({ onDone }) {
 
   return (
     <SafeAreaView style={styles.container}>
+      <NetworkStatusLine />
+
       <AppIntroSlider
         data={slides}
         activeDotStyle={styles.activeDotStyle}

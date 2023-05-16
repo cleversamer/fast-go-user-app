@@ -4,6 +4,7 @@ import AddressInput from "../../components/addressInput";
 import Location from "../../components/location";
 import CustomButton from "../../components/button";
 import useLocale from "../../hooks/useLocale";
+import NetworkStatusLine from "../../components/networkStatusLine";
 
 const _locations = [
   "فلسطين,قطاع غزة,غزة,محافظةغزةالزيتون,890",
@@ -27,6 +28,8 @@ export default function HomeScreen2({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
+      <NetworkStatusLine />
+
       <Text style={styles.title}>{i18n("whereTo")}</Text>
 
       <AddressInput placeholder={i18n("whereYourDestination")} />

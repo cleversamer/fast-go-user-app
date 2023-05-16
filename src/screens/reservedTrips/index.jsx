@@ -9,6 +9,7 @@ import {
 import ScreenTitle from "../../components/screenTitle";
 // import Trip from "../../components/trip";
 import useLocale from "../../hooks/useLocale";
+import NetworkStatusLine from "../../components/networkStatusLine";
 
 const reservedTrips = [
   {
@@ -62,6 +63,8 @@ export default function ReservedTripsScreen({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
+      <NetworkStatusLine />
+
       <ScreenTitle title={i18n("reservedTrips")} onPrev={handleGoBack} />
 
       {/* {!!reservedTrips.length && (

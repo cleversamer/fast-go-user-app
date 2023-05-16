@@ -2,7 +2,7 @@ import { useContext } from "react";
 import AuthContext from "./context";
 
 const useAuth = () => {
-  const { user, setUser } = useContext(AuthContext);
+  const { user, setUser, isOnline } = useContext(AuthContext);
 
   const login = () => {
     try {
@@ -20,7 +20,7 @@ const useAuth = () => {
     }
   };
 
-  return { user, login, logout };
+  return { user, login, logout, isOnline };
 };
 
 export default useAuth;

@@ -3,6 +3,7 @@ import { SafeAreaView, StyleSheet } from "react-native";
 import Map from "../../components/map";
 import HomeBottomSheet1 from "../../components/homeBottomSheet1";
 import HamburgerMenu from "../../components/hamburgerMenu";
+import NetworkStatusLine from "../../components/networkStatusLine";
 
 export default function HomeScreen1({ navigation }) {
   const [locations, setLocations] = useState([]);
@@ -35,12 +36,16 @@ export default function HomeScreen1({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
+      <NetworkStatusLine />
+
       <HamburgerMenu onPress={handleOpenDrawer} />
+
       <Map
         locations={locations}
         onSelectLocation={handleSelectLocation}
         onMarkerPress={handleDeleteLocation}
       />
+
       <HomeBottomSheet1
         disableButton={!locations.length}
         disableAddLocation={!locations.length}

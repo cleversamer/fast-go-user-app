@@ -3,6 +3,7 @@ import { TouchableOpacity, SafeAreaView, StyleSheet } from "react-native";
 import Map from "../../components/map";
 import HomeBottomSheet2 from "../../components/homeBottomSheet2";
 import { AntDesign } from "@expo/vector-icons";
+import NetworkStatusLine from "../../components/networkStatusLine";
 
 export default function HomeScreen3({ navigation }) {
   const [paymentType, setPaymentType] = useState("cash");
@@ -24,6 +25,8 @@ export default function HomeScreen3({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
+      <NetworkStatusLine />
+
       <TouchableOpacity style={styles.iconContainer} onPress={handleGoBack}>
         <AntDesign name="arrowright" size={24} color="black" />
       </TouchableOpacity>

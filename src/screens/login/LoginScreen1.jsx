@@ -6,6 +6,7 @@ import CustomButton from "../../components/button";
 import HorizontalLines from "../../components/horizontalLines";
 import ContinueButton from "../../components/continueButton";
 import useLocale from "../../hooks/useLocale";
+import NetworkStatusLine from "../../components/networkStatusLine";
 
 export default function LoginScreen1({ navigation }) {
   const { i18n } = useLocale();
@@ -32,6 +33,8 @@ export default function LoginScreen1({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
+      <NetworkStatusLine />
+
       <ScrollView>
         <Text style={styles.title}>{i18n("loginScreen1Title")}</Text>
         <Text style={styles.subtitle}>{i18n("loginScreen1Subtitle")}</Text>

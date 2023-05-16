@@ -8,6 +8,7 @@ import {
 import CustomButton from "../../components/button";
 import * as theme from "../../constants/theme";
 import useLocale from "../../hooks/useLocale";
+import NetworkStatusLine from "../../components/networkStatusLine";
 
 export default function WelcomeScreen({ navigation }) {
   const { i18n } = useLocale();
@@ -20,6 +21,8 @@ export default function WelcomeScreen({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
+      <NetworkStatusLine />
+
       <ScrollView
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}

@@ -5,6 +5,7 @@ import PhoneInput from "../../components/phoneInput";
 import ScreenSteps from "../../components/screenSteps";
 import { Ionicons } from "@expo/vector-icons";
 import useLocale from "../../hooks/useLocale";
+import NetworkStatusLine from "../../components/networkStatusLine";
 
 export default function LoginScreen2({ navigation }) {
   const { i18n, lang } = useLocale();
@@ -19,6 +20,8 @@ export default function LoginScreen2({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
+      <NetworkStatusLine />
+
       <Text style={styles.title}>{i18n("loginScreen2Title")}</Text>
       <Text style={styles.subtitle}>{i18n("loginScreen2Subtitle")}</Text>
 
