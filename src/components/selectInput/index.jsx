@@ -1,6 +1,7 @@
 import { StyleSheet } from "react-native";
 import { SelectList } from "react-native-dropdown-select-list";
 import * as theme from "../../constants/theme";
+import useLocale from "../../hooks/useLocale";
 
 const defaultOptions = [
   {
@@ -18,6 +19,8 @@ export default function SelectInput({
   placeholder,
   onChange,
 }) {
+  const { lang } = useLocale();
+
   const handleSelect = (optIndex) => {
     onChange(options[optIndex - 1]);
   };
@@ -29,28 +32,42 @@ export default function SelectInput({
       setSelected={handleSelect}
       placeholder={placeholder}
       search={false}
-      boxStyles={styles.boxStyles}
+      boxStyles={lang === "ar" ? styles.arBoxStyles : styles.enBoxStyles}
       dropdownStyles={styles.dropdownStyles}
-      dropdownTextStyles={styles.dropdownTextStyles}
+      dropdownTextStyles={
+        lang === "ar"
+          ? styles.arDropdownTextStyles
+          : styles.enDropdownTextStyles
+      }
       inputStyles={styles.inputStyles}
     />
   );
 }
 
 const styles = StyleSheet.create({
-  boxStyles: {
+  arBoxStyles: {
     borderColor: theme.primaryColor,
     borderWidth: 2,
     flexDirection: "row-reverse",
+  },
+  enBoxStyles: {
+    borderColor: theme.primaryColor,
+    borderWidth: 2,
+    flexDirection: "row",
   },
   dropdownStyles: {
     borderColor: theme.primaryColor,
     borderWidth: 2,
   },
-  dropdownTextStyles: {
+  arDropdownTextStyles: {
     fontFamily: "cairo-600",
     fontSize: 13,
     textAlign: "right",
+  },
+  enDropdownTextStyles: {
+    fontFamily: "cairo-600",
+    fontSize: 13,
+    textAlign: "left",
   },
   inputStyles: {
     fontFamily: "cairo-600",

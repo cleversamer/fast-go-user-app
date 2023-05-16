@@ -1,12 +1,15 @@
 import { TouchableOpacity, StyleSheet, View, Text } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
+import useLocale from "../../hooks/useLocale";
 
 const defaultText = "إضافة الموقع للمفضلة";
 
 export default function AddLocation({ text = defaultText, disabled, onPress }) {
+  const { lang } = useLocale();
+
   return (
     <TouchableOpacity disabled={disabled} onPress={onPress}>
-      <View style={styles.container}>
+      <View style={lang === "ar" ? styles.arContainer : styles.enContainer}>
         <Text style={disabled ? styles.disabledTitle : styles.enabledTitle}>
           {text}
         </Text>
@@ -20,8 +23,14 @@ export default function AddLocation({ text = defaultText, disabled, onPress }) {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  arContainer: {
     flexDirection: "row",
+    justifyContent: "flex-end",
+    alignItems: "center",
+    gap: 10,
+  },
+  enContainer: {
+    flexDirection: "row-reverse",
     justifyContent: "flex-end",
     alignItems: "center",
     gap: 10,

@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import {
   StyleSheet,
   TouchableOpacity,
@@ -8,8 +8,10 @@ import {
   Animated,
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
+import useLocale from "../../hooks/useLocale";
 
 export default function PopupMenu({ onRequestAccountDeletion }) {
+  const { i18n, lang } = useLocale();
   const [visible, setVisible] = useState(false);
 
   return (
@@ -25,7 +27,13 @@ export default function PopupMenu({ onRequestAccountDeletion }) {
               style={styles.option}
               onPress={onRequestAccountDeletion}
             >
-              <Text style={styles.optionText}>طلب حذف الحساب</Text>
+              <Text
+                style={
+                  lang === "ar" ? styles.arOptionText : styles.enOptionText
+                }
+              >
+                {i18n("requestAccountDeletion")}
+              </Text>
             </TouchableOpacity>
           </Animated.View>
         </SafeAreaView>
@@ -55,8 +63,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingVertical: 7,
   },
-  optionText: {
+  arOptionText: {
     fontFamily: "cairo-700",
     fontSize: 13,
+    textAlign: "right",
+  },
+  enOptionText: {
+    fontFamily: "cairo-700",
+    fontSize: 13,
+    textAlign: "left",
   },
 });

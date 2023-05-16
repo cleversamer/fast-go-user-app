@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import * as theme from "../../constants/theme";
+import useLocale from "../../hooks/useLocale";
 
 export default function ScreenSteps({
   containerStyle,
@@ -10,23 +11,36 @@ export default function ScreenSteps({
   showPrev = true,
   disableNext = false,
 }) {
+  const { lang, i18n } = useLocale();
+
   if (!showNext && !showPrev) {
     return null;
   }
 
   return (
-    <View style={[styles.container, containerStyle || {}]}>
+    <View
+      style={[
+        lang === "ar" ? styles.arContainer : styles.enContainer,
+        containerStyle || {},
+      ]}
+    >
       {showNext && (
         <TouchableOpacity disabled={disableNext} onPress={onNext}>
           <View
-            style={
+            style={[
               disableNext
                 ? styles.disabledNextButtonContainer
-                : styles.activeNextButtonContainer
-            }
+                : styles.activeNextButtonContainer,
+              lang === "ar"
+                ? styles.arNextButtonContainer
+                : styles.enNextButtonContainer,
+            ]}
           >
-            <AntDesign name="arrowleft" style={styles.nextButtonIcon} />
-            <Text style={styles.nextButtonText}>التالي</Text>
+            <AntDesign
+              name={lang === "ar" ? "arrowleft" : "arrowright"}
+              style={styles.nextButtonIcon}
+            />
+            <Text style={styles.nextButtonText}>{i18n("next")}</Text>
           </View>
         </TouchableOpacity>
       )}
@@ -34,7 +48,10 @@ export default function ScreenSteps({
       {showPrev && (
         <TouchableOpacity onPress={onPrev}>
           <View style={styles.prevButtonContainer}>
-            <AntDesign name="arrowright" style={styles.prevButtonIcon} />
+            <AntDesign
+              name={lang === "ar" ? "arrowright" : "arrowleft"}
+              style={styles.prevButtonIcon}
+            />
           </View>
         </TouchableOpacity>
       )}
@@ -43,8 +60,13 @@ export default function ScreenSteps({
 }
 
 const styles = StyleSheet.create({
-  container: {
+  arContainer: {
     flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  enContainer: {
+    flexDirection: "row-reverse",
     justifyContent: "space-between",
     alignItems: "center",
   },
@@ -59,9 +81,6 @@ const styles = StyleSheet.create({
     fontFamily: "cairo-400",
   },
   activeNextButtonContainer: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
     gap: 7,
     backgroundColor: theme.primaryColor,
     borderRadius: 100,
@@ -69,14 +88,21 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
   },
   disabledNextButtonContainer: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
     gap: 7,
     backgroundColor: "#747474",
     borderRadius: 100,
     paddingHorizontal: 20,
     paddingVertical: 10,
+  },
+  arNextButtonContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  enNextButtonContainer: {
+    flexDirection: "row-reverse",
+    justifyContent: "center",
+    alignItems: "center",
   },
   nextButtonText: {
     color: "#fff",

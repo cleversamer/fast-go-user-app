@@ -18,7 +18,7 @@ export default function AddPlaceBottomSheet({
   onSelectLocation,
   onMarkerPress,
 }) {
-  const { i18n } = useLocale();
+  const { i18n, lang } = useLocale();
   const [placeType, setPlaceType] = useState(place.type);
 
   const _placesTypes = placeTypes?.map?.((type, index) => ({
@@ -37,17 +37,23 @@ export default function AddPlaceBottomSheet({
       onClose={onClose}
       height={700}
     >
-      <View style={styles.topContainer}>
-        <TouchableOpacity style={styles.iconContainer}>
-          <Text style={styles.iconText}>حذف</Text>
+      <View
+        style={lang === "ar" ? styles.arTopContainer : styles.enTopContainer}
+      >
+        <TouchableOpacity
+          style={
+            lang === "ar" ? styles.arIconContainer : styles.enIconContainer
+          }
+        >
+          <Text style={styles.iconText}>{i18n("delete")}</Text>
           <MaterialIcons name="delete" style={styles.icon} />
         </TouchableOpacity>
 
-        <Text style={styles.title}>اسم الموقع المفضل</Text>
+        <Text style={styles.title}>{i18n("favLocationName")}</Text>
       </View>
 
       <AddressInput
-        placeholder="اختر عنوانًا على الخريطة"
+        placeholder={i18n("chooseLocationPlaceholder")}
         value={locations[0]?.title}
       />
 
@@ -64,7 +70,7 @@ export default function AddPlaceBottomSheet({
       />
 
       <CustomButton
-        text="حفظ"
+        text={i18n("save")}
         disabled={!placeType || !locations[0]?.title}
         containerStyle={styles.buttonContainerStyle}
         textStyle={styles.buttonTextStyle}
@@ -78,13 +84,23 @@ const styles = StyleSheet.create({
     gap: 15,
     paddingHorizontal: 15,
   },
-  topContainer: {
+  arTopContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
   },
-  iconContainer: {
+  enTopContainer: {
+    flexDirection: "row-reverse",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  arIconContainer: {
     flexDirection: "row",
+    alignItems: "center",
+    gap: 4,
+  },
+  enIconContainer: {
+    flexDirection: "row-reverse",
     alignItems: "center",
     gap: 4,
   },

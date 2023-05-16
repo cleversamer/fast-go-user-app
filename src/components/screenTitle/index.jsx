@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
     fontFamily: "cairo-700",
     fontSize: 16,
     textAlign: "center",
+    textTransform: "capitalize",
     position: "absolute",
     left: "50%",
     transform: [{ translateX: -(theme.sizes.width / 6) }],

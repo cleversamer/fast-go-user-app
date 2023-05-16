@@ -5,8 +5,10 @@ import PhoneInput from "../../components/phoneInput";
 import CustomButton from "../../components/button";
 import HorizontalLines from "../../components/horizontalLines";
 import ContinueButton from "../../components/continueButton";
+import useLocale from "../../hooks/useLocale";
 
 export default function LoginScreen1({ navigation }) {
+  const { i18n } = useLocale();
   const [phone, setPhone] = useState({ icc: "+218", nsn: "" });
 
   const handleKeyChange = (key) => (value) =>
@@ -31,8 +33,8 @@ export default function LoginScreen1({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
-        <Text style={styles.title}>مرحبًا بك!</Text>
-        <Text style={styles.subtitle}>قم بتسجيل الدخول للمتابعة</Text>
+        <Text style={styles.title}>{i18n("loginScreen1Title")}</Text>
+        <Text style={styles.subtitle}>{i18n("loginScreen1Subtitle")}</Text>
 
         <View style={styles.phoneContainer}>
           <PhoneInput
@@ -44,47 +46,45 @@ export default function LoginScreen1({ navigation }) {
         </View>
 
         <CustomButton
-          text="متابعة"
+          text={i18n("continue")}
           onPress={handleContinue}
           containerStyle={styles.buttonContainer}
           textStyle={styles.buttonText}
         />
 
         <HorizontalLines
-          text="أو"
+          text={i18n("or")}
           containerStyle={styles.horizontalLinesContainer}
           textStyle={styles.horizontalLinesText}
         />
 
         <View style={styles.loginButtonsContainer}>
           <ContinueButton
-            text="متابعة باستخدام جوجل"
+            text={i18n("continueWithGoogle")}
             icon={require("../../assets/images/google.png")}
             onPress={handleContinueWithGoogle}
           />
 
           <ContinueButton
-            text="متابعة باستخدام فيسبوك"
+            text={i18n("continueWithFacebook")}
             icon={require("../../assets/images/facebook.png")}
             onPress={handleContinueWithFacebook}
           />
 
           <ContinueButton
-            text="متابعة باستخدام آبل"
+            text={i18n("continueWithApple")}
             icon={require("../../assets/images/apple.png")}
             onPress={handleContinueWithApple}
           />
         </View>
 
-        <Text style={styles.conditionsText}>
-          بالمتابعة، فإنك توافق على تلقِّ مكالمات واتساب أو رسائل SMS بالوسائل
-          الآلية من Fast Go.
-        </Text>
+        <Text style={styles.conditionsText}>{i18n("registerConditions")}</Text>
 
         <Text style={styles.privacyPolicyText}>
-          هذا الموقع محمي بواسطة reCAPTCHA{" "}
-          <Text style={styles.blueText}>وسياسة خصوصية Google</Text> وتطبق{" "}
-          <Text style={styles.blueText}>شروط الخدمة.</Text>
+          {i18n("googleConditionsPart1")}{" "}
+          <Text style={styles.blueText}>{i18n("googleConditionsPart2")}</Text>{" "}
+          {i18n("googleConditionsPart3")}{" "}
+          <Text style={styles.blueText}>{i18n("googleConditionsPart4")}</Text>
         </Text>
       </ScrollView>
     </SafeAreaView>

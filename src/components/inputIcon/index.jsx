@@ -1,5 +1,6 @@
 import { StyleSheet, View, TextInput, Text } from "react-native";
 import * as theme from "../../constants/theme";
+import useLocale from "../../hooks/useLocale";
 
 export default function InputIcon({
   Icon,
@@ -10,15 +11,21 @@ export default function InputIcon({
   keyboardType,
   containerStyles,
 }) {
+  const { lang } = useLocale();
+
   return (
     <View style={[styles.container, containerStyles || {}]}>
       {title && <Text style={styles.title}>{title}</Text>}
 
-      <View style={styles.inputContainer}>
+      <View
+        style={
+          lang === "ar" ? styles.arInputContainer : styles.enInputContainer
+        }
+      >
         <TextInput
           onChangeText={onChange}
           placeholder={placeholder}
-          style={styles.input}
+          style={lang === "ar" ? styles.arInput : styles.enInput}
           keyboardType={keyboardType || "default"}
           value={value}
         />
@@ -33,7 +40,7 @@ const styles = StyleSheet.create({
   container: {
     gap: 7,
   },
-  inputContainer: {
+  arInputContainer: {
     borderRadius: 8,
     backgroundColor: "#fff",
     borderWidth: 2,
@@ -41,11 +48,19 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
   },
+  enInputContainer: {
+    borderRadius: 8,
+    backgroundColor: "#fff",
+    borderWidth: 2,
+    borderColor: theme.primaryColor,
+    flexDirection: "row-reverse",
+    alignItems: "center",
+  },
   title: {
     fontFamily: "cairo-700",
     fontSize: 15,
   },
-  input: {
+  arInput: {
     flex: 1,
     color: "#000",
     paddingVertical: 10,
@@ -53,5 +68,14 @@ const styles = StyleSheet.create({
     fontFamily: "cairo-500",
     fontSize: 13,
     textAlign: "right",
+  },
+  enInput: {
+    flex: 1,
+    color: "#000",
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+    fontFamily: "cairo-500",
+    fontSize: 13,
+    textAlign: "left",
   },
 });

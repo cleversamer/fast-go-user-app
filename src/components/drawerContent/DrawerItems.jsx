@@ -1,4 +1,5 @@
-import { StyleSheet, ScrollView } from "react-native";
+import { useState } from "react";
+import { StyleSheet, ScrollView, Linking } from "react-native";
 import {
   Ionicons,
   MaterialCommunityIcons,
@@ -8,15 +9,36 @@ import {
 import DrawerItem from "./DrawerItem";
 import useAuth from "../../auth/useAuth";
 import useLocale from "../../hooks/useLocale";
+import PopupError from "../../components/popup/PopupError";
+import PopupConfirm from "../../components/popup/PopupConfirm";
 
 export default function DrawerItems({ navigation }) {
   const { logout } = useAuth();
-  const { switchLang } = useLocale();
+  const { switchLang, i18n } = useLocale();
+  const [showPopupError, setShowPopupError] = useState(false);
+  const [showPopupConfirm, setShowPopupConfirm] = useState(false);
 
   const navigateTo = (screen) => () => {
     try {
       navigation.navigate(screen);
     } catch (err) {}
+  };
+
+  const openWhatsAppChat = () => {
+    const phoneNumber = "+971544274978";
+    const url = `whatsapp://send?phone=${phoneNumber}`;
+
+    Linking.canOpenURL(url)
+      .then((supported) => {
+        if (!supported) {
+          setShowPopupError(true);
+        } else {
+          return Linking.openURL(url);
+        }
+      })
+      .catch((err) => {
+        setShowPopupError(true);
+      });
   };
 
   return (
@@ -25,14 +47,29 @@ export default function DrawerItems({ navigation }) {
       showsHorizontalScrollIndicator={false}
       showsVerticalScrollIndicator={false}
     >
+      <PopupError
+        visible={showPopupError}
+        onClose={() => setShowPopupError(false)}
+        message={i18n("whatsAppNotInstalled")}
+      />
+
+      <PopupConfirm
+        title={i18n("popupLogoutTitle")}
+        subtitle={i18n("popupLogoutSubtitle")}
+        hint={i18n("popupLogoutHint")}
+        visible={showPopupConfirm}
+        onClose={() => setShowPopupConfirm(false)}
+        onConfirm={logout}
+      />
+
       <DrawerItem
-        title="الملف الشخصي"
+        title={i18n("profile")}
         onPress={navigateTo("ProfileScreen")}
         Icon={() => <Ionicons name="person" style={styles.itemIcon} />}
       />
 
       <DrawerItem
-        title="الإشعارات"
+        title={i18n("notifications")}
         onPress={navigateTo("NotificationsScreen")}
         badge
         badgeCount={7}
@@ -40,7 +77,7 @@ export default function DrawerItems({ navigation }) {
       />
 
       <DrawerItem
-        title="التحديات"
+        title={i18n("challenges")}
         onPress={navigateTo("home")}
         Icon={() => (
           <MaterialCommunityIcons
@@ -51,33 +88,33 @@ export default function DrawerItems({ navigation }) {
       />
 
       <DrawerItem
-        title="الأماكن المحفوظة"
-        onPress={navigateTo("SavedPlaces")}
+        title={i18n("savedPlaces")}
+        onPress={navigateTo("SavedPlacesScreen")}
         Icon={() => <Ionicons name="compass" style={styles.itemIcon} />}
       />
 
       <DrawerItem
-        title="الرحلات المحجوزة"
-        onPress={navigateTo("home")}
+        title={i18n("reservedTrips")}
+        onPress={navigateTo("ReservedTripsScreen")}
         Icon={() => (
           <FontAwesome5 name="calendar-alt" style={styles.itemIcon} />
         )}
       />
 
       <DrawerItem
-        title="المحفظة"
+        title={i18n("wallet")}
         onPress={navigateTo("home")}
         Icon={() => <FontAwesome name="dollar" style={styles.itemIcon} />}
       />
 
       <DrawerItem
-        title="إكسب أكثر"
+        title={i18n("earnMore")}
         onPress={navigateTo("home")}
         Icon={() => <FontAwesome5 name="gift" style={styles.itemIcon} />}
       />
 
       <DrawerItem
-        title="تغيير اللغة"
+        title={i18n("switchLang")}
         onPress={switchLang}
         Icon={() => (
           <MaterialCommunityIcons
@@ -88,20 +125,20 @@ export default function DrawerItems({ navigation }) {
       />
 
       <DrawerItem
-        title="تواصل عبر الواتساب"
-        onPress={navigateTo("home")}
+        title={i18n("contactWhatsapp")}
+        onPress={openWhatsAppChat}
         Icon={() => <FontAwesome5 name="whatsapp" style={styles.itemIcon} />}
       />
 
       <DrawerItem
-        title="حول"
+        title={i18n("about")}
         onPress={navigateTo("home")}
         Icon={() => <FontAwesome5 name="info-circle" style={styles.itemIcon} />}
       />
 
       <DrawerItem
-        title="تسجيل الخروج"
-        onPress={logout}
+        title={i18n("logout")}
+        onPress={() => setShowPopupConfirm(true)}
         Icon={() => (
           <MaterialCommunityIcons name="logout" style={styles.itemIcon} />
         )}

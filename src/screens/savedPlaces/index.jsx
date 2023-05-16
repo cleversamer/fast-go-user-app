@@ -3,8 +3,8 @@ import { SafeAreaView, ScrollView, View, Text, StyleSheet } from "react-native";
 import ScreenTitle from "../../components/screenTitle";
 import AddLocation from "../../components/addLocation";
 import Place from "../../components/place";
-import DraggableBottomSheet from "../../components/bottomSheet/DraggableBottomSheet";
 import AddPlaceBottomSheet from "../../components/addPlaceBottomSheet";
+import useLocale from "../../hooks/useLocale";
 
 const _savedPlaces = [
   {
@@ -41,7 +41,8 @@ const _savedPlaces = [
   },
 ];
 
-export default function SavedPlaces({ navigation }) {
+export default function SavedPlacesScreen({ navigation }) {
+  const { i18n, lang } = useLocale();
   const [locations, setLocations] = useState([]);
   const [place, setPlace] = useState({ type: "", title: "" });
   const [showSheet, setShowSheet] = useState(false);
@@ -67,10 +68,10 @@ export default function SavedPlaces({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
-        <ScreenTitle title="الأماكن المحفوظة" onPrev={handleGoBack} />
+        <ScreenTitle title={i18n("savedPlaces")} onPrev={handleGoBack} />
 
-        <Text style={styles.hintText}>
-          تستطيع حفظ المواقع المفضلة لتسهيل عملية الوصول لهم
+        <Text style={lang === "ar" ? styles.arHintText : styles.enHintText}>
+          {i18n("savedPlacesScreenHint")}
         </Text>
 
         {!!_savedPlaces.length && (
@@ -88,7 +89,7 @@ export default function SavedPlaces({ navigation }) {
         )}
 
         <AddLocation
-          text="إضافة المواقع المفضلة"
+          text={i18n("addFavLocation")}
           onPress={() => setShowSheet(true)}
         />
       </ScrollView>
@@ -111,12 +112,21 @@ const styles = StyleSheet.create({
     padding: 15,
     paddingTop: 50,
   },
-  hintText: {
+  arHintText: {
     fontFamily: "cairo-600",
     fontSize: 12,
     color: "#747474",
     marginTop: 10,
     marginBottom: 20,
+    textAlign: "right",
+  },
+  enHintText: {
+    fontFamily: "cairo-600",
+    fontSize: 12,
+    color: "#747474",
+    marginTop: 10,
+    marginBottom: 20,
+    textAlign: "left",
   },
   placesContainer: {
     gap: 20,

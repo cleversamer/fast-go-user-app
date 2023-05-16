@@ -3,8 +3,10 @@ import { Image, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import ScreenSteps from "../../components/screenSteps";
 import Checkbox from "../../components/checkbox";
 import PopupError from "../../components/popup/PopupError";
+import useLocale from "../../hooks/useLocale";
 
 export default function LoginScreen2({ navigation }) {
+  const { i18n, lang } = useLocale();
   const [error, setError] = useState(true);
   const [isPrivacyApproved, setIsPrivacyApproved] = useState(false);
 
@@ -22,10 +24,12 @@ export default function LoginScreen2({ navigation }) {
     <SafeAreaView style={styles.container}>
       <PopupError visible={error} onClose={handleClosePopup} />
 
-      <View style={styles.titleContainer}>
-        <Text style={styles.title}>
-          قبول شروط Fast Go و مراجعة إشعار الخصوصية.
-        </Text>
+      <View
+        style={
+          lang === "ar" ? styles.arTitleContainer : styles.enTitleContainer
+        }
+      >
+        <Text style={styles.title}>{i18n("loginScreen3Title")}</Text>
 
         <Image
           source={require("../../assets/images/privacy.png")}
@@ -34,16 +38,13 @@ export default function LoginScreen2({ navigation }) {
         />
       </View>
 
-      <Text style={styles.privacyText}>
-        باختيار "أوافق" أدناه ، فقد راجعت شروط الاستخدام و أوافق عليها وأقر
-        بإشعار الخصوصية. عمري 18 سنة على الأقل.
-      </Text>
+      <Text style={styles.privacyText}>{i18n("loginScreen3Description")}</Text>
 
       <View style={styles.screenStepsContainer}>
         <View style={styles.breakLine}></View>
 
         <Checkbox
-          text="أوافق على الشروط"
+          text={i18n("agreeTerms")}
           checked={isPrivacyApproved}
           onCheck={() => setIsPrivacyApproved(!isPrivacyApproved)}
         />
@@ -64,8 +65,12 @@ const styles = StyleSheet.create({
     padding: 15,
     paddingTop: 70,
   },
-  titleContainer: {
+  arTitleContainer: {
     flexDirection: "row",
+    gap: 15,
+  },
+  enTitleContainer: {
+    flexDirection: "row-reverse",
     gap: 15,
   },
   title: {

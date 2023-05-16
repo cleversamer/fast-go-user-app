@@ -1,18 +1,44 @@
 import { StyleSheet, TouchableOpacity, View, Text, Image } from "react-native";
 import * as theme from "../../constants/theme";
 import useDateTimer from "../../hooks/useDateTimer";
+import useLocale from "../../hooks/useLocale";
 
 export default function Notification({ notification }) {
-  const { value: notificationDate } = useDateTimer(new Date(notification.date));
+  const { lang } = useLocale();
+  const { value: notificationDate } = useDateTimer(
+    new Date(notification.date),
+    lang,
+    [lang]
+  );
+
+  const getContainerStyles = () => {
+    const stylesArray = [];
+    const stylingObject = notification.seen
+      ? styles.seenContainer
+      : styles.unseenContainer;
+
+    const languageObject =
+      lang === "ar" ? styles.arContainer : styles.enContainer;
+
+    stylesArray.push(stylingObject, languageObject);
+
+    return stylesArray;
+  };
 
   return (
-    <TouchableOpacity
-      style={notification.seen ? styles.seenContainer : styles.unseenContainer}
-    >
+    <TouchableOpacity style={getContainerStyles()}>
       <View style={styles.infoContainer}>
-        <Text style={styles.title}>{notification.title.ar}</Text>
-        <Text style={styles.body}>{notification.body.ar}</Text>
-        <Text style={styles.date}>{notificationDate}</Text>
+        <Text style={lang === "ar" ? styles.arTitle : styles.enTitle}>
+          {notification.title[lang]}
+        </Text>
+
+        <Text style={lang === "ar" ? styles.arBody : styles.enBody}>
+          {notification.body[lang]}
+        </Text>
+
+        <Text style={lang === "ar" ? styles.arDate : styles.enDate}>
+          {notificationDate}
+        </Text>
       </View>
 
       <Image
@@ -29,8 +55,6 @@ export default function Notification({ notification }) {
 
 const styles = StyleSheet.create({
   seenContainer: {
-    flexDirection: "row",
-    justifyContent: "flex-end",
     gap: 15,
     borderWidth: 2,
     borderRadius: 8,
@@ -39,8 +63,6 @@ const styles = StyleSheet.create({
     borderColor: theme.primaryColor,
   },
   unseenContainer: {
-    flexDirection: "row",
-    justifyContent: "flex-end",
     gap: 15,
     borderWidth: 2,
     borderRadius: 8,
@@ -48,22 +70,46 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     borderColor: "#929292",
   },
+  arContainer: {
+    flexDirection: "row",
+    justifyContent: "flex-end",
+  },
+  enContainer: {
+    flexDirection: "row-reverse",
+    justifyContent: "flex-start",
+  },
   infoContainer: {
     flex: 1,
     gap: 12,
   },
-  title: {
+  arTitle: {
     textAlign: "right",
     fontFamily: "cairo-700",
     fontSize: 12,
   },
-  body: {
+  enTitle: {
+    textAlign: "left",
+    fontFamily: "cairo-700",
+    fontSize: 12,
+  },
+  arBody: {
     textAlign: "right",
     fontFamily: "cairo-500",
     fontSize: 11,
   },
-  date: {
+  enBody: {
+    textAlign: "left",
+    fontFamily: "cairo-500",
+    fontSize: 11,
+  },
+  arDate: {
     alignSelf: "flex-start",
+    textAlign: "left",
+    fontFamily: "cairo-400",
+    fontSize: 11,
+  },
+  enDate: {
+    alignSelf: "flex-end",
     textAlign: "right",
     fontFamily: "cairo-400",
     fontSize: 11,

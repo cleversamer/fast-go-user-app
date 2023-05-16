@@ -3,6 +3,7 @@ import { SafeAreaView, StyleSheet, Text } from "react-native";
 import AddressInput from "../../components/addressInput";
 import Location from "../../components/location";
 import CustomButton from "../../components/button";
+import useLocale from "../../hooks/useLocale";
 
 const _locations = [
   "فلسطين,قطاع غزة,غزة,محافظةغزةالزيتون,890",
@@ -11,6 +12,7 @@ const _locations = [
 ];
 
 export default function HomeScreen2({ navigation }) {
+  const { i18n } = useLocale();
   const [locations, setLocations] = useState(_locations);
 
   const handleDeleteLocation = (locationIndex) => {
@@ -25,9 +27,9 @@ export default function HomeScreen2({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.title}>إلى أين الوجهة ؟</Text>
+      <Text style={styles.title}>{i18n("whereTo")}</Text>
 
-      <AddressInput placeholder="أين وجهتك؟" />
+      <AddressInput placeholder={i18n("whereYourDestination")} />
 
       {locations.map((location, index) => (
         <Location
@@ -39,7 +41,7 @@ export default function HomeScreen2({ navigation }) {
       ))}
 
       <CustomButton
-        text="متابعة"
+        text={i18n("continue")}
         textStyle={styles.buttonText}
         disabled={!locations.length}
         onPress={handleContinue}

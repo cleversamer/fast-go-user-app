@@ -7,6 +7,7 @@ import CouponCodeInput from "../couponCodeInput";
 import ButtonIcon from "../buttonIcon";
 import * as theme from "../../constants/theme";
 import { AntDesign } from "@expo/vector-icons";
+import useLocale from "../../hooks/useLocale";
 
 export default function HomeBottomSheet1({
   paymentType,
@@ -15,6 +16,8 @@ export default function HomeBottomSheet1({
   onCarTypeChange,
   onRequestNow,
 }) {
+  const { i18n, lang } = useLocale();
+
   return (
     <StaticBottomSheet contentStyle={styles.container} snapPoints={["51%"]}>
       <View style={styles.carTypesContainer}>
@@ -22,7 +25,7 @@ export default function HomeBottomSheet1({
           selected={carType === "luxury"}
           onPress={() => onCarTypeChange("luxury")}
           amount={63.21}
-          title="سيارة فاخرة"
+          title={i18n("luxuryCar")}
           image={require("../../assets/images/luxury-car.png")}
         />
 
@@ -30,7 +33,7 @@ export default function HomeBottomSheet1({
           selected={carType === "women"}
           onPress={() => onCarTypeChange("women")}
           amount={16.21}
-          title="سيارة نسائية"
+          title={i18n("womenCar")}
           image={require("../../assets/images/women-car.png")}
         />
 
@@ -38,7 +41,7 @@ export default function HomeBottomSheet1({
           selected={carType === "commercial"}
           onPress={() => onCarTypeChange("commercial")}
           amount={17.21}
-          title="سيارة تجارية"
+          title={i18n("commercialCar")}
           image={require("../../assets/images/commercial-car.png")}
         />
       </View>
@@ -55,7 +58,8 @@ export default function HomeBottomSheet1({
               color={theme.primaryColor}
               uncheckedColor={theme.primaryColor}
               labelStyle={styles.radioButtonText}
-              label="الدفع من المحفظة"
+              label={i18n("payFromWallet")}
+              position={lang === "ar" ? "trailing" : "leading"}
               value="wallet"
             />
 
@@ -63,14 +67,15 @@ export default function HomeBottomSheet1({
               color={theme.primaryColor}
               uncheckedColor={theme.primaryColor}
               labelStyle={styles.radioButtonText}
-              label="الدفع كاش"
+              label={i18n("payCash")}
+              position={lang === "ar" ? "trailing" : "leading"}
               value="cash"
             />
           </View>
         </RadioButton.Group>
       </View>
 
-      <CouponCodeInput placeholder="أدخل كود الخصم (اختياري)" />
+      <CouponCodeInput placeholder={i18n("couponInputPlaceholder")} />
 
       <View style={styles.buttonsContainer}>
         <ButtonIcon>
@@ -78,7 +83,7 @@ export default function HomeBottomSheet1({
         </ButtonIcon>
 
         <CustomButton
-          text="اطلب الآن"
+          text={i18n("requestNow")}
           onPress={onRequestNow}
           containerStyle={styles.submitButtonContainer}
           textStyle={styles.submitButtonText}

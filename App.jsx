@@ -15,7 +15,7 @@ import Onboarding from "./src/screens/onboarding";
 export default function App() {
   const { fontLoaded } = useFonts();
   useLocation();
-  const [lang, setLang] = useState("ar");
+  const [lang, setLang] = useState("en");
   const [showHomeScreen, setShowHomeScreen] = useState(false);
   const [user, setUser] = useState(null);
 
@@ -23,16 +23,16 @@ export default function App() {
     return null;
   }
 
-  if (!showHomeScreen) {
-    return <Onboarding onDone={() => setShowHomeScreen(true)} />;
-  }
-
   return (
     <AuthContext.Provider value={{ user, setUser, lang, setLang }}>
-      <NavigationContainer>
-        {/* {user ? <AppNavigation /> : <AuthNavigation />} */}
-        <AppNavigation />
-      </NavigationContainer>
+      {!showHomeScreen && <Onboarding onDone={() => setShowHomeScreen(true)} />}
+
+      {showHomeScreen && (
+        <NavigationContainer>
+          {user ? <AppNavigation /> : <AuthNavigation />}
+          {/* <AppNavigation /> */}
+        </NavigationContainer>
+      )}
     </AuthContext.Provider>
   );
 }

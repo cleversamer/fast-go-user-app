@@ -4,6 +4,7 @@ import AddressInput from "../addressInput";
 import Location from "../location";
 import AddLocation from "../addLocation";
 import CustomButton from "../button";
+import useLocale from "../../hooks/useLocale";
 
 const userFavLocations = ["فلسطين,قطاع غزة,غزة,محافظةغزةالزيتون,890"];
 
@@ -13,12 +14,14 @@ export default function HomeBottomSheet1({
   disableAddLocation,
   locationTitle,
 }) {
+  const { i18n } = useLocale();
+
   return (
     <StaticBottomSheet contentStyle={styles.container} snapPoints={["40%"]}>
-      <Text style={styles.title}>إلى أين الوجهة ؟</Text>
+      <Text style={styles.title}>{i18n("whereTo")}</Text>
 
       <AddressInput
-        placeholder="أين وجهتك؟"
+        placeholder={i18n("whereYourDestination")}
         value={locationTitle}
         onFocus={onRequestNow}
       />
@@ -27,10 +30,13 @@ export default function HomeBottomSheet1({
         <Location key={index} title={location} onPress={onRequestNow} />
       ))}
 
-      <AddLocation disabled={disableAddLocation} />
+      <AddLocation
+        disabled={disableAddLocation}
+        text={i18n("addLocationToFav")}
+      />
 
       <CustomButton
-        text="اطلب الآن"
+        text={i18n("requestNow")}
         onPress={onRequestNow}
         textStyle={styles.buttonText}
         disabled={disableButton}

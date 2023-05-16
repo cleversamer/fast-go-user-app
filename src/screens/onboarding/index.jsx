@@ -2,32 +2,32 @@ import { StyleSheet, View, Image, Text, SafeAreaView } from "react-native";
 import AppIntroSlider from "react-native-app-intro-slider";
 import { AntDesign } from "@expo/vector-icons";
 import * as theme from "../../constants/theme";
+import useLocale from "../../hooks/useLocale";
 
-const slides = [
-  {
-    key: 1,
-    image: require("../../assets/images/onboarding1.png"),
-    title: "الأمان والحماية",
-    description:
-      "بما أن الأمان يعتبر أحد الأولويات الرئيسية في تطبيق Taxilen , نقوم بتوفير خيارات متعددة للتأكد من هوية السائقين و المستخدمين",
-  },
-  {
-    key: 2,
-    image: require("../../assets/images/onboarding2.png"),
-    title: "الاتصال بالسائق",
-    description:
-      "يمكن للمستخدمين الاتصال بالسائق المعين للرحلة عبر التطبيق، مما يتيح التواصل معه في حالة تغيير في الخطة أو الوقت المحدد للرحلة.",
-  },
-  {
-    key: 3,
-    image: require("../../assets/images/onboarding3.png"),
-    title: "الرحلات المتعددة",
-    description:
-      "يمكن حجز رحلات متعددة في تطبيق Taxilen، مثل الحجز لعدة أيام أو لعدة مواقع. يمكن تحديد مواعيد الرحلات ونقاط الانطلاق والوصول لكل رحلة",
-  },
-];
-``;
 export default function Onboarding({ onDone }) {
+  const { i18n } = useLocale();
+
+  const slides = [
+    {
+      key: 1,
+      image: require("../../assets/images/onboarding1.png"),
+      title: i18n("onboardingOneTitle"),
+      description: i18n("onboardingOneSubtitle"),
+    },
+    {
+      key: 2,
+      image: require("../../assets/images/onboarding2.png"),
+      title: i18n("onboardingTwoTitle"),
+      description: i18n("onboardingTwoSubtitle"),
+    },
+    {
+      key: 3,
+      image: require("../../assets/images/onboarding3.png"),
+      title: i18n("onboardingThreeTitle"),
+      description: i18n("onboardingThreeSubtitle"),
+    },
+  ];
+
   const renderNextButton = () => {
     return (
       <View style={styles.nextButtonContainer}>
@@ -39,7 +39,7 @@ export default function Onboarding({ onDone }) {
   const renderSkipButton = () => {
     return (
       <View style={styles.skipButtonContainer}>
-        <Text style={styles.skipButtonText}>تخطي</Text>
+        <Text style={styles.skipButtonText}>{i18n("skip")}</Text>
       </View>
     );
   };
@@ -90,6 +90,8 @@ const styles = StyleSheet.create({
     fontSize: theme.sizes.h1,
     color: "#000",
     marginBottom: 15,
+    textAlign: "center",
+    textTransform: "capitalize",
   },
   sliderDescription: {
     fontFamily: "cairo-500",

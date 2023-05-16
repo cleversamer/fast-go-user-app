@@ -11,8 +11,10 @@ import ScreenSteps from "../../components/screenSteps";
 import OTPInput from "../../components/otpInput";
 import useTimer from "../../hooks/useTimer";
 import useAuth from "../../auth/useAuth";
+import useLocale from "../../hooks/useLocale";
 
 export default function LoginScreen2({ navigation }) {
+  const { i18n } = useLocale();
   const { login } = useAuth();
   const { remainingSeconds, resetTimer, isTimerDone } = useTimer(150);
   const [code, setCode] = useState("");
@@ -44,7 +46,7 @@ export default function LoginScreen2({ navigation }) {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <Pressable style={styles.container} onPress={Keyboard.dismiss}>
-        <Text style={styles.title}>أدخل الرمز المكون من 6 أرقام</Text>
+        <Text style={styles.title}>{i18n("enterSixDigitsCode")}</Text>
 
         <OTPInput
           code={code}
@@ -61,7 +63,7 @@ export default function LoginScreen2({ navigation }) {
           </Text>
         ) : (
           <Text style={styles.timerText}>
-            يمكنك إعادة الإرسال بعد{" "}
+            {i18n("youCanResendAfter")}{" "}
             <Text style={styles.remainingSeconds}>
               {mapSeconds(remainingSeconds)}
             </Text>

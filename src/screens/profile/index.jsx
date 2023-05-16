@@ -15,8 +15,10 @@ import PhoneInput from "../../components/phoneInput";
 import SelectInput from "../../components/selectInput";
 import CustomButton from "../../components/button";
 import PopupConfirm from "../../components/popup/PopupConfirm";
+import useLocale from "../../hooks/useLocale";
 
 export default function ProfileScreen({ navigation }) {
+  const { i18n, lang } = useLocale();
   const [showPopup, setShowPopup] = useState(false);
   const [selectedGender, setSelectedGender] = useState("male");
 
@@ -45,17 +47,20 @@ export default function ProfileScreen({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <PopupConfirm
-        title="حذف حسابك"
-        subtitle="هل أنت متاكد أنك تريد حذف حسابك؟"
-        hint="تفقد بريدك الإلكتروني للتأكيد على حذف الحساب"
+        title={i18n("popupDeleteAccountTitle")}
+        subtitle={i18n("popupDeleteAccountSubtitle")}
+        hint={i18n("popupDeleteAccountHint")}
         visible={showPopup}
         onClose={handleClosePopup}
         onConfirm={handleConfirmAccountDeletion}
       />
 
-      <ScrollView>
+      <ScrollView
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+      >
         <ProfileScreenTitle
-          title="الملف الشخصي"
+          title={i18n("profile")}
           showMoreButton
           onPrev={handleGoBack}
           onRequestAccountDeletion={handleRequestAccountDeletion}
@@ -78,22 +83,37 @@ export default function ProfileScreen({ navigation }) {
 
         <View style={styles.inputsContainer}>
           <InputIcon
-            title="الإسم الأول"
-            placeholder="الإسم الأول"
-            Icon={() => <Ionicons name="person" style={styles.icon} />}
+            title={i18n("firstname")}
+            placeholder={i18n("firstname")}
+            Icon={() => (
+              <Ionicons
+                name="person"
+                style={lang === "ar" ? styles.arIcon : styles.enIcon}
+              />
+            )}
           />
 
           <InputIcon
-            title="الإسم الأخير"
-            placeholder="الإسم الأخير"
-            Icon={() => <Ionicons name="person" style={styles.icon} />}
+            title={i18n("lastname")}
+            placeholder={i18n("lastname")}
+            Icon={() => (
+              <Ionicons
+                name="person"
+                style={lang === "ar" ? styles.arIcon : styles.enIcon}
+              />
+            )}
           />
 
           <InputIcon
-            title="البريد الإلكتروني"
-            placeholder="البريد الإلكتروني"
+            title={i18n("email")}
+            placeholder={i18n("email")}
             keyboardType="email-address"
-            Icon={() => <Feather name="mail" style={styles.icon} />}
+            Icon={() => (
+              <Feather
+                name="mail"
+                style={lang === "ar" ? styles.arIcon : styles.enIcon}
+              />
+            )}
           />
 
           <PhoneInput />
@@ -101,7 +121,7 @@ export default function ProfileScreen({ navigation }) {
           <SelectInput onChange={handleSelectGender} placeholder="اختر الجنس" />
 
           <CustomButton
-            text="حفظ"
+            text={i18n("save")}
             containerStyle={styles.buttonContainer}
             textStyle={styles.buttonText}
           />
@@ -148,8 +168,13 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
   },
-  icon: {
+  arIcon: {
     marginRight: 10,
+    fontSize: 24,
+    color: theme.primaryColor,
+  },
+  enIcon: {
+    marginLeft: 10,
     fontSize: 24,
     color: theme.primaryColor,
   },

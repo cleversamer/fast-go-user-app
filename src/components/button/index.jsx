@@ -40,5 +40,6 @@ const styles = StyleSheet.create({
     fontFamily: "cairo-400",
     fontSize: 15,
     textAlign: "center",
+    textTransform: "capitalize",
   },
 });

@@ -2,7 +2,7 @@ import { TouchableOpacity, StyleSheet, Image, View, Text } from "react-native";
 import useLocale from "../../hooks/useLocale";
 
 export default function Place({ place, onEdit }) {
-  const { i18n } = useLocale();
+  const { i18n, lang } = useLocale();
 
   const getPlaceIcon = () => {
     switch (place.type) {
@@ -12,7 +12,7 @@ export default function Place({ place, onEdit }) {
       case "club":
         return require("../../assets/icons/club-loc.png");
 
-      case "family home":
+      case "family-home":
         return require("../../assets/icons/family-home-loc.png");
 
       case "main":
@@ -29,11 +29,14 @@ export default function Place({ place, onEdit }) {
 
       case "work":
         return require("../../assets/icons/work-loc.png");
+
+      default:
+        return require("../../assets/icons/other-loc.png");
     }
   };
 
   return (
-    <View style={styles.container}>
+    <View style={lang === "ar" ? styles.arContainer : styles.enContainer}>
       <TouchableOpacity onPress={onEdit}>
         <Image
           source={require("../../assets/icons/edit.png")}
@@ -42,10 +45,25 @@ export default function Place({ place, onEdit }) {
         />
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.contentContainer}>
-        <View style={styles.textContentContainer}>
-          <Text style={styles.type}>{i18n(place.type)}</Text>
-          <Text style={styles.title}>{place.title}</Text>
+      <TouchableOpacity
+        style={
+          lang === "ar" ? styles.arContentContainer : styles.enContentContainer
+        }
+      >
+        <View
+          style={
+            lang === "ar"
+              ? styles.arTextContentContainer
+              : styles.enTextContentContainer
+          }
+        >
+          <Text style={lang === "ar" ? styles.arType : styles.enType}>
+            {i18n(place.type)}
+          </Text>
+
+          <Text style={lang === "ar" ? styles.arTitle : styles.enTitle}>
+            {place.title}
+          </Text>
         </View>
 
         <Image
@@ -59,30 +77,60 @@ export default function Place({ place, onEdit }) {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  arContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
   },
-  contentContainer: {
+  enContainer: {
+    flexDirection: "row-reverse",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  arContentContainer: {
     flex: 1,
     flexDirection: "row",
     justifyContent: "flex-end",
     alignItems: "center",
     gap: 10,
   },
-  textContentContainer: {
+  enContentContainer: {
+    flex: 1,
+    flexDirection: "row-reverse",
+    justifyContent: "flex-end",
+    alignItems: "center",
+    gap: 10,
+  },
+  arTextContentContainer: {
     gap: 10,
     alignItems: "flex-end",
   },
-  type: {
+  enTextContentContainer: {
+    gap: 10,
+    alignItems: "flex-start",
+  },
+  arType: {
     fontFamily: "cairo-500",
     fontSize: 14,
+    textAlign: "right",
   },
-  title: {
+  enType: {
+    fontFamily: "cairo-500",
+    fontSize: 14,
+    textAlign: "left",
+    textTransform: "capitalize",
+  },
+  arTitle: {
     fontFamily: "cairo-500",
     fontSize: 11,
     color: "#747474",
+    textAlign: "right",
+  },
+  enTitle: {
+    fontFamily: "cairo-500",
+    fontSize: 11,
+    color: "#747474",
+    textAlign: "left",
   },
   editIconImage: {
     width: 28,

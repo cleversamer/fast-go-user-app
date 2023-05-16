@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: "cairo-600",
     fontSize: 15,
+    textTransform: "capitalize",
   },
   image: {
     width: 45,

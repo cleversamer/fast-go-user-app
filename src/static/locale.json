@@ -3,39 +3,340 @@
     "en": "Main",
     "ar": "الرئيسي"
   },
-
   "work": {
     "en": "Work",
     "ar": "العمل"
   },
-
   "club": {
     "en": "Club",
     "ar": "النادي"
   },
-
   "cafe": {
     "en": "Cafe",
     "ar": "مقهى"
   },
-
   "park": {
     "en": "Park",
     "ar": "حديقة"
   },
-
   "family-home": {
-    "en": "Famil house",
+    "en": "Family house",
     "ar": "بيت العائلة"
   },
-
   "partners": {
     "en": "Partners",
     "ar": "شركاء"
   },
-
   "other": {
     "en": "Other",
     "ar": "أخرى"
+  },
+  "goodMorning": {
+    "en": "Good morning",
+    "ar": "صباح الخير"
+  },
+  "goodEvening": {
+    "en": "Good evening",
+    "ar": "مساء الخير"
+  },
+  "welcome": {
+    "en": "Welcome",
+    "ar": "مرحبًا بك"
+  },
+  "lastLogin": {
+    "en": "Last login since",
+    "ar": "آخر دخول منذ"
+  },
+  "profile": {
+    "en": "Profile",
+    "ar": "الملف الشخصي"
+  },
+  "notifications": {
+    "en": "Notifications",
+    "ar": "الإشعارات"
+  },
+  "challenges": {
+    "en": "Challenges",
+    "ar": "التحديات"
+  },
+  "savedPlaces": {
+    "en": "Saved places",
+    "ar": "الأماكن المحفوظة"
+  },
+  "reservedTrips": {
+    "en": "Reserved trips",
+    "ar": "الرحلات المحجوزة"
+  },
+  "wallet": {
+    "en": "Wallet",
+    "ar": "المحفظة"
+  },
+  "earnMore": {
+    "en": "Earn more",
+    "ar": "إكسب أكثر"
+  },
+  "switchLang": {
+    "en": "Switch language",
+    "ar": "تغيير اللغة"
+  },
+  "contactWhatsapp": {
+    "en": "Contact on WhatsApp",
+    "ar": "تواصل عبر الواتساب"
+  },
+  "about": {
+    "en": "About",
+    "ar": "حول"
+  },
+  "logout": {
+    "en": "Logout",
+    "ar": "تسجيل الخروج"
+  },
+  "firstname": {
+    "en": "First name",
+    "ar": "الإسم الأول"
+  },
+  "lastname": {
+    "en": "Last name",
+    "ar": "الإسم الأخير"
+  },
+  "email": {
+    "en": "Email",
+    "ar": "البريد الإلكتروني"
+  },
+  "save": {
+    "en": "Save",
+    "ar": "حفظ"
+  },
+  "popupDeleteAccountTitle": {
+    "en": "Delete your account",
+    "ar": "حذف حسابك"
+  },
+  "popupDeleteAccountSubtitle": {
+    "en": "Are you sure want to delete your account?",
+    "ar": "هل أنت متأكد أنك تريد حذف حسابك؟"
+  },
+  "popupDeleteAccountHint": {
+    "en": "Check out your email to confirm deleting your account",
+    "ar": "تفقد بريدك الإلكتروني للتأكيد على حذف حسابك"
+  },
+  "popupLogoutTitle": {
+    "en": "Logout",
+    "ar": "تسجيل الخروج"
+  },
+  "popupLogoutSubtitle": {
+    "en": "Are you sure want to logout?",
+    "ar": "هل أنت متأكد أنك تريد تسجيل الخروج؟"
+  },
+  "popupLogoutHint": {
+    "en": "If you logout, then you will have to retype your phone number and verify it again.",
+    "ar": "إذا قمت بتسجيل الخروج، فسيتعين عليك إعادة كتابة رقم الهاتف والتحقق منه مرة أخرى."
+  },
+  "ok": {
+    "en": "Ok",
+    "ar": "حسنًا"
+  },
+  "cancel": {
+    "en": "Cancel",
+    "ar": "إلغاء الأمر"
+  },
+  "whatsAppNotInstalled": {
+    "en": "WhatsApp is not installed on your device",
+    "ar": "تطبيق واتساب غير مثبت على جهازك"
+  },
+  "savedPlacesScreenHint": {
+    "en": "You can save your favorite sites to facilitate access to them",
+    "ar": "تستطيع حفظ المواقع المفضلة لتسهيل عملية الوصول لهم"
+  },
+  "addFavLocation": {
+    "en": "Add favorite location",
+    "ar": "إضافة موقع مفضل"
+  },
+  "skip": {
+    "en": "Skip",
+    "ar": "تخطي"
+  },
+  "onboardingOneTitle": {
+    "en": "Security & protection",
+    "ar": "الأمان والحماية"
+  },
+  "onboardingOneSubtitle": {
+    "en": "Since safety is one of the main priorities in the Fast Go application, we provide multiple options to verify the identity of drivers and users.",
+    "ar": "بما أن الأمان يعتبر أحد الأولويات الرئيسية في تطبيق Fast Go ،نقوم بتوفير خيارات متعددة للتأكد من هوية السائقين والمستخدمين"
+  },
+  "onboardingTwoTitle": {
+    "en": "Contact driver",
+    "ar": "الإتصال بالسائق"
+  },
+  "onboardingTwoSubtitle": {
+    "en": "Users can contact the driver assigned to the trip through the application, allowing communication with him in the event of a change in the plan or the exact time of the trip.",
+    "ar": "يمكن للمستخدمين الاتصال بالسائق المعين للرحلة عبر التطبيق، مما يتيح التواصل معه في حالة تغيير في الخطة أو الوقت المحدد للرحلة."
+  },
+  "onboardingThreeTitle": {
+    "en": "Multiple trips",
+    "ar": "الرحلات المتعددة"
+  },
+  "onboardingThreeSubtitle": {
+    "en": "Multiple trips can be booked in the Fast Go app, such as booking for multiple days or for multiple locations. Flight times and departure and arrival points can be specified for each flight.",
+    "ar": "يمكن حجز رحلات متعددة في تطبيق Fast Go، مثل الحجز لعدة أيام أو لعدة مواقع. يمكن تحديد مواعيد الرحلات ونقاط الانطلاق والوصول لكل رحلة."
+  },
+  "addLocationToFav": {
+    "en": "Add location to favorites",
+    "ar": "إضافة الموقع للمفضلة"
+  },
+  "whereTo": {
+    "en": "Where to?",
+    "ar": "إلى أين الوجهة ؟"
+  },
+  "whereYourDestination": {
+    "en": "Where is your destination?",
+    "ar": "أين وجهتك؟"
+  },
+  "requestNow": {
+    "en": "Request now",
+    "ar": "اطلب الآن"
+  },
+  "continue": {
+    "en": "Continue",
+    "ar": "متابعة"
+  },
+  "luxuryCar": {
+    "en": "Luxury car",
+    "ar": "سيارة فاخرة"
+  },
+  "womenCar": {
+    "en": "Women car",
+    "ar": "سيارة نسائية"
+  },
+  "commercialCar": {
+    "en": "Commercial car",
+    "ar": "سيارة تجارية"
+  },
+  "payCash": {
+    "en": "Pay cash",
+    "ar": "الدفع كاش"
+  },
+  "payFromWallet": {
+    "en": "Pay from wallet",
+    "ar": "الدفع من المحفظة"
+  },
+  "couponInputPlaceholder": {
+    "en": "Add coupon code (optional)",
+    "ar": "أدخل كود الخصم (اختياري)"
+  },
+  "registerAsPassenger": {
+    "en": "Register as passenger",
+    "ar": "تسجيل كراكب"
+  },
+  "registerAsDriver": {
+    "en": "Register as driver",
+    "ar": "تسجيل كسائق"
+  },
+  "welcomeScreenTitle": {
+    "en": "Hello!",
+    "ar": "أهلاً وسهلاً بك!"
+  },
+  "welcomeScreenSubtitle": {
+    "en": "Welcome to our application! We are very happy to have you with us, and we wish you an enjoyable and beneficial experience. Thank you for choosing our app!",
+    "ar": "مرحباً بك في تطبيقنا! نحن سعداء جداً بوجودك معنا، ونتمنى لك تجربة ممتعة ومفيدة. شكراً لاختيارك تطبيقنا!"
+  },
+  "loginScreen1Title": {
+    "en": "Welcome!",
+    "ar": "مرحبًا بك!"
+  },
+  "loginScreen1Subtitle": {
+    "en": "Log in to continue",
+    "ar": "قم بتسجيل الدخول للمتابعة"
+  },
+  "or": {
+    "en": "Or",
+    "ar": "أو"
+  },
+  "continueWithGoogle": {
+    "en": "Continue with Google",
+    "ar": "متابعة باستخدام جوجل"
+  },
+  "continueWithFacebook": {
+    "en": "Continue with Facebook",
+    "ar": "متابعة باستخدام فيسبوك"
+  },
+  "continueWithApple": {
+    "en": "Continue with Apple",
+    "ar": "متابعة باستخدام آبل"
+  },
+  "registerConditions": {
+    "en": "By continuing, you agree to receive WhatsApp calls or SMS messages by automated means from Fast Go.",
+    "ar": "بالمتابعة، فإنك توافق على تلقِّ مكالمات واتساب أو رسائل SMS بالوسائل الآلية من Fast Go."
+  },
+  "googleConditionsPart1": {
+    "en": "This app is protected by reCAPTCHA and",
+    "ar": "هذا التطبيق محمي بواسطة reCAPTCHA"
+  },
+  "googleConditionsPart2": {
+    "en": "Google Privacy Policy",
+    "ar": "وسياسة خصوصية جوجل"
+  },
+  "googleConditionsPart3": {
+    "en": "and applies",
+    "ar": "وتطبق"
+  },
+  "googleConditionsPart4": {
+    "en": "Terms of Service.",
+    "ar": "شروط الخدمة."
+  },
+  "loginScreen2Title": {
+    "en": "Welcome!",
+    "ar": "مرحبًا بك!"
+  },
+  "loginScreen2Subtitle": {
+    "en": "Confirm your information",
+    "ar": "أكّد معلوماتك"
+  },
+  "next": {
+    "en": "Next",
+    "ar": "التالي"
+  },
+  "loginScreen3Title": {
+    "en": "Accept Fast Go Terms and review the Privacy Notice.",
+    "ar": "قبول شروط Fast Go و مراجعة إشعار الخصوصية."
+  },
+  "loginScreen3Description": {
+    "en": "By selecting \"I Agree\" below, I have reviewed and agree to the Terms of Use and acknowledge the Privacy Notice. I'm at least 18 years old.",
+    "ar": "باختيار \"أوافق\" أدناه ، فقد راجعت شروط الاستخدام و أوافق عليها وأقر بإشعار الخصوصية.  عمري 18 سنة على الأقل."
+  },
+  "agreeTerms": {
+    "en": "I agree to the terms",
+    "ar": "أوافق على الشروط"
+  },
+  "enterSixDigitsCode": {
+    "en": "Enter the 6-digit code",
+    "ar": "أدخل الرمز المكون من 6 أرقام"
+  },
+  "youCanResendAfter": {
+    "en": "You can resend code after",
+    "ar": "يمكنك إعادة إرسال الرمز بعد"
+  },
+  "popupErrorTitle": {
+    "en": "An error occurred",
+    "ar": "حدث خطأ"
+  },
+  "popupErrorButtonText": {
+    "en": "Ok",
+    "ar": "أتفهم ذلك"
+  },
+  "requestAccountDeletion": {
+    "en": "Request account deletion",
+    "ar": "طلب حذف الحساب"
+  },
+  "favLocationName": {
+    "en": "Favorite location name",
+    "ar": "اسم الموقع المفضل"
+  },
+  "delete": {
+    "en": "Delete",
+    "ar": "حذف"
+  },
+  "chooseLocationPlaceholder": {
+    "en": "Choose address on map",
+    "ar": "اختر عنوانًا على الخريطة"
   }
 }

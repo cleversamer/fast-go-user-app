@@ -7,8 +7,11 @@ import {
 } from "react-native";
 import CustomButton from "../../components/button";
 import * as theme from "../../constants/theme";
+import useLocale from "../../hooks/useLocale";
 
 export default function WelcomeScreen({ navigation }) {
+  const { i18n } = useLocale();
+
   const handleGoToLoginScreen = () => {
     navigation.navigate("LoginScreen1");
   };
@@ -27,22 +30,19 @@ export default function WelcomeScreen({ navigation }) {
           style={styles.image}
         />
 
-        <Text style={styles.title}>أهلاً وسهلاً بك!</Text>
+        <Text style={styles.title}>{i18n("welcomeScreenTitle")}</Text>
 
-        <Text style={styles.text}>
-          نضمن لك سرعة الوصول نضمن لك سرعة الوصول نضمن لك سرعة الوصول نضمن لك
-          سرعة الوصول نضمن لك سرعة الوصول
-        </Text>
+        <Text style={styles.text}>{i18n("welcomeScreenSubtitle")}</Text>
 
         <CustomButton
-          text="تسجيل كراكب"
+          text={i18n("registerAsPassenger")}
           containerStyle={styles.loginButtonContainer}
           textStyle={styles.loginButtonText}
           onPress={handleGoToLoginScreen}
         />
 
         <CustomButton
-          text="تسجيل كسائق"
+          text={i18n("registerAsDriver")}
           containerStyle={styles.registerButtonContainer}
           textStyle={styles.registerButtonText}
           onPress={handleGoToRegisterScreen}

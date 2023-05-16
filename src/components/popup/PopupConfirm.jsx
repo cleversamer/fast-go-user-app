@@ -1,7 +1,8 @@
-import { StyleSheet, Modal, View, Image, Text } from "react-native";
+import { StyleSheet, Modal, View, Text } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import * as theme from "../../constants/theme";
 import CustomButton from "../button";
+import useLocale from "../../hooks/useLocale";
 
 export default function PopupConfirm({
   title,
@@ -11,6 +12,8 @@ export default function PopupConfirm({
   onClose,
   onConfirm,
 }) {
+  const { i18n } = useLocale();
+
   return (
     <>
       <Modal
@@ -32,14 +35,14 @@ export default function PopupConfirm({
 
             <View style={styles.buttonsContainer}>
               <CustomButton
-                text="إلغاء الأمر"
+                text={i18n("cancel")}
                 onPress={onClose}
                 containerStyle={styles.closeButtonContainer}
                 textStyle={styles.closeButtonText}
               />
 
               <CustomButton
-                text="حسنًا"
+                text={i18n("ok")}
                 onPress={onConfirm}
                 containerStyle={styles.confirmButtonContainer}
                 textStyle={styles.confirmButtonText}
@@ -77,6 +80,8 @@ const styles = StyleSheet.create({
     fontFamily: "cairo-700",
     color: "#000",
     fontSize: 16,
+    textAlign: "center",
+    textTransform: "capitalize",
   },
   middleBox: {
     gap: 10,
@@ -85,6 +90,7 @@ const styles = StyleSheet.create({
     fontFamily: "cairo-600",
     color: "#000",
     fontSize: 15,
+    textAlign: "center",
   },
   hint: {
     fontFamily: "cairo-400",

@@ -4,7 +4,8 @@ import HomeScreen2 from "../screens/home/HomeScreen2";
 import HomeScreen3 from "../screens/home/HomeScreen3";
 import ProfileScreen from "../screens/profile";
 import NotificationsScreen from "../screens/notifications";
-import SavedPlaces from "../screens/savedPlaces";
+import SavedPlacesScreen from "../screens/savedPlaces";
+import ReservedTripsScreen from "../screens/reservedTrips";
 
 import DrawerNavigation from "./DrawerNavigation";
 
@@ -27,7 +28,11 @@ export default function AppNavigation() {
         name="NotificationsScreen"
         component={NotificationsScreen}
       />
-      <Stack.Screen name="SavedPlaces" component={SavedPlaces} />
+      <Stack.Screen name="SavedPlacesScreen" component={SavedPlacesScreen} />
+      <Stack.Screen
+        name="ReservedTripsScreen"
+        component={ReservedTripsScreen}
+      />
     </Stack.Navigator>
   );
 }

@@ -2,17 +2,26 @@ import { TouchableOpacity, StyleSheet, View, Text } from "react-native";
 import { EvilIcons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import * as theme from "../../constants/theme";
+import useLocale from "../../hooks/useLocale";
 
 export default function Location({ title, onPress, showDelete, onDelete }) {
+  const { lang } = useLocale();
+
   return (
-    <View onPress={onPress} style={styles.container}>
+    <View
+      onPress={onPress}
+      style={lang === "ar" ? styles.arContainer : styles.enContainer}
+    >
       {showDelete && (
         <TouchableOpacity onPress={onDelete}>
           <MaterialIcons name="delete" size={30} color={theme.primaryColor} />
         </TouchableOpacity>
       )}
 
-      <TouchableOpacity style={styles.container} onPress={onPress}>
+      <TouchableOpacity
+        style={lang === "ar" ? styles.arContainer : styles.enContainer}
+        onPress={onPress}
+      >
         <Text style={styles.title}>{title}</Text>
 
         <View style={styles.iconContainer}>
@@ -24,8 +33,14 @@ export default function Location({ title, onPress, showDelete, onDelete }) {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  arContainer: {
     flexDirection: "row",
+    justifyContent: "flex-end",
+    alignItems: "center",
+    gap: 10,
+  },
+  enContainer: {
+    flexDirection: "row-reverse",
     justifyContent: "flex-end",
     alignItems: "center",
     gap: 10,

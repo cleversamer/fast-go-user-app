@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import NotificationsScreenTitle from "../../components/notificationsScreenTitle";
 import Notification from "../../components/notification";
+import useLocale from "../../hooks/useLocale";
 
 const notifications = [
   {
@@ -21,7 +22,7 @@ const notifications = [
     },
     photoURL: "",
     seen: true,
-    date: "2023-05-14T21:17:48.446Z",
+    date: "2023-05-16T15:00:00.446Z",
     data: {
       screen: "home",
       id: "",
@@ -38,7 +39,7 @@ const notifications = [
     },
     photoURL: "",
     seen: false,
-    date: "2023-05-14T21:17:48.446Z",
+    date: "2023-05-16T15:00:00.446Z",
     data: {
       screen: "home",
       id: "",
@@ -55,7 +56,7 @@ const notifications = [
     },
     photoURL: "",
     seen: false,
-    date: "2023-05-14T21:17:48.446Z",
+    date: "2023-05-16T15:00:00.446Z",
     data: {
       screen: "home",
       id: "",
@@ -72,7 +73,7 @@ const notifications = [
     },
     photoURL: "",
     seen: false,
-    date: "2023-05-14T21:17:48.446Z",
+    date: "2023-05-16T15:00:00.446Z",
     data: {
       screen: "home",
       id: "",
@@ -89,7 +90,7 @@ const notifications = [
     },
     photoURL: "",
     seen: false,
-    date: "2023-05-14T21:17:48.446Z",
+    date: "2023-05-16T15:00:00.446Z",
     data: {
       screen: "home",
       id: "",
@@ -106,7 +107,7 @@ const notifications = [
     },
     photoURL: "",
     seen: false,
-    date: "2023-05-14T21:17:48.446Z",
+    date: "2023-05-16T15:00:00.446Z",
     data: {
       screen: "home",
       id: "",
@@ -115,6 +116,8 @@ const notifications = [
 ];
 
 export default function NotificationsScreen({ navigation }) {
+  const { i18n, lang } = useLocale();
+
   const handleToggleNotifications = () => {};
 
   const handleGoBack = () => {
@@ -124,7 +127,7 @@ export default function NotificationsScreen({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <NotificationsScreenTitle
-        title="الإشعارات"
+        title={i18n("notifications")}
         onPrev={handleGoBack}
         onToggleNotifications={handleToggleNotifications}
       />

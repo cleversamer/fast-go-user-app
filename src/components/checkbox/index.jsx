@@ -1,5 +1,6 @@
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import * as theme from "../../constants/theme";
+import useLocale from "../../hooks/useLocale";
 
 export default function Checkbox({
   text = "Check Me!",
@@ -9,8 +10,13 @@ export default function Checkbox({
   checked,
   onCheck,
 }) {
+  const { lang } = useLocale();
+
   return (
-    <TouchableOpacity style={styles.container} onPress={onCheck}>
+    <TouchableOpacity
+      style={lang === "ar" ? styles.arContainer : styles.enContainer}
+      onPress={onCheck}
+    >
       <Text style={[styles.text, textStyle || {}]}>{text}</Text>
 
       <View style={[styles.boxContainer, boxStyle || {}]}>
@@ -23,8 +29,14 @@ export default function Checkbox({
 }
 
 const styles = StyleSheet.create({
-  container: {
+  arContainer: {
     flexDirection: "row",
+    gap: 7,
+    justifyContent: "flex-end",
+    alignItems: "center",
+  },
+  enContainer: {
+    flexDirection: "row-reverse",
     gap: 7,
     justifyContent: "flex-end",
     alignItems: "center",

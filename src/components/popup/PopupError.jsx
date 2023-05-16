@@ -1,6 +1,7 @@
 import { StyleSheet, Modal, View, Image, Text } from "react-native";
 import * as theme from "../../constants/theme";
 import CustomButton from "../button";
+import useLocale from "../../hooks/useLocale";
 
 const defaultMessage = "خطأ غير متوقع";
 
@@ -9,6 +10,8 @@ export default function PopupError({
   message = defaultMessage,
   onClose,
 }) {
+  const { i18n } = useLocale();
+
   return (
     <>
       <Modal
@@ -25,13 +28,13 @@ export default function PopupError({
               style={styles.icon}
             />
 
-            <Text style={styles.title}>حدث خطأ</Text>
+            <Text style={styles.title}>{i18n("popupErrorTitle")}</Text>
 
             <Text style={styles.errorText}>{message}</Text>
 
             <View style={styles.buttonContainer}>
               <CustomButton
-                text="أتفهم ذلك"
+                text={i18n("popupErrorButtonText")}
                 onPress={onClose}
                 containerStyle={styles.button}
                 textStyle={styles.buttonText}

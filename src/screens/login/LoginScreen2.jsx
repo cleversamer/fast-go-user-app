@@ -4,8 +4,11 @@ import InputIcon from "../../components/inputIcon";
 import PhoneInput from "../../components/phoneInput";
 import ScreenSteps from "../../components/screenSteps";
 import { Ionicons } from "@expo/vector-icons";
+import useLocale from "../../hooks/useLocale";
 
 export default function LoginScreen2({ navigation }) {
+  const { i18n, lang } = useLocale();
+
   const handleGoBack = () => {
     navigation.goBack();
   };
@@ -16,19 +19,36 @@ export default function LoginScreen2({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.title}>مرحبًا بك!</Text>
-      <Text style={styles.subtitle}>أكّد معلوماتك</Text>
+      <Text style={styles.title}>{i18n("loginScreen2Title")}</Text>
+      <Text style={styles.subtitle}>{i18n("loginScreen2Subtitle")}</Text>
 
       <View style={styles.inputsContainer}>
-        <View style={styles.textInputsContainer}>
+        <View
+          style={
+            lang === "ar"
+              ? styles.arTextInputsContainer
+              : styles.enTextInputsContainer
+          }
+        >
           <InputIcon
-            Icon={() => <Ionicons name="person" style={styles.inputIcon} />}
-            placeholder="الإسم الأخير"
+            Icon={() => (
+              <Ionicons
+                name="person"
+                style={lang === "ar" ? styles.arInputIcon : styles.enInputIcon}
+              />
+            )}
+            placeholder={i18n("lastname")}
             containerStyles={styles.inputContainer}
           />
+
           <InputIcon
-            Icon={() => <Ionicons name="person" style={styles.inputIcon} />}
-            placeholder="الإسم الأول"
+            Icon={() => (
+              <Ionicons
+                name="person"
+                style={lang === "ar" ? styles.arInputIcon : styles.enInputIcon}
+              />
+            )}
+            placeholder={i18n("firstname")}
             containerStyles={styles.inputContainer}
           />
         </View>
@@ -64,16 +84,26 @@ const styles = StyleSheet.create({
     gap: 24,
     marginVertical: 30,
   },
-  textInputsContainer: {
+  arTextInputsContainer: {
     flexDirection: "row",
+    gap: 10,
+    alignItems: "center",
+  },
+  enTextInputsContainer: {
+    flexDirection: "row-reverse",
     gap: 10,
     alignItems: "center",
   },
   inputContainer: {
     flex: 1,
   },
-  inputIcon: {
+  arInputIcon: {
     marginRight: 10,
+    fontSize: 20,
+    color: theme.primaryColor,
+  },
+  enInputIcon: {
+    marginLeft: 10,
     fontSize: 20,
     color: theme.primaryColor,
   },

@@ -1,18 +1,20 @@
 import { TouchableOpacity, StyleSheet, View, Text, Image } from "react-native";
 import * as theme from "../../constants/theme";
 import useDateTimer from "../../hooks/useDateTimer";
+import useLocale from "../../hooks/useLocale";
 
 const _lastLogin = new Date();
 
 export default function DrawerHeader({ navigation }) {
-  const { value: lastLogin } = useDateTimer(_lastLogin);
+  const { i18n, lang } = useLocale();
+  const { value: lastLogin } = useDateTimer(_lastLogin, lang, [lang]);
 
   const getWelcomingMssg = () => {
     try {
       const currentHour = new Date().getHours();
-      return currentHour < 12 ? "صباح الخير" : "مساء الخير";
+      return currentHour < 12 ? i18n("goodMorning") : i18n("goodEvening");
     } catch (err) {
-      return "مرحبًا بك";
+      return i18n("welcome");
     }
   };
 
@@ -23,8 +25,14 @@ export default function DrawerHeader({ navigation }) {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.userInfoContainer}>
+    <View style={lang === "ar" ? styles.arContainer : styles.enContainer}>
+      <View
+        style={
+          lang === "ar"
+            ? styles.arUserInfoContainer
+            : styles.enUserInfoContainer
+        }
+      >
         <View style={styles.welcomingContainer}>
           <Text style={styles.welcomingMssg}>{getWelcomingMssg()}</Text>
           <Text style={styles.userName}>معتز أبو نهيان</Text>
@@ -39,25 +47,41 @@ export default function DrawerHeader({ navigation }) {
         </TouchableOpacity>
       </View>
 
-      <Text style={styles.lastLoginText}>آخر دخول منذ {lastLogin}</Text>
+      <Text style={styles.lastLoginText}>
+        {i18n("lastLogin")} {lastLogin}
+      </Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  arContainer: {
     width: "100%",
     height: 160,
     backgroundColor: theme.primaryColor,
     justifyContent: "flex-end",
     alignItems: "flex-end",
-    alignContent: "flex-end",
     padding: 15,
     gap: 10,
   },
-  userInfoContainer: {
+  enContainer: {
+    width: "100%",
+    height: 160,
+    backgroundColor: theme.primaryColor,
+    justifyContent: "flex-end",
+    alignItems: "flex-start",
+    padding: 15,
+    gap: 10,
+  },
+  arUserInfoContainer: {
     gap: 7,
     flexDirection: "row",
+    alignItems: "flex-end",
+    justifyContent: "flex-end",
+  },
+  enUserInfoContainer: {
+    gap: 7,
+    flexDirection: "row-reverse",
     alignItems: "flex-end",
     justifyContent: "flex-end",
   },
