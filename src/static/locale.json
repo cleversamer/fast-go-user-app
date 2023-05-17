@@ -354,5 +354,17 @@
   "walletTitle": {
     "en": "The current amount in the wallet",
     "ar": "المبلغ الموجود حاليًا في المحفظة"
+  },
+  "earnMoreTitle": {
+    "en": "Invite friends",
+    "ar": "دعوة الأصدقاء"
+  },
+  "earnMoreSubtitle": {
+    "en": "Invite your friends by copying the code and sending it to them.",
+    "ar": "قم بدعوة أصدقاؤك من خلال نسخ الرمز وإرساله إليهم."
+  },
+  "earnMoreGift": {
+    "en": "You will be given a reward of 2 LYD if someone registers an account using your referral code.",
+    "ar": "سيتم اعطاؤك مكافئة 2 دينار في حال قام أحدهم بتسجيل حساب عن طريق رمز الإحالة الخاص بك."
   }
 }

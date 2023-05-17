@@ -4,12 +4,16 @@ import { FontAwesome } from "@expo/vector-icons";
 import useLocale from "../../hooks/useLocale";
 import * as theme from "../../constants/theme";
 
-export default function WalletScreen() {
+export default function WalletScreen({ navigation }) {
   const { i18n, lang } = useLocale();
+
+  const handleGoBack = () => {
+    navigation.goBack();
+  };
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScreenTitle title={i18n("wallet")} />
+      <ScreenTitle title={i18n("wallet")} onPrev={handleGoBack} />
 
       <View
         style={

@@ -109,7 +109,7 @@ export default function DrawerItems({ navigation }) {
 
       <DrawerItem
         title={i18n("earnMore")}
-        onPress={navigateTo("home")}
+        onPress={navigateTo("EarnMoreScreen")}
         Icon={() => <FontAwesome5 name="gift" style={styles.itemIcon} />}
       />
 
