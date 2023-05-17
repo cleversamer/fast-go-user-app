@@ -1,7 +1,8 @@
 import "react-native-gesture-handler";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useFonts from "./src/hooks/useFonts";
 import useLocation from "./src/hooks/useLocation";
+import useSystemLanguage from "./src/hooks/useSystemLanguage";
 
 import { NavigationContainer } from "@react-navigation/native";
 import AuthNavigation from "./src/navigation/AuthNavigation";
@@ -14,11 +15,16 @@ import Onboarding from "./src/screens/onboarding";
 export default function App() {
   const { fontLoaded } = useFonts();
   useLocation();
-  const [lang, setLang] = useState("ar");
+  const { systemLanguage, loading: isLangLoading } = useSystemLanguage();
+  const [lang, setLang] = useState(systemLanguage);
   const [showHomeScreen, setShowHomeScreen] = useState(false);
   const [user, setUser] = useState(null);
 
-  if (!fontLoaded) {
+  useEffect(() => {
+    setLang(systemLanguage);
+  }, [systemLanguage]);
+
+  if (!fontLoaded || isLangLoading) {
     return null;
   }
 

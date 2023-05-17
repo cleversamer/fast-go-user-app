@@ -10,7 +10,8 @@
         {
           "locationAlwaysAndWhenInUsePermission": "Allow Fast Go to use your location."
         }
-      ]
+      ],
+      "expo-localization"
     ],
     "android": {
       "config": {
@@ -32,7 +33,11 @@
       "fadeInDuration": 500,
       "fadeOutDuration": 500
     },
-    "platforms": ["ios", "android", "web"],
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
     "extra": {
       "eas": {
         "projectId": "919a3e7d-bc2b-4d5a-893d-f90605d4fdb6"
