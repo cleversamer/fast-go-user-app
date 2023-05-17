@@ -374,5 +374,13 @@
   "rights": {
     "en": "All rights reserved",
     "ar": "جميع الحقوق محفوظة"
+  },
+  "referralCodePlaceholder": {
+    "en": "Referral code (optional)",
+    "ar": "رمز الإحالة (اختياري)"
+  },
+  "referralCodeHint": {
+    "en": "Referral code you received from someone",
+    "ar": "رمز الإحالة الذي تلقيته من شخص ما"
   }
 }

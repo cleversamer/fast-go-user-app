@@ -7,6 +7,7 @@ import { Ionicons } from "@expo/vector-icons";
 import useLocale from "../../hooks/useLocale";
 import NetworkStatusLine from "../../components/networkStatusLine";
 import screens from "../../static/screens.json";
+import ReferralCodeInput from "../../components/referralCodeInput";
 
 export default function PassengerLoginScreen2({ navigation }) {
   const { i18n, lang } = useLocale();
@@ -58,6 +59,8 @@ export default function PassengerLoginScreen2({ navigation }) {
         </View>
 
         <PhoneInput />
+
+        <ReferralCodeInput />
       </View>
 
       <View style={styles.screenStepsContainer}>

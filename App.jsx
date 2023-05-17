@@ -22,6 +22,7 @@ export default function App() {
 
   useEffect(() => {
     setLang(systemLanguage);
+    setLang("en");
   }, [systemLanguage]);
 
   if (!fontLoaded || isLangLoading) {
