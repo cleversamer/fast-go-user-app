@@ -18,7 +18,9 @@ export default function WelcomeScreen({ navigation }) {
     navigation.navigate(screens.passengerLogin1);
   };
 
-  const handleRegisterAsDriver = () => {};
+  const handleRegisterAsDriver = () => {
+    navigation.navigate(screens.driverLogin1);
+  };
 
   return (
     <SafeAreaView style={styles.container}>
