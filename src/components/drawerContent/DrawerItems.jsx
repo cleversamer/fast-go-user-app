@@ -103,7 +103,7 @@ export default function DrawerItems({ navigation }) {
 
       <DrawerItem
         title={i18n("wallet")}
-        onPress={navigateTo("home")}
+        onPress={navigateTo("WalletScreen")}
         Icon={() => <FontAwesome name="dollar" style={styles.itemIcon} />}
       />
 
