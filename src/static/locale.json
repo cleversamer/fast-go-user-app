@@ -366,5 +366,13 @@
   "earnMoreGift": {
     "en": "You will be given a reward of 2 LYD if someone registers an account using your referral code.",
     "ar": "سيتم اعطاؤك مكافئة 2 دينار في حال قام أحدهم بتسجيل حساب عن طريق رمز الإحالة الخاص بك."
+  },
+  "copyright": {
+    "en": "Copyright © 2023 Fast Go",
+    "ar": "حقوق النشر © 2023 Fast Go"
+  },
+  "rights": {
+    "en": "All rights reserved",
+    "ar": "جميع الحقوق محفوظة"
   }
 }

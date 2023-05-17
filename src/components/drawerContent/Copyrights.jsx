@@ -1,13 +1,13 @@
 import { StyleSheet, View, Text } from "react-native";
+import useLocale from "../../hooks/useLocale";
 
 export default function Copyrights() {
+  const { i18n } = useLocale();
+
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>
-        Copyright © {new Date().getFullYear()} Fast Go
-      </Text>
-
-      <Text style={styles.text}>All rights reserved.</Text>
+      <Text style={styles.text}>{i18n("copyright")}</Text>
+      <Text style={styles.text}>{i18n("rights")}</Text>
     </View>
   );
 }
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontFamily: "cairo-600",
-    fontSize: 15,
+    fontSize: 14,
     color: "#747474",
   },
 });
