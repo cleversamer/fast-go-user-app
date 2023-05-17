@@ -7,7 +7,7 @@ import {
   Image,
 } from "react-native";
 import ScreenTitle from "../../components/screenTitle";
-// import Trip from "../../components/trip";
+// import ReservedTrip from "./ReservedTrip";
 import useLocale from "../../hooks/useLocale";
 import NetworkStatusLine from "../../components/networkStatusLine";
 
@@ -74,7 +74,7 @@ export default function ReservedTripsScreen({ navigation }) {
         >
           <View style={styles.tripsContainer}>
             {reservedTrips.map((trip, index) => (
-              <Trip key={index} trip={trip} />
+              <ReservedTrip key={index} trip={trip} />
             ))}
           </View>
         </ScrollView>

@@ -2,7 +2,7 @@ import { StyleSheet, TouchableOpacity, View, Text, Image } from "react-native";
 import * as theme from "../../constants/theme";
 import useDateTimer from "../../hooks/useDateTimer";
 
-export default function Trip({ trip }) {
+export default function ReservedTrip({ trip }) {
   const { value: tripDate } = useDateTimer(trip.endDate);
 
   const isActiveTrip = () => {
