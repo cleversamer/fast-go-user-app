@@ -9,6 +9,7 @@ import ReservedTripsScreen from "../screens/reservedTrips";
 import AboutScreen from "../screens/about";
 import WalletScreen from "../screens/wallet";
 import EarnMoreScreen from "../screens/earnMore";
+import ChallengesScreen from "../screens/challenges";
 
 import DrawerNavigation from "./DrawerNavigation";
 
@@ -39,6 +40,7 @@ export default function AppNavigation() {
       <Stack.Screen name="AboutScreen" component={AboutScreen} />
       <Stack.Screen name="WalletScreen" component={WalletScreen} />
       <Stack.Screen name="EarnMoreScreen" component={EarnMoreScreen} />
+      <Stack.Screen name="ChallengesScreen" component={ChallengesScreen} />
     </Stack.Navigator>
   );
 }

@@ -78,7 +78,7 @@ export default function DrawerItems({ navigation }) {
 
       <DrawerItem
         title={i18n("challenges")}
-        onPress={navigateTo("home")}
+        onPress={navigateTo("ChallengesScreen")}
         Icon={() => (
           <MaterialCommunityIcons
             name="google-analytics"
