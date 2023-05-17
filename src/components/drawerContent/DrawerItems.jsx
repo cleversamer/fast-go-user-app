@@ -11,6 +11,7 @@ import useAuth from "../../auth/useAuth";
 import useLocale from "../../hooks/useLocale";
 import PopupError from "../../components/popup/PopupError";
 import PopupConfirm from "../../components/popup/PopupConfirm";
+import screens from "../../static/screens.json";
 
 export default function DrawerItems({ navigation }) {
   const { logout } = useAuth();
@@ -64,13 +65,13 @@ export default function DrawerItems({ navigation }) {
 
       <DrawerItem
         title={i18n("profile")}
-        onPress={navigateTo("ProfileScreen")}
+        onPress={navigateTo(screens.profile)}
         Icon={() => <Ionicons name="person" style={styles.itemIcon} />}
       />
 
       <DrawerItem
         title={i18n("notifications")}
-        onPress={navigateTo("NotificationsScreen")}
+        onPress={navigateTo(screens.notifications)}
         badge
         badgeCount={7}
         Icon={() => <Ionicons name="notifications" style={styles.itemIcon} />}
@@ -78,7 +79,7 @@ export default function DrawerItems({ navigation }) {
 
       <DrawerItem
         title={i18n("challenges")}
-        onPress={navigateTo("ChallengesScreen")}
+        onPress={navigateTo(screens.challenges)}
         Icon={() => (
           <MaterialCommunityIcons
             name="google-analytics"
@@ -89,13 +90,13 @@ export default function DrawerItems({ navigation }) {
 
       <DrawerItem
         title={i18n("savedPlaces")}
-        onPress={navigateTo("SavedPlacesScreen")}
+        onPress={navigateTo(screens.savedPlaces)}
         Icon={() => <Ionicons name="compass" style={styles.itemIcon} />}
       />
 
       <DrawerItem
         title={i18n("reservedTrips")}
-        onPress={navigateTo("ReservedTripsScreen")}
+        onPress={navigateTo(screens.reservedTrips)}
         Icon={() => (
           <FontAwesome5 name="calendar-alt" style={styles.itemIcon} />
         )}
@@ -103,13 +104,13 @@ export default function DrawerItems({ navigation }) {
 
       <DrawerItem
         title={i18n("wallet")}
-        onPress={navigateTo("WalletScreen")}
+        onPress={navigateTo(screens.wallet)}
         Icon={() => <FontAwesome name="dollar" style={styles.itemIcon} />}
       />
 
       <DrawerItem
         title={i18n("earnMore")}
-        onPress={navigateTo("EarnMoreScreen")}
+        onPress={navigateTo(screens.earnMore)}
         Icon={() => <FontAwesome5 name="gift" style={styles.itemIcon} />}
       />
 
@@ -132,7 +133,7 @@ export default function DrawerItems({ navigation }) {
 
       <DrawerItem
         title={i18n("about")}
-        onPress={navigateTo("AboutScreen")}
+        onPress={navigateTo(screens.about)}
         Icon={() => <FontAwesome5 name="info-circle" style={styles.itemIcon} />}
       />
 

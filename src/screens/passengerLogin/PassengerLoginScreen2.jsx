@@ -6,8 +6,9 @@ import ScreenSteps from "../../components/screenSteps";
 import { Ionicons } from "@expo/vector-icons";
 import useLocale from "../../hooks/useLocale";
 import NetworkStatusLine from "../../components/networkStatusLine";
+import screens from "../../static/screens.json";
 
-export default function LoginScreen2({ navigation }) {
+export default function PassengerLoginScreen2({ navigation }) {
   const { i18n, lang } = useLocale();
 
   const handleGoBack = () => {
@@ -15,7 +16,7 @@ export default function LoginScreen2({ navigation }) {
   };
 
   const handleNext = () => {
-    navigation.navigate("LoginScreen3");
+    navigation.navigate(screens.passengerLogin3);
   };
 
   return (

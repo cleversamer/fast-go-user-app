@@ -9,15 +9,16 @@ import CustomButton from "../../components/button";
 import * as theme from "../../constants/theme";
 import useLocale from "../../hooks/useLocale";
 import NetworkStatusLine from "../../components/networkStatusLine";
+import screens from "../../static/screens.json";
 
 export default function WelcomeScreen({ navigation }) {
   const { i18n } = useLocale();
 
-  const handleGoToLoginScreen = () => {
-    navigation.navigate("LoginScreen1");
+  const handleRegisterAsPassenger = () => {
+    navigation.navigate(screens.passengerLogin1);
   };
 
-  const handleGoToRegisterScreen = () => {};
+  const handleRegisterAsDriver = () => {};
 
   return (
     <SafeAreaView style={styles.container}>
@@ -41,14 +42,14 @@ export default function WelcomeScreen({ navigation }) {
           text={i18n("registerAsPassenger")}
           containerStyle={styles.loginButtonContainer}
           textStyle={styles.loginButtonText}
-          onPress={handleGoToLoginScreen}
+          onPress={handleRegisterAsPassenger}
         />
 
         <CustomButton
           text={i18n("registerAsDriver")}
           containerStyle={styles.registerButtonContainer}
           textStyle={styles.registerButtonText}
-          onPress={handleGoToRegisterScreen}
+          onPress={handleRegisterAsDriver}
         />
       </ScrollView>
     </SafeAreaView>

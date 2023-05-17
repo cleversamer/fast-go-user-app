@@ -5,7 +5,7 @@ import HomeBottomSheet2 from "../../components/homeBottomSheet2";
 import { AntDesign } from "@expo/vector-icons";
 import NetworkStatusLine from "../../components/networkStatusLine";
 
-export default function HomeScreen3({ navigation }) {
+export default function PassengerHomeScreen3({ navigation }) {
   const [paymentType, setPaymentType] = useState("cash");
   const [carType, setCarType] = useState("luxury");
 

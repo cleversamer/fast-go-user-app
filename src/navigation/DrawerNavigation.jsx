@@ -1,6 +1,6 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import DrawerContent from "../components/drawerContent";
-import HomeScreen1 from "../screens/home/HomeScreen1";
+import PassengerHomeScreen1 from "../screens/passengerHome/PassengerHomeScreen1";
 import useLocale from "../hooks/useLocale";
 
 const Drawer = createDrawerNavigator();
@@ -24,7 +24,7 @@ export default function DrawerNavigation() {
       drawerContent={DrawerContent}
       screenOptions={globalScreenOptions}
     >
-      <Drawer.Screen name="Home" component={HomeScreen1} />
+      <Drawer.Screen name="Home" component={PassengerHomeScreen1} />
     </Drawer.Navigator>
   );
 }

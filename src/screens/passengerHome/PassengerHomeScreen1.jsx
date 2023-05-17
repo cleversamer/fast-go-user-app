@@ -4,12 +4,13 @@ import Map from "../../components/map";
 import HomeBottomSheet1 from "../../components/homeBottomSheet1";
 import HamburgerMenu from "../../components/hamburgerMenu";
 import NetworkStatusLine from "../../components/networkStatusLine";
+import screens from "../../static/screens.json";
 
-export default function HomeScreen1({ navigation }) {
+export default function PassengerHomeScreen1({ navigation }) {
   const [locations, setLocations] = useState([]);
 
   const handleRequestNow = () => {
-    navigation.navigate("HomeScreen2");
+    navigation.navigate(screens.passengerHome2);
   };
 
   const handleAddLocationToFavorites = (location) => {

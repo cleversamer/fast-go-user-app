@@ -5,8 +5,9 @@ import Checkbox from "../../components/checkbox";
 import PopupError from "../../components/popup/PopupError";
 import useLocale from "../../hooks/useLocale";
 import NetworkStatusLine from "../../components/networkStatusLine";
+import screens from "../../static/screens.json";
 
-export default function LoginScreen2({ navigation }) {
+export default function PassengerLoginScreen2({ navigation }) {
   const { i18n, lang } = useLocale();
   const [error, setError] = useState(true);
   const [isPrivacyApproved, setIsPrivacyApproved] = useState(false);
@@ -18,7 +19,7 @@ export default function LoginScreen2({ navigation }) {
   };
 
   const handleNext = () => {
-    navigation.navigate("LoginScreen4");
+    navigation.navigate(screens.passengerLogin4);
   };
 
   return (

@@ -7,8 +7,9 @@ import HorizontalLines from "../../components/horizontalLines";
 import ContinueButton from "../../components/continueButton";
 import useLocale from "../../hooks/useLocale";
 import NetworkStatusLine from "../../components/networkStatusLine";
+import screens from "../../static/screens.json";
 
-export default function LoginScreen1({ navigation }) {
+export default function PassengerLoginScreen1({ navigation }) {
   const { i18n } = useLocale();
   const [phone, setPhone] = useState({ icc: "+218", nsn: "" });
 
@@ -16,19 +17,19 @@ export default function LoginScreen1({ navigation }) {
     setPhone({ ...phone, [key]: value });
 
   const handleContinue = () => {
-    navigation.navigate("LoginScreen2");
+    navigation.navigate(screens.passengerLogin2);
   };
 
   const handleContinueWithGoogle = () => {
-    navigation.navigate("LoginScreen2");
+    navigation.navigate(screens.passengerLogin2);
   };
 
   const handleContinueWithFacebook = () => {
-    navigation.navigate("LoginScreen2");
+    navigation.navigate(screens.passengerLogin2);
   };
 
   const handleContinueWithApple = () => {
-    navigation.navigate("LoginScreen2");
+    navigation.navigate(screens.passengerLogin2);
   };
 
   return (

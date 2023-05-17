@@ -1,0 +1,19 @@
+{
+  "welcome": "WelcomeScreen",
+  "drawer": "Drawer",
+  "passengerLogin1": "PassengerLoginScreen1",
+  "passengerLogin2": "PassengerLoginScreen2",
+  "passengerLogin3": "PassengerLoginScreen3",
+  "passengerLogin4": "PassengerLoginScreen4",
+  "passengerHome1": "PassengerHomeScreen1",
+  "passengerHome2": "PassengerHomeScreen2",
+  "passengerHome3": "PassengerHomeScreen3",
+  "profile": "ProfileScreen",
+  "savedPlaces": "SavedPlacesScreen",
+  "notifications": "NotificationsScreen",
+  "reservedTrips": "ReservedTripsScreen",
+  "about": "AboutScreen",
+  "wallet": "WalletScreen",
+  "earnMore": "EarnMoreScreen",
+  "challenges": "ChallengesScreen"
+}

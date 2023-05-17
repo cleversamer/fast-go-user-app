@@ -14,7 +14,7 @@ import useAuth from "../../auth/useAuth";
 import useLocale from "../../hooks/useLocale";
 import NetworkStatusLine from "../../components/networkStatusLine";
 
-export default function LoginScreen2({ navigation }) {
+export default function PassengerLoginScrseen2({ navigation }) {
   const { i18n } = useLocale();
   const { login } = useAuth();
   const { remainingSeconds, resetTimer, isTimerDone } = useTimer(150);
@@ -27,7 +27,9 @@ export default function LoginScreen2({ navigation }) {
   };
 
   const handleSubmit = () => {
-    login();
+    if (code.length === 4) {
+      login();
+    }
   };
 
   const handleResendCode = () => {

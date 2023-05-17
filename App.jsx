@@ -18,7 +18,7 @@ export default function App() {
   const { systemLanguage, loading: isLangLoading } = useSystemLanguage();
   const [lang, setLang] = useState(systemLanguage);
   const [showHomeScreen, setShowHomeScreen] = useState(false);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(false);
 
   useEffect(() => {
     setLang(systemLanguage);
@@ -34,8 +34,8 @@ export default function App() {
 
       {showHomeScreen && (
         <NavigationContainer>
-          {user ? <AppNavigation /> : <AuthNavigation />}
-          {/* <AppNavigation /> */}
+          {user && user.role === "passenger" && <AppNavigation />}
+          {!user && <AuthNavigation />}
         </NavigationContainer>
       )}
     </AuthContext.Provider>

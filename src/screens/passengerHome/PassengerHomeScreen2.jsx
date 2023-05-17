@@ -5,6 +5,7 @@ import Location from "../../components/location";
 import CustomButton from "../../components/button";
 import useLocale from "../../hooks/useLocale";
 import NetworkStatusLine from "../../components/networkStatusLine";
+import screens from "../../static/screens.json";
 
 const _locations = [
   "فلسطين,قطاع غزة,غزة,محافظةغزةالزيتون,890",
@@ -12,7 +13,7 @@ const _locations = [
   "فلسطين,قطاع غزة,غزة,محافظةغزةالزيتون,890",
 ];
 
-export default function HomeScreen2({ navigation }) {
+export default function PassengerHomeScreen2({ navigation }) {
   const { i18n } = useLocale();
   const [locations, setLocations] = useState(_locations);
 
@@ -23,7 +24,7 @@ export default function HomeScreen2({ navigation }) {
   };
 
   const handleContinue = () => {
-    navigation.navigate("HomeScreen3");
+    navigation.navigate(screens.passengerHome3);
   };
 
   return (
