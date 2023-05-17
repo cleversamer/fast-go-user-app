@@ -6,6 +6,7 @@ import ProfileScreen from "../screens/profile";
 import NotificationsScreen from "../screens/notifications";
 import SavedPlacesScreen from "../screens/savedPlaces";
 import ReservedTripsScreen from "../screens/reservedTrips";
+import AboutScreen from "../screens/about";
 
 import DrawerNavigation from "./DrawerNavigation";
 
@@ -33,6 +34,7 @@ export default function AppNavigation() {
         name="ReservedTripsScreen"
         component={ReservedTripsScreen}
       />
+      <Stack.Screen name="AboutScreen" component={AboutScreen} />
     </Stack.Navigator>
   );
 }

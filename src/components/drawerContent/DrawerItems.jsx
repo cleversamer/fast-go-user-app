@@ -132,7 +132,7 @@ export default function DrawerItems({ navigation }) {
 
       <DrawerItem
         title={i18n("about")}
-        onPress={navigateTo("home")}
+        onPress={navigateTo("AboutScreen")}
         Icon={() => <FontAwesome5 name="info-circle" style={styles.itemIcon} />}
       />
 

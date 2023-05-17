@@ -346,5 +346,9 @@
   "offline": {
     "en": "You're now offline",
     "ar": "أنت غير متصل بالإنترنت"
+  },
+  "aboutApp": {
+    "en": "We, in the Fast Go application, provide users with several ways to pay when using the service in order to meet their different needs and provide convenience and security in payment. The customer can pay the driver upon arrival at his destination with cash, credit cards, or various electronic payments such as Paypal or Visa. \n\n With regard to the methods of charging the balance in the driver application, we provide them with many convenient and safe ways to charge their balance, through the code sent to them via text messages or through various electronic wallet applications, such as Paypal, Apple Pay, Google Pay, and others. \n\n As for the ways to earn money by inviting friends, the Fast Go app provides this feature to drivers, where the driver can get a financial reward when he invites his friends to subscribe to the Fast Go app and use the service. Once the invited friend creates an account and uses the service, a monetary reward will be credited to the driver's account.",
+    "ar": "نحن في تطبيق Fast Go نقدم للمستخدمين عدة طرق للدفع عند استخدام الخدمة وذلك لتلبية احتياجاتهم المختلفة وتوفير الراحة والأمان في الدفع، حيث يمكن الزبون الدفع للسائق عند الوصول إلى وجهته بالنقد أو باستخدام البطاقات الإئتمانية أو الدفع الإلكتروني المختلفة مثل باي بال أو الفيزا. \n\n وفيما يتعلق بطرق شحن الرصيد في تطبيق السائق، فإننا نوفر لهم العديد من الطرق المريحة والآمنة لشحن رصيدهم، وذلك من خلال الكود المرسل إليهم عبر الرسائل النصية أو من خلال تطبيقات المحفظة الإلكترونية المختلفة، مثل باي بال و Apple Pay و Google Pay وغيرها.\n\n وبالنسبة لطرق كسب المال من خلال دعوة الأصدقاء، فإن تطبيق Fast Go يوفر هذه الخاصية للسائقين، حيث يمكن للسائق الحصول على مكافأة مالية عند دعوته لأصدقائه للاشتراك في تطبيق Fast Go واستخدام الخدمة. وبمجرد أن يقوم الصديق المدعو بإنشاء حساب واستخدام الخدمة، سيتم إضافة مكافأة مالية إلى حساب السائق."
   }
 }
