@@ -11,6 +11,7 @@ import useLocale from "../../hooks/useLocale";
 import { MaterialIcons } from "@expo/vector-icons";
 import * as theme from "../../constants/theme";
 import useClipboard from "../../hooks/useClipboard";
+import NetworkStatusLine from "../../components/common/NetworkStatusLine";
 
 export default function EarnMoreScreen({ navigation }) {
   const { i18n } = useLocale();
@@ -22,6 +23,8 @@ export default function EarnMoreScreen({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
+      <NetworkStatusLine />
+
       <DefaultScreenTitle title={i18n("earnMore")} onPrev={handleGoBack} />
 
       <Image

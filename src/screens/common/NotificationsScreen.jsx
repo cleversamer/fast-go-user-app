@@ -117,7 +117,7 @@ const notifications = [
 ];
 
 export default function NotificationsScreen({ navigation }) {
-  const { i18n, lang } = useLocale();
+  const { i18n } = useLocale();
 
   const handleToggleNotifications = () => {};
 

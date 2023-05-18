@@ -13,10 +13,6 @@ export default function PassengerHomeScreen1({ navigation }) {
     navigation.navigate(screens.passengerHome2);
   };
 
-  const handleAddLocationToFavorites = (location) => {
-    // TODO: call API
-  };
-
   const handleSelectLocation = (location) => {
     setLocations([location]);
   };

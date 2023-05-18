@@ -7,6 +7,7 @@ import {
 } from "react-native";
 import useLocale from "../../hooks/useLocale";
 import DefaultScreenTitle from "../../components/screenTitles/DefaultScreenTitle";
+import NetworkStatusLine from "../../components/common/NetworkStatusLine";
 
 export default function AboutScreen({ navigation }) {
   const { i18n } = useLocale();
@@ -17,6 +18,8 @@ export default function AboutScreen({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
+      <NetworkStatusLine />
+
       <DefaultScreenTitle onPrev={handleGoBack} title={i18n("about")} />
 
       <ScrollView

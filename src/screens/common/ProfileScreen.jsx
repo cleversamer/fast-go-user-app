@@ -21,7 +21,7 @@ import NetworkStatusLine from "../../components/common/NetworkStatusLine";
 export default function ProfileScreen({ navigation }) {
   const { i18n, lang } = useLocale();
   const [showPopup, setShowPopup] = useState(false);
-  const [selectedGender, setSelectedGender] = useState("male");
+  const [, setSelectedGender] = useState("male");
 
   const handleSelectGender = (gender) => {
     setSelectedGender(gender);

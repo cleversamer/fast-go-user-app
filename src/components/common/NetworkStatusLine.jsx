@@ -1,10 +1,10 @@
 import { StyleSheet, SafeAreaView, Text, StatusBar } from "react-native";
 import useLocale from "../../hooks/useLocale";
-import useNetworkStatus from "../../hooks/useNetworkStatus";
+import useAuth from "../../auth/useAuth";
 
 export default function NetworkStatusLine() {
+  const { isOnline } = useAuth();
   const { i18n } = useLocale();
-  const isOnline = useNetworkStatus();
 
   if (isOnline) {
     return null;

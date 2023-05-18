@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import useFonts from "./src/hooks/useFonts";
 import useLocation from "./src/hooks/useLocation";
 import useSystemLanguage from "./src/hooks/useSystemLanguage";
+import useNetworkStatus from "./src/hooks/useNetworkStatus";
 
 import { NavigationContainer } from "@react-navigation/native";
 import AuthNavigation from "./src/navigation/AuthNavigation";
@@ -19,6 +20,7 @@ export default function App() {
   const [lang, setLang] = useState(systemLanguage);
   const [showHomeScreen, setShowHomeScreen] = useState(false);
   const [user, setUser] = useState(false);
+  const isOnline = useNetworkStatus();
 
   useEffect(() => {
     setLang(systemLanguage);
@@ -29,7 +31,7 @@ export default function App() {
   }
 
   return (
-    <AuthContext.Provider value={{ user, setUser, lang, setLang }}>
+    <AuthContext.Provider value={{ user, setUser, lang, setLang, isOnline }}>
       {!showHomeScreen && <Onboarding onDone={() => setShowHomeScreen(true)} />}
 
       {showHomeScreen && (

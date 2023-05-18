@@ -9,7 +9,7 @@ export default function ScreenSteps({
   onPrev,
   showNext = true,
   showPrev = true,
-  disableNext = false,
+  disableNext,
 }) {
   const { lang, i18n } = useLocale();
 

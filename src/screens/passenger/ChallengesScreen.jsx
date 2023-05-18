@@ -3,6 +3,7 @@ import { StyleSheet, SafeAreaView, View, Image } from "react-native";
 import DefaultScreenTitle from "../../components/screenTitles/DefaultScreenTitle";
 import useLocale from "../../hooks/useLocale";
 import Challenge from "../../components/common/Challenge";
+import NetworkStatusLine from "../../components/common/NetworkStatusLine";
 
 const _challenges = [
   {
@@ -49,7 +50,10 @@ export default function ChallengesScreen({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
+      <NetworkStatusLine />
+
       <DefaultScreenTitle title={i18n("challenges")} onPrev={handleGoBack} />
+
       <Image
         source={require("../../assets/images/challenges.png")}
         resizeMode="contain"

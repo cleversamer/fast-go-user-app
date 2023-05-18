@@ -3,7 +3,7 @@ import * as theme from "../../constants/theme";
 import useLocale from "../../hooks/useLocale";
 
 export default function Checkbox({
-  text = "Check Me!",
+  text,
   textStyle,
   boxStyle,
   innerBoxStyle,
