@@ -13,6 +13,7 @@ import useTimer from "../../hooks/useTimer";
 import useAuth from "../../auth/useAuth";
 import useLocale from "../../hooks/useLocale";
 import NetworkStatusLine from "../../components/networkStatusLine";
+import * as theme from "../../constants/theme";
 
 export default function PassengerLoginScrseen2({ navigation }) {
   const { i18n } = useLocale();
@@ -106,10 +107,11 @@ const styles = StyleSheet.create({
   },
   resendCodeText: {
     fontFamily: "cairo-700",
-    color: "#0038FF",
+    color: theme.primaryColor,
     textDecorationLine: "underline",
     textAlign: "center",
     padding: 5,
+    fontSize: 16,
   },
   remainingSeconds: {
     fontFamily: "cairo-700",

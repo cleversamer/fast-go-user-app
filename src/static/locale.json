@@ -384,7 +384,7 @@
     "ar": "رمز الإحالة الذي تلقيته من شخص ما"
   },
   "resendCode": {
-    "en": "Resend code",
-    "ar": "إعادة إرسال الكود"
+    "en": "Resend verification code",
+    "ar": "إعادة إرسال الرمز"
   }
 }
