@@ -382,5 +382,9 @@
   "referralCodeHint": {
     "en": "Referral code you received from someone",
     "ar": "رمز الإحالة الذي تلقيته من شخص ما"
+  },
+  "resendCode": {
+    "en": "Resend code",
+    "ar": "إعادة إرسال الكود"
   }
 }

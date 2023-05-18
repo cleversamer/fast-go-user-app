@@ -64,7 +64,7 @@ export default function DriverLoginScrseen2({ navigation }) {
 
         {isTimerDone ? (
           <Text onPress={handleResendCode} style={styles.resendCodeText}>
-            إعادة الإرسال
+            {i18n("resendCode")}
           </Text>
         ) : (
           <Text style={styles.timerText}>
