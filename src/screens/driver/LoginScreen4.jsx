@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Keyboard,
   Pressable,
@@ -22,6 +22,12 @@ export default function DriverLoginScrseen2({ navigation }) {
   const [code, setCode] = useState("");
   const [readyPin, setReadyPin] = useState(false);
   const MAX_CODE_LENGTH = 4;
+
+  useEffect(() => {
+    if (code.length === 4) {
+      login();
+    }
+  }, [code]);
 
   const handleGoBack = () => {
     navigation.goBack();
