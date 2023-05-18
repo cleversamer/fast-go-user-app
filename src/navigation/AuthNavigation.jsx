@@ -1,16 +1,16 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import WelcomeScreen from "../screens/welcome";
+import WelcomeScreen from "../screens/common/WelcomeScreen";
 
-import PassengerLoginScreen1 from "../screens/passengerLogin/PassengerLoginScreen1";
-import PassengerLoginScreen2 from "../screens/passengerLogin/PassengerLoginScreen2";
-import PassengerLoginScreen3 from "../screens/passengerLogin/PassengerLoginScreen3";
-import PassengerLoginScreen4 from "../screens/passengerLogin/PassengerLoginScreen4";
+import PassengerLoginScreen1 from "../screens/passenger/LoginScreen1";
+import PassengerLoginScreen2 from "../screens/passenger/LoginScreen2";
+import PassengerLoginScreen3 from "../screens/passenger/LoginScreen3";
+import PassengerLoginScreen4 from "../screens/passenger/LoginScreen4";
 
-import DriverLoginScreen1 from "../screens/driverLogin/DriverLoginScreen1";
-import DriverLoginScreen2 from "../screens/driverLogin/DriverLoginScreen2";
-import DriverLoginScreen3 from "../screens/driverLogin/DriverLoginScreen3";
-import DriverLoginScreen4 from "../screens/driverLogin/DriverLoginScreen4";
+import DriverLoginScreen1 from "../screens/driver/LoginScreen1";
+import DriverLoginScreen2 from "../screens/driver/LoginScreen2";
+import DriverLoginScreen3 from "../screens/driver/LoginScreen3";
+import DriverLoginScreen4 from "../screens/driver/LoginScreen4";
 
 import screens from "../static/screens.json";
 

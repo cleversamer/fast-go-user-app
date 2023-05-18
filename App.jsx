@@ -10,7 +10,7 @@ import AppNavigation from "./src/navigation/AppNavigation";
 
 import AuthContext from "./src/auth/context";
 
-import Onboarding from "./src/screens/onboarding";
+import Onboarding from "./src/screens/common/Onboarding";
 
 export default function App() {
   const { fontLoaded } = useFonts();

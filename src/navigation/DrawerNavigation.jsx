@@ -1,6 +1,6 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import DrawerContent from "../components/drawerContent";
-import PassengerHomeScreen1 from "../screens/passengerHome/PassengerHomeScreen1";
+import DrawerContent from "../components/drawer";
+import PassengerHomeScreen1 from "../screens/passenger/HomeScreen1";
 import useLocale from "../hooks/useLocale";
 
 const Drawer = createDrawerNavigator();

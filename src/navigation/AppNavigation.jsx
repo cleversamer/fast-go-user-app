@@ -1,15 +1,17 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import PassengerHomeScreen1 from "../screens/passengerHome/PassengerHomeScreen1";
-import PassengerHomeScreen2 from "../screens/passengerHome/PassengerHomeScreen2";
-import PassengerHomeScreen3 from "../screens/passengerHome/PassengerHomeScreen3";
-import ProfileScreen from "../screens/profile";
-import NotificationsScreen from "../screens/notifications";
-import SavedPlacesScreen from "../screens/savedPlaces";
-import ReservedTripsScreen from "../screens/reservedTrips";
-import AboutScreen from "../screens/about";
-import WalletScreen from "../screens/wallet";
-import EarnMoreScreen from "../screens/earnMore";
-import ChallengesScreen from "../screens/challenges";
+
+import PassengerHomeScreen1 from "../screens/passenger/HomeScreen1";
+import PassengerHomeScreen2 from "../screens/passenger/HomeScreen2";
+import PassengerHomeScreen3 from "../screens/passenger/HomeScreen3";
+import SavedPlacesScreen from "../screens/passenger/SavedPlacesScreen";
+import ReservedTripsScreen from "../screens/passenger/ReservedTripsScreen";
+import ChallengesScreen from "../screens/passenger/ChallengesScreen";
+
+import ProfileScreen from "../screens/common/ProfileScreen";
+import NotificationsScreen from "../screens/common/NotificationsScreen";
+import AboutScreen from "../screens/common/AboutScreen";
+import WalletScreen from "../screens/common/WalletScreen";
+import EarnMoreScreen from "../screens/common/EarnMoreScreen";
 
 import screens from "../static/screens.json";
 
