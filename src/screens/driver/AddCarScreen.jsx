@@ -12,7 +12,7 @@ export default function AddCarScreen({ navigation }) {
   const { i18n, lang } = useLocale();
 
   const handleNext = () => {
-    // navigation.navigate();
+    navigation.navigate(screens.addLegalDocuments);
   };
 
   return (

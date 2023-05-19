@@ -22,5 +22,6 @@
   "challenges": "ChallengesScreen",
   "tripDetails": "TripDetailsScreen",
   "call": "CallScreen",
-  "addCar": "AddCarScreen"
+  "addCar": "AddCarScreen",
+  "addLegalDocuments": "AddLegalDocumentsScreen"
 }

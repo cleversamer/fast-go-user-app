@@ -1,6 +1,7 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import AddCarScreen from "../screens/driver/AddCarScreen";
+import AddLegalDocumentsScreen from "../screens/driver/AddLegalDocumentsScreen";
 
 import ProfileScreen from "../screens/common/ProfileScreen";
 import NotificationsScreen from "../screens/common/NotificationsScreen";
@@ -23,6 +24,11 @@ export default function DriverNavigation() {
   return (
     <Stack.Navigator screenOptions={globalScreenOptions}>
       <Stack.Screen name={screens.addCar} component={AddCarScreen} />
+
+      <Stack.Screen
+        name={screens.addLegalDocuments}
+        component={AddLegalDocumentsScreen}
+      />
 
       <Stack.Screen name={screens.drawer} component={DrawerNavigation} />
 

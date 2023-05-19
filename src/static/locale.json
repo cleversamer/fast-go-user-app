@@ -438,5 +438,37 @@
   "addCarPhotosTitle": {
     "en": "Add 4 photos of your car",
     "ar": "قم بإضافة 4 صور لسيارتك"
+  },
+  "uploadPersonalPhoto": {
+    "en": "Upload a profile picture",
+    "ar": "تحميل صورة الملف الشخصي"
+  },
+  "personalPhotoConditions": {
+    "en": "Avoid wearing sunglasses, or a head hat, and ensure the image has apparent features and close-up.",
+    "ar": "تجنب ارتداء النظارات الشمسية أو قبعة الرأس، وتأكد من أن الصورة بها ميزات واضحة ولقطة مقربة."
+  },
+  "uploadRequiredDocuments": {
+    "en": "Upload required documents",
+    "ar": "قم بتحميل المستندات المطلوبة"
+  },
+  "uploadRequiredDocumentsRequest": {
+    "en": "To verify your identity and comply with the regulations, we will need you to upload the following documents:",
+    "ar": "للتحقق من هويتك والامتثال للوائح، سنحتاج منك تحميل المستندات التالية:"
+  },
+  "carBrochure": {
+    "en": "Car brochure",
+    "ar": "كتيّب السيارة"
+  },
+  "drivingLicense": {
+    "en": "Driving license",
+    "ar": "رخصة القيادة"
+  },
+  "carInsurance": {
+    "en": "Car insurance",
+    "ar": "تأمين السيارة"
+  },
+  "passport": {
+    "en": "Passport",
+    "ar": "جواز السفر"
   }
 }
