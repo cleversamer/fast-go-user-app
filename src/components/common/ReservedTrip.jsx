@@ -4,7 +4,7 @@ import * as theme from "../../constants/theme";
 import useDateTimer from "../../hooks/useDateTimer";
 import useLocale from "../../hooks/useLocale";
 
-export default function ReservedTrip({ trip }) {
+export default function ReservedTrip({ trip, onPress }) {
   const { i18n, lang } = useLocale();
   const { value: tripDate } = useDateTimer(trip.endDate, lang, [lang]);
 
@@ -47,7 +47,7 @@ export default function ReservedTrip({ trip }) {
   };
 
   return (
-    <TouchableOpacity style={getContainerStyles()}>
+    <TouchableOpacity style={getContainerStyles()} onPress={onPress}>
       <View
         style={
           lang === "ar" ? styles.arPriceContainer : styles.enPriceContainer

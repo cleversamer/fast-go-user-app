@@ -390,5 +390,25 @@
   "happeningNow": {
     "en": "Running now",
     "ar": "جاري الآن"
+  },
+  "unknown": {
+    "en": "Unknown",
+    "ar": "مجهول"
+  },
+  "totalTrips": {
+    "en": "Total trips",
+    "ar": "مجموع الرحلات"
+  },
+  "beginningWork": {
+    "en": "Beginning work",
+    "ar": "بداية العمل"
+  },
+  "callInApp": {
+    "en": "Call in app",
+    "ar": "الاتصال داخل التطبيق"
+  },
+  "callOutApp": {
+    "en": "Call out app",
+    "ar": "الاتصال خارج التطبيق"
   }
 }

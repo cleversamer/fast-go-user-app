@@ -10,6 +10,7 @@ import DefaultScreenTitle from "../../components/screenTitles/DefaultScreenTitle
 import ReservedTrip from "../../components/common/ReservedTrip";
 import useLocale from "../../hooks/useLocale";
 import NetworkStatusLine from "../../components/common/NetworkStatusLine";
+import screens from "../../static/screens.json";
 
 const reservedTrips = [
   {
@@ -69,6 +70,10 @@ export default function ReservedTripsScreen({ navigation }) {
     navigation.goBack();
   };
 
+  const handleTripPress = (trip) => {
+    navigation.navigate(screens.tripDetails);
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <NetworkStatusLine />
@@ -82,7 +87,11 @@ export default function ReservedTripsScreen({ navigation }) {
         >
           <View style={styles.tripsContainer}>
             {reservedTrips.map((trip, index) => (
-              <ReservedTrip key={index} trip={trip} />
+              <ReservedTrip
+                key={index}
+                trip={trip}
+                onPress={() => handleTripPress(trip)}
+              />
             ))}
           </View>
         </ScrollView>
