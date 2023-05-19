@@ -1,46 +1,61 @@
-import { StyleSheet, SafeAreaView, View, Text, Image } from "react-native";
+import {
+  StyleSheet,
+  SafeAreaView,
+  ScrollView,
+  View,
+  Text,
+  Image,
+} from "react-native";
 import DefaultScreenTitle from "../../components/screenTitles/DefaultScreenTitle";
-// import ReservedTrip from "./ReservedTrip";
+import ReservedTrip from "../../components/common/ReservedTrip";
 import useLocale from "../../hooks/useLocale";
 import NetworkStatusLine from "../../components/common/NetworkStatusLine";
 
 const reservedTrips = [
   {
     carType: "luxury",
-    from: "فلسطين,قطاع غزة, غزة, محافظةغزة, الزيتون, 890",
-    to: "فلسطين,قطاع غزة, غزة, محافظةغزة, الصبرة, 200",
+    from: "فلسطين,قطاع غزة, غزة, محافظة غزة, الزيتون, 890",
+    to: "فلسطين,قطاع غزة, غزة, محافظة غزة, الصبرة, 200",
     price: 63.21,
     startDate: "2023-05-14T21:17:48.446Z",
-    endDate: "2023-05-16T09:57:10.446Z",
+    endDate: "2023-05-19T17:57:10.446Z",
   },
   {
-    carType: "luxury",
-    from: "فلسطين,قطاع غزة, غزة, محافظةغزة, الزيتون, 890",
-    to: "فلسطين,قطاع غزة, غزة, محافظةغزة, الصبرة, 200",
+    carType: "women",
+    from: "فلسطين,قطاع غزة, غزة, محافظة غزة, الزيتون, 890",
+    to: "فلسطين,قطاع غزة, غزة, محافظة غزة, الصبرة, 200",
+    price: 63.21,
+    startDate: "2023-05-14T21:17:48.446Z",
+    endDate: "2023-05-16T06:57:10.446Z",
+  },
+  {
+    carType: "commercial",
+    from: "فلسطين,قطاع غزة, غزة, محافظة غزة, الزيتون, 890",
+    to: "فلسطين,قطاع غزة, غزة, محافظة غزة, الصبرة, 200",
     price: 63.21,
     startDate: "2023-05-14T21:17:48.446Z",
     endDate: "2023-05-16T06:57:10.446Z",
   },
   {
     carType: "luxury",
-    from: "فلسطين,قطاع غزة, غزة, محافظةغزة, الزيتون, 890",
-    to: "فلسطين,قطاع غزة, غزة, محافظةغزة, الصبرة, 200",
+    from: "فلسطين,قطاع غزة, غزة, محافظة غزة, الزيتون, 890",
+    to: "فلسطين,قطاع غزة, غزة, محافظة غزة, الصبرة, 200",
+    price: 63.21,
+    startDate: "2023-05-14T21:17:48.446Z",
+    endDate: "2023-05-19T17:57:10.446Z",
+  },
+  {
+    carType: "women",
+    from: "فلسطين,قطاع غزة, غزة, محافظة غزة, الزيتون, 890",
+    to: "فلسطين,قطاع غزة, غزة, محافظة غزة, الصبرة, 200",
     price: 63.21,
     startDate: "2023-05-14T21:17:48.446Z",
     endDate: "2023-05-16T06:57:10.446Z",
   },
   {
-    carType: "luxury",
-    from: "فلسطين,قطاع غزة, غزة, محافظةغزة, الزيتون, 890",
-    to: "فلسطين,قطاع غزة, غزة, محافظةغزة, الصبرة, 200",
-    price: 63.21,
-    startDate: "2023-05-14T21:17:48.446Z",
-    endDate: "2023-05-16T06:57:10.446Z",
-  },
-  {
-    carType: "luxury",
-    from: "فلسطين,قطاع غزة, غزة, محافظةغزة, الزيتون, 890",
-    to: "فلسطين,قطاع غزة, غزة, محافظةغزة, الصبرة, 200",
+    carType: "commercial",
+    from: "فلسطين,قطاع غزة, غزة, محافظة غزة, الزيتون, 890",
+    to: "فلسطين,قطاع غزة, غزة, محافظة غزة, الصبرة, 200",
     price: 63.21,
     startDate: "2023-05-14T21:17:48.446Z",
     endDate: "2023-05-16T06:57:10.446Z",
@@ -60,7 +75,7 @@ export default function ReservedTripsScreen({ navigation }) {
 
       <DefaultScreenTitle title={i18n("reservedTrips")} onPrev={handleGoBack} />
 
-      {/* {!!reservedTrips.length && (
+      {!!reservedTrips.length && (
         <ScrollView
           showsHorizontalScrollIndicator={false}
           showsVerticalScrollIndicator={false}
@@ -71,7 +86,7 @@ export default function ReservedTripsScreen({ navigation }) {
             ))}
           </View>
         </ScrollView>
-      )} */}
+      )}
 
       {!reservedTrips.length && (
         <View style={styles.emptyTripsContainer}>

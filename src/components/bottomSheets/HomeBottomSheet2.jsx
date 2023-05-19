@@ -25,7 +25,7 @@ export default function HomeBottomSheet2({
           selected={carType === "luxury"}
           onPress={() => onCarTypeChange("luxury")}
           amount={63.21}
-          title={i18n("luxuryCar")}
+          title={i18n("luxury")}
           image={require("../../assets/images/luxury-car.png")}
         />
 
@@ -33,7 +33,7 @@ export default function HomeBottomSheet2({
           selected={carType === "women"}
           onPress={() => onCarTypeChange("women")}
           amount={16.21}
-          title={i18n("womenCar")}
+          title={i18n("women")}
           image={require("../../assets/images/women-car.png")}
         />
 
@@ -41,7 +41,7 @@ export default function HomeBottomSheet2({
           selected={carType === "commercial"}
           onPress={() => onCarTypeChange("commercial")}
           amount={17.21}
-          title={i18n("commercialCar")}
+          title={i18n("commercial")}
           image={require("../../assets/images/commercial-car.png")}
         />
       </View>

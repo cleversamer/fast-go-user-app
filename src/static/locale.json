@@ -199,15 +199,15 @@
     "en": "Continue",
     "ar": "متابعة"
   },
-  "luxuryCar": {
+  "luxury": {
     "en": "Luxury car",
     "ar": "سيارة فاخرة"
   },
-  "womenCar": {
+  "women": {
     "en": "Women car",
     "ar": "سيارة نسائية"
   },
-  "commercialCar": {
+  "commercial": {
     "en": "Commercial car",
     "ar": "سيارة تجارية"
   },
@@ -386,5 +386,9 @@
   "resendCode": {
     "en": "Resend verification code",
     "ar": "إعادة إرسال الرمز"
+  },
+  "happeningNow": {
+    "en": "Running now",
+    "ar": "جاري الآن"
   }
 }
