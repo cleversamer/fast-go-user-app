@@ -15,18 +15,29 @@ import useLocale from "../../hooks/useLocale";
 import NetworkStatusLine from "../../components/common/NetworkStatusLine";
 import * as theme from "../../constants/theme";
 
+const MAX_CODE_LENGTH = 4;
+
 export default function DriverLoginScrseen2({ navigation }) {
   const { i18n } = useLocale();
   const { login } = useAuth();
   const { remainingSeconds, resetTimer, isTimerDone } = useTimer(150);
   const [code, setCode] = useState("");
   const [readyPin, setReadyPin] = useState(false);
-  const MAX_CODE_LENGTH = 4;
 
   useEffect(() => {
-    if (code.length === 4) {
-      login();
+    let timeoutId;
+
+    if (code.length === MAX_CODE_LENGTH) {
+      timeoutId = setTimeout(() => {
+        login();
+      }, 2000);
     }
+
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
   }, [code]);
 
   const handleGoBack = () => {
@@ -34,7 +45,7 @@ export default function DriverLoginScrseen2({ navigation }) {
   };
 
   const handleSubmit = () => {
-    if (code.length === 4) {
+    if (code.length === MAX_CODE_LENGTH) {
       login();
     }
   };

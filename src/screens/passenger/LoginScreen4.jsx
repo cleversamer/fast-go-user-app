@@ -24,9 +24,19 @@ export default function PassengerLoginScrseen2({ navigation }) {
   const MAX_CODE_LENGTH = 4;
 
   useEffect(() => {
-    if (code.length === 4) {
-      login();
+    let timeoutId;
+
+    if (code.length === MAX_CODE_LENGTH) {
+      timeoutId = setTimeout(() => {
+        login();
+      }, 2000);
     }
+
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
   }, [code]);
 
   const handleGoBack = () => {
@@ -34,7 +44,7 @@ export default function PassengerLoginScrseen2({ navigation }) {
   };
 
   const handleSubmit = () => {
-    if (code.length === 4) {
+    if (code.length === MAX_CODE_LENGTH) {
       login();
     }
   };
