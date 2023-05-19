@@ -470,5 +470,17 @@
   "passport": {
     "en": "Passport",
     "ar": "جواز السفر"
+  },
+  "requestHasBeenSent": {
+    "en": "Your request has been sent",
+    "ar": "تم إرسال طلبك"
+  },
+  "requestUnderReview": {
+    "en": "Your request is under review. Thanks for waiting!",
+    "ar": "طلبك قيد المراجعة. شكرًا للانتظار!"
+  },
+  "editRequest": {
+    "en": "Edit request",
+    "ar": "تعديل الطلب"
   }
 }

@@ -16,7 +16,7 @@ export default function AddLegalDocumentsScreen({ navigation }) {
 
   const handleNext = () => {
     try {
-      navigation.navigate(screens.addLegalDocuments);
+      navigation.navigate(screens.pendingRequest);
     } catch (err) {}
   };
 

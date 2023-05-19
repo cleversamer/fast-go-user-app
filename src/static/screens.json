@@ -23,5 +23,6 @@
   "tripDetails": "TripDetailsScreen",
   "call": "CallScreen",
   "addCar": "AddCarScreen",
-  "addLegalDocuments": "AddLegalDocumentsScreen"
+  "addLegalDocuments": "AddLegalDocumentsScreen",
+  "pendingRequest": "PendingRequestScreen"
 }

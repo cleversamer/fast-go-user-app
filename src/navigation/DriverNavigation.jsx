@@ -2,6 +2,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import AddCarScreen from "../screens/driver/AddCarScreen";
 import AddLegalDocumentsScreen from "../screens/driver/AddLegalDocumentsScreen";
+import PendingRequestScreen from "../screens/driver/PendingRequestScreen";
 
 import ProfileScreen from "../screens/common/ProfileScreen";
 import NotificationsScreen from "../screens/common/NotificationsScreen";
@@ -28,6 +29,11 @@ export default function DriverNavigation() {
       <Stack.Screen
         name={screens.addLegalDocuments}
         component={AddLegalDocumentsScreen}
+      />
+
+      <Stack.Screen
+        name={screens.pendingRequest}
+        component={PendingRequestScreen}
       />
 
       <Stack.Screen name={screens.drawer} component={DrawerNavigation} />
