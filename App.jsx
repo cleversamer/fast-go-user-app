@@ -8,6 +8,7 @@ import useNetworkStatus from "./src/hooks/useNetworkStatus";
 import { NavigationContainer } from "@react-navigation/native";
 import AuthNavigation from "./src/navigation/AuthNavigation";
 import AppNavigation from "./src/navigation/AppNavigation";
+import DriverNavigation from "./src/navigation/DriverNavigation";
 
 import AuthContext from "./src/auth/context";
 
@@ -23,7 +24,8 @@ export default function App() {
   const isOnline = useNetworkStatus();
 
   useEffect(() => {
-    setLang(systemLanguage);
+    // setLang(systemLanguage);
+    setLang("ar");
   }, [systemLanguage]);
 
   if (!fontLoaded || isLangLoading) {
@@ -37,6 +39,7 @@ export default function App() {
       {showHomeScreen && (
         <NavigationContainer>
           {user && user.role === "passenger" && <AppNavigation />}
+          {user && user.role === "driver" && <DriverNavigation />}
           {!user && <AuthNavigation />}
         </NavigationContainer>
       )}

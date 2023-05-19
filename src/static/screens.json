@@ -21,5 +21,6 @@
   "earnMore": "EarnMoreScreen",
   "challenges": "ChallengesScreen",
   "tripDetails": "TripDetailsScreen",
-  "call": "CallScreen"
+  "call": "CallScreen",
+  "addCar": "AddCarScreen"
 }

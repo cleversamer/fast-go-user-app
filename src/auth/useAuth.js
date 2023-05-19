@@ -6,7 +6,7 @@ const useAuth = () => {
 
   const login = () => {
     try {
-      setUser({ role: "passenger" });
+      setUser({ role: "driver" });
     } catch (err) {
       throw err;
     }

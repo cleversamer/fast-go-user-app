@@ -414,5 +414,29 @@
   "calling": {
     "en": "Calling...",
     "ar": "جاري الإتصال..."
+  },
+  "addCarInfoTitle": {
+    "en": "Enter your vehicle information",
+    "ar": "أدخل معلومات السيارة الخاصة بك"
+  },
+  "plateNumber": {
+    "en": "Plate Number",
+    "ar": "رقم اللوحة"
+  },
+  "manufactureYear": {
+    "en": "Manufacture year",
+    "ar": "سنة الإنتاج"
+  },
+  "carModel": {
+    "en": "Car model",
+    "ar": "موديل السيارة"
+  },
+  "carColor": {
+    "en": "Car color",
+    "ar": "لون السيارة"
+  },
+  "addCarPhotosTitle": {
+    "en": "Add 4 photos of your car",
+    "ar": "قم بإضافة 4 صور لسيارتك"
   }
 }

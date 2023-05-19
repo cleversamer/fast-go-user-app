@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import { SelectList } from "react-native-dropdown-select-list";
+import { AntDesign } from "@expo/vector-icons";
 import * as theme from "../../constants/theme";
 import useLocale from "../../hooks/useLocale";
 
@@ -22,24 +23,26 @@ export default function SelectInput({
   const { lang } = useLocale();
 
   const handleSelect = (optIndex) => {
-    onChange(options[optIndex - 1]);
+    try {
+      onChange(options[optIndex - 1]);
+    } catch (err) {}
   };
 
   return (
     <SelectList
       data={options}
-      defaultOption={options[0]}
       setSelected={handleSelect}
       placeholder={placeholder}
+      arrowicon={<AntDesign name="down" style={styles.arrowDownIcon} />}
       search={false}
       boxStyles={lang === "ar" ? styles.arBoxStyles : styles.enBoxStyles}
       dropdownStyles={styles.dropdownStyles}
+      inputStyles={styles.inputStyles}
       dropdownTextStyles={
         lang === "ar"
           ? styles.arDropdownTextStyles
           : styles.enDropdownTextStyles
       }
-      inputStyles={styles.inputStyles}
     />
   );
 }
@@ -72,5 +75,11 @@ const styles = StyleSheet.create({
   inputStyles: {
     fontFamily: "cairo-600",
     fontSize: 13,
+    color: "#747474",
+    textTransform: "capitalize",
+  },
+  arrowDownIcon: {
+    fontSize: 20,
+    color: theme.primaryColor,
   },
 });
