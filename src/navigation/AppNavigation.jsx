@@ -7,6 +7,7 @@ import SavedPlacesScreen from "../screens/passenger/SavedPlacesScreen";
 import ReservedTripsScreen from "../screens/passenger/ReservedTripsScreen";
 import ChallengesScreen from "../screens/passenger/ChallengesScreen";
 import TripDetailsScreen from "../screens/passenger/TripDetailsScreen";
+import CallScreen from "../screens/passenger/CallScreen";
 
 import ProfileScreen from "../screens/common/ProfileScreen";
 import NotificationsScreen from "../screens/common/NotificationsScreen";
@@ -68,6 +69,8 @@ export default function AppNavigation() {
       <Stack.Screen name={screens.challenges} component={ChallengesScreen} />
 
       <Stack.Screen name={screens.tripDetails} component={TripDetailsScreen} />
+
+      <Stack.Screen name={screens.call} component={CallScreen} />
     </Stack.Navigator>
   );
 }

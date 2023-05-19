@@ -410,5 +410,9 @@
   "callOutApp": {
     "en": "Call out app",
     "ar": "الاتصال خارج التطبيق"
+  },
+  "calling": {
+    "en": "Calling...",
+    "ar": "جاري الإتصال..."
   }
 }

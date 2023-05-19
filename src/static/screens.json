@@ -20,5 +20,6 @@
   "wallet": "WalletScreen",
   "earnMore": "EarnMoreScreen",
   "challenges": "ChallengesScreen",
-  "tripDetails": "TripDetailsScreen"
+  "tripDetails": "TripDetailsScreen",
+  "call": "CallScreen"
 }

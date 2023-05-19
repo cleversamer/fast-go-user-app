@@ -1,9 +1,12 @@
 import { StyleSheet, TouchableOpacity } from "react-native";
 import * as theme from "../../constants/theme";
 
-export default function CircularButton({ Icon, onPress }) {
+export default function CircularButton({ Icon, onPress, containerStyle }) {
   return (
-    <TouchableOpacity style={styles.container} onPress={onPress}>
+    <TouchableOpacity
+      style={[styles.container, containerStyle || {}]}
+      onPress={onPress}
+    >
       {Icon && <Icon />}
     </TouchableOpacity>
   );
