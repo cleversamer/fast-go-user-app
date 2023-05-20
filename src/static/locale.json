@@ -518,5 +518,21 @@
   "reject": {
     "en": "Reject",
     "ar": "رفض"
+  },
+  "addBalance": {
+    "en": "Add balance",
+    "ar": "إضافة رصيد"
+  },
+  "cardCode": {
+    "en": "Card code",
+    "ar": "كود البطاقة"
+  },
+  "add": {
+    "en": "Add",
+    "ar": "إضافة"
+  },
+  "cardBalance": {
+    "en": "Card balance",
+    "ar": "رصيد البطاقة"
   }
 }

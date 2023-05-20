@@ -11,6 +11,9 @@ export default function PopupConfirm({
   visible,
   onClose,
   onConfirm,
+  titleStyle,
+  subtitleStyle,
+  hintStyle,
 }) {
   const { i18n } = useLocale();
 
@@ -24,14 +27,25 @@ export default function PopupConfirm({
       >
         <View style={styles.container}>
           <View style={styles.boxContainer}>
-            <Ionicons name="close" style={styles.closeIcon} />
+            <Ionicons name="close" style={styles.closeIcon} onPress={onClose} />
 
-            <Text style={styles.title}>{title}</Text>
+            {title && (
+              <Text style={[styles.title, titleStyle || {}]}>{title}</Text>
+            )}
 
-            <View style={styles.middleBox}>
-              <Text style={styles.subtitle}>{subtitle}</Text>
-              <Text style={styles.hint}>{hint}</Text>
-            </View>
+            {(subtitle || hint) && (
+              <View style={styles.middleBox}>
+                {subtitle && (
+                  <Text style={[styles.subtitle, subtitleStyle || {}]}>
+                    {subtitle}
+                  </Text>
+                )}
+
+                {hint && (
+                  <Text style={[styles.hint, hintStyle || {}]}>{hint}</Text>
+                )}
+              </View>
+            )}
 
             <View style={styles.buttonsContainer}>
               <CustomButton
