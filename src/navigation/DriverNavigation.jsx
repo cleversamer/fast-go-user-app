@@ -5,6 +5,7 @@ import AddLegalDocumentsScreen from "../screens/driver/AddLegalDocumentsScreen";
 import PendingRequestScreen from "../screens/driver/PendingRequestScreen";
 import DriverHomeSceen from "../screens/driver/HomeSceen";
 import NewRequestScreen from "../screens/driver/NewRequestScreen";
+import TripsHistory from "../screens/driver/TripsHistory";
 
 import ProfileScreen from "../screens/common/ProfileScreen";
 import NotificationsScreen from "../screens/common/NotificationsScreen";
@@ -56,6 +57,8 @@ export default function DriverNavigation() {
       <Stack.Screen name={screens.earnMore} component={EarnMoreScreen} />
 
       <Stack.Screen name={screens.newRequest} component={NewRequestScreen} />
+
+      <Stack.Screen name={screens.tripsHistory} component={TripsHistory} />
     </Stack.Navigator>
   );
 }
