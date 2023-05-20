@@ -24,5 +24,6 @@
   "call": "CallScreen",
   "addCar": "AddCarScreen",
   "addLegalDocuments": "AddLegalDocumentsScreen",
-  "pendingRequest": "PendingRequestScreen"
+  "pendingRequest": "PendingRequestScreen",
+  "driverHome": "DriverHomeSceen1"
 }

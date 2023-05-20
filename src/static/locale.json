@@ -482,5 +482,13 @@
   "editRequest": {
     "en": "Edit request",
     "ar": "تعديل الطلب"
+  },
+  "driverConnected": {
+    "en": "You're connected",
+    "ar": "أنت متصل"
+  },
+  "driverNotConnected": {
+    "en": "You're not connected",
+    "ar": "أنت غير متصل"
   }
 }

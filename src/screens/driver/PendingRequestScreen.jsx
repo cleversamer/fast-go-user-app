@@ -1,11 +1,14 @@
 import { StyleSheet, SafeAreaView, Image, Text } from "react-native";
 import CustomButton from "../../components/buttons/CustomButton";
 import useLocale from "../../hooks/useLocale";
+import screens from "../../static/screens.json";
 
-export default function PendingRequestScreen() {
+export default function PendingRequestScreen({ navigation }) {
   const { i18n } = useLocale();
 
-  const handleEditRequest = () => {};
+  const handleEditRequest = () => {
+    navigation.navigate(screens.driverHome);
+  };
 
   return (
     <SafeAreaView style={styles.container}>
