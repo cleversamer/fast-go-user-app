@@ -17,7 +17,7 @@ import Onboarding from "./src/screens/common/Onboarding";
 export default function App() {
   const { fontLoaded } = useFonts();
   useLocation();
-  const { systemLanguage, loading: isLangLoading } = useSystemLanguage();
+  const { systemLanguage, loading: isLoadingLanguage } = useSystemLanguage();
   const [lang, setLang] = useState(systemLanguage);
   const [showHomeScreen, setShowHomeScreen] = useState(false);
   const [user, setUser] = useState(null);
@@ -36,7 +36,7 @@ export default function App() {
     return user && user.role === "driver" && displayMode === "driver";
   };
 
-  if (!fontLoaded || isLangLoading) {
+  if (!fontLoaded || isLoadingLanguage) {
     return null;
   }
 
