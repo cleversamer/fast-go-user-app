@@ -4,6 +4,7 @@ import AddCarScreen from "../screens/driver/AddCarScreen";
 import AddLegalDocumentsScreen from "../screens/driver/AddLegalDocumentsScreen";
 import PendingRequestScreen from "../screens/driver/PendingRequestScreen";
 import DriverHomeSceen from "../screens/driver/HomeSceen";
+import NewRequestScreen from "../screens/driver/NewRequestScreen";
 
 import ProfileScreen from "../screens/common/ProfileScreen";
 import NotificationsScreen from "../screens/common/NotificationsScreen";
@@ -53,6 +54,8 @@ export default function DriverNavigation() {
       <Stack.Screen name={screens.wallet} component={WalletScreen} />
 
       <Stack.Screen name={screens.earnMore} component={EarnMoreScreen} />
+
+      <Stack.Screen name={screens.newRequest} component={NewRequestScreen} />
     </Stack.Navigator>
   );
 }

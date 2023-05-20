@@ -10,6 +10,7 @@ import NotificationsScreenTitle from "../../components/screenTitles/Notification
 import Notification from "../../components/common/Notification";
 import useLocale from "../../hooks/useLocale";
 import NetworkStatusLine from "../../components/common/NetworkStatusLine";
+import screens from "../../static/screens.json";
 
 const notifications = [
   {
@@ -25,7 +26,7 @@ const notifications = [
     seen: true,
     date: "2023-05-16T15:00:00.446Z",
     data: {
-      screen: "home",
+      screen: "newRequest",
       id: "",
     },
   },
@@ -122,7 +123,15 @@ export default function NotificationsScreen({ navigation }) {
   const handleToggleNotifications = () => {};
 
   const handleGoBack = () => {
-    navigation.goBack();
+    try {
+      navigation.goBack();
+    } catch (err) {}
+  };
+
+  const handleNotificationPress = (notification) => {
+    try {
+      navigation.navigate(screens[notification.data.screen]);
+    } catch (err) {}
   };
 
   return (
@@ -142,7 +151,11 @@ export default function NotificationsScreen({ navigation }) {
         >
           <View style={styles.notificationsContainer}>
             {notifications.map((notification, index) => (
-              <Notification key={index} notification={notification} />
+              <Notification
+                key={index}
+                notification={notification}
+                onPress={() => handleNotificationPress(notification)}
+              />
             ))}
           </View>
         </ScrollView>

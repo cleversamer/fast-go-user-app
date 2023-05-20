@@ -20,13 +20,12 @@ export default function App() {
   const { systemLanguage, loading: isLangLoading } = useSystemLanguage();
   const [lang, setLang] = useState(systemLanguage);
   const [showHomeScreen, setShowHomeScreen] = useState(false);
-  const [user, setUser] = useState(false);
+  const [user, setUser] = useState(null);
   const [displayMode, setDisplayMode] = useState("");
   const isOnline = useNetworkStatus();
 
   useEffect(() => {
-    // setLang(systemLanguage);
-    setLang("ar");
+    setLang(systemLanguage);
   }, [systemLanguage]);
 
   const checkIfPassenger = () => {

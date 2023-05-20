@@ -2,6 +2,7 @@ import { StyleSheet, TouchableOpacity, View, Text } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 import SwitchButton from "../buttons/SwitchButton";
 import * as theme from "../../constants/theme";
+import useLocale from "../../hooks/useLocale";
 
 export default function DriverHomeScreenTitle({
   title,
@@ -9,8 +10,10 @@ export default function DriverHomeScreenTitle({
   isDriverConnected,
   onOpenDrawer,
 }) {
+  const { lang } = useLocale();
+
   return (
-    <View style={styles.container}>
+    <View style={lang === "ar" ? styles.arContainer : styles.enContainer}>
       <SwitchButton enabled={isDriverConnected} onToggle={onToggleConnected} />
 
       <Text style={styles.title}>{title}</Text>
@@ -23,9 +26,17 @@ export default function DriverHomeScreenTitle({
 }
 
 const styles = StyleSheet.create({
-  container: {
+  arContainer: {
     width: "100%",
     flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    minHeight: 50,
+    paddingHorizontal: 10,
+  },
+  enContainer: {
+    width: "100%",
+    flexDirection: "row-reverse",
     justifyContent: "space-between",
     alignItems: "center",
     minHeight: 50,

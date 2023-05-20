@@ -7,27 +7,32 @@ const useAuth = () => {
 
   const login = () => {
     try {
-      setUser({ role: "driver" });
-      setDisplayMode("driver");
-    } catch (err) {
-      throw err;
-    }
+      const user = { role: "driver" };
+      setUser(user);
+      setDisplayMode(user.role);
+    } catch (err) {}
   };
 
   const logout = () => {
     try {
-      setUser(false);
-    } catch (err) {
-      throw err;
-    }
+      setUser(null);
+    } catch (err) {}
   };
 
   const switchToPassenger = () => {
-    setDisplayMode("passenger");
+    try {
+      if (user?.role === "driver") {
+        setDisplayMode("passenger");
+      }
+    } catch (err) {}
   };
 
   const returnToDriver = () => {
-    setDisplayMode("driver");
+    try {
+      if (user?.role === "driver") {
+        setDisplayMode("driver");
+      }
+    } catch (err) {}
   };
 
   return {

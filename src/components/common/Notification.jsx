@@ -3,7 +3,7 @@ import * as theme from "../../constants/theme";
 import useDateTimer from "../../hooks/useDateTimer";
 import useLocale from "../../hooks/useLocale";
 
-export default function Notification({ notification }) {
+export default function Notification({ notification, onPress }) {
   const { lang } = useLocale();
   const { value: notificationDate } = useDateTimer(
     new Date(notification.date),
@@ -26,7 +26,7 @@ export default function Notification({ notification }) {
   };
 
   return (
-    <TouchableOpacity style={getContainerStyles()}>
+    <TouchableOpacity style={getContainerStyles()} onPress={onPress}>
       <View style={styles.infoContainer}>
         <Text style={lang === "ar" ? styles.arTitle : styles.enTitle}>
           {notification.title[lang]}

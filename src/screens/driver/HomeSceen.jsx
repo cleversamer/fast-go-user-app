@@ -3,8 +3,10 @@ import { StyleSheet, SafeAreaView, View } from "react-native";
 import DriverHomeScreenTitle from "../../components/screenTitles/DriverHomeScreenTitle";
 import GoogleMap from "../../components/common/GoogleMap";
 import DriverHomeBottomSheet from "../../components/bottomSheets/DriverHomeBottomSheet";
+import useLocale from "../../hooks/useLocale";
 
 export default function DriverHomeSceen({ navigation }) {
+  const { i18n } = useLocale();
   const [isConnected, setIsConnected] = useState(true);
 
   const handleOpenDrawer = () => {
@@ -17,7 +19,7 @@ export default function DriverHomeSceen({ navigation }) {
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <DriverHomeScreenTitle
-          title="الرئيسية"
+          title={i18n("mainScreen")}
           onToggleConnected={() => setIsConnected(!isConnected)}
           isDriverConnected={isConnected}
           onOpenDrawer={handleOpenDrawer}

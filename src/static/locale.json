@@ -502,5 +502,21 @@
   "returnToDriver": {
     "en": "Return to driver",
     "ar": "الرجوع إلى سائق"
+  },
+  "mainScreen": {
+    "en": "Main",
+    "ar": "الرئيسية"
+  },
+  "newRequest": {
+    "en": "New request",
+    "ar": "طلب جديد"
+  },
+  "approve": {
+    "en": "Approve",
+    "ar": "قبول"
+  },
+  "reject": {
+    "en": "Reject",
+    "ar": "رفض"
   }
 }
