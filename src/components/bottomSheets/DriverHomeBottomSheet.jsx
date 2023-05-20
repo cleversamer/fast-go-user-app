@@ -4,7 +4,11 @@ import { Ionicons, FontAwesome5, AntDesign } from "@expo/vector-icons";
 import useLocale from "../../hooks/useLocale";
 import * as theme from "../../constants/theme";
 
-export default function DriverHomeBottomSheet({ isDriverConnected }) {
+export default function DriverHomeBottomSheet({
+  isDriverConnected,
+  onWalletClick,
+  onNotificationsClick,
+}) {
   const { i18n } = useLocale();
 
   return (
@@ -20,11 +24,14 @@ export default function DriverHomeBottomSheet({ isDriverConnected }) {
       </Text>
 
       <View style={styles.iconsContainer}>
-        <TouchableOpacity style={styles.iconContainer}>
+        <TouchableOpacity
+          style={styles.iconContainer}
+          onPress={onNotificationsClick}
+        >
           <Ionicons name="notifications" style={styles.icon} />
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.iconContainer}>
+        <TouchableOpacity style={styles.iconContainer} onPress={onWalletClick}>
           <FontAwesome5 name="dollar-sign" style={styles.icon} />
         </TouchableOpacity>
 

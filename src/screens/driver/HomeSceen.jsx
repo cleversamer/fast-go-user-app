@@ -4,6 +4,7 @@ import DriverHomeScreenTitle from "../../components/screenTitles/DriverHomeScree
 import GoogleMap from "../../components/common/GoogleMap";
 import DriverHomeBottomSheet from "../../components/bottomSheets/DriverHomeBottomSheet";
 import useLocale from "../../hooks/useLocale";
+import screens from "../../static/screens.json";
 
 export default function DriverHomeSceen({ navigation }) {
   const { i18n } = useLocale();
@@ -12,6 +13,18 @@ export default function DriverHomeSceen({ navigation }) {
   const handleOpenDrawer = () => {
     try {
       navigation.openDrawer();
+    } catch (err) {}
+  };
+
+  const handleWalletClick = () => {
+    try {
+      navigation.navigate(screens.wallet);
+    } catch (err) {}
+  };
+
+  const handleNotificationsClick = () => {
+    try {
+      navigation.navigate(screens.notifications);
     } catch (err) {}
   };
 
@@ -28,7 +41,11 @@ export default function DriverHomeSceen({ navigation }) {
 
       <GoogleMap />
 
-      <DriverHomeBottomSheet isDriverConnected={isConnected} />
+      <DriverHomeBottomSheet
+        isDriverConnected={isConnected}
+        onWalletClick={handleWalletClick}
+        onNotificationsClick={handleNotificationsClick}
+      />
     </SafeAreaView>
   );
 }
