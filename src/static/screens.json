@@ -25,5 +25,6 @@
   "addCar": "AddCarScreen",
   "addLegalDocuments": "AddLegalDocumentsScreen",
   "pendingRequest": "PendingRequestScreen",
-  "driverHome": "DriverHomeSceen1"
+  "driverHome": "DriverHomeSceen1",
+  "tripsHistory": "TripsHistoryScreen"
 }

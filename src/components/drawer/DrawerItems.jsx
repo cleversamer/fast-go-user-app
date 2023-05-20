@@ -14,7 +14,8 @@ import PopupConfirm from "../popups/PopupConfirm";
 import screens from "../../static/screens.json";
 
 export default function DrawerItems({ navigation }) {
-  const { logout } = useAuth();
+  const { user, displayMode, returnToDriver, switchToPassenger, logout } =
+    useAuth();
   const { switchLang, i18n } = useLocale();
   const [showPopupError, setShowPopupError] = useState(false);
   const [showPopupConfirm, setShowPopupConfirm] = useState(false);
@@ -40,6 +41,18 @@ export default function DrawerItems({ navigation }) {
       .catch((err) => {
         setShowPopupError(true);
       });
+  };
+
+  const checkIfPassenger = () => {
+    return user.role === "passenger" || displayMode === "passenger";
+  };
+
+  const checkIfDriver = () => {
+    return user.role === "driver" && displayMode !== "passenger";
+  };
+
+  const checkIfDriverInPassengerMode = () => {
+    return user.role === "driver" && displayMode === "passenger";
   };
 
   return (
@@ -77,30 +90,46 @@ export default function DrawerItems({ navigation }) {
         Icon={() => <Ionicons name="notifications" style={styles.itemIcon} />}
       />
 
-      <DrawerItem
-        title={i18n("challenges")}
-        onPress={navigateTo(screens.challenges)}
-        Icon={() => (
-          <MaterialCommunityIcons
-            name="google-analytics"
-            style={styles.itemIcon}
-          />
-        )}
-      />
+      {checkIfDriver() && (
+        <DrawerItem
+          title={i18n("tripsHistory")}
+          onPress={navigateTo(screens.tripsHistory)}
+          Icon={() => (
+            <MaterialCommunityIcons name="steering" style={styles.itemIcon} />
+          )}
+        />
+      )}
 
-      <DrawerItem
-        title={i18n("savedPlaces")}
-        onPress={navigateTo(screens.savedPlaces)}
-        Icon={() => <Ionicons name="compass" style={styles.itemIcon} />}
-      />
+      {checkIfPassenger() && (
+        <DrawerItem
+          title={i18n("challenges")}
+          onPress={navigateTo(screens.challenges)}
+          Icon={() => (
+            <MaterialCommunityIcons
+              name="google-analytics"
+              style={styles.itemIcon}
+            />
+          )}
+        />
+      )}
 
-      <DrawerItem
-        title={i18n("reservedTrips")}
-        onPress={navigateTo(screens.reservedTrips)}
-        Icon={() => (
-          <FontAwesome5 name="calendar-alt" style={styles.itemIcon} />
-        )}
-      />
+      {checkIfPassenger() && (
+        <DrawerItem
+          title={i18n("savedPlaces")}
+          onPress={navigateTo(screens.savedPlaces)}
+          Icon={() => <Ionicons name="compass" style={styles.itemIcon} />}
+        />
+      )}
+
+      {checkIfPassenger() && (
+        <DrawerItem
+          title={i18n("reservedTrips")}
+          onPress={navigateTo(screens.reservedTrips)}
+          Icon={() => (
+            <FontAwesome5 name="calendar-alt" style={styles.itemIcon} />
+          )}
+        />
+      )}
 
       <DrawerItem
         title={i18n("wallet")}
@@ -144,6 +173,26 @@ export default function DrawerItems({ navigation }) {
           <MaterialCommunityIcons name="logout" style={styles.itemIcon} />
         )}
       />
+
+      {checkIfDriver() && (
+        <DrawerItem
+          title={i18n("switchToPassenger")}
+          onPress={switchToPassenger}
+          Icon={() => (
+            <MaterialCommunityIcons name="steering" style={styles.itemIcon} />
+          )}
+        />
+      )}
+
+      {checkIfDriverInPassengerMode() && (
+        <DrawerItem
+          title={i18n("returnToDriver")}
+          onPress={returnToDriver}
+          Icon={() => (
+            <MaterialCommunityIcons name="steering" style={styles.itemIcon} />
+          )}
+        />
+      )}
     </ScrollView>
   );
 }

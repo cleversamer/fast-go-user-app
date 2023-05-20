@@ -11,7 +11,7 @@ const Drawer = createDrawerNavigator();
 
 export default function DrawerNavigation() {
   const { lang } = useLocale();
-  const { user } = useAuth();
+  const { user, displayMode } = useAuth();
 
   const globalScreenOptions = {
     headerShown: false,
@@ -24,19 +24,27 @@ export default function DrawerNavigation() {
     },
   };
 
+  const checkIfPassenger = () => {
+    return user && (user.role === "passenger" || displayMode === "passenger");
+  };
+
+  const checkIfDriver = () => {
+    return user && user.role === "driver" && displayMode === "driver";
+  };
+
   return (
     <Drawer.Navigator
       drawerContent={DrawerContent}
       screenOptions={globalScreenOptions}
     >
-      {user && user.role === "passenger" && (
+      {checkIfPassenger() && (
         <Drawer.Screen
           name={screens.passengerHome1}
           component={PassengerHomeScreen1}
         />
       )}
 
-      {user && user.role === "driver" && (
+      {checkIfDriver() && (
         <Drawer.Screen name={screens.driverHome} component={DriverHomeScreen} />
       )}
     </Drawer.Navigator>

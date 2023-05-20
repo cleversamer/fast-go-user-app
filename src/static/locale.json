@@ -490,5 +490,17 @@
   "driverNotConnected": {
     "en": "You're not connected",
     "ar": "أنت غير متصل"
+  },
+  "tripsHistory": {
+    "en": "Trips history",
+    "ar": "سجل الرحلات"
+  },
+  "switchToPassenger": {
+    "en": "Switch to passenger",
+    "ar": "التحويل إلى راكب"
+  },
+  "returnToDriver": {
+    "en": "Return to driver",
+    "ar": "الرجوع إلى سائق"
   }
 }

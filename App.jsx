@@ -21,6 +21,7 @@ export default function App() {
   const [lang, setLang] = useState(systemLanguage);
   const [showHomeScreen, setShowHomeScreen] = useState(false);
   const [user, setUser] = useState(false);
+  const [displayMode, setDisplayMode] = useState("");
   const isOnline = useNetworkStatus();
 
   useEffect(() => {
@@ -28,18 +29,36 @@ export default function App() {
     setLang("ar");
   }, [systemLanguage]);
 
+  const checkIfPassenger = () => {
+    return user && (user.role === "passenger" || displayMode === "passenger");
+  };
+
+  const checkIfDriver = () => {
+    return user && user.role === "driver" && displayMode === "driver";
+  };
+
   if (!fontLoaded || isLangLoading) {
     return null;
   }
 
   return (
-    <AuthContext.Provider value={{ user, setUser, lang, setLang, isOnline }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        setUser,
+        lang,
+        setLang,
+        isOnline,
+        displayMode,
+        setDisplayMode,
+      }}
+    >
       {!showHomeScreen && <Onboarding onDone={() => setShowHomeScreen(true)} />}
 
       {showHomeScreen && (
         <NavigationContainer>
-          {user && user.role === "passenger" && <AppNavigation />}
-          {user && user.role === "driver" && <DriverNavigation />}
+          {checkIfPassenger() && <AppNavigation />}
+          {checkIfDriver() && <DriverNavigation />}
           {!user && <AuthNavigation />}
         </NavigationContainer>
       )}
