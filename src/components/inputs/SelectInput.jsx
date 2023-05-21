@@ -22,14 +22,15 @@ export default function SelectInput({
 }) {
   const { lang } = useLocale();
 
-  const handleSelect = (optIndex) => {
+  const handleSelect = (value) => {
     try {
-      onChange(options[optIndex - 1]);
+      onChange(value);
     } catch (err) {}
   };
 
   return (
     <SelectList
+      save="value"
       data={options}
       setSelected={handleSelect}
       placeholder={placeholder}
@@ -71,6 +72,7 @@ const styles = StyleSheet.create({
     fontFamily: "cairo-600",
     fontSize: 13,
     textAlign: "left",
+    textTransform: "capitalize",
   },
   inputStyles: {
     fontFamily: "cairo-600",

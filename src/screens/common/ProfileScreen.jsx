@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
 import ProfileScreenTitle from "../../components/screenTitles/ProfileScreenTitle";
 import { Ionicons, Feather } from "@expo/vector-icons";
@@ -11,11 +11,14 @@ import PopupConfirm from "../../components/popups/PopupConfirm";
 import useLocale from "../../hooks/useLocale";
 import NetworkStatusLine from "../../components/common/NetworkStatusLine";
 import AvatarInput from "../../components/inputs/AvatarInput";
+import useAuth from "../../auth/useAuth";
+import data from "../../static/data.json";
 
 export default function ProfileScreen({ navigation }) {
+  const { user } = useAuth();
   const { i18n, lang } = useLocale();
   const [showPopup, setShowPopup] = useState(false);
-  const [, setSelectedGender] = useState("male");
+  const [selectedGender, setSelectedGender] = useState(user.gender);
 
   const handleSelectGender = (gender) => {
     try {
@@ -49,6 +52,18 @@ export default function ProfileScreen({ navigation }) {
     } catch (err) {}
   };
 
+  const getAvatarSource = () => {
+    try {
+      if (user.avatarURL) {
+        return { uri: user.avatarURL };
+      }
+
+      return null;
+    } catch (err) {
+      return null;
+    }
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <NetworkStatusLine />
@@ -73,12 +88,13 @@ export default function ProfileScreen({ navigation }) {
           onRequestAccountDeletion={handleRequestAccountDeletion}
         />
 
-        <AvatarInput onChange={handleChangeAvatar} />
+        <AvatarInput onChange={handleChangeAvatar} value={getAvatarSource()} />
 
         <View style={styles.inputsContainer}>
           <InputIcon
             title={i18n("firstname")}
             placeholder={i18n("firstname")}
+            value={user.firstName}
             Icon={() => (
               <Ionicons
                 name="person"
@@ -90,6 +106,7 @@ export default function ProfileScreen({ navigation }) {
           <InputIcon
             title={i18n("lastname")}
             placeholder={i18n("lastname")}
+            value={user.lastName}
             Icon={() => (
               <Ionicons
                 name="person"
@@ -102,6 +119,7 @@ export default function ProfileScreen({ navigation }) {
             title={i18n("email")}
             placeholder={i18n("email")}
             keyboardType="email-address"
+            value={user.email}
             Icon={() => (
               <Feather
                 name="mail"
@@ -110,9 +128,11 @@ export default function ProfileScreen({ navigation }) {
             )}
           />
 
-          <PhoneInput />
+          <PhoneInput nsn={user.phone.nsn} />
 
           <SelectInput
+            value={selectedGender}
+            options={data.genders}
             onChange={handleSelectGender}
             placeholder={i18n("selectGender")}
           />

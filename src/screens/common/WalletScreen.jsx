@@ -13,7 +13,6 @@ import PopupConfirm from "../../components/popups/PopupConfirm";
 export default function WalletScreen({ navigation }) {
   const { user } = useAuth();
   const { i18n, lang } = useLocale();
-  const [balance, setBalance] = useState(20.054);
   const [popupAddBalance, setPopupAddBalance] = useState({
     visible: false,
     title: i18n("cardBalance"),
@@ -36,7 +35,6 @@ export default function WalletScreen({ navigation }) {
       };
 
       const onConfirm = () => {
-        setBalance(balance + 20);
         setPopupAddBalance({ ...popupAddBalance, visible: false });
       };
 
@@ -99,7 +97,7 @@ export default function WalletScreen({ navigation }) {
               : styles.enWalletBoxBottomContainer
           }
         >
-          <Text style={styles.balanceText}>{mapBalance(balance)}</Text>
+          <Text style={styles.balanceText}>{mapBalance(user.balance)}</Text>
 
           <View style={styles.balanceIconContainer}>
             <FontAwesome name="dollar" style={styles.balanceIcon} />

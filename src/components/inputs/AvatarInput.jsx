@@ -13,7 +13,7 @@ export default function AvatarInput({ value, onChange, containerStyles }) {
       </TouchableOpacity>
 
       <Image
-        source={require("../../assets/images/avatar.png")}
+        source={value || require("../../assets/images/avatar.png")}
         resizeMode="contain"
         style={styles.avatar}
       />
@@ -38,9 +38,12 @@ const styles = StyleSheet.create({
   },
   cameraIconContainer: {
     position: "absolute",
-    top: -10,
-    right: -10,
+    top: -15,
+    right: -15,
     zIndex: 1,
+    backgroundColor: theme.primaryColorLight,
+    padding: 5,
+    borderRadius: 50,
   },
   cameraIcon: {
     color: theme.primaryColor,

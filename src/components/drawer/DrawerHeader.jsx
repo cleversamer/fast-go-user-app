@@ -2,12 +2,12 @@ import { TouchableOpacity, StyleSheet, View, Text, Image } from "react-native";
 import * as theme from "../../constants/theme";
 import useDateTimer from "../../hooks/useDateTimer";
 import useLocale from "../../hooks/useLocale";
-
-const _lastLogin = new Date();
+import useAuth from "../../auth/useAuth";
 
 export default function DrawerHeader({ navigation }) {
+  const { user } = useAuth();
   const { i18n, lang } = useLocale();
-  const { value: lastLogin } = useDateTimer(_lastLogin, lang, [lang]);
+  const { value: lastLogin } = useDateTimer(user.lastLogin, lang, [lang, user]);
 
   const getWelcomingMssg = () => {
     try {
@@ -24,6 +24,18 @@ export default function DrawerHeader({ navigation }) {
     } catch (err) {}
   };
 
+  const getAvatarSource = () => {
+    try {
+      if (user.avatarURL) {
+        return { uri: user.avatarURL };
+      }
+
+      return require("../../assets/images/avatar.png");
+    } catch (err) {
+      return require("../../assets/images/avatar.png");
+    }
+  };
+
   return (
     <View style={lang === "ar" ? styles.arContainer : styles.enContainer}>
       <View
@@ -35,12 +47,15 @@ export default function DrawerHeader({ navigation }) {
       >
         <View style={styles.welcomingContainer}>
           <Text style={styles.welcomingMssg}>{getWelcomingMssg()}</Text>
-          <Text style={styles.userName}>معتز أبو نهيان</Text>
+
+          <Text style={styles.userName}>
+            {user.firstName} {user.lastName}
+          </Text>
         </View>
 
         <TouchableOpacity onPress={handleAvatarPress}>
           <Image
-            source={require("../../assets/images/avatar.png")}
+            source={getAvatarSource()}
             resizeMode="contain"
             style={styles.avatar}
           />

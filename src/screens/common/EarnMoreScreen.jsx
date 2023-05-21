@@ -12,8 +12,10 @@ import { MaterialIcons } from "@expo/vector-icons";
 import * as theme from "../../constants/theme";
 import useClipboard from "../../hooks/useClipboard";
 import NetworkStatusLine from "../../components/common/NetworkStatusLine";
+import useAuth from "../../auth/useAuth";
 
 export default function EarnMoreScreen({ navigation }) {
+  const { user } = useAuth();
   const { i18n } = useLocale();
   const { copyText, showCopiedIcon } = useClipboard();
 
@@ -48,13 +50,13 @@ export default function EarnMoreScreen({ navigation }) {
 
         <TouchableOpacity
           style={styles.codeContainer}
-          onPress={() => copyText("P6U6P21ZX")}
+          onPress={() => copyText(user.referral.code)}
         >
           <MaterialIcons
             name={showCopiedIcon ? "done" : "content-copy"}
             style={styles.copyIcon}
           />
-          <Text style={styles.codeText}>P6U6P21ZX</Text>
+          <Text style={styles.codeText}>{user.referral.code}</Text>
         </TouchableOpacity>
 
         <Image
@@ -114,7 +116,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    maxWidth: 150,
+    maxWidth: 180,
     gap: 7,
     backgroundColor: theme.primaryColor,
     borderRadius: 30,

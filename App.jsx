@@ -1,8 +1,7 @@
 import "react-native-gesture-handler";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import useFonts from "./src/hooks/useFonts";
 import useLocation from "./src/hooks/useLocation";
-import useSystemLanguage from "./src/hooks/useSystemLanguage";
 import useNetworkStatus from "./src/hooks/useNetworkStatus";
 
 import { NavigationContainer } from "@react-navigation/native";
@@ -17,16 +16,11 @@ import Onboarding from "./src/screens/common/Onboarding";
 export default function App() {
   const { fontLoaded } = useFonts();
   useLocation();
-  const { systemLanguage, loading: isLoadingLanguage } = useSystemLanguage();
-  const [lang, setLang] = useState(systemLanguage);
+  const [lang, setLang] = useState("ar");
   const [showHomeScreen, setShowHomeScreen] = useState(false);
   const [user, setUser] = useState(null);
   const [displayMode, setDisplayMode] = useState("");
   const isOnline = useNetworkStatus();
-
-  useEffect(() => {
-    setLang(systemLanguage);
-  }, [systemLanguage]);
 
   const checkIfPassenger = () => {
     try {
@@ -44,7 +38,7 @@ export default function App() {
     }
   };
 
-  if (!fontLoaded || isLoadingLanguage) {
+  if (!fontLoaded) {
     return null;
   }
 

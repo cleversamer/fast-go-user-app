@@ -11,113 +11,10 @@ import Notification from "../../components/common/Notification";
 import useLocale from "../../hooks/useLocale";
 import NetworkStatusLine from "../../components/common/NetworkStatusLine";
 import screens from "../../static/screens.json";
-
-const notifications = [
-  {
-    title: {
-      en: "Notification title",
-      ar: "عنوان الاشعار",
-    },
-    body: {
-      en: "Notification body",
-      ar: "محتوى الاشعار محتوى الاشعار",
-    },
-    photoURL: "",
-    seen: true,
-    date: "2023-05-16T15:00:00.446Z",
-    data: {
-      screen: "newRequest",
-      id: "",
-    },
-  },
-  {
-    title: {
-      en: "Notification title",
-      ar: "عنوان الاشعار",
-    },
-    body: {
-      en: "Notification body",
-      ar: "محتوى الاشعار",
-    },
-    photoURL: "",
-    seen: false,
-    date: "2023-05-16T15:00:00.446Z",
-    data: {
-      screen: "home",
-      id: "",
-    },
-  },
-  {
-    title: {
-      en: "Notification title",
-      ar: "عنوان الاشعار",
-    },
-    body: {
-      en: "Notification body",
-      ar: "محتوى الاشعار",
-    },
-    photoURL: "",
-    seen: false,
-    date: "2023-05-16T15:00:00.446Z",
-    data: {
-      screen: "home",
-      id: "",
-    },
-  },
-  {
-    title: {
-      en: "Notification title",
-      ar: "عنوان الاشعار",
-    },
-    body: {
-      en: "Notification body",
-      ar: "محتوى الاشعار",
-    },
-    photoURL: "",
-    seen: false,
-    date: "2023-05-16T15:00:00.446Z",
-    data: {
-      screen: "home",
-      id: "",
-    },
-  },
-  {
-    title: {
-      en: "Notification title",
-      ar: "عنوان الاشعار",
-    },
-    body: {
-      en: "Notification body",
-      ar: "محتوى الاشعار",
-    },
-    photoURL: "",
-    seen: false,
-    date: "2023-05-16T15:00:00.446Z",
-    data: {
-      screen: "home",
-      id: "",
-    },
-  },
-  {
-    title: {
-      en: "Notification title",
-      ar: "عنوان الاشعار",
-    },
-    body: {
-      en: "Notification body",
-      ar: "محتوى الاشعار",
-    },
-    photoURL: "",
-    seen: false,
-    date: "2023-05-16T15:00:00.446Z",
-    data: {
-      screen: "home",
-      id: "",
-    },
-  },
-];
+import useAuth from "../../auth/useAuth";
 
 export default function NotificationsScreen({ navigation }) {
+  const { user } = useAuth();
   const { i18n } = useLocale();
 
   const handleToggleNotifications = () => {};
@@ -128,7 +25,7 @@ export default function NotificationsScreen({ navigation }) {
     } catch (err) {}
   };
 
-  const handleNotificationPress = (notification) => {
+  const handleNotificationPress = (notification) => () => {
     try {
       navigation.navigate(screens[notification.data.screen]);
     } catch (err) {}
@@ -144,24 +41,24 @@ export default function NotificationsScreen({ navigation }) {
         onToggleNotifications={handleToggleNotifications}
       />
 
-      {!!notifications.length && (
+      {!!user?.notifications?.list?.length && (
         <ScrollView
           showsHorizontalScrollIndicator={false}
           showsVerticalScrollIndicator={false}
         >
           <View style={styles.notificationsContainer}>
-            {notifications.map((notification, index) => (
+            {user?.notifications?.list?.map?.((notification, index) => (
               <Notification
                 key={index}
                 notification={notification}
-                onPress={() => handleNotificationPress(notification)}
+                onPress={handleNotificationPress(notification)}
               />
             ))}
           </View>
         </ScrollView>
       )}
 
-      {!notifications.length && (
+      {!user?.notifications?.list?.length && (
         <View style={styles.emptyNotificationsContainer}>
           <Image
             source={require("../../assets/images/empty-notifications.png")}
