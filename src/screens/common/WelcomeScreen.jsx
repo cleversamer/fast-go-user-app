@@ -16,13 +16,13 @@ export default function WelcomeScreen({ navigation }) {
 
   const handleRegisterAsPassenger = () => {
     try {
-      navigation.navigate(screens.login1);
+      navigation.navigate(screens.login1, { role: "passenger" });
     } catch (err) {}
   };
 
   const handleRegisterAsDriver = () => {
     try {
-      navigation.navigate(screens.login1);
+      navigation.navigate(screens.login1, { role: "driver" });
     } catch (err) {}
   };
 

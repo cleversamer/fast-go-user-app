@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { SafeAreaView, Text, StyleSheet, View } from "react-native";
 import * as theme from "../../constants/theme";
 import InputIcon from "../../components/inputs/InputIcon";
@@ -8,10 +9,20 @@ import useLocale from "../../hooks/useLocale";
 import NetworkStatusLine from "../../components/common/NetworkStatusLine";
 import screens from "../../static/screens.json";
 import ReferralCodeInput from "../../components/inputs/ReferralCodeInput";
+import checkPhoneNSN from "../../utils/checkPhoneNSN";
+import checkRealName from "../../utils/checkForRealName";
+import checkEmail from "../../utils/checkEmail";
 
 export default function LoginScreen2({ navigation, route }) {
-  const { authType } = route.params;
+  const { authType, role } = route.params;
   const { i18n, lang } = useLocale();
+  const [context, setContext] = useState({
+    phone: { icc: "+218", nsn: "" },
+    firstName: "",
+    lastName: "",
+    email: "",
+    referralCode: "",
+  });
 
   const handleGoBack = () => {
     try {
@@ -23,6 +34,58 @@ export default function LoginScreen2({ navigation, route }) {
     try {
       navigation.navigate(screens.login3, { authType });
     } catch (err) {}
+  };
+
+  const handlePhoneNSNChange = (phoneNSN) => {
+    try {
+      const inputValue = phoneNSN.trim();
+
+      if (inputValue.length <= 9) {
+        setContext({ ...context, phone: { ...phone, nsn: inputValue } });
+      }
+    } catch (err) {}
+  };
+
+  const handleReferralCodeChange = (referralCode) => {
+    try {
+      const inputValue = referralCode.trim();
+
+      if (inputValue.length <= 14) {
+        setContext({ ...context, referralCode: inputValue });
+      }
+    } catch (err) {}
+  };
+
+  const handleKeyChange = (key) => (value) => {
+    try {
+      setContext({ ...context, [key]: value });
+    } catch (err) {}
+  };
+
+  const isValidForm = () => {
+    try {
+      const { phone, email, firstName, lastName, referralCode } = context;
+
+      const isValidPhone = checkPhoneNSN(phone.nsn);
+      const isValidFirstName = firstName.length >= 3 && firstName.length <= 16;
+      const isValidLastName = lastName.length >= 3 && lastName.length <= 16;
+      const isRealName = checkRealName(firstName + lastName);
+      const isValidReferralCode = !referralCode || referralCode.length === 14;
+      const isValidEmail = checkEmail(email);
+
+      const isValidEmailLogin =
+        isValidFirstName &&
+        isValidLastName &&
+        isRealName &&
+        isValidEmail &&
+        isValidReferralCode;
+
+      const isValidOuterLogin = isValidPhone && isValidReferralCode;
+
+      return authType === "email" ? isValidEmailLogin : isValidOuterLogin;
+    } catch (err) {
+      return true;
+    }
   };
 
   return (
@@ -52,6 +115,8 @@ export default function LoginScreen2({ navigation, route }) {
               )}
               placeholder={i18n("lastname")}
               containerStyles={styles.inputContainer}
+              value={context.lastName}
+              onChange={handleKeyChange("lastName")}
             />
 
             <InputIcon
@@ -65,16 +130,26 @@ export default function LoginScreen2({ navigation, route }) {
               )}
               placeholder={i18n("firstname")}
               containerStyles={styles.inputContainer}
+              value={context.firstName}
+              onChange={handleKeyChange("firstName")}
             />
           </View>
         )}
 
-        {authType !== "email" && <PhoneInput />}
+        {authType !== "email" && (
+          <PhoneInput
+            icc={context.phone.icc}
+            nsn={context.phone.nsn}
+            onNSNChange={handlePhoneNSNChange}
+          />
+        )}
 
         {authType === "email" && (
           <InputIcon
             placeholder={i18n("email")}
             keyboardType="email-address"
+            value={context.email}
+            onChange={handleKeyChange("email")}
             Icon={() => (
               <Feather
                 name="mail"
@@ -84,11 +159,18 @@ export default function LoginScreen2({ navigation, route }) {
           />
         )}
 
-        <ReferralCodeInput />
+        <ReferralCodeInput
+          value={context.referralCode}
+          onChange={handleReferralCodeChange}
+        />
       </View>
 
       <View style={styles.screenStepsContainer}>
-        <ScreenSteps onNext={handleNext} onPrev={handleGoBack} />
+        <ScreenSteps
+          onNext={handleNext}
+          onPrev={handleGoBack}
+          disableNext={!isValidForm()}
+        />
       </View>
     </SafeAreaView>
   );

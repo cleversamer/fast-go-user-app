@@ -8,9 +8,9 @@ import NetworkStatusLine from "../../components/common/NetworkStatusLine";
 import screens from "../../static/screens.json";
 
 export default function LoginScreen2({ navigation, route }) {
-  const { authType } = route.params;
+  const { authType, role } = route.params;
   const { i18n, lang } = useLocale();
-  const [error, setError] = useState(true);
+  const [error, setError] = useState(false);
   const [isPrivacyApproved, setIsPrivacyApproved] = useState(false);
 
   const handleClosePopup = () => {

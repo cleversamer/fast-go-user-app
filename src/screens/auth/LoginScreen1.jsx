@@ -8,8 +8,10 @@ import ContinueButton from "../../components/buttons/ContinueButton";
 import useLocale from "../../hooks/useLocale";
 import NetworkStatusLine from "../../components/common/NetworkStatusLine";
 import screens from "../../static/screens.json";
+import checkPhoneNSN from "../../utils/checkPhoneNSN";
 
-export default function LoginScreen1({ navigation }) {
+export default function LoginScreen1({ navigation, route }) {
+  const { role } = route.params;
   const { i18n } = useLocale();
   const [phone, setPhone] = useState({ icc: "+218", nsn: "" });
 
@@ -47,19 +49,6 @@ export default function LoginScreen1({ navigation }) {
     } catch (err) {}
   };
 
-  const checkPhoneNSN = () => {
-    try {
-      let phoneNSN = phone.nsn;
-      // Remove any whitespace from the input string
-      phoneNSN = phoneNSN.replace(/\s/g, "");
-
-      // Check if the string consists of exactly 9 digits
-      return /^\d{9}$/.test(phoneNSN);
-    } catch (err) {
-      return true;
-    }
-  };
-
   return (
     <SafeAreaView style={styles.container}>
       <NetworkStatusLine />
@@ -81,7 +70,7 @@ export default function LoginScreen1({ navigation }) {
           onPress={handleContinue}
           containerStyle={styles.buttonContainer}
           textStyle={styles.buttonText}
-          disabled={!checkPhoneNSN()}
+          disabled={!checkPhoneNSN(phone.nsn)}
         />
 
         <HorizontalLines
