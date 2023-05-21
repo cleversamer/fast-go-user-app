@@ -19,7 +19,9 @@ export default function CallScreen({ navigation }) {
   const { i18n } = useLocale();
 
   const handleEndCall = () => {
-    navigation.goBack();
+    try {
+      navigation.goBack();
+    } catch (err) {}
   };
 
   return (

@@ -9,40 +9,56 @@ export default function DriverTrip({ trip, onPress }) {
   const { value: tripDate } = useDateTimer(trip.endDate, lang, [lang]);
 
   const isActiveTrip = () => {
-    const endDate = new Date(trip.endDate);
-    return new Date() <= endDate;
+    try {
+      const endDate = new Date(trip.endDate);
+      return new Date() <= endDate;
+    } catch (err) {
+      return false;
+    }
   };
 
   const getContainerStyles = () => {
-    const themeStyle = isActiveTrip()
-      ? styles.activeContainer
-      : styles.inactiveContainer;
+    try {
+      const themeStyle = isActiveTrip()
+        ? styles.activeContainer
+        : styles.inactiveContainer;
 
-    const languageStyle =
-      lang === "ar" ? styles.arContainer : styles.enContainer;
+      const languageStyle =
+        lang === "ar" ? styles.arContainer : styles.enContainer;
 
-    return [themeStyle, languageStyle];
+      return [themeStyle, languageStyle];
+    } catch (err) {
+      return [styles.inactiveContainer, styles.arContainer];
+    }
   };
 
   const getDateStyles = () => {
-    const themeStyle = isActiveTrip() ? styles.happeningNow : styles.date;
-    const languageStyle = lang === "ar" ? styles.arDate : styles.enDate;
-    return [themeStyle, languageStyle];
+    try {
+      const themeStyle = isActiveTrip() ? styles.happeningNow : styles.date;
+      const languageStyle = lang === "ar" ? styles.arDate : styles.enDate;
+      return [themeStyle, languageStyle];
+    } catch (err) {
+      return [styles.date, styles.arDate];
+    }
   };
 
   const getCarTypeIcon = () => {
-    switch (trip.carType) {
-      case "luxury":
-        return require("../../assets/images/luxury-car.png");
+    try {
+      switch (trip.carType) {
+        case "luxury":
+          return require("../../assets/images/luxury-car.png");
 
-      case "women":
-        return require("../../assets/images/women-car.png");
+        case "women":
+          return require("../../assets/images/women-car.png");
 
-      case "commercial":
-        return require("../../assets/images/commercial-car.png");
+        case "commercial":
+          return require("../../assets/images/commercial-car.png");
 
-      default:
-        return require("../../assets/images/luxury-car.png");
+        default:
+          return require("../../assets/images/luxury-car.png");
+      }
+    } catch (err) {
+      return require("../../assets/images/luxury-car.png");
     }
   };
 

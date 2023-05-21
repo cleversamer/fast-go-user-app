@@ -7,7 +7,9 @@ export default function PendingRequestScreen({ navigation }) {
   const { i18n } = useLocale();
 
   const handleEditRequest = () => {
-    navigation.navigate(screens.driverHome);
+    try {
+      navigation.navigate(screens.driverHome);
+    } catch (err) {}
   };
 
   return (

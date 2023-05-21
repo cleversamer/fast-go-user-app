@@ -9,27 +9,55 @@ import useLocale from "../../hooks/useLocale";
 import NetworkStatusLine from "../../components/common/NetworkStatusLine";
 import screens from "../../static/screens.json";
 
-export default function PassengerLoginScreen1({ navigation }) {
+export default function LoginScreen1({ navigation }) {
   const { i18n } = useLocale();
   const [phone, setPhone] = useState({ icc: "+218", nsn: "" });
 
-  const handleKeyChange = (key) => (value) =>
-    setPhone({ ...phone, [key]: value });
+  const handlePhoneNSNChange = (phoneNSN) => {
+    try {
+      const inputValue = phoneNSN.trim();
+
+      if (inputValue.length <= 9) {
+        setPhone({ ...phone, nsn: inputValue });
+      }
+    } catch (err) {}
+  };
 
   const handleContinue = () => {
-    navigation.navigate(screens.passengerLogin2);
+    try {
+      navigation.navigate(screens.login2, { authType: "email" });
+    } catch (err) {}
   };
 
   const handleContinueWithGoogle = () => {
-    navigation.navigate(screens.passengerLogin2);
+    try {
+      navigation.navigate(screens.login2, { authType: "google" });
+    } catch (err) {}
   };
 
   const handleContinueWithFacebook = () => {
-    navigation.navigate(screens.passengerLogin2);
+    try {
+      navigation.navigate(screens.login2, { authType: "facebook" });
+    } catch (err) {}
   };
 
   const handleContinueWithApple = () => {
-    navigation.navigate(screens.passengerLogin2);
+    try {
+      navigation.navigate(screens.login2, { authType: "apple" });
+    } catch (err) {}
+  };
+
+  const checkPhoneNSN = () => {
+    try {
+      let phoneNSN = phone.nsn;
+      // Remove any whitespace from the input string
+      phoneNSN = phoneNSN.replace(/\s/g, "");
+
+      // Check if the string consists of exactly 9 digits
+      return /^\d{9}$/.test(phoneNSN);
+    } catch (err) {
+      return true;
+    }
   };
 
   return (
@@ -44,8 +72,7 @@ export default function PassengerLoginScreen1({ navigation }) {
           <PhoneInput
             icc={phone.icc}
             nsn={phone.nsn}
-            onICCChange={handleKeyChange("icc")}
-            onNSNChange={handleKeyChange("nsn")}
+            onNSNChange={handlePhoneNSNChange}
           />
         </View>
 
@@ -54,6 +81,7 @@ export default function PassengerLoginScreen1({ navigation }) {
           onPress={handleContinue}
           containerStyle={styles.buttonContainer}
           textStyle={styles.buttonText}
+          disabled={!checkPhoneNSN()}
         />
 
         <HorizontalLines

@@ -49,21 +49,27 @@ export default function SavedPlacesScreen({ navigation }) {
   const [showSheet, setShowSheet] = useState(false);
 
   const handleGoBack = () => {
-    navigation.goBack();
+    try {
+      navigation.goBack();
+    } catch (err) {}
   };
 
   const handleSelectLocation = (location) => {
-    setLocations([location]);
+    try {
+      setLocations([location]);
+    } catch (err) {}
   };
 
   const handleDeleteLocation = (markerLocation) => {
-    const newLocations = locations.filter(
-      (location) =>
-        location.latitude !== markerLocation.latitude &&
-        location.longitude !== markerLocation.longitude
-    );
+    try {
+      const newLocations = locations.filter(
+        (location) =>
+          location.latitude !== markerLocation.latitude &&
+          location.longitude !== markerLocation.longitude
+      );
 
-    setLocations(newLocations);
+      setLocations(newLocations);
+    } catch (err) {}
   };
 
   return (

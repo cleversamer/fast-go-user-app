@@ -18,13 +18,17 @@ export default function PassengerHomeScreen2({ navigation }) {
   const [locations, setLocations] = useState(_locations);
 
   const handleDeleteLocation = (locationIndex) => {
-    const newLocations = [...locations];
-    newLocations.splice(locationIndex, 1);
-    setLocations(newLocations);
+    try {
+      const newLocations = [...locations];
+      newLocations.splice(locationIndex, 1);
+      setLocations(newLocations);
+    } catch (err) {}
   };
 
   const handleContinue = () => {
-    navigation.navigate(screens.passengerHome3);
+    try {
+      navigation.navigate(screens.passengerHome3);
+    } catch (err) {}
   };
 
   return (

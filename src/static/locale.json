@@ -534,5 +534,9 @@
   "cardBalance": {
     "en": "Card balance",
     "ar": "رصيد البطاقة"
+  },
+  "selectGender": {
+    "en": "Select gender",
+    "ar": "اختر الجنس"
   }
 }

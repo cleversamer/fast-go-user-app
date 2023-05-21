@@ -5,8 +5,8 @@ export default function useSystemLanguage() {
   const [systemLanguage, setSystemLanguage] = useState("ar");
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    async function getSystemLanguage() {
+  const getSystemLanguage = async () => {
+    try {
       const locales = Localization.getLocales();
       let lang = locales[0].languageCode;
 
@@ -17,9 +17,13 @@ export default function useSystemLanguage() {
       }
 
       setLoading(false);
-    }
+    } catch (err) {}
+  };
 
-    getSystemLanguage();
+  useEffect(() => {
+    try {
+      getSystemLanguage();
+    } catch (err) {}
   }, []);
 
   return { systemLanguage, loading };

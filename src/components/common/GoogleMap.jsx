@@ -27,13 +27,15 @@ export default function GoogleMap({
   const location = useLocation();
 
   useEffect(() => {
-    if (location) {
-      setRegion({
-        ...region,
-        latitude: location.coords.latitude,
-        longitude: location.coords.longitude,
-      });
-    }
+    try {
+      if (location) {
+        setRegion({
+          ...region,
+          latitude: location.coords.latitude,
+          longitude: location.coords.longitude,
+        });
+      }
+    } catch (err) {}
   }, [location]);
 
   const handleSelectLocation = async (event) => {

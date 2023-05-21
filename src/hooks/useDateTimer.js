@@ -5,15 +5,17 @@ const useDateTimer = (date, lang = "ar", dependencyArray = []) => {
   const [value, setValue] = useState(parseDate(date, lang));
 
   useEffect(() => {
-    if (!date) return;
+    try {
+      if (!date) return;
 
-    const intervalId = setInterval(() => {
-      setValue(parseDate(date, lang));
-    }, 1000);
+      const intervalId = setInterval(() => {
+        setValue(parseDate(date, lang));
+      }, 1000);
 
-    return () => {
-      clearInterval(intervalId);
-    };
+      return () => {
+        clearInterval(intervalId);
+      };
+    } catch (err) {}
 
     // eslint-disable-next-line
   }, [date, ...dependencyArray]);

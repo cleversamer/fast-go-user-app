@@ -1,14 +1,7 @@
 import { useState } from "react";
-import {
-  SafeAreaView,
-  ScrollView,
-  Image,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
 import ProfileScreenTitle from "../../components/screenTitles/ProfileScreenTitle";
-import { FontAwesome, Ionicons, Feather } from "@expo/vector-icons";
+import { Ionicons, Feather } from "@expo/vector-icons";
 import * as theme from "../../constants/theme";
 import InputIcon from "../../components/inputs/InputIcon";
 import PhoneInput from "../../components/inputs/PhoneInput";
@@ -25,25 +18,35 @@ export default function ProfileScreen({ navigation }) {
   const [, setSelectedGender] = useState("male");
 
   const handleSelectGender = (gender) => {
-    setSelectedGender(gender);
+    try {
+      setSelectedGender(gender);
+    } catch (err) {}
   };
 
   const handleGoBack = () => {
-    navigation.goBack();
+    try {
+      navigation.goBack();
+    } catch (err) {}
   };
 
   const handleRequestAccountDeletion = () => {
-    setShowPopup(true);
+    try {
+      setShowPopup(true);
+    } catch (err) {}
   };
 
   const handleConfirmAccountDeletion = () => {
-    alert("Confirmed");
+    try {
+      alert("Confirmed");
+    } catch (err) {}
   };
 
   const handleChangeAvatar = () => {};
 
   const handleClosePopup = () => {
-    setShowPopup(false);
+    try {
+      setShowPopup(false);
+    } catch (err) {}
   };
 
   return (
@@ -109,7 +112,10 @@ export default function ProfileScreen({ navigation }) {
 
           <PhoneInput />
 
-          <SelectInput onChange={handleSelectGender} placeholder="اختر الجنس" />
+          <SelectInput
+            onChange={handleSelectGender}
+            placeholder={i18n("selectGender")}
+          />
 
           <CustomButton
             text={i18n("save")}

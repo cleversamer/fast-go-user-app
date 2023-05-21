@@ -10,25 +10,33 @@ export default function PassengerHomeScreen1({ navigation }) {
   const [locations, setLocations] = useState([]);
 
   const handleRequestNow = () => {
-    navigation.navigate(screens.passengerHome2);
+    try {
+      navigation.navigate(screens.passengerHome2);
+    } catch (err) {}
   };
 
   const handleSelectLocation = (location) => {
-    setLocations([location]);
+    try {
+      setLocations([location]);
+    } catch (err) {}
   };
 
   const handleDeleteLocation = (markerLocation) => {
-    const newLocations = locations.filter(
-      (location) =>
-        location.latitude !== markerLocation.latitude &&
-        location.longitude !== markerLocation.longitude
-    );
+    try {
+      const newLocations = locations.filter(
+        (location) =>
+          location.latitude !== markerLocation.latitude &&
+          location.longitude !== markerLocation.longitude
+      );
 
-    setLocations(newLocations);
+      setLocations(newLocations);
+    } catch (err) {}
   };
 
   const handleOpenDrawer = () => {
-    navigation.openDrawer();
+    try {
+      navigation.openDrawer();
+    } catch (err) {}
   };
 
   return (

@@ -15,9 +15,11 @@ export default function DraggableBottomSheet({
   const ref = useRef(null);
 
   useEffect(() => {
-    if (ref && visible) {
-      ref.current.open();
-    }
+    try {
+      if (ref && visible) {
+        ref.current.open();
+      }
+    } catch (err) {}
   }, [visible]);
 
   return (

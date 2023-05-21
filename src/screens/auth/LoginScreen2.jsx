@@ -9,15 +9,20 @@ import NetworkStatusLine from "../../components/common/NetworkStatusLine";
 import screens from "../../static/screens.json";
 import ReferralCodeInput from "../../components/inputs/ReferralCodeInput";
 
-export default function DriverLoginScreen2({ navigation }) {
+export default function LoginScreen2({ navigation, route }) {
+  const { authType } = route.params;
   const { i18n, lang } = useLocale();
 
   const handleGoBack = () => {
-    navigation.goBack();
+    try {
+      navigation.goBack();
+    } catch (err) {}
   };
 
   const handleNext = () => {
-    navigation.navigate(screens.driverLogin3);
+    try {
+      navigation.navigate(screens.login3, { authType });
+    } catch (err) {}
   };
 
   return (
@@ -28,48 +33,56 @@ export default function DriverLoginScreen2({ navigation }) {
       <Text style={styles.subtitle}>{i18n("loginScreen2Subtitle")}</Text>
 
       <View style={styles.inputsContainer}>
-        <View
-          style={
-            lang === "ar"
-              ? styles.arTextInputsContainer
-              : styles.enTextInputsContainer
-          }
-        >
-          <InputIcon
-            Icon={() => (
-              <Ionicons
-                name="person"
-                style={lang === "ar" ? styles.arInputIcon : styles.enInputIcon}
-              />
-            )}
-            placeholder={i18n("lastname")}
-            containerStyles={styles.inputContainer}
-          />
-
-          <InputIcon
-            Icon={() => (
-              <Ionicons
-                name="person"
-                style={lang === "ar" ? styles.arInputIcon : styles.enInputIcon}
-              />
-            )}
-            placeholder={i18n("firstname")}
-            containerStyles={styles.inputContainer}
-          />
-        </View>
-
-        <PhoneInput />
-
-        <InputIcon
-          placeholder={i18n("email")}
-          keyboardType="email-address"
-          Icon={() => (
-            <Feather
-              name="mail"
-              style={lang === "ar" ? styles.arInputIcon : styles.enInputIcon}
+        {authType === "email" && (
+          <View
+            style={
+              lang === "ar"
+                ? styles.arTextInputsContainer
+                : styles.enTextInputsContainer
+            }
+          >
+            <InputIcon
+              Icon={() => (
+                <Ionicons
+                  name="person"
+                  style={
+                    lang === "ar" ? styles.arInputIcon : styles.enInputIcon
+                  }
+                />
+              )}
+              placeholder={i18n("lastname")}
+              containerStyles={styles.inputContainer}
             />
-          )}
-        />
+
+            <InputIcon
+              Icon={() => (
+                <Ionicons
+                  name="person"
+                  style={
+                    lang === "ar" ? styles.arInputIcon : styles.enInputIcon
+                  }
+                />
+              )}
+              placeholder={i18n("firstname")}
+              containerStyles={styles.inputContainer}
+            />
+          </View>
+        )}
+
+        {authType !== "email" && <PhoneInput />}
+
+        {authType === "email" && (
+          <InputIcon
+            placeholder={i18n("email")}
+            keyboardType="email-address"
+            Icon={() => (
+              <Feather
+                name="mail"
+                style={lang === "ar" ? styles.arInputIcon : styles.enInputIcon}
+              />
+            )}
+          />
+        )}
 
         <ReferralCodeInput />
       </View>

@@ -45,7 +45,9 @@ export default function ChallengesScreen({ navigation }) {
   const { i18n } = useLocale();
 
   const handleGoBack = () => {
-    navigation.goBack();
+    try {
+      navigation.goBack();
+    } catch (err) {}
   };
 
   return (

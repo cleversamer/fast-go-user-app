@@ -7,19 +7,28 @@ import useLocale from "../../hooks/useLocale";
 import NetworkStatusLine from "../../components/common/NetworkStatusLine";
 import screens from "../../static/screens.json";
 
-export default function PassengerLoginScreen2({ navigation }) {
+export default function LoginScreen2({ navigation, route }) {
+  const { authType } = route.params;
   const { i18n, lang } = useLocale();
   const [error, setError] = useState(true);
   const [isPrivacyApproved, setIsPrivacyApproved] = useState(false);
 
-  const handleClosePopup = () => setError(false);
+  const handleClosePopup = () => {
+    try {
+      setError(false);
+    } catch (err) {}
+  };
 
   const handleGoBack = () => {
-    navigation.goBack();
+    try {
+      navigation.goBack();
+    } catch (err) {}
   };
 
   const handleNext = () => {
-    navigation.navigate(screens.passengerLogin4);
+    try {
+      navigation.navigate(screens.login4, { authType });
+    } catch (err) {}
   };
 
   return (

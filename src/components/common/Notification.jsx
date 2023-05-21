@@ -12,17 +12,17 @@ export default function Notification({ notification, onPress }) {
   );
 
   const getContainerStyles = () => {
-    const stylesArray = [];
-    const stylingObject = notification.seen
-      ? styles.seenContainer
-      : styles.unseenContainer;
+    try {
+      const themeStyle = notification.seen
+        ? styles.seenContainer
+        : styles.unseenContainer;
 
-    const languageObject =
-      lang === "ar" ? styles.arContainer : styles.enContainer;
+      const langStyle = lang === "ar" ? styles.arContainer : styles.enContainer;
 
-    stylesArray.push(stylingObject, languageObject);
-
-    return stylesArray;
+      return [themeStyle, langStyle];
+    } catch (err) {
+      return [styles.unseenContainer, styles.arContainer];
+    }
   };
 
   return (

@@ -6,23 +6,25 @@ const useClipboard = () => {
   const [showCopiedIcon, setShowCopiedIcon] = useState(false);
 
   useEffect(() => {
-    let timeoutId;
+    try {
+      let timeoutId;
 
-    if (isCopied && showCopiedIcon) {
-      timeoutId = copyText();
-    }
-
-    return () => {
-      if (timeoutId) {
-        clearTimeout(timeoutId);
+      if (isCopied && showCopiedIcon) {
+        timeoutId = copyText();
       }
-    };
+
+      return () => {
+        if (timeoutId) {
+          clearTimeout(timeoutId);
+        }
+      };
+    } catch (err) {}
   }, [isCopied, showCopiedIcon]);
 
   const copyText = async (text) => {
-    let timeoutId;
-
     try {
+      let timeoutId;
+
       const isCopied = await setStringAsync(text);
       setIsCopied(isCopied);
 

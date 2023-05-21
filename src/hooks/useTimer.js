@@ -4,19 +4,23 @@ const useTimer = (timeInSeconds) => {
   const [seconds, setSeconds] = useState(timeInSeconds);
 
   useEffect(() => {
-    if (!seconds) return;
+    try {
+      if (!seconds) return;
 
-    const interval = setInterval(() => {
-      setSeconds(seconds - 1);
-    }, 1000);
+      const interval = setInterval(() => {
+        setSeconds(seconds - 1);
+      }, 1000);
 
-    return () => {
-      clearInterval(interval);
-    };
+      return () => {
+        clearInterval(interval);
+      };
+    } catch (err) {}
   }, [seconds]);
 
   const resetTimer = () => {
-    setSeconds(parseInt(timeInSeconds));
+    try {
+      setSeconds(parseInt(timeInSeconds));
+    } catch (err) {}
   };
 
   return {

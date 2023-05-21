@@ -9,13 +9,15 @@ const useLocale = () => {
     try {
       return locale[key][lang];
     } catch (err) {
-      return "err";
+      return "ERROR";
     }
   };
 
   const switchLang = () => {
-    const newLang = lang === "ar" ? "en" : "ar";
-    setLang(newLang);
+    try {
+      const newLang = lang === "ar" ? "en" : "ar";
+      setLang(newLang);
+    } catch (err) {}
   };
 
   return { i18n, switchLang, lang };

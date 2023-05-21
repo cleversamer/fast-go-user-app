@@ -18,7 +18,9 @@ export default function EarnMoreScreen({ navigation }) {
   const { copyText, showCopiedIcon } = useClipboard();
 
   const handleGoBack = () => {
-    navigation.goBack();
+    try {
+      navigation.goBack();
+    } catch (err) {}
   };
 
   return (

@@ -5,33 +5,37 @@ export default function Place({ place, onEdit }) {
   const { i18n, lang } = useLocale();
 
   const getPlaceIcon = () => {
-    switch (place.type) {
-      case "cafe":
-        return require("../../assets/icons/cafe-loc.png");
+    try {
+      switch (place.type) {
+        case "cafe":
+          return require("../../assets/icons/cafe-loc.png");
 
-      case "club":
-        return require("../../assets/icons/club-loc.png");
+        case "club":
+          return require("../../assets/icons/club-loc.png");
 
-      case "family-home":
-        return require("../../assets/icons/family-home-loc.png");
+        case "family-home":
+          return require("../../assets/icons/family-home-loc.png");
 
-      case "main":
-        return require("../../assets/icons/main-loc.png");
+        case "main":
+          return require("../../assets/icons/main-loc.png");
 
-      case "other":
-        return require("../../assets/icons/other-loc.png");
+        case "other":
+          return require("../../assets/icons/other-loc.png");
 
-      case "park":
-        return require("../../assets/icons/park-loc.png");
+        case "park":
+          return require("../../assets/icons/park-loc.png");
 
-      case "partners":
-        return require("../../assets/icons/partners-loc.png");
+        case "partners":
+          return require("../../assets/icons/partners-loc.png");
 
-      case "work":
-        return require("../../assets/icons/work-loc.png");
+        case "work":
+          return require("../../assets/icons/work-loc.png");
 
-      default:
-        return require("../../assets/icons/other-loc.png");
+        default:
+          return require("../../assets/icons/other-loc.png");
+      }
+    } catch (err) {
+      return require("../../assets/icons/other-loc.png");
     }
   };
 

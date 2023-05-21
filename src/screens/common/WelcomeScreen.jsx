@@ -15,11 +15,15 @@ export default function WelcomeScreen({ navigation }) {
   const { i18n } = useLocale();
 
   const handleRegisterAsPassenger = () => {
-    navigation.navigate(screens.passengerLogin1);
+    try {
+      navigation.navigate(screens.login1);
+    } catch (err) {}
   };
 
   const handleRegisterAsDriver = () => {
-    navigation.navigate(screens.driverLogin1);
+    try {
+      navigation.navigate(screens.login1);
+    } catch (err) {}
   };
 
   return (

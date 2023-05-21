@@ -27,32 +27,48 @@ export default function DrawerItems({ navigation }) {
   };
 
   const openWhatsAppChat = () => {
-    const phoneNumber = "+971544274978";
-    const url = `whatsapp://send?phone=${phoneNumber}`;
+    try {
+      const phoneNumber = "+971544274978";
+      const url = `whatsapp://send?phone=${phoneNumber}`;
 
-    Linking.canOpenURL(url)
-      .then((supported) => {
-        if (!supported) {
+      Linking.canOpenURL(url)
+        .then((supported) => {
+          if (!supported) {
+            setShowPopupError(true);
+          } else {
+            return Linking.openURL(url);
+          }
+        })
+        .catch((err) => {
           setShowPopupError(true);
-        } else {
-          return Linking.openURL(url);
-        }
-      })
-      .catch((err) => {
-        setShowPopupError(true);
-      });
+        });
+    } catch (err) {
+      setShowPopupError(true);
+    }
   };
 
   const checkIfPassenger = () => {
-    return user.role === "passenger" || displayMode === "passenger";
+    try {
+      return user.role === "passenger" || displayMode === "passenger";
+    } catch (err) {
+      return true;
+    }
   };
 
   const checkIfDriver = () => {
-    return user.role === "driver" && displayMode !== "passenger";
+    try {
+      return user.role === "driver" && displayMode !== "passenger";
+    } catch (err) {
+      return true;
+    }
   };
 
   const checkIfDriverInPassengerMode = () => {
-    return user.role === "driver" && displayMode === "passenger";
+    try {
+      return user.role === "driver" && displayMode === "passenger";
+    } catch (err) {
+      return true;
+    }
   };
 
   return (

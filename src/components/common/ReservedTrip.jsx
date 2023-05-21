@@ -9,19 +9,27 @@ export default function ReservedTrip({ trip, onPress }) {
   const { value: tripDate } = useDateTimer(trip.endDate, lang, [lang]);
 
   const isActiveTrip = () => {
-    const endDate = new Date(trip.endDate);
-    return new Date() <= endDate;
+    try {
+      const endDate = new Date(trip.endDate);
+      return new Date() <= endDate;
+    } catch (err) {
+      return false;
+    }
   };
 
   const getContainerStyles = () => {
-    const themeStyle = isActiveTrip()
-      ? styles.activeContainer
-      : styles.inactiveContainer;
+    try {
+      const themeStyle = isActiveTrip()
+        ? styles.activeContainer
+        : styles.inactiveContainer;
 
-    const languageStyle =
-      lang === "ar" ? styles.arContainer : styles.enContainer;
+      const languageStyle =
+        lang === "ar" ? styles.arContainer : styles.enContainer;
 
-    return [themeStyle, languageStyle];
+      return [themeStyle, languageStyle];
+    } catch (err) {
+      return [styles.inactiveContainer, styles.arContainer];
+    }
   };
 
   const getDateStyles = () => {

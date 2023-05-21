@@ -11,8 +11,10 @@ export default function TripDetailsScreen({ navigation }) {
   const [showSheet, setShowSheet] = useState(false);
 
   const handleCallInApp = () => {
-    setShowSheet(false);
-    navigation.navigate(screens.call);
+    try {
+      setShowSheet(false);
+      navigation.navigate(screens.call);
+    } catch (err) {}
   };
 
   const handleCallOutOfApp = async () => {

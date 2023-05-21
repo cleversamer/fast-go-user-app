@@ -12,15 +12,21 @@ export default function PassengerHomeScreen3({ navigation }) {
   const handleRequestNow = () => {};
 
   const handlePaymentTypeChange = (paymentType) => {
-    setPaymentType(paymentType);
+    try {
+      setPaymentType(paymentType);
+    } catch (err) {}
   };
 
   const handleCarTypeChange = (carType) => {
-    setCarType(carType);
+    try {
+      setCarType(carType);
+    } catch (err) {}
   };
 
   const handleGoBack = () => {
-    navigation.goBack();
+    try {
+      navigation.goBack();
+    } catch (err) {}
   };
 
   return (

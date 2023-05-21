@@ -7,7 +7,7 @@ import useNetworkStatus from "./src/hooks/useNetworkStatus";
 
 import { NavigationContainer } from "@react-navigation/native";
 import AuthNavigation from "./src/navigation/AuthNavigation";
-import AppNavigation from "./src/navigation/AppNavigation";
+import PassengerNavigation from "./src/navigation/PassengerNavigation";
 import DriverNavigation from "./src/navigation/DriverNavigation";
 
 import AuthContext from "./src/auth/context";
@@ -29,11 +29,19 @@ export default function App() {
   }, [systemLanguage]);
 
   const checkIfPassenger = () => {
-    return user && (user.role === "passenger" || displayMode === "passenger");
+    try {
+      return user && (user.role === "passenger" || displayMode === "passenger");
+    } catch (err) {
+      return false;
+    }
   };
 
   const checkIfDriver = () => {
-    return user && user.role === "driver" && displayMode === "driver";
+    try {
+      return user && user.role === "driver" && displayMode === "driver";
+    } catch (err) {
+      return false;
+    }
   };
 
   if (!fontLoaded || isLoadingLanguage) {
@@ -56,7 +64,7 @@ export default function App() {
 
       {showHomeScreen && (
         <NavigationContainer>
-          {checkIfPassenger() && <AppNavigation />}
+          {checkIfPassenger() && <PassengerNavigation />}
           {checkIfDriver() && <DriverNavigation />}
           {!user && <AuthNavigation />}
         </NavigationContainer>

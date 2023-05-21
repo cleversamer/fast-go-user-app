@@ -17,7 +17,7 @@ import * as theme from "../../constants/theme";
 
 const MAX_CODE_LENGTH = 4;
 
-export default function DriverLoginScrseen2({ navigation }) {
+export default function LoginScrseen2({ navigation }) {
   const { i18n } = useLocale();
   const { login } = useAuth();
   const { remainingSeconds, resetTimer, isTimerDone } = useTimer(150);
@@ -25,43 +25,55 @@ export default function DriverLoginScrseen2({ navigation }) {
   const [readyPin, setReadyPin] = useState(false);
 
   useEffect(() => {
-    let timeoutId;
+    try {
+      let timeoutId;
 
-    if (code.length === MAX_CODE_LENGTH) {
-      timeoutId = setTimeout(() => {
-        login();
-      }, 2000);
-    }
-
-    return () => {
-      if (timeoutId) {
-        clearTimeout(timeoutId);
+      if (code.length === MAX_CODE_LENGTH) {
+        timeoutId = setTimeout(() => {
+          login();
+        }, 1500);
       }
-    };
+
+      return () => {
+        if (timeoutId) {
+          clearTimeout(timeoutId);
+        }
+      };
+    } catch (err) {}
   }, [code]);
 
   const handleGoBack = () => {
-    navigation.goBack();
+    try {
+      navigation.goBack();
+    } catch (err) {}
   };
 
   const handleSubmit = () => {
-    if (code.length === MAX_CODE_LENGTH) {
-      login();
-    }
+    try {
+      if (code.length === MAX_CODE_LENGTH) {
+        login();
+      }
+    } catch (err) {}
   };
 
   const handleResendCode = () => {
-    // TODO: resend code
-    resetTimer();
+    try {
+      // TODO: resend code
+      resetTimer();
+    } catch (err) {}
   };
 
   const mapSeconds = (seconds) => {
-    const _minutes = Math.floor(seconds / 60);
-    const _seconds = seconds % 60;
+    try {
+      const _minutes = Math.floor(seconds / 60);
+      const _seconds = seconds % 60;
 
-    const displayMinutes = _minutes < 10 ? `0${_minutes}` : _minutes;
-    const displaySeconds = _seconds < 10 ? `0${_seconds}` : _seconds;
-    return `${displayMinutes}:${displaySeconds}`;
+      const displayMinutes = _minutes < 10 ? `0${_minutes}` : _minutes;
+      const displaySeconds = _seconds < 10 ? `0${_seconds}` : _seconds;
+      return `${displayMinutes}:${displaySeconds}`;
+    } catch (err) {
+      return seconds;
+    }
   };
 
   return (

@@ -67,11 +67,15 @@ export default function ReservedTripsScreen({ navigation }) {
   const { i18n } = useLocale();
 
   const handleGoBack = () => {
-    navigation.goBack();
+    try {
+      navigation.goBack();
+    } catch (err) {}
   };
 
   const handleTripPress = (trip) => {
-    navigation.navigate(screens.tripDetails);
+    try {
+      navigation.navigate(screens.tripDetails);
+    } catch (err) {}
   };
 
   return (

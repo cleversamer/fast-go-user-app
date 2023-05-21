@@ -26,7 +26,7 @@ const globalScreenOptions = {
 
 const Stack = createNativeStackNavigator();
 
-export default function AppNavigation() {
+export default function PassengerNavigation() {
   return (
     <Stack.Navigator screenOptions={globalScreenOptions}>
       <Stack.Screen name={screens.drawer} component={DrawerNavigation} />

@@ -15,41 +15,55 @@ export default function OTPInput({
   const codeDigitsArray = Array(maxLength).fill(0);
 
   useEffect(() => {
-    setReadyPin(code.length === maxLength);
+    try {
+      setReadyPin(code.length === maxLength);
 
-    return () => {
-      setReadyPin(false);
-    };
+      return () => {
+        setReadyPin(false);
+      };
+    } catch (err) {}
   }, [code]);
 
   const handleOnBlur = () => {
-    setIsFocused(false);
+    try {
+      setIsFocused(false);
+    } catch (err) {}
   };
 
   const handlePress = () => {
-    setIsFocused(true);
-    textInputRef?.current?.focus?.();
+    try {
+      setIsFocused(true);
+      textInputRef?.current?.focus?.();
+    } catch (err) {}
   };
 
   const toCodeDigitInput = (_value, index) => {
-    const emptyInputChar = " ";
-    const digit = code[index] || emptyInputChar;
+    try {
+      const emptyInputChar = " ";
+      const digit = code[index] || emptyInputChar;
 
-    const isCurrentDigit = index === code.length;
-    const isLastDigit = index === maxLength - 1;
-    const isCodeFull = code.length === maxLength;
-    const isDigitFocused = isCurrentDigit || (isLastDigit && isCodeFull);
+      const isCurrentDigit = index === code.length;
+      const isLastDigit = index === maxLength - 1;
+      const isCodeFull = code.length === maxLength;
+      const isDigitFocused = isCurrentDigit || (isLastDigit && isCodeFull);
 
-    const style = [
-      styles.otpInput,
-      isFocused && isDigitFocused ? styles.otpInputFocused : {},
-    ];
+      const style = [
+        styles.otpInput,
+        isFocused && isDigitFocused ? styles.otpInputFocused : {},
+      ];
 
-    return (
-      <View key={index} style={style}>
-        <Text style={styles.otpInputText}>{digit}</Text>
-      </View>
-    );
+      return (
+        <View key={index} style={style}>
+          <Text style={styles.otpInputText}>{digit}</Text>
+        </View>
+      );
+    } catch (err) {
+      return (
+        <View key={index} style={styles.otpInput}>
+          <Text style={styles.otpInputText}>0</Text>
+        </View>
+      );
+    }
   };
 
   return (

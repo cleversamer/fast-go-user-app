@@ -24,9 +24,11 @@ export default function NewRequestBottomSheet({
   const { remainingSeconds, isTimerDone } = useTimer(30);
 
   useEffect(() => {
-    if (isTimerDone) {
-      onTimerDone();
-    }
+    try {
+      if (isTimerDone) {
+        onTimerDone();
+      }
+    } catch (err) {}
   }, [isTimerDone]);
 
   return (

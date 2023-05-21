@@ -27,7 +27,9 @@ export default function AddPlaceBottomSheet({
   }));
 
   const handleSelectPlaceType = (placeType) => {
-    setPlaceType(placeType);
+    try {
+      setPlaceType(placeType);
+    } catch (err) {}
   };
 
   return (

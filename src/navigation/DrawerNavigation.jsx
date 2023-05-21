@@ -25,11 +25,19 @@ export default function DrawerNavigation() {
   };
 
   const checkIfPassenger = () => {
-    return user && (user.role === "passenger" || displayMode === "passenger");
+    try {
+      return user && (user.role === "passenger" || displayMode === "passenger");
+    } catch (err) {
+      return true;
+    }
   };
 
   const checkIfDriver = () => {
-    return user && user.role === "driver" && displayMode === "driver";
+    try {
+      return user && user.role === "driver" && displayMode === "driver";
+    } catch (err) {
+      return false;
+    }
   };
 
   return (
