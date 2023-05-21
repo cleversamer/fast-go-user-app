@@ -41,7 +41,10 @@ export default function LoginScreen2({ navigation, route }) {
       const inputValue = phoneNSN.trim();
 
       if (inputValue.length <= 9) {
-        setContext({ ...context, phone: { ...phone, nsn: inputValue } });
+        setContext({
+          ...context,
+          phone: { ...context.phone, nsn: inputValue },
+        });
       }
     } catch (err) {}
   };
