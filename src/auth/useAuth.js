@@ -1,20 +1,23 @@
 import { useContext } from "react";
 import AuthContext from "./context";
+import storage from "./storage";
 
 const useAuth = () => {
   const { user, setUser, isOnline, displayMode, setDisplayMode } =
     useContext(AuthContext);
 
-  const login = () => {
+  const login = async () => {
     try {
       const user = { role: "driver" };
       setUser(user);
       setDisplayMode(user.role);
+      await storage.storeToken("token");
     } catch (err) {}
   };
 
-  const logout = () => {
+  const logout = async () => {
     try {
+      await storage.removeToken();
       setUser(null);
     } catch (err) {}
   };

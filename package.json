@@ -47,7 +47,8 @@
     "react-native-raw-bottom-sheet": "^2.2.0",
     "react-native-reanimated": "~2.14.4",
     "expo-localization": "~14.1.1",
-    "expo-clipboard": "~4.1.2"
+    "expo-clipboard": "~4.1.2",
+    "expo-secure-store": "~12.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
