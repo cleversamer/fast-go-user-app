@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import AuthContext from "./context";
-import storage from "./storage";
+// import storage from "./storage";
 
 const testUser = {
   _id: "645d0e29d49689779757f9d9",
