@@ -5,12 +5,13 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBnNJzZrv_L7TyPQxxOHrcu_IFCL9wzGZQ",
-  authDomain: "fast-go-d5e33.firebaseapp.com",
-  projectId: "fast-go-d5e33",
-  storageBucket: "fast-go-d5e33.appspot.com",
-  messagingSenderId: "118949236638",
-  appId: "1:118949236638:web:ab6ff5a661aea4a1e2d08f",
+  apiKey: "AIzaSyDT2xAneWg8-8_y_fsy2suiaWhbs948sro",
+  authDomain: "fast-go2023.firebaseapp.com",
+  projectId: "fast-go2023",
+  storageBucket: "fast-go2023.appspot.com",
+  messagingSenderId: "797806113782",
+  appId: "1:797806113782:web:d379e9b90e4227b7174dd7",
+  measurementId: "G-4RG0PL7W18",
 };
 
 // Initialize Firebase

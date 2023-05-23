@@ -80,13 +80,13 @@ const useAuth = () => {
       const user = testUser;
       setUser(user);
       setDisplayMode(user.role);
-      await storage.storeToken("token");
+      // await storage.storeToken("token");
     } catch (err) {}
   };
 
   const logout = async () => {
     try {
-      await storage.removeToken();
+      // await storage.removeToken();
       setUser(null);
     } catch (err) {}
   };

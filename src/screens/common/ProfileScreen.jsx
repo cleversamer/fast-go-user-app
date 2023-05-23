@@ -19,6 +19,16 @@ export default function ProfileScreen({ navigation }) {
   const { i18n, lang } = useLocale();
   const [showPopup, setShowPopup] = useState(false);
   const [selectedGender, setSelectedGender] = useState(user.gender);
+  const [context, setContext] = useState({
+    firstName: user.firstName,
+    lastName: user.lastName,
+    email: user.email,
+    phoneICC: user.phone.icc,
+    phoneNSN: user.phone.nsn,
+  });
+
+  const handleKeyChange = (key) => (value) =>
+    setContext({ ...context, [key]: value });
 
   const handleSelectGender = (gender) => {
     try {
@@ -94,7 +104,8 @@ export default function ProfileScreen({ navigation }) {
           <InputIcon
             title={i18n("firstname")}
             placeholder={i18n("firstname")}
-            value={user.firstName}
+            value={context.firstName}
+            onChange={handleKeyChange("firstName")}
             Icon={() => (
               <Ionicons
                 name="person"
@@ -106,7 +117,8 @@ export default function ProfileScreen({ navigation }) {
           <InputIcon
             title={i18n("lastname")}
             placeholder={i18n("lastname")}
-            value={user.lastName}
+            value={context.lastName}
+            onChange={handleKeyChange("lastName")}
             Icon={() => (
               <Ionicons
                 name="person"
@@ -119,7 +131,8 @@ export default function ProfileScreen({ navigation }) {
             title={i18n("email")}
             placeholder={i18n("email")}
             keyboardType="email-address"
-            value={user.email}
+            value={context.email}
+            onChange={handleKeyChange("email")}
             Icon={() => (
               <Feather
                 name="mail"
@@ -128,7 +141,10 @@ export default function ProfileScreen({ navigation }) {
             )}
           />
 
-          <PhoneInput nsn={user.phone.nsn} />
+          <PhoneInput
+            nsn={context.phoneNSN}
+            onNSNChange={handleKeyChange("phoneNSN")}
+          />
 
           <SelectInput
             value={selectedGender}
