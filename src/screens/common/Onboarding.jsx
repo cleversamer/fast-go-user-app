@@ -1,14 +1,11 @@
-import { useState, useEffect } from "react";
 import { StyleSheet, View, Image, Text, SafeAreaView } from "react-native";
 import AppIntroSlider from "react-native-app-intro-slider";
 import { AntDesign } from "@expo/vector-icons";
 import * as theme from "../../constants/theme";
 import useLocale from "../../hooks/useLocale";
 import NetworkStatusLine from "../../components/common/NetworkStatusLine";
-import authStorage from "../../auth/storage";
 
 export default function Onboarding({ onDone }) {
-  const [isLoading, setIsLoading] = useState(true);
   const { i18n } = useLocale();
 
   const slides = [
@@ -32,24 +29,6 @@ export default function Onboarding({ onDone }) {
     },
   ];
 
-  useEffect(() => {
-    checkOnboarding();
-  }, []);
-
-  const checkOnboarding = async () => {
-    try {
-      const value = await authStorage.checkOnboardingShown();
-      if (value === null || !value) {
-        await authStorage.markOnboardingShown();
-        setIsLoading(false);
-      } else {
-        onDone();
-      }
-    } catch (err) {
-      onDone();
-    }
-  };
-
   const renderNextButton = () => {
     return (
       <View style={styles.nextButtonContainer}>
@@ -65,10 +44,6 @@ export default function Onboarding({ onDone }) {
       </View>
     );
   };
-
-  if (isLoading) {
-    return null;
-  }
 
   return (
     <SafeAreaView style={styles.container}>
