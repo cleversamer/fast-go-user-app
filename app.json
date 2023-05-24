@@ -13,14 +13,10 @@
         "style": "light"
       },
       "orientation": "portrait",
-      "fadeInDuration": 500,
-      "fadeOutDuration": 500
+      "fadeInDuration": 1500,
+      "fadeOutDuration": 1500
     },
-    "platforms": [
-      "ios",
-      "android",
-      "web"
-    ],
+    "platforms": ["ios", "android"],
     "extra": {
       "eas": {
         "projectId": "919a3e7d-bc2b-4d5a-893d-f90605d4fdb6"
