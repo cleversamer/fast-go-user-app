@@ -24,7 +24,12 @@
     "android": {
       "package": "com.thirtydigits.fastgo",
       "versionCode": 29,
-      "versionName": "1.0.0"
+      "versionName": "1.0.0",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyD-R5BPnawb8WoCgL6agXYv8MrjIe-i_m8"
+        }
+      }
     }
   }
 }
