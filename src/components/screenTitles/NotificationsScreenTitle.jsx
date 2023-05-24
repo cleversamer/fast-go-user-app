@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     position: "absolute",
     left: "50%",
-    transform: [{ translateX: -(theme.sizes.width / 9) }],
+    transform: [{ translateX: -(theme.getWidth() / 9) }],
   },
   backIcon: {
     fontSize: 26,

@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(0,0,0,0.5)",
   },
   boxContainer: {
-    width: Math.floor(theme.sizes.width * 0.9),
+    width: Math.floor(theme.getWidth() * 0.9),
     padding: 20,
     backgroundColor: "#fff",
     borderRadius: 8,

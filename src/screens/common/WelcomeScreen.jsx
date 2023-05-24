@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     padding: theme.getPixelSize(15),
   },
   image: {
-    width: theme.sizes.width,
+    width: theme.getWidth(),
     height: theme.getPixelSize(300),
     marginBottom: theme.getPixelSize(60),
   },

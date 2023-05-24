@@ -3,7 +3,7 @@ import { StyleSheet, View } from "react-native";
 import RBSheet from "react-native-raw-bottom-sheet";
 import * as theme from "../../constants/theme";
 
-const defaultHeight = theme.sizes.height * 0.35;
+const defaultHeight = theme.getHeight() * 0.35;
 
 export default function DraggableBottomSheet({
   contentStyle,
