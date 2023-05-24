@@ -33,6 +33,7 @@
     "@react-navigation/drawer": "^6.6.2",
     "@react-navigation/native": "^6.1.6",
     "@react-navigation/native-stack": "^6.9.12",
+    "@sentry/react-native": "^5.5.0",
     "expo": "^48.0.17",
     "expo-clipboard": "~4.1.2",
     "expo-firebase-recaptcha": "^2.3.1",
@@ -41,6 +42,8 @@
     "expo-location": "~15.1.1",
     "expo-notifications": "~0.18.1",
     "expo-secure-store": "~12.1.1",
+    "expo-splash-screen": "~0.18.2",
+    "expo-status-bar": "~1.4.4",
     "firebase": "^9.21.0",
     "react": "18.2.0",
     "react-native": "0.71.8",
@@ -53,10 +56,8 @@
     "react-native-otp-input": "^1.0.12",
     "react-native-paper": "^5.8.0",
     "react-native-raw-bottom-sheet": "^2.2.0",
-    "react-native-webview": "11.26.0",
     "react-native-reanimated": "~2.14.4",
-    "expo-splash-screen": "~0.18.2",
-    "expo-status-bar": "~1.4.4"
+    "react-native-webview": "11.26.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
