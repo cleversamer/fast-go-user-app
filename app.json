@@ -8,10 +8,6 @@
       "image": "./src/assets/images/splash.png",
       "resizeMode": "cover",
       "backgroundColor": "#ffffff",
-      "statusBar": {
-        "backgroundColor": "#000000",
-        "style": "light"
-      },
       "orientation": "portrait",
       "fadeInDuration": 1500,
       "fadeOutDuration": 1500
@@ -26,7 +22,9 @@
       "bundleIdentifier": "com.thirtydigits.fastgo"
     },
     "android": {
-      "package": "com.thirtydigits.fastgo"
+      "package": "com.thirtydigits.fastgo",
+      "versionCode": 29,
+      "versionName": "1.0.0"
     }
   }
 }

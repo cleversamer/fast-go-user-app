@@ -23,6 +23,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "fix": "npx expo-doctor",
+    "doctor": "npx @react-native-community/cli doctor",
     "build:android:dev": "eas build -p android --profile preview"
   },
   "dependencies": {
