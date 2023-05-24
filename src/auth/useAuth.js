@@ -61,7 +61,7 @@ const testUser = {
       },
     ],
   },
-  balance: 5,
+  balance: 0,
   referral: {
     number: 1,
     code: "638de23b3dc4b1",
