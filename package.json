@@ -26,6 +26,7 @@
     "build:android:dev": "eas build -p android --profile preview"
   },
   "dependencies": {
+    "@expo/config-plugins": "^6.0.1",
     "@expo/vector-icons": "^13.0.0",
     "@react-native-community/netinfo": "9.3.7",
     "@react-navigation/drawer": "^6.6.2",
@@ -51,7 +52,6 @@
     "react-native-otp-input": "^1.0.12",
     "react-native-paper": "^5.8.0",
     "react-native-raw-bottom-sheet": "^2.2.0",
-    "react-native-reanimated": "~2.14.4",
     "react-native-webview": "11.26.0"
   },
   "devDependencies": {

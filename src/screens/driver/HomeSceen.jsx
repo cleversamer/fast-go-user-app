@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { StyleSheet, SafeAreaView, View } from "react-native";
 import DriverHomeScreenTitle from "../../components/screenTitles/DriverHomeScreenTitle";
 import GoogleMap from "../../components/common/GoogleMap";
@@ -9,6 +10,7 @@ import useAuth from "../../auth/useAuth";
 export default function DriverHomeSceen({ navigation }) {
   const { user } = useAuth();
   const { i18n } = useLocale();
+  const [isConnected, setIsConntected] = useState(user.isConnected);
 
   const handleOpenDrawer = () => {
     try {
@@ -28,7 +30,9 @@ export default function DriverHomeSceen({ navigation }) {
     } catch (err) {}
   };
 
-  const handleToggoeConnected = () => {};
+  const handleToggoeConnected = () => {
+    setIsConntected(!isConnected);
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -36,7 +40,7 @@ export default function DriverHomeSceen({ navigation }) {
         <DriverHomeScreenTitle
           title={i18n("mainScreen")}
           onToggleConnected={handleToggoeConnected}
-          isDriverConnected={user.isConnected}
+          isDriverConnected={isConnected}
           onOpenDrawer={handleOpenDrawer}
         />
       </View>
@@ -44,7 +48,7 @@ export default function DriverHomeSceen({ navigation }) {
       <GoogleMap />
 
       <DriverHomeBottomSheet
-        isDriverConnected={user.isConnected}
+        isDriverConnected={isConnected}
         onWalletClick={handleWalletClick}
         onNotificationsClick={handleNotificationsClick}
       />
