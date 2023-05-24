@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
     alignContent: "center",
-    marginVertical: 30,
+    marginVertical: theme.getPixelSize(30),
   },
   hiddenTextInput: {
     position: "absolute",
@@ -108,16 +108,16 @@ const styles = StyleSheet.create({
   otpInput: {
     borderColor: theme.primaryColor,
     minWidth: "15%",
-    borderWidth: 2,
-    borderRadius: 5,
-    padding: 12,
+    borderWidth: theme.getPixelSize(2),
+    borderRadius: theme.getPixelSize(5),
+    padding: theme.getPixelSize(12),
   },
   otpInputFocused: {
     borderColor: theme.primaryColor,
     backgroundColor: theme.primaryColorLight,
   },
   otpInputText: {
-    fontSize: 22,
+    fontSize: theme.getPixelSize(22),
     fontFamily: "cairo-700",
     textAlign: "center",
     color: "#000",

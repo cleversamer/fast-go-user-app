@@ -31,33 +31,33 @@ export default function Checkbox({
 const styles = StyleSheet.create({
   arContainer: {
     flexDirection: "row",
-    gap: 7,
+    gap: theme.getPixelSize(7),
     justifyContent: "flex-end",
     alignItems: "center",
   },
   enContainer: {
     flexDirection: "row-reverse",
-    gap: 7,
+    gap: theme.getPixelSize(7),
     justifyContent: "flex-end",
     alignItems: "center",
   },
   text: {
     fontFamily: "cairo-500",
-    fontSize: 13,
+    fontSize: theme.getPixelSize(13),
   },
   boxContainer: {
-    height: 24,
-    width: 24,
-    borderWidth: 2,
+    height: theme.getPixelSize(24),
+    width: theme.getPixelSize(24),
+    borderWidth: theme.getPixelSize(2),
     borderColor: theme.primaryColor,
-    borderRadius: 5,
+    borderRadius: theme.getPixelSize(5),
     alignItems: "center",
     justifyContent: "center",
   },
   innerBoxContainer: {
-    height: 16,
-    width: 16,
+    height: theme.getPixelSize(16),
+    width: theme.getPixelSize(16),
     backgroundColor: theme.primaryColor,
-    borderRadius: 3,
+    borderRadius: theme.getPixelSize(3),
   },
 });

@@ -1,4 +1,5 @@
 import { View, Text, StyleSheet } from "react-native";
+import * as theme from "../../constants/theme";
 
 export default function HorizontalLines({
   text,
@@ -21,11 +22,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   line: {
-    borderBottomWidth: 2,
+    borderBottomWidth: theme.getPixelSize(2),
     borderColor: "#ccc",
     flex: 1,
   },
   text: {
-    paddingHorizontal: 10,
+    paddingHorizontal: theme.getPixelSize(10),
   },
 });

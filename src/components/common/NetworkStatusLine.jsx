@@ -1,6 +1,7 @@
 import { StyleSheet, SafeAreaView, Text, StatusBar } from "react-native";
 import useLocale from "../../hooks/useLocale";
 import useAuth from "../../auth/useAuth";
+import * as theme from "../../constants/theme";
 
 export default function NetworkStatusLine() {
   const { isOnline } = useAuth();
@@ -19,7 +20,7 @@ export default function NetworkStatusLine() {
 
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: 4,
+    paddingVertical: theme.getPixelSize(4),
     position: "absolute",
     top: StatusBar.currentHeight || 0,
     left: 0,
@@ -30,6 +31,6 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontFamily: "cairo-700",
     textAlign: "center",
-    fontSize: 13,
+    fontSize: theme.getPixelSize(13),
   },
 });

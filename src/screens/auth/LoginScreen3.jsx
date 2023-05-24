@@ -6,6 +6,7 @@ import PopupError from "../../components/popups/PopupError";
 import useLocale from "../../hooks/useLocale";
 import NetworkStatusLine from "../../components/common/NetworkStatusLine";
 import screens from "../../static/screens.json";
+import * as theme from "../../constants/theme";
 
 export default function LoginScreen2({ navigation, route }) {
   const { authType, role } = route.params;
@@ -75,41 +76,41 @@ export default function LoginScreen2({ navigation, route }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 15,
-    paddingTop: 70,
+    padding: theme.getPixelSize(15),
+    paddingTop: theme.getPixelSize(70),
   },
   arTitleContainer: {
     flexDirection: "row",
-    gap: 15,
+    gap: theme.getPixelSize(15),
   },
   enTitleContainer: {
     flexDirection: "row-reverse",
-    gap: 15,
+    gap: theme.getPixelSize(15),
   },
   title: {
     fontFamily: "cairo-700",
     flexShrink: 1,
   },
   image: {
-    width: 50,
-    height: 50,
+    width: theme.getPixelSize(50),
+    height: theme.getPixelSize(50),
   },
   privacyText: {
     fontFamily: "cairo-400",
-    fontSize: 13,
-    marginTop: 40,
+    fontSize: theme.getPixelSize(13),
+    marginTop: theme.getPixelSize(40),
   },
   screenStepsContainer: {
     position: "absolute",
     bottom: 0,
     left: 0,
     right: 0,
-    paddingHorizontal: 15,
-    marginBottom: 50,
-    gap: 20,
+    paddingHorizontal: theme.getPixelSize(15),
+    marginBottom: theme.getPixelSize(50),
+    gap: theme.getPixelSize(20),
   },
   breakLine: {
-    borderWidth: 0.5,
+    borderWidth: theme.getPixelSize(0.5),
     borderColor: "#ababab",
     backgroundColor: "#ababab",
   },

@@ -120,12 +120,12 @@ export default function LoginScrseen2({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 15,
-    paddingTop: 70,
+    padding: theme.getPixelSize(15),
+    paddingTop: theme.getPixelSize(70),
   },
   title: {
     fontFamily: "cairo-700",
-    fontSize: 18,
+    fontSize: theme.getPixelSize(18),
   },
   otpInputContainer: {
     alignSelf: "center",
@@ -139,8 +139,8 @@ const styles = StyleSheet.create({
     color: theme.primaryColor,
     textDecorationLine: "underline",
     textAlign: "center",
-    padding: 5,
-    fontSize: 16,
+    padding: theme.getPixelSize(5),
+    fontSize: theme.getPixelSize(16),
   },
   remainingSeconds: {
     fontFamily: "cairo-700",
@@ -150,12 +150,12 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    paddingHorizontal: 15,
-    marginBottom: 50,
-    gap: 20,
+    paddingHorizontal: theme.getPixelSize(15),
+    marginBottom: theme.getPixelSize(50),
+    gap: theme.getPixelSize(20),
   },
   breakLine: {
-    borderWidth: 0.5,
+    borderWidth: theme.getPixelSize(0.5),
     borderColor: "#ababab",
     backgroundColor: "#ababab",
   },
