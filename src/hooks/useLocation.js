@@ -14,13 +14,9 @@ const useLocation = () => {
 
       if (newPermissionStatus === "granted") {
         const location = await getCurrentPositionAsync({});
-        return setLocation(location);
-      } else {
-        return await requestLocation();
+        setLocation(location);
       }
-    } catch (err) {
-      return await requestLocation();
-    }
+    } catch (err) {}
   };
 
   useEffect(() => {

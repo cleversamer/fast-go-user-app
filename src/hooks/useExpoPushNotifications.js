@@ -20,17 +20,18 @@ const useExpoPushNotifications = () => {
       }
 
       if (finalStatus !== "granted") {
-        return await requestPermissionsAsync();
+        return;
       }
 
       const { data: token } = await getExpoPushTokenAsync();
-      console.log(token);
       setToken(token);
     } catch (err) {}
   };
 
   useEffect(() => {
-    registerForPushNotifications();
+    try {
+      registerForPushNotifications();
+    } catch (err) {}
   }, []);
 
   return token;
