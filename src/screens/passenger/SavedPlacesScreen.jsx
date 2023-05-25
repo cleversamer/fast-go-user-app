@@ -6,6 +6,7 @@ import Place from "../../components/common/Place";
 import AddPlaceBottomSheet from "../../components/bottomSheets/AddPlaceBottomSheet";
 import useLocale from "../../hooks/useLocale";
 import NetworkStatusLine from "../../components/common/NetworkStatusLine";
+import useScreen from "../../hooks/useScreen";
 
 const _savedPlaces = [
   {
@@ -43,10 +44,45 @@ const _savedPlaces = [
 ];
 
 export default function SavedPlacesScreen({ navigation }) {
+  const screen = useScreen();
   const { i18n, lang } = useLocale();
   const [locations, setLocations] = useState([]);
   const [place, setPlace] = useState({ type: "", title: "" });
   const [showSheet, setShowSheet] = useState(false);
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      paddingHorizontal: screen.getHorizontalPixelSize(15),
+      paddingVertical: screen.getVerticalPixelSize(15),
+      paddingTop: screen.getVerticalPixelSize(50),
+    },
+    arHintText: {
+      fontFamily: "cairo-600",
+      fontSize: 12,
+      color: "#747474",
+      marginTop: screen.getVerticalPixelSize(10),
+      marginBottom: screen.getVerticalPixelSize(20),
+      textAlign: "right",
+    },
+    enHintText: {
+      fontFamily: "cairo-600",
+      fontSize: 12,
+      color: "#747474",
+      marginTop: screen.getVerticalPixelSize(10),
+      marginBottom: screen.getVerticalPixelSize(20),
+      textAlign: "left",
+    },
+    placesContainer: {
+      gap: screen.getVerticalPixelSize(20),
+      marginBottom: screen.getVerticalPixelSize(15),
+    },
+    breakLine: {
+      borderWidth: screen.getHorizontalPixelSize(0.5),
+      borderColor: "#ababab",
+      backgroundColor: "#ababab",
+    },
+  });
 
   const handleGoBack = () => {
     try {
@@ -114,36 +150,3 @@ export default function SavedPlacesScreen({ navigation }) {
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 15,
-    paddingTop: 50,
-  },
-  arHintText: {
-    fontFamily: "cairo-600",
-    fontSize: 12,
-    color: "#747474",
-    marginTop: 10,
-    marginBottom: 20,
-    textAlign: "right",
-  },
-  enHintText: {
-    fontFamily: "cairo-600",
-    fontSize: 12,
-    color: "#747474",
-    marginTop: 10,
-    marginBottom: 20,
-    textAlign: "left",
-  },
-  placesContainer: {
-    gap: 20,
-    marginBottom: 15,
-  },
-  breakLine: {
-    borderWidth: 0.5,
-    borderColor: "#ababab",
-    backgroundColor: "#ababab",
-  },
-});
