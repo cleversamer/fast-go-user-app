@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
 import ProfileScreenTitle from "../../components/screenTitles/ProfileScreenTitle";
 import { Ionicons, Feather } from "@expo/vector-icons";
@@ -13,8 +13,10 @@ import NetworkStatusLine from "../../components/common/NetworkStatusLine";
 import AvatarInput from "../../components/inputs/AvatarInput";
 import useAuth from "../../auth/useAuth";
 import data from "../../static/data.json";
+import useScreen from "../../hooks/useScreen";
 
 export default function ProfileScreen({ navigation }) {
+  const screen = useScreen();
   const { user } = useAuth();
   const { i18n, lang } = useLocale();
   const [showPopup, setShowPopup] = useState(false);
@@ -25,6 +27,35 @@ export default function ProfileScreen({ navigation }) {
     email: user.email,
     phoneICC: user.phone.icc,
     phoneNSN: user.phone.nsn,
+  });
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      paddingHorizontal: screen.getHorizontalPixelSize(15),
+      paddingVertical: screen.getVerticalPixelSize(15),
+      paddingTop: screen.getVerticalPixelSize(50),
+    },
+    arIcon: {
+      marginRight: screen.getHorizontalPixelSize(10),
+      fontSize: 24,
+      color: theme.primaryColor,
+    },
+    enIcon: {
+      marginLeft: screen.getHorizontalPixelSize(10),
+      fontSize: 24,
+      color: theme.primaryColor,
+    },
+    inputsContainer: {
+      gap: screen.getVerticalPixelSize(17),
+    },
+    buttonContainer: {
+      paddingVertical: screen.getVerticalPixelSize(10),
+    },
+    buttonText: {
+      fontFamily: "cairo-800",
+      fontSize: 18,
+    },
   });
 
   const handleKeyChange = (key) => (value) =>
@@ -50,7 +81,7 @@ export default function ProfileScreen({ navigation }) {
 
   const handleConfirmAccountDeletion = () => {
     try {
-      alert("Confirmed");
+      setShowPopup(false);
     } catch (err) {}
   };
 
@@ -163,31 +194,3 @@ export default function ProfileScreen({ navigation }) {
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 15,
-    paddingTop: 50,
-  },
-  arIcon: {
-    marginRight: 10,
-    fontSize: 24,
-    color: theme.primaryColor,
-  },
-  enIcon: {
-    marginLeft: 10,
-    fontSize: 24,
-    color: theme.primaryColor,
-  },
-  inputsContainer: {
-    gap: 17,
-  },
-  buttonContainer: {
-    paddingVertical: 10,
-  },
-  buttonText: {
-    fontFamily: "cairo-800",
-    fontSize: 18,
-  },
-});
