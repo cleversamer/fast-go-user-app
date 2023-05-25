@@ -12,8 +12,10 @@ import ReferralCodeInput from "../../components/inputs/ReferralCodeInput";
 import checkPhoneNSN from "../../utils/checkPhoneNSN";
 import checkRealName from "../../utils/checkForRealName";
 import checkEmail from "../../utils/checkEmail";
+import useScreen from "../../hooks/useScreen";
 
 export default function LoginScreen2({ navigation, route }) {
+  const screen = useScreen();
   const { authType, role } = route.params;
   const { i18n, lang } = useLocale();
   const [context, setContext] = useState({
@@ -22,6 +24,59 @@ export default function LoginScreen2({ navigation, route }) {
     lastName: "",
     email: "",
     referralCode: "",
+  });
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      paddingVertical: screen.getVerticalPixelSize(15),
+      paddingHorizontal: screen.getHorizontalPixelSize(15),
+      paddingTop: screen.getVerticalPixelSize(50),
+    },
+    title: {
+      fontFamily: "cairo-800",
+      fontSize: 28,
+    },
+    subtitle: {
+      fontFamily: "cairo-600",
+      fontSize: 16,
+      color: "#747474",
+    },
+    inputsContainer: {
+      gap: screen.getVerticalPixelSize(24),
+      marginVertical: screen.getVerticalPixelSize(30),
+    },
+    arTextInputsContainer: {
+      flexDirection: "row",
+      gap: screen.getHorizontalPixelSize(10),
+      alignItems: "center",
+    },
+    enTextInputsContainer: {
+      flexDirection: "row-reverse",
+      gap: screen.getHorizontalPixelSize(10),
+      alignItems: "center",
+    },
+    inputContainer: {
+      flex: 1,
+    },
+    arInputIcon: {
+      marginRight: screen.getHorizontalPixelSize(10),
+      fontSize: 20,
+      color: theme.primaryColor,
+    },
+    enInputIcon: {
+      marginLeft: screen.getHorizontalPixelSize(10),
+      fontSize: 20,
+      color: theme.primaryColor,
+    },
+    screenStepsContainer: {
+      position: "absolute",
+      bottom: 0,
+      left: 0,
+      right: 0,
+      paddingHorizontal: screen.getHorizontalPixelSize(15),
+      marginBottom: screen.getVerticalPixelSize(50),
+    },
   });
 
   const handleGoBack = () => {
@@ -178,56 +233,3 @@ export default function LoginScreen2({ navigation, route }) {
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 15,
-    paddingTop: 50,
-  },
-  title: {
-    fontSize: 22,
-    fontFamily: "cairo-800",
-    fontSize: 28,
-  },
-  subtitle: {
-    fontFamily: "cairo-600",
-    fontSize: 16,
-    color: "#747474",
-  },
-  inputsContainer: {
-    gap: 24,
-    marginVertical: 30,
-  },
-  arTextInputsContainer: {
-    flexDirection: "row",
-    gap: 10,
-    alignItems: "center",
-  },
-  enTextInputsContainer: {
-    flexDirection: "row-reverse",
-    gap: 10,
-    alignItems: "center",
-  },
-  inputContainer: {
-    flex: 1,
-  },
-  arInputIcon: {
-    marginRight: 10,
-    fontSize: 20,
-    color: theme.primaryColor,
-  },
-  enInputIcon: {
-    marginLeft: 10,
-    fontSize: 20,
-    color: theme.primaryColor,
-  },
-  screenStepsContainer: {
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
-    paddingHorizontal: 15,
-    marginBottom: 50,
-  },
-});
