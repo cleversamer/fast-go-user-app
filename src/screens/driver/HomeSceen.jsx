@@ -6,11 +6,25 @@ import DriverHomeBottomSheet from "../../components/bottomSheets/DriverHomeBotto
 import useLocale from "../../hooks/useLocale";
 import screens from "../../static/screens.json";
 import useAuth from "../../auth/useAuth";
+import useScreen from "../../hooks/useScreen";
 
 export default function DriverHomeSceen({ navigation }) {
+  const screen = useScreen();
   const { user } = useAuth();
   const { i18n } = useLocale();
   const [isConnected, setIsConntected] = useState(user.isConnected);
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+    },
+    header: {
+      height: screen.getVerticalPixelSize(100),
+      backgroundColor: "#fff",
+      justifyContent: "flex-end",
+      alignItems: "center",
+    },
+  });
 
   const handleOpenDrawer = () => {
     try {
@@ -55,15 +69,3 @@ export default function DriverHomeSceen({ navigation }) {
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  header: {
-    height: 100,
-    backgroundColor: "#fff",
-    justifyContent: "flex-end",
-    alignItems: "center",
-  },
-});
