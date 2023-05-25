@@ -11,6 +11,7 @@ import ReservedTrip from "../../components/common/ReservedTrip";
 import useLocale from "../../hooks/useLocale";
 import NetworkStatusLine from "../../components/common/NetworkStatusLine";
 import screens from "../../static/screens.json";
+import useScreen from "../../hooks/useScreen";
 
 const reservedTrips = [
   {
@@ -64,7 +65,41 @@ const reservedTrips = [
 ];
 
 export default function ReservedTripsScreen({ navigation }) {
+  const screen = useScreen();
   const { i18n } = useLocale();
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      paddingHorizontal: screen.getHorizontalPixelSize(15),
+      paddingVertical: screen.getVerticalPixelSize(15),
+      paddingTop: screen.getVerticalPixelSize(50),
+    },
+    tripsContainer: {
+      flex: 1,
+      gap: screen.getVerticalPixelSize(10),
+      marginTop: screen.getVerticalPixelSize(20),
+    },
+    emptyTripsContainer: {
+      position: "absolute",
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      justifyContent: "center",
+      alignItems: "center",
+      gap: screen.getVerticalPixelSize(25),
+    },
+    emptyImage: {
+      alignSelf: "center",
+      width: screen.getHorizontalPixelSize(250),
+      height: screen.getVerticalPixelSize(250),
+    },
+    emptyText: {
+      fontFamily: "cairo-700",
+      fontSize: 15,
+    },
+  });
 
   const handleGoBack = () => {
     try {
@@ -115,35 +150,3 @@ export default function ReservedTripsScreen({ navigation }) {
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 15,
-    paddingTop: 50,
-  },
-  tripsContainer: {
-    flex: 1,
-    gap: 10,
-    marginTop: 20,
-  },
-  emptyTripsContainer: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    justifyContent: "center",
-    alignItems: "center",
-    gap: 25,
-  },
-  emptyImage: {
-    alignSelf: "center",
-    width: 250,
-    height: 250,
-  },
-  emptyText: {
-    fontFamily: "cairo-700",
-    fontSize: 15,
-  },
-});
