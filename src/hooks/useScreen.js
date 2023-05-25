@@ -9,7 +9,7 @@ const useScreen = () => {
   };
 
   const getVerticalPixelSize = (pixels) => {
-    return screenDimensions.height * pixels * 0.0025510204081633;
+    return screenDimensions.height * pixels * 0.0011752262310495;
   };
 
   const getScreenWidth = () => {

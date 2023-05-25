@@ -36,7 +36,6 @@ export default function App() {
   useEffect(() => {
     const subscription = Dimensions.addEventListener("change", ({ screen }) => {
       setScreenDimensions(screen);
-      console.log("screen", screen);
     });
 
     return () => {

@@ -1,12 +1,14 @@
 import { StyleSheet, View, Image, Text, SafeAreaView } from "react-native";
 import AppIntroSlider from "react-native-app-intro-slider";
 import { AntDesign } from "@expo/vector-icons";
-import * as theme from "../../constants/theme";
 import useLocale from "../../hooks/useLocale";
 import NetworkStatusLine from "../../components/common/NetworkStatusLine";
+import * as theme from "../../constants/theme";
+import useScreen from "../../hooks/useScreen";
 
 export default function Onboarding({ onDone }) {
   const { i18n } = useLocale();
+  const screen = useScreen();
 
   const slides = [
     {
@@ -28,6 +30,62 @@ export default function Onboarding({ onDone }) {
       description: i18n("onboardingThreeSubtitle"),
     },
   ];
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+    },
+    sliderContainer: {
+      flex: 1,
+      alignItems: "center",
+      padding: 15,
+      paddingVertical: screen.getVerticalPixelSize(15),
+      paddingHorizontal: screen.getHorizontalPixelSize(15),
+      paddingTop: screen.getHorizontalPixelSize(100),
+    },
+    sliderImage: {
+      width: screen.getScreenWidth(),
+      maxWidth: screen.getHorizontalPixelSize(400),
+      height: screen.getHorizontalPixelSize(400),
+    },
+    sliderTitle: {
+      fontFamily: "cairo-800",
+      fontSize: 22,
+      color: "#000",
+      marginBottom: screen.getVerticalPixelSize(15),
+      textAlign: "center",
+      textTransform: "capitalize",
+    },
+    sliderDescription: {
+      fontFamily: "cairo-500",
+      textAlign: "center",
+      color: "#000",
+    },
+    activeDotStyle: {
+      backgroundColor: theme.primaryColor,
+      width: screen.getHorizontalPixelSize(40),
+    },
+    nextButtonContainer: {
+      paddingVertical: screen.getVerticalPixelSize(12),
+      paddingHorizontal: screen.getHorizontalPixelSize(12),
+      backgroundColor: theme.primaryColor,
+      borderRadius: 100,
+    },
+    nextButtonIcon: {
+      color: "#fff",
+      fontSize: 24,
+      fontFamily: "cairo-400",
+    },
+    skipButtonContainer: {
+      paddingVertical: screen.getVerticalPixelSize(12),
+      paddingHorizontal: screen.getHorizontalPixelSize(12),
+    },
+    skipButtonText: {
+      color: "#747474",
+      fontSize: 15,
+      fontFamily: "cairo-500",
+    },
+  });
 
   const renderNextButton = () => {
     return (
@@ -73,54 +131,3 @@ export default function Onboarding({ onDone }) {
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  sliderContainer: {
-    flex: 1,
-    alignItems: "center",
-    padding: 15,
-    paddingTop: 100,
-  },
-  sliderImage: {
-    width: "100%", // TODO: fix
-    height: 400,
-  },
-  sliderTitle: {
-    fontFamily: "cairo-800",
-    fontSize: 22, // TODO: fix
-    color: "#000",
-    marginBottom: 15,
-    textAlign: "center",
-    textTransform: "capitalize",
-  },
-  sliderDescription: {
-    fontFamily: "cairo-500",
-    textAlign: "center",
-    color: "#000",
-  },
-  activeDotStyle: {
-    backgroundColor: theme.primaryColor,
-    width: 40,
-  },
-  nextButtonContainer: {
-    padding: 12,
-    backgroundColor: theme.primaryColor,
-    borderRadius: 100,
-  },
-  nextButtonIcon: {
-    color: "#fff",
-    fontSize: 24,
-    fontFamily: "cairo-400",
-  },
-  skipButtonContainer: {
-    padding: 12,
-  },
-  skipButtonText: {
-    color: "#747474",
-    fontSize: 15,
-    fontFamily: "cairo-500",
-  },
-});
