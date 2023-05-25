@@ -542,5 +542,9 @@
   "noNotifications": {
     "en": "There're no notifications yet",
     "ar": "لا يوجد إشعارات حتى الآن"
+  },
+  "noTrips": {
+    "en": "There're no upcoming reservations",
+    "ar": "لا يوجد حجوزات قادمة"
   }
 }
