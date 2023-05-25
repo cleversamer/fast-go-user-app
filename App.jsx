@@ -50,7 +50,7 @@ export default function App() {
 
   useEffect(() => {
     const lockScreenOrientation = async () => {
-      // await lockAsync(OrientationLock.PORTRAIT);
+      await lockAsync(OrientationLock.PORTRAIT);
     };
 
     lockScreenOrientation();
