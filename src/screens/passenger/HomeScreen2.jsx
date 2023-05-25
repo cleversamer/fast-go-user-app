@@ -6,6 +6,7 @@ import CustomButton from "../../components/buttons/CustomButton";
 import useLocale from "../../hooks/useLocale";
 import NetworkStatusLine from "../../components/common/NetworkStatusLine";
 import screens from "../../static/screens.json";
+import useScreen from "../../hooks/useScreen";
 
 const _locations = [
   "فلسطين,قطاع غزة,غزة,محافظةغزةالزيتون,890",
@@ -14,8 +15,26 @@ const _locations = [
 ];
 
 export default function PassengerHomeScreen2({ navigation }) {
+  const screen = useScreen();
   const { i18n } = useLocale();
   const [locations, setLocations] = useState(_locations);
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      paddingHorizontal: screen.getHorizontalPixelSize(15),
+      paddingVertical: screen.getVerticalPixelSize(15),
+      paddingTop: screen.getVerticalPixelSize(60),
+      gap: screen.getVerticalPixelSize(15),
+    },
+    title: {
+      fontFamily: "cairo-800",
+      fontSize: 15,
+    },
+    buttonText: {
+      fontFamily: "cairo-800",
+    },
+  });
 
   const handleDeleteLocation = (locationIndex) => {
     try {
@@ -57,19 +76,3 @@ export default function PassengerHomeScreen2({ navigation }) {
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 15,
-    paddingTop: 60,
-    gap: 15,
-  },
-  title: {
-    fontFamily: "cairo-800",
-    fontSize: 15,
-  },
-  buttonText: {
-    fontFamily: "cairo-800",
-  },
-});
