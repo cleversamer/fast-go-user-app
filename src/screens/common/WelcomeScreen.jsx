@@ -10,9 +10,60 @@ import * as theme from "../../constants/theme";
 import useLocale from "../../hooks/useLocale";
 import NetworkStatusLine from "../../components/common/NetworkStatusLine";
 import screens from "../../static/screens.json";
+import useScreen from "../../hooks/useScreen";
 
 export default function WelcomeScreen({ navigation }) {
+  const screen = useScreen();
   const { i18n } = useLocale();
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: "flex-end",
+      paddingHorizontal: screen.getHorizontalPixelSize(15),
+      paddingVertical: screen.getVerticalPixelSize(15),
+      paddingTop: screen.getVerticalPixelSize(60),
+    },
+    image: {
+      alignSelf: "center",
+      width: screen.getScreenWidth(),
+      maxWidth: screen.getHorizontalPixelSize(400),
+      height: screen.getVerticalPixelSize(300),
+      marginBottom: screen.getVerticalPixelSize(60),
+    },
+    title: {
+      textAlign: "center",
+      marginBottom: screen.getVerticalPixelSize(20),
+      fontFamily: "cairo-800",
+      fontSize: 22,
+    },
+    text: {
+      textAlign: "center",
+      marginBottom: screen.getVerticalPixelSize(50),
+      fontFamily: "cairo-500",
+      fontSize: 14,
+    },
+    loginButtonContainer: {
+      backgroundColor: theme.primaryColor,
+      marginVertical: screen.getVerticalPixelSize(20),
+      borderRadius: 4,
+    },
+    loginButtonText: {
+      fontSize: 16,
+      fontFamily: "cairo-800",
+    },
+    registerButtonContainer: {
+      backgroundColor: "#fff",
+      borderWidth: screen.getHorizontalPixelSize(2),
+      borderColor: theme.primaryColor,
+      borderRadius: 4,
+    },
+    registerButtonText: {
+      color: "#000",
+      fontSize: 16,
+      fontFamily: "cairo-800",
+    },
+  });
 
   const handleRegisterAsPassenger = () => {
     try {
@@ -61,49 +112,3 @@ export default function WelcomeScreen({ navigation }) {
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "flex-end",
-    paddingTop: 60,
-    padding: 15,
-  },
-  image: {
-    width: "100%", // TODO
-    height: 300,
-    marginBottom: 60,
-  },
-  title: {
-    textAlign: "center",
-    marginBottom: 20,
-    fontFamily: "cairo-800",
-    fontSize: 22,
-  },
-  text: {
-    textAlign: "center",
-    marginBottom: 50,
-    fontFamily: "cairo-500",
-    fontSize: 14,
-  },
-  loginButtonContainer: {
-    backgroundColor: theme.primaryColor,
-    marginVertical: 20,
-    borderRadius: 4,
-  },
-  loginButtonText: {
-    fontSize: 16,
-    fontFamily: "cairo-800",
-  },
-  registerButtonContainer: {
-    backgroundColor: "#fff",
-    borderWidth: 2,
-    borderColor: theme.primaryColor,
-    borderRadius: 4,
-  },
-  registerButtonText: {
-    color: "#000",
-    fontSize: 16,
-    fontFamily: "cairo-800",
-  },
-});
