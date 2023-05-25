@@ -9,8 +9,10 @@ import useAuth from "../../auth/useAuth";
 import InputIcon from "../../components/inputs/InputIcon";
 import CustomButton from "../../components/buttons/CustomButton";
 import PopupConfirm from "../../components/popups/PopupConfirm";
+import useScreen from "../../hooks/useScreen";
 
 export default function WalletScreen({ navigation }) {
+  const screen = useScreen();
   const { user } = useAuth();
   const { i18n, lang } = useLocale();
   const [popupAddBalance, setPopupAddBalance] = useState({
@@ -20,6 +22,98 @@ export default function WalletScreen({ navigation }) {
     hint: "",
     onConfirm: () => {},
     onClose: () => {},
+  });
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      paddingHorizontal: screen.getHorizontalPixelSize(15),
+      paddingVertical: screen.getVerticalPixelSize(15),
+      paddingTop: screen.getVerticalPixelSize(50),
+    },
+    arWalletBoxContainer: {
+      backgroundColor: theme.primaryColor,
+      paddingVertical: screen.getVerticalPixelSize(20),
+      paddingHorizontal: screen.getHorizontalPixelSize(15),
+      borderRadius: 16,
+      height: screen.getVerticalPixelSize(150),
+      justifyContent: "space-between",
+      alignItems: "flex-end",
+      marginVertical: screen.getVerticalPixelSize(25),
+    },
+    enWalletBoxContainer: {
+      backgroundColor: theme.primaryColor,
+      paddingVertical: screen.getVerticalPixelSize(20),
+      paddingHorizontal: screen.getHorizontalPixelSize(15),
+      borderRadius: 16,
+      height: screen.getVerticalPixelSize(150),
+      justifyContent: "space-between",
+      alignItems: "flex-start",
+      marginVertical: screen.getVerticalPixelSize(25),
+    },
+    walletBoxTitle: {
+      fontFamily: "cairo-800",
+      fontSize: 16,
+      color: "#fff",
+    },
+    arWalletBoxBottomContainer: {
+      flexDirection: "row",
+      alignItems: "center",
+      gap: screen.getHorizontalPixelSize(7),
+    },
+    enWalletBoxBottomContainer: {
+      flexDirection: "row-reverse",
+      alignItems: "center",
+      gap: screen.getHorizontalPixelSize(7),
+    },
+    balanceText: {
+      fontFamily: "cairo-700",
+      fontSize: 26,
+      color: "#fff",
+    },
+    balanceIconContainer: {
+      justifyContent: "center",
+      alignItems: "center",
+      backgroundColor: "#fff",
+      borderRadius: 6,
+      width: screen.getHorizontalPixelSize(40),
+      height: screen.getHorizontalPixelSize(40),
+    },
+    balanceIcon: {
+      fontSize: 30,
+      color: theme.primaryColor,
+    },
+    addBalanceFormContainer: {
+      gap: screen.getVerticalPixelSize(15),
+    },
+    addBalanceFormTitle: {
+      fontFamily: "cairo-700",
+      fontSize: 20,
+      color: theme.primaryColor,
+      textTransform: "capitalize",
+    },
+    arCardIcon: {
+      color: theme.primaryColor,
+      fontSize: 24,
+      marginRight: screen.getHorizontalPixelSize(10),
+    },
+    enCardIcon: {
+      color: theme.primaryColor,
+      fontSize: 24,
+      marginLeft: screen.getHorizontalPixelSize(10),
+    },
+    buttonText: {
+      fontFamily: "cairo-700",
+      fontSize: 20,
+    },
+    buttonContainer: {
+      paddingVertical: screen.getVerticalPixelSize(8),
+    },
+    popupSubtitle: {
+      fontFamily: "cairo-700",
+      fontSize: 32,
+      color: theme.primaryColor,
+    },
   });
 
   const handleGoBack = () => {
@@ -131,94 +225,3 @@ export default function WalletScreen({ navigation }) {
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 15,
-    paddingTop: 50,
-  },
-  arWalletBoxContainer: {
-    backgroundColor: theme.primaryColor,
-    paddingVertical: 20,
-    paddingHorizontal: 15,
-    borderRadius: 16,
-    height: 150,
-    justifyContent: "space-between",
-    alignItems: "flex-end",
-    marginVertical: 25,
-  },
-  enWalletBoxContainer: {
-    backgroundColor: theme.primaryColor,
-    paddingVertical: 20,
-    paddingHorizontal: 15,
-    borderRadius: 16,
-    height: 150,
-    justifyContent: "space-between",
-    alignItems: "flex-start",
-    marginVertical: 25,
-  },
-  walletBoxTitle: {
-    fontFamily: "cairo-800",
-    fontSize: 16,
-    color: "#fff",
-  },
-  arWalletBoxBottomContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 7,
-  },
-  enWalletBoxBottomContainer: {
-    flexDirection: "row-reverse",
-    alignItems: "center",
-    gap: 7,
-  },
-  balanceText: {
-    fontFamily: "cairo-700",
-    fontSize: 26,
-    color: "#fff",
-  },
-  balanceIconContainer: {
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#fff",
-    borderRadius: 6,
-    width: 40,
-    height: 40,
-  },
-  balanceIcon: {
-    fontSize: 30,
-    color: theme.primaryColor,
-  },
-  addBalanceFormContainer: {
-    gap: 15,
-  },
-  addBalanceFormTitle: {
-    fontFamily: "cairo-700",
-    fontSize: 20,
-    color: theme.primaryColor,
-    textTransform: "capitalize",
-  },
-  arCardIcon: {
-    color: theme.primaryColor,
-    fontSize: 24,
-    marginRight: 10,
-  },
-  enCardIcon: {
-    color: theme.primaryColor,
-    fontSize: 24,
-    marginLeft: 10,
-  },
-  buttonText: {
-    fontFamily: "cairo-700",
-    fontSize: 20,
-  },
-  buttonContainer: {
-    paddingVertical: 8,
-  },
-  popupSubtitle: {
-    fontFamily: "cairo-700",
-    fontSize: 32,
-    color: theme.primaryColor,
-  },
-});
