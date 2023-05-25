@@ -4,6 +4,7 @@ import DefaultScreenTitle from "../../components/screenTitles/DefaultScreenTitle
 import useLocale from "../../hooks/useLocale";
 import Challenge from "../../components/common/Challenge";
 import NetworkStatusLine from "../../components/common/NetworkStatusLine";
+import useScreen from "../../hooks/useScreen";
 
 const _challenges = [
   {
@@ -42,7 +43,29 @@ const _challenges = [
 ];
 
 export default function ChallengesScreen({ navigation }) {
+  const screen = useScreen();
   const { i18n } = useLocale();
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      paddingHorizontal: screen.getHorizontalPixelSize(15),
+      paddingVertical: screen.getVerticalPixelSize(15),
+      paddingTop: screen.getVerticalPixelSize(50),
+    },
+    image: {
+      width: screen.getHorizontalPixelSize(280),
+      height: screen.getVerticalPixelSize(280),
+      alignSelf: "center",
+      marginBottom: screen.getVerticalPixelSize(20),
+    },
+    breakLine: {
+      borderWidth: screen.getHorizontalPixelSize(0.5),
+      borderColor: "#ababab",
+      backgroundColor: "#ababab",
+      marginVertical: screen.getVerticalPixelSize(15),
+    },
+  });
 
   const handleGoBack = () => {
     try {
@@ -73,23 +96,3 @@ export default function ChallengesScreen({ navigation }) {
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 15,
-    paddingTop: 50,
-  },
-  image: {
-    width: 280,
-    height: 280,
-    alignSelf: "center",
-    marginBottom: 20,
-  },
-  breakLine: {
-    borderWidth: 0.5,
-    borderColor: "#ababab",
-    backgroundColor: "#ababab",
-    marginVertical: 15,
-  },
-});
