@@ -2,9 +2,50 @@ import { StyleSheet, SafeAreaView, Image, Text } from "react-native";
 import CustomButton from "../../components/buttons/CustomButton";
 import useLocale from "../../hooks/useLocale";
 import screens from "../../static/screens.json";
+import useScreen from "../../hooks/useScreen";
 
 export default function PendingRequestScreen({ navigation }) {
+  const screen = useScreen();
   const { i18n } = useLocale();
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      alignItems: "center",
+      paddingHorizontal: screen.getHorizontalPixelSize(15),
+      paddingVertical: screen.getVerticalPixelSize(15),
+      paddingTop: screen.getVerticalPixelSize(70),
+    },
+    logo: {
+      width: screen.getHorizontalPixelSize(240),
+      height: screen.getVerticalPixelSize(56),
+      marginBottom: screen.getVerticalPixelSize(50),
+    },
+    image: {
+      width: screen.getHorizontalPixelSize(300),
+      height: screen.getVerticalPixelSize(300),
+      marginBottom: screen.getVerticalPixelSize(35),
+    },
+    title: {
+      fontFamily: "cairo-800",
+      fontSize: 18,
+      marginBottom: screen.getVerticalPixelSize(15),
+    },
+    subtitle: {
+      fontFamily: "cairo-700",
+      fontSize: 14,
+      color: "#747474",
+      marginBottom: screen.getVerticalPixelSize(50),
+    },
+    buttonContainer: {
+      alignSelf: "stretch",
+      marginHorizontal: screen.getHorizontalPixelSize(25),
+    },
+    buttonText: {
+      fontFamily: "cairo-800",
+      fontSize: 16,
+    },
+  });
 
   const handleEditRequest = () => {
     try {
@@ -39,41 +80,3 @@ export default function PendingRequestScreen({ navigation }) {
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 15,
-    paddingTop: 70,
-    alignItems: "center",
-  },
-  logo: {
-    width: 240,
-    height: 56,
-    marginBottom: 50,
-  },
-  image: {
-    width: 300,
-    height: 300,
-    marginBottom: 35,
-  },
-  title: {
-    fontFamily: "cairo-800",
-    fontSize: 18,
-    marginBottom: 15,
-  },
-  subtitle: {
-    fontFamily: "cairo-700",
-    fontSize: 14,
-    color: "#747474",
-    marginBottom: 50,
-  },
-  buttonContainer: {
-    alignSelf: "stretch",
-    marginHorizontal: 25,
-  },
-  buttonText: {
-    fontFamily: "cairo-800",
-    fontSize: 16,
-  },
-});
