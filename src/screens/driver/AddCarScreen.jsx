@@ -6,10 +6,56 @@ import SquarePhotoInput from "../../components/inputs/SquarePhotoInput";
 import ScreenSteps from "../../components/common/ScreenSteps";
 import useLocale from "../../hooks/useLocale";
 import screens from "../../static/screens.json";
+import useScreen from "../../hooks/useScreen";
 
 export default function AddCarScreen({ navigation }) {
+  const screen = useScreen();
   const [option, setOption] = useState(null);
   const { i18n, lang } = useLocale();
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      paddingHorizontal: screen.getHorizontalPixelSize(15),
+      paddingVertical: screen.getVerticalPixelSize(15),
+      paddingTop: screen.getVerticalPixelSize(50),
+      gap: screen.getVerticalPixelSize(25),
+    },
+    arTitle: {
+      fontFamily: "cairo-700",
+      fontSize: 18,
+      textAlign: "right",
+      marginBottom: screen.getVerticalPixelSize(7),
+    },
+    enTitle: {
+      fontFamily: "cairo-700",
+      fontSize: 18,
+      textAlign: "left",
+      textTransform: "capitalize",
+      marginBottom: screen.getVerticalPixelSize(7),
+    },
+    arCarNumberIcon: {
+      width: screen.getHorizontalPixelSize(30),
+      height: screen.getHorizontalPixelSize(30),
+      marginRight: screen.getHorizontalPixelSize(10),
+    },
+    enCarNumberIcon: {
+      width: screen.getHorizontalPixelSize(30),
+      height: screen.getHorizontalPixelSize(30),
+      marginLeft: screen.getHorizontalPixelSize(10),
+    },
+    inputsContainer: {
+      gap: screen.getVerticalPixelSize(15),
+    },
+    photosRowContainer: {
+      flexDirection: "row",
+      justifyContent: "space-around",
+    },
+    screenStepsContainer: {
+      marginTop: "auto",
+      marginBottom: screen.getVerticalPixelSize(20),
+    },
+  });
 
   const handleNext = () => {
     try {
@@ -80,46 +126,3 @@ export default function AddCarScreen({ navigation }) {
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 15,
-    paddingTop: 50,
-    gap: 25,
-  },
-  arTitle: {
-    fontFamily: "cairo-700",
-    fontSize: 18,
-    textAlign: "right",
-    marginBottom: 7,
-  },
-  enTitle: {
-    fontFamily: "cairo-700",
-    fontSize: 18,
-    textAlign: "left",
-    textTransform: "capitalize",
-    marginBottom: 7,
-  },
-  arCarNumberIcon: {
-    width: 30,
-    height: 30,
-    marginRight: 10,
-  },
-  enCarNumberIcon: {
-    width: 30,
-    height: 30,
-    marginLeft: 10,
-  },
-  inputsContainer: {
-    gap: 15,
-  },
-  photosRowContainer: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-  },
-  screenStepsContainer: {
-    marginTop: "auto",
-    marginBottom: 20,
-  },
-});
