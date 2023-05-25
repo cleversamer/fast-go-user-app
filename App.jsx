@@ -79,6 +79,7 @@ export default function App() {
           setLang,
           isOnline,
           displayMode,
+          setDisplayMode,
           screenDimensions,
         }}
       >
@@ -88,9 +89,9 @@ export default function App() {
 
         {showHomeScreen && (
           <NavigationContainer>
+            {!user && <AuthNavigation />}
             {checkIfPassenger() && <PassengerNavigation />}
             {checkIfDriver() && <DriverNavigation />}
-            {!user && <AuthNavigation />}
           </NavigationContainer>
         )}
       </AuthContext.Provider>
