@@ -14,15 +14,57 @@ import useAuth from "../../auth/useAuth";
 import useLocale from "../../hooks/useLocale";
 import NetworkStatusLine from "../../components/common/NetworkStatusLine";
 import * as theme from "../../constants/theme";
+import useScreen from "../../hooks/useScreen";
 
 const MAX_CODE_LENGTH = 4;
 
 export default function LoginScrseen2({ navigation }) {
+  const screen = useScreen();
   const { i18n } = useLocale();
   const { login } = useAuth();
   const { remainingSeconds, resetTimer, isTimerDone } = useTimer(150);
   const [code, setCode] = useState("");
   const [readyPin, setReadyPin] = useState(false);
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      paddingVertical: screen.getVerticalPixelSize(15),
+      paddingHorizontal: screen.getHorizontalPixelSize(15),
+      paddingTop: screen.getVerticalPixelSize(70),
+    },
+    title: {
+      fontFamily: "cairo-700",
+      fontSize: 18,
+    },
+    otpInputContainer: {
+      alignSelf: "center",
+    },
+    timerText: {
+      fontFamily: "cairo-500",
+      textAlign: "center",
+    },
+    resendCodeText: {
+      fontFamily: "cairo-700",
+      color: theme.primaryColor,
+      textDecorationLine: "underline",
+      textAlign: "center",
+      paddingVertical: screen.getVerticalPixelSize(5),
+      paddingHorizontal: screen.getHorizontalPixelSize(5),
+      fontSize: 16,
+    },
+    remainingSeconds: {
+      fontFamily: "cairo-700",
+    },
+    screenStepsContainer: {
+      position: "absolute",
+      bottom: 0,
+      left: 0,
+      right: 0,
+      paddingHorizontal: screen.getHorizontalPixelSize(15),
+      marginBottom: screen.getVerticalPixelSize(50),
+    },
+  });
 
   useEffect(() => {
     try {
@@ -116,47 +158,3 @@ export default function LoginScrseen2({ navigation }) {
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 15,
-    paddingTop: 70,
-  },
-  title: {
-    fontFamily: "cairo-700",
-    fontSize: 18,
-  },
-  otpInputContainer: {
-    alignSelf: "center",
-  },
-  timerText: {
-    fontFamily: "cairo-500",
-    textAlign: "center",
-  },
-  resendCodeText: {
-    fontFamily: "cairo-700",
-    color: theme.primaryColor,
-    textDecorationLine: "underline",
-    textAlign: "center",
-    padding: 5,
-    fontSize: 16,
-  },
-  remainingSeconds: {
-    fontFamily: "cairo-700",
-  },
-  screenStepsContainer: {
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
-    paddingHorizontal: 15,
-    marginBottom: 50,
-    gap: 20,
-  },
-  breakLine: {
-    borderWidth: 0.5,
-    borderColor: "#ababab",
-    backgroundColor: "#ababab",
-  },
-});
