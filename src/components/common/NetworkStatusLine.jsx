@@ -20,7 +20,7 @@ export default function NetworkStatusLine() {
 
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: theme.getPixelSize(4),
+    paddingVertical: 4,
     position: "absolute",
     top: StatusBar.currentHeight || 0,
     left: 0,
@@ -31,6 +31,6 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontFamily: "cairo-700",
     textAlign: "center",
-    fontSize: theme.getPixelSize(13),
+    fontSize: 13,
   },
 });

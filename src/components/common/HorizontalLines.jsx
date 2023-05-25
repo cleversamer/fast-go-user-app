@@ -22,11 +22,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   line: {
-    borderBottomWidth: theme.getPixelSize(2),
+    borderBottomWidth: 2,
     borderColor: "#ccc",
     flex: 1,
   },
   text: {
-    paddingHorizontal: theme.getPixelSize(10),
+    paddingHorizontal: 10,
   },
 });

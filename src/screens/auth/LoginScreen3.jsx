@@ -76,41 +76,41 @@ export default function LoginScreen2({ navigation, route }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: theme.getPixelSize(15),
-    paddingTop: theme.getPixelSize(70),
+    padding: 15,
+    paddingTop: 70,
   },
   arTitleContainer: {
     flexDirection: "row",
-    gap: theme.getPixelSize(15),
+    gap: 15,
   },
   enTitleContainer: {
     flexDirection: "row-reverse",
-    gap: theme.getPixelSize(15),
+    gap: 15,
   },
   title: {
     fontFamily: "cairo-700",
     flexShrink: 1,
   },
   image: {
-    width: theme.getPixelSize(50),
-    height: theme.getPixelSize(50),
+    width: 50,
+    height: 50,
   },
   privacyText: {
     fontFamily: "cairo-400",
-    fontSize: theme.getPixelSize(13),
-    marginTop: theme.getPixelSize(40),
+    fontSize: 13,
+    marginTop: 40,
   },
   screenStepsContainer: {
     position: "absolute",
     bottom: 0,
     left: 0,
     right: 0,
-    paddingHorizontal: theme.getPixelSize(15),
-    marginBottom: theme.getPixelSize(50),
-    gap: theme.getPixelSize(20),
+    paddingHorizontal: 15,
+    marginBottom: 50,
+    gap: 20,
   },
   breakLine: {
-    borderWidth: theme.getPixelSize(0.5),
+    borderWidth: 0.5,
     borderColor: "#ababab",
     backgroundColor: "#ababab",
   },

@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     padding: 15,
     paddingTop: 50,
     justifyContent: "space-between",
-    paddingBottom: theme.getHeight() * 0.11,
+    paddingBottom: "11%", // TODO: fix
   },
   receiverContainer: {
     alignSelf: "center",

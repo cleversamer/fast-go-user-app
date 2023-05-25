@@ -182,44 +182,44 @@ export default function LoginScreen2({ navigation, route }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: theme.getPixelSize(15),
-    paddingTop: theme.getPixelSize(50),
+    padding: 15,
+    paddingTop: 50,
   },
   title: {
-    fontSize: theme.getPixelSize(22),
+    fontSize: 22,
     fontFamily: "cairo-800",
-    fontSize: theme.getPixelSize(28),
+    fontSize: 28,
   },
   subtitle: {
     fontFamily: "cairo-600",
-    fontSize: theme.getPixelSize(16),
+    fontSize: 16,
     color: "#747474",
   },
   inputsContainer: {
-    gap: theme.getPixelSize(24),
-    marginVertical: theme.getPixelSize(30),
+    gap: 24,
+    marginVertical: 30,
   },
   arTextInputsContainer: {
     flexDirection: "row",
-    gap: theme.getPixelSize(10),
+    gap: 10,
     alignItems: "center",
   },
   enTextInputsContainer: {
     flexDirection: "row-reverse",
-    gap: theme.getPixelSize(10),
+    gap: 10,
     alignItems: "center",
   },
   inputContainer: {
     flex: 1,
   },
   arInputIcon: {
-    marginRight: theme.getPixelSize(10),
-    fontSize: theme.getPixelSize(20),
+    marginRight: 10,
+    fontSize: 20,
     color: theme.primaryColor,
   },
   enInputIcon: {
-    marginLeft: theme.getPixelSize(10),
-    fontSize: theme.getPixelSize(20),
+    marginLeft: 10,
+    fontSize: 20,
     color: theme.primaryColor,
   },
   screenStepsContainer: {
@@ -227,7 +227,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    paddingHorizontal: theme.getPixelSize(15),
-    marginBottom: theme.getPixelSize(50),
+    paddingHorizontal: 15,
+    marginBottom: 50,
   },
 });

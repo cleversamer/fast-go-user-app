@@ -24,21 +24,21 @@ export default function CustomButton({
 
 const styles = StyleSheet.create({
   enabledContainer: {
-    borderRadius: theme.getPixelSize(8),
-    paddingVertical: theme.getPixelSize(12),
-    paddingHorizontal: theme.getPixelSize(10),
+    borderRadius: 8,
+    paddingVertical: 12,
+    paddingHorizontal: 10,
     backgroundColor: theme.primaryColor,
   },
   disabledContainer: {
-    borderRadius: theme.getPixelSize(8),
-    paddingVertical: theme.getPixelSize(12),
-    paddingHorizontal: theme.getPixelSize(10),
+    borderRadius: 8,
+    paddingVertical: 12,
+    paddingHorizontal: 10,
     backgroundColor: "#747474",
   },
   text: {
     color: "#fff",
     fontFamily: "cairo-400",
-    fontSize: theme.getPixelSize(15),
+    fontSize: 15,
     textAlign: "center",
     textTransform: "capitalize",
   },

@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    width: theme.getWidth(),
+    width: "100%", // TODO: get entire screen width
   },
   indicatorStyle: {
     alignSelf: "center",

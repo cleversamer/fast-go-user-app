@@ -85,12 +85,12 @@ const styles = StyleSheet.create({
     paddingTop: 100,
   },
   sliderImage: {
-    width: theme.getWidth(),
+    width: "100%", // TODO: fix
     height: 400,
   },
   sliderTitle: {
     fontFamily: "cairo-800",
-    fontSize: theme.getPixelSize(22),
+    fontSize: 22, // TODO: fix
     color: "#000",
     marginBottom: 15,
     textAlign: "center",

@@ -15,6 +15,6 @@ export default function PhoneInput({ icc, nsn, onICCChange, onNSNChange }) {
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    gap: theme.getPixelSize(10),
+    gap: 10,
   },
 });

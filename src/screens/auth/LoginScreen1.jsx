@@ -115,49 +115,49 @@ export default function LoginScreen1({ navigation, route }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: theme.getPixelSize(15),
-    paddingTop: theme.getPixelSize(50),
+    padding: 15,
+    paddingTop: 50,
   },
   title: {
-    fontSize: theme.getPixelSize(22),
+    fontSize: 22,
     fontFamily: "cairo-800",
-    fontSize: theme.getPixelSize(28),
-    marginBottom: theme.getPixelSize(5),
+    fontSize: 28,
+    marginBottom: 5,
   },
   subtitle: {
     fontFamily: "cairo-600",
-    fontSize: theme.getPixelSize(16),
+    fontSize: 16,
     color: "#747474",
   },
   phoneContainer: {
-    marginTop: theme.getPixelSize(60),
-    marginBottom: theme.getPixelSize(20),
+    marginTop: 60,
+    marginBottom: 20,
   },
   buttonContainer: {
-    paddingVertical: theme.getPixelSize(12),
+    paddingVertical: 12,
   },
   buttonText: {
     fontFamily: "cairo-800",
-    fontSize: theme.getPixelSize(16),
+    fontSize: 16,
   },
   horizontalLinesContainer: {
-    marginVertical: theme.getPixelSize(25),
+    marginVertical: 25,
   },
   horizontalLinesText: {
     fontFamily: "cairo-700",
-    marginHorizontal: theme.getPixelSize(5),
+    marginHorizontal: 5,
   },
   loginButtonsContainer: {
-    gap: theme.getPixelSize(15),
+    gap: 15,
   },
   conditionsText: {
     fontFamily: "cairo-400",
-    marginTop: theme.getPixelSize(30),
+    marginTop: 30,
     color: "#747474",
   },
   privacyPolicyText: {
     fontFamily: "cairo-400",
-    marginTop: theme.getPixelSize(30),
+    marginTop: 30,
     color: "#747474",
   },
   blueText: {

@@ -71,8 +71,17 @@ const testUser = {
 };
 
 const useAuth = () => {
-  const { user, setUser, isOnline, displayMode, setDisplayMode } =
-    useContext(AuthContext);
+  const {
+    user,
+    setUser,
+    isOnline,
+    displayMode,
+    setDisplayMode,
+    getHorizontalPixelSize,
+    getVerticalPixelSize,
+    getScreenWidth,
+    getScreenHeight,
+  } = useContext(AuthContext);
 
   const login = async () => {
     try {
@@ -112,6 +121,10 @@ const useAuth = () => {
     displayMode,
     switchToPassenger,
     returnToDriver,
+    getHorizontalPixelSize,
+    getVerticalPixelSize,
+    getScreenWidth,
+    getScreenHeight,
   };
 };
 
