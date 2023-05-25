@@ -1,9 +1,8 @@
 import "react-native-gesture-handler";
-import { useState } from "react";
-import { StatusBar } from "react-native";
+import { useEffect, useState } from "react";
+import { StatusBar, Dimensions } from "react-native";
 import useFonts from "./src/hooks/useFonts";
 import useNetworkStatus from "./src/hooks/useNetworkStatus";
-import useScreenDimensions from "./src/hooks/useScreenDimensions";
 
 import { NavigationContainer } from "@react-navigation/native";
 import AuthNavigation from "./src/navigation/AuthNavigation";
@@ -22,7 +21,6 @@ import Onboarding from "./src/screens/common/Onboarding";
 
 export default function App() {
   // Hooks
-  const screenDimensions = useScreenDimensions();
   const { fontLoaded } = useFonts();
   const isOnline = useNetworkStatus();
 
@@ -31,6 +29,20 @@ export default function App() {
   const [showHomeScreen, setShowHomeScreen] = useState(false);
   const [user, setUser] = useState(null);
   const [displayMode, setDisplayMode] = useState("");
+  const [screenDimensions, setScreenDimensions] = useState(
+    Dimensions.get("screen")
+  );
+
+  useEffect(() => {
+    const subscription = Dimensions.addEventListener("change", ({ screen }) => {
+      setScreenDimensions(screen);
+      console.log("screen", screen);
+    });
+
+    return () => {
+      subscription.remove();
+    };
+  }, []);
 
   const checkIfPassenger = () => {
     try {
@@ -46,22 +58,6 @@ export default function App() {
     } catch (err) {
       return false;
     }
-  };
-
-  const getHorizontalPixelSize = (pixels) => {
-    return screenDimensions.width * pixels * 0.0025510204081633;
-  };
-
-  const getVerticalPixelSize = (pixels) => {
-    return screenDimensions.height * pixels * 0.0025510204081633;
-  };
-
-  const getScreenWidth = () => {
-    return screenDimensions.width;
-  };
-
-  const getScreenHeight = () => {
-    return screenDimensions.height;
   };
 
   if (!fontLoaded) {
@@ -84,10 +80,7 @@ export default function App() {
           setLang,
           isOnline,
           displayMode,
-          getHorizontalPixelSize,
-          getVerticalPixelSize,
-          getScreenWidth,
-          getScreenHeight,
+          screenDimensions,
         }}
       >
         {!showHomeScreen && (
