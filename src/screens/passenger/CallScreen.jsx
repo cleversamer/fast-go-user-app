@@ -12,11 +12,80 @@ import CircularAvatar from "../../components/common/CircularAvatar";
 import CircularButton from "../../components/buttons/CircularButton";
 import useLocale from "../../hooks/useLocale";
 import * as theme from "../../constants/theme";
+import useScreen from "../../hooks/useScreen";
 
 export default function CallScreen({ navigation }) {
+  const screen = useScreen();
   const [isSpeaker, setIsSpeaker] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const { i18n } = useLocale();
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      paddingHorizontal: screen.getHorizontalPixelSize(15),
+      paddingVertical: screen.getVerticalPixelSize(15),
+      paddingTop: screen.getVerticalPixelSize(50),
+      justifyContent: "space-between",
+      paddingBottom: screen.getScreenHeight() * 0.11,
+    },
+    receiverContainer: {
+      alignSelf: "center",
+      justifyContent: "center",
+      alignItems: "center",
+      gap: screen.getVerticalPixelSize(12),
+    },
+    image: {
+      width: screen.getHorizontalPixelSize(120),
+      height: screen.getVerticalPixelSize(120),
+      alignSelf: "center",
+    },
+    receiverName: {
+      fontFamily: "cairo-700",
+      fontSize: 20,
+    },
+    callStatus: {
+      fontFamily: "cairo-600",
+      fontSize: 14,
+      color: "#747474",
+    },
+    callActionsContainer: {
+      flexDirection: "row",
+      justifyContent: "space-around",
+      alignItems: "center",
+    },
+    callIcon: {
+      color: "#fff",
+      fontSize: 30,
+    },
+    iconContainer: {
+      borderRadius: 50,
+      paddingHorizontal: screen.getHorizontalPixelSize(10),
+      paddingVertical: screen.getVerticalPixelSize(10),
+      width: screen.getHorizontalPixelSize(50),
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    highVolume: {
+      backgroundColor: theme.primaryColorLight,
+    },
+    muted: {
+      backgroundColor: theme.primaryColorLight,
+    },
+    volumeIcon: {
+      width: screen.getHorizontalPixelSize(32),
+      minHeight: screen.getHorizontalPixelSize(16),
+      height: screen.getVerticalPixelSize(32),
+    },
+    microphoneIcon: {
+      width: screen.getHorizontalPixelSize(32),
+      minHeight: screen.getHorizontalPixelSize(16),
+      height: screen.getVerticalPixelSize(32),
+    },
+    endCallButton: {
+      backgroundColor: "#f00",
+    },
+  });
 
   const handleEndCall = () => {
     try {
@@ -64,69 +133,3 @@ export default function CallScreen({ navigation }) {
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 15,
-    paddingTop: 50,
-    justifyContent: "space-between",
-    paddingBottom: "11%", // TODO: fix
-  },
-  receiverContainer: {
-    alignSelf: "center",
-    justifyContent: "center",
-    alignItems: "center",
-    gap: 12,
-  },
-  image: {
-    width: 120,
-    height: 120,
-    alignSelf: "center",
-  },
-  receiverName: {
-    fontFamily: "cairo-700",
-    fontSize: 20,
-  },
-  callStatus: {
-    fontFamily: "cairo-600",
-    fontSize: 14,
-    color: "#747474",
-  },
-  callActionsContainer: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    alignItems: "center",
-  },
-  callIcon: {
-    color: "#fff",
-    fontSize: 30,
-  },
-  iconContainer: {
-    borderRadius: 50,
-    padding: 10,
-    width: 50,
-    borderRadius: 50,
-    padding: 10,
-    width: 50,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  highVolume: {
-    backgroundColor: theme.primaryColorLight,
-  },
-  muted: {
-    backgroundColor: theme.primaryColorLight,
-  },
-  volumeIcon: {
-    width: 32,
-    height: 32,
-  },
-  microphoneIcon: {
-    width: 32,
-    height: 32,
-  },
-  endCallButton: {
-    backgroundColor: "#f00",
-  },
-});
