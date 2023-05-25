@@ -6,13 +6,60 @@ import PopupError from "../../components/popups/PopupError";
 import useLocale from "../../hooks/useLocale";
 import NetworkStatusLine from "../../components/common/NetworkStatusLine";
 import screens from "../../static/screens.json";
-import * as theme from "../../constants/theme";
+import useScreen from "../../hooks/useScreen";
 
 export default function LoginScreen2({ navigation, route }) {
+  const screen = useScreen();
   const { authType, role } = route.params;
   const { i18n, lang } = useLocale();
   const [error, setError] = useState(false);
   const [isPrivacyApproved, setIsPrivacyApproved] = useState(false);
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      paddingVertical: screen.getVerticalPixelSize(15),
+      paddingHorizontal: screen.getHorizontalPixelSize(15),
+      paddingTop: screen.getVerticalPixelSize(70),
+    },
+    arTitleContainer: {
+      flexDirection: "row",
+      justifyContent: "flex-end",
+      gap: screen.getHorizontalPixelSize(15),
+    },
+    enTitleContainer: {
+      flexDirection: "row-reverse",
+      justifyContent: "flex-end",
+      gap: screen.getHorizontalPixelSize(15),
+    },
+    title: {
+      fontFamily: "cairo-700",
+      flexShrink: 1,
+    },
+    image: {
+      width: screen.getHorizontalPixelSize(50),
+      height: screen.getVerticalPixelSize(50),
+    },
+    privacyText: {
+      fontFamily: "cairo-400",
+      fontSize: 13,
+      marginTop: screen.getVerticalPixelSize(40),
+    },
+    screenStepsContainer: {
+      position: "absolute",
+      bottom: 0,
+      left: 0,
+      right: 0,
+      paddingHorizontal: screen.getHorizontalPixelSize(15),
+      marginBottom: screen.getVerticalPixelSize(50),
+      gap: screen.getVerticalPixelSize(20),
+    },
+    breakLine: {
+      borderWidth: screen.getHorizontalPixelSize(0.5),
+      borderColor: "#ababab",
+      backgroundColor: "#ababab",
+    },
+  });
 
   const handleClosePopup = () => {
     try {
@@ -72,46 +119,3 @@ export default function LoginScreen2({ navigation, route }) {
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 15,
-    paddingTop: 70,
-  },
-  arTitleContainer: {
-    flexDirection: "row",
-    gap: 15,
-  },
-  enTitleContainer: {
-    flexDirection: "row-reverse",
-    gap: 15,
-  },
-  title: {
-    fontFamily: "cairo-700",
-    flexShrink: 1,
-  },
-  image: {
-    width: 50,
-    height: 50,
-  },
-  privacyText: {
-    fontFamily: "cairo-400",
-    fontSize: 13,
-    marginTop: 40,
-  },
-  screenStepsContainer: {
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
-    paddingHorizontal: 15,
-    marginBottom: 50,
-    gap: 20,
-  },
-  breakLine: {
-    borderWidth: 0.5,
-    borderColor: "#ababab",
-    backgroundColor: "#ababab",
-  },
-});
