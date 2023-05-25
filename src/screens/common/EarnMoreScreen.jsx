@@ -63,7 +63,7 @@ export default function EarnMoreScreen({ navigation }) {
       height: screen.getVerticalPixelSize(56),
     },
     codeContainer: {
-      flex: 1,
+      // flex: 1,
       flexDirection: "row",
       justifyContent: "center",
       alignItems: "center",
@@ -72,6 +72,7 @@ export default function EarnMoreScreen({ navigation }) {
       backgroundColor: theme.primaryColor,
       borderRadius: 30,
       paddingVertical: screen.getVerticalPixelSize(3),
+      paddingHorizontal: screen.getHorizontalPixelSize(12),
     },
     codeText: {
       fontFamily: "cairo-700",

@@ -55,7 +55,9 @@ export default function ChallengesScreen({ navigation }) {
     },
     image: {
       width: screen.getHorizontalPixelSize(280),
+      maxWidth: 280,
       height: screen.getVerticalPixelSize(280),
+      maxHeight: 280,
       alignSelf: "center",
       marginBottom: screen.getVerticalPixelSize(20),
     },

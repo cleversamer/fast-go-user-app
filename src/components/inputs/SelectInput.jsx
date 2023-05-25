@@ -3,6 +3,7 @@ import { SelectList } from "react-native-dropdown-select-list";
 import { AntDesign } from "@expo/vector-icons";
 import * as theme from "../../constants/theme";
 import useLocale from "../../hooks/useLocale";
+import useScreen from "../../hooks/useScreen";
 
 const defaultOptions = [
   {
@@ -20,7 +21,46 @@ export default function SelectInput({
   placeholder,
   onChange,
 }) {
+  const screen = useScreen();
   const { lang } = useLocale();
+
+  const styles = StyleSheet.create({
+    arBoxStyles: {
+      borderColor: theme.primaryColor,
+      borderWidth: screen.getHorizontalPixelSize(1.5),
+      flexDirection: "row-reverse",
+    },
+    enBoxStyles: {
+      borderColor: theme.primaryColor,
+      borderWidth: screen.getHorizontalPixelSize(1.5),
+      flexDirection: "row",
+    },
+    dropdownStyles: {
+      borderColor: theme.primaryColor,
+      borderWidth: screen.getHorizontalPixelSize(1.5),
+    },
+    arDropdownTextStyles: {
+      fontFamily: "cairo-600",
+      fontSize: 13,
+      textAlign: "right",
+    },
+    enDropdownTextStyles: {
+      fontFamily: "cairo-600",
+      fontSize: 13,
+      textAlign: "left",
+      textTransform: "capitalize",
+    },
+    inputStyles: {
+      fontFamily: "cairo-600",
+      fontSize: 13,
+      color: "#747474",
+      textTransform: "capitalize",
+    },
+    arrowDownIcon: {
+      fontSize: 20,
+      color: theme.primaryColor,
+    },
+  });
 
   const handleSelect = (value) => {
     try {
@@ -47,41 +87,3 @@ export default function SelectInput({
     />
   );
 }
-
-const styles = StyleSheet.create({
-  arBoxStyles: {
-    borderColor: theme.primaryColor,
-    borderWidth: 2,
-    flexDirection: "row-reverse",
-  },
-  enBoxStyles: {
-    borderColor: theme.primaryColor,
-    borderWidth: 2,
-    flexDirection: "row",
-  },
-  dropdownStyles: {
-    borderColor: theme.primaryColor,
-    borderWidth: 2,
-  },
-  arDropdownTextStyles: {
-    fontFamily: "cairo-600",
-    fontSize: 13,
-    textAlign: "right",
-  },
-  enDropdownTextStyles: {
-    fontFamily: "cairo-600",
-    fontSize: 13,
-    textAlign: "left",
-    textTransform: "capitalize",
-  },
-  inputStyles: {
-    fontFamily: "cairo-600",
-    fontSize: 13,
-    color: "#747474",
-    textTransform: "capitalize",
-  },
-  arrowDownIcon: {
-    fontSize: 20,
-    color: theme.primaryColor,
-  },
-});

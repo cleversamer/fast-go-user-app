@@ -2,6 +2,7 @@ import { StyleSheet, Modal, View, Image, Text } from "react-native";
 import * as theme from "../../constants/theme";
 import CustomButton from "../buttons/CustomButton";
 import useLocale from "../../hooks/useLocale";
+import useScreen from "../../hooks/useScreen";
 
 const defaultMessage = "خطأ غير متوقع";
 
@@ -10,7 +11,56 @@ export default function PopupError({
   message = defaultMessage,
   onClose,
 }) {
+  const screen = useScreen();
   const { i18n } = useLocale();
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      alignItems: "center",
+      justifyContent: "center",
+      backgroundColor: "rgba(0,0,0,0.5)",
+    },
+    boxContainer: {
+      width: screen.getScreenWidth() * 0.9,
+      paddingVertical: screen.getVerticalPixelSize(20),
+      paddingHorizontal: screen.getHorizontalPixelSize(20),
+      paddingBottom: 80,
+      backgroundColor: "#FF5353",
+      borderRadius: 8,
+      alignItems: "center",
+      gap: screen.getVerticalPixelSize(10),
+    },
+    icon: {
+      width: screen.getHorizontalPixelSize(50),
+      height: screen.getVerticalPixelSize(50),
+    },
+    title: {
+      fontFamily: "cairo-700",
+      color: "#fff",
+      fontSize: 17,
+    },
+    errorText: {
+      fontFamily: "cairo-500",
+      color: "#fff",
+      fontSize: 13,
+    },
+    buttonContainer: {
+      backgroundColor: "#fff",
+      position: "absolute",
+      bottom: 0,
+      left: 0,
+      right: 0,
+      borderBottomLeftRadius: 8,
+      borderBottomRightRadius: 8,
+    },
+    button: {
+      backgroundColor: "transparent",
+    },
+    buttonText: {
+      color: "#000",
+    },
+  });
 
   return (
     <>
@@ -46,50 +96,3 @@ export default function PopupError({
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "rgba(0,0,0,0.5)",
-  },
-  boxContainer: {
-    width: "90%", // TODO: fix
-    padding: 20,
-    paddingBottom: 80,
-    backgroundColor: "#FF5353",
-    borderRadius: 8,
-    alignItems: "center",
-    gap: 10,
-  },
-  icon: {
-    width: 50,
-    height: 50,
-  },
-  title: {
-    fontFamily: "cairo-700",
-    color: "#fff",
-    fontSize: 17,
-  },
-  errorText: {
-    fontFamily: "cairo-500",
-    color: "#fff",
-    fontSize: 13,
-  },
-  buttonContainer: {
-    backgroundColor: "#fff",
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
-    borderBottomLeftRadius: 8,
-    borderBottomRightRadius: 8,
-  },
-  button: {
-    backgroundColor: "transparent",
-  },
-  buttonText: {
-    color: "#000",
-  },
-});

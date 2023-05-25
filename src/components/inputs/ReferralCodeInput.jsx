@@ -9,10 +9,97 @@ import {
 import { MaterialIcons, Feather } from "@expo/vector-icons";
 import * as theme from "../../constants/theme";
 import useLocale from "../../hooks/useLocale";
+import useScreen from "../../hooks/useScreen";
 
 export default function ReferralCodeInput({ value, onChange }) {
+  const screen = useScreen();
   const [showHintPopup, setShowHintPopup] = useState(false);
   const { i18n, lang } = useLocale();
+
+  const styles = StyleSheet.create({
+    arContainer: {
+      borderRadius: 8,
+      backgroundColor: "#fff",
+      borderWidth: screen.getHorizontalPixelSize(1.5),
+      borderColor: theme.primaryColor,
+      flexDirection: "row",
+      alignItems: "center",
+    },
+    enContainer: {
+      borderRadius: 8,
+      backgroundColor: "#fff",
+      borderWidth: screen.getHorizontalPixelSize(1.5),
+      borderColor: theme.primaryColor,
+      flexDirection: "row-reverse",
+      alignItems: "center",
+    },
+    arAboutIcon: {
+      fontSize: 26,
+      marginLeft: screen.getHorizontalPixelSize(10),
+      color: "#747474",
+    },
+    enAboutIcon: {
+      fontSize: 26,
+      marginRight: screen.getHorizontalPixelSize(10),
+      color: "#747474",
+    },
+    arInput: {
+      flex: 1,
+      color: "#000",
+      paddingVertical: screen.getVerticalPixelSize(10),
+      paddingHorizontal: screen.getHorizontalPixelSize(10),
+      fontFamily: "cairo-400",
+      textAlign: "right",
+    },
+    enInput: {
+      flex: 1,
+      color: "#000",
+      paddingVertical: screen.getVerticalPixelSize(10),
+      paddingHorizontal: screen.getHorizontalPixelSize(10),
+      fontFamily: "cairo-400",
+      textAlign: "left",
+    },
+    arIcon: {
+      fontSize: 30,
+      color: theme.primaryColor,
+      marginRight: screen.getHorizontalPixelSize(10),
+    },
+    enIcon: {
+      fontSize: 30,
+      color: theme.primaryColor,
+      marginLeft: screen.getHorizontalPixelSize(10),
+    },
+    arPopupHint: {
+      backgroundColor: "#f7f7f7",
+      borderColor: "#ccc",
+      borderWidth: screen.getHorizontalPixelSize(0.5),
+      position: "absolute",
+      top: screen.getVerticalPixelSize(30),
+      left: 0,
+      right: 0,
+      width: screen.getHorizontalPixelSize(235),
+      textAlign: "center",
+      paddingVertical: screen.getVerticalPixelSize(10),
+      borderRadius: 7,
+      fontFamily: "cairo-500",
+      fontSize: 12,
+    },
+    enPopupHint: {
+      backgroundColor: "#f7f7f7",
+      borderColor: "#ccc",
+      borderWidth: screen.getHorizontalPixelSize(0.5),
+      position: "absolute",
+      top: screen.getVerticalPixelSize(30),
+      left: -screen.getHorizontalPixelSize(250),
+      right: screen.getHorizontalPixelSize(10),
+      width: screen.getHorizontalPixelSize(275),
+      textAlign: "center",
+      paddingVertical: screen.getVerticalPixelSize(10),
+      borderRadius: 7,
+      fontFamily: "cairo-500",
+      fontSize: 12,
+    },
+  });
 
   return (
     <View style={lang === "ar" ? styles.arContainer : styles.enContainer}>
@@ -44,88 +131,3 @@ export default function ReferralCodeInput({ value, onChange }) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  arContainer: {
-    borderRadius: 8,
-    backgroundColor: "#fff",
-    borderWidth: 2,
-    borderColor: theme.primaryColor,
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  enContainer: {
-    borderRadius: 8,
-    backgroundColor: "#fff",
-    borderWidth: 2,
-    borderColor: theme.primaryColor,
-    flexDirection: "row-reverse",
-    alignItems: "center",
-  },
-  arAboutIcon: {
-    fontSize: 26,
-    marginLeft: 10,
-    color: "#747474",
-  },
-  enAboutIcon: {
-    fontSize: 26,
-    marginRight: 10,
-    color: "#747474",
-  },
-  arInput: {
-    flex: 1,
-    color: "#000",
-    paddingVertical: 10,
-    paddingHorizontal: 10,
-    fontFamily: "cairo-400",
-    textAlign: "right",
-  },
-  enInput: {
-    flex: 1,
-    color: "#000",
-    paddingVertical: 10,
-    paddingHorizontal: 10,
-    fontFamily: "cairo-400",
-    textAlign: "left",
-  },
-  arIcon: {
-    fontSize: 30,
-    color: theme.primaryColor,
-    marginRight: 10,
-  },
-  enIcon: {
-    fontSize: 30,
-    color: theme.primaryColor,
-    marginLeft: 10,
-  },
-  arPopupHint: {
-    backgroundColor: "#f7f7f7",
-    borderColor: "#ccc",
-    borderWidth: 0.5,
-    position: "absolute",
-    top: 30,
-    left: 0,
-    right: 0,
-    width: 235,
-    textAlign: "center",
-    paddingVertical: 10,
-    borderRadius: 7,
-    fontFamily: "cairo-500",
-    fontSize: 12,
-  },
-  enPopupHint: {
-    backgroundColor: "#f7f7f7",
-    borderColor: "#ccc",
-    borderWidth: 0.5,
-    position: "absolute",
-    top: 30,
-    left: -250,
-    right: 10,
-    width: 275,
-    textAlign: "center",
-    paddingVertical: 10,
-    borderRadius: 7,
-    fontFamily: "cairo-500",
-    fontSize: 12,
-  },
-});

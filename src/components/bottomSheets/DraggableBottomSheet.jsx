@@ -1,10 +1,11 @@
 import { useEffect, useRef } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Dimensions } from "react-native";
 import RBSheet from "react-native-raw-bottom-sheet";
 import * as theme from "../../constants/theme";
+import useScreen from "../../hooks/useScreen";
 
-// TODO: fix the bug
-const defaultHeight = 700 * 0.35;
+const screenHeight = Dimensions.get("screen").height || 850.9;
+const defaultHeight = screenHeight * 0.35;
 
 export default function DraggableBottomSheet({
   contentStyle,
@@ -13,7 +14,28 @@ export default function DraggableBottomSheet({
   visible,
   onClose,
 }) {
+  const screen = useScreen();
   const ref = useRef(null);
+
+  const styles = StyleSheet.create({
+    wrapper: {
+      backgroundColor: "rgba(0, 0, 0, 0.65)",
+    },
+    container: {
+      borderTopLeftRadius: screen.getHorizontalPixelSize(25),
+      borderTopRightRadius: screen.getHorizontalPixelSize(25),
+    },
+    draggableIcon: {
+      width: screen.getHorizontalPixelSize(65),
+      height: screen.getVerticalPixelSize(6),
+      backgroundColor: theme.primaryColor,
+    },
+    contentContainer: {
+      flex: 1,
+      paddingVertical: screen.getVerticalPixelSize(10),
+      paddingHorizontal: screen.getHorizontalPixelSize(10),
+    },
+  });
 
   useEffect(() => {
     try {
@@ -21,7 +43,7 @@ export default function DraggableBottomSheet({
         ref.current.open();
       }
     } catch (err) {}
-  }, [visible]);
+  }, [ref, visible]);
 
   return (
     <RBSheet
@@ -46,22 +68,3 @@ export default function DraggableBottomSheet({
     </RBSheet>
   );
 }
-
-const styles = StyleSheet.create({
-  wrapper: {
-    backgroundColor: "rgba(0, 0, 0, 0.65)",
-  },
-  container: {
-    borderTopLeftRadius: 25,
-    borderTopRightRadius: 25,
-  },
-  draggableIcon: {
-    width: 65,
-    height: 6,
-    backgroundColor: theme.primaryColor,
-  },
-  contentContainer: {
-    flex: 1,
-    padding: 10,
-  },
-});

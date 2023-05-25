@@ -54,7 +54,6 @@ export default function SavedPlacesScreen({ navigation }) {
     container: {
       flex: 1,
       paddingHorizontal: screen.getHorizontalPixelSize(15),
-      paddingVertical: screen.getVerticalPixelSize(15),
       paddingTop: screen.getVerticalPixelSize(50),
     },
     arHintText: {

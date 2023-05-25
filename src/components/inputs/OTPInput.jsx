@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { View, StyleSheet, TextInput, Pressable, Text } from "react-native";
 import * as theme from "../../constants/theme";
+import useScreen from "../../hooks/useScreen";
 
 export default function OTPInput({
   code,
@@ -10,9 +11,47 @@ export default function OTPInput({
   containerStyle,
   onSubmit,
 }) {
+  const screen = useScreen();
   const textInputRef = useRef(null);
   const [isFocused, setIsFocused] = useState(false);
   const codeDigitsArray = Array(maxLength).fill(0);
+
+  const styles = StyleSheet.create({
+    container: {
+      justifyContent: "center",
+      alignContent: "center",
+      marginVertical: screen.getVerticalPixelSize(30),
+    },
+    hiddenTextInput: {
+      position: "absolute",
+      width: 1,
+      height: 1,
+      opacity: 0,
+    },
+    otpInputContainer: {
+      width: "70%",
+      flexDirection: "row",
+      justifyContent: "space-around",
+    },
+    otpInput: {
+      borderColor: theme.primaryColor,
+      minWidth: "15%",
+      borderWidth: screen.getHorizontalPixelSize(1.5),
+      borderRadius: 5,
+      paddingVertical: screen.getVerticalPixelSize(12),
+      paddingHorizontal: screen.getHorizontalPixelSize(12),
+    },
+    otpInputFocused: {
+      borderColor: theme.primaryColor,
+      backgroundColor: theme.primaryColorLight,
+    },
+    otpInputText: {
+      fontSize: 22,
+      fontFamily: "cairo-700",
+      textAlign: "center",
+      color: "#000",
+    },
+  });
 
   useEffect(() => {
     try {
@@ -87,39 +126,3 @@ export default function OTPInput({
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    justifyContent: "center",
-    alignContent: "center",
-    marginVertical: 30,
-  },
-  hiddenTextInput: {
-    position: "absolute",
-    width: 1,
-    height: 1,
-    opacity: 0,
-  },
-  otpInputContainer: {
-    width: "70%",
-    flexDirection: "row",
-    justifyContent: "space-around",
-  },
-  otpInput: {
-    borderColor: theme.primaryColor,
-    minWidth: "15%",
-    borderWidth: 2,
-    borderRadius: 5,
-    padding: 12,
-  },
-  otpInputFocused: {
-    borderColor: theme.primaryColor,
-    backgroundColor: theme.primaryColorLight,
-  },
-  otpInputText: {
-    fontSize: 22,
-    fontFamily: "cairo-700",
-    textAlign: "center",
-    color: "#000",
-  },
-});

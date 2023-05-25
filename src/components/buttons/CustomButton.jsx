@@ -1,5 +1,6 @@
 import { StyleSheet, TouchableOpacity, Text } from "react-native";
 import * as theme from "../../constants/theme";
+import useScreen from "../../hooks/useScreen";
 
 export default function CustomButton({
   text,
@@ -8,6 +9,30 @@ export default function CustomButton({
   textStyle,
   disabled,
 }) {
+  const screen = useScreen();
+
+  const styles = StyleSheet.create({
+    enabledContainer: {
+      borderRadius: 8,
+      paddingVertical: screen.getVerticalPixelSize(12),
+      paddingHorizontal: screen.getHorizontalPixelSize(10),
+      backgroundColor: theme.primaryColor,
+    },
+    disabledContainer: {
+      borderRadius: 8,
+      paddingVertical: screen.getVerticalPixelSize(12),
+      paddingHorizontal: screen.getHorizontalPixelSize(10),
+      backgroundColor: "#747474",
+    },
+    text: {
+      color: "#fff",
+      fontFamily: "cairo-400",
+      fontSize: 15,
+      textAlign: "center",
+      textTransform: "capitalize",
+    },
+  });
+
   return (
     <TouchableOpacity
       onPress={onPress}
@@ -21,25 +46,3 @@ export default function CustomButton({
     </TouchableOpacity>
   );
 }
-
-const styles = StyleSheet.create({
-  enabledContainer: {
-    borderRadius: 8,
-    paddingVertical: 12,
-    paddingHorizontal: 10,
-    backgroundColor: theme.primaryColor,
-  },
-  disabledContainer: {
-    borderRadius: 8,
-    paddingVertical: 12,
-    paddingHorizontal: 10,
-    backgroundColor: "#747474",
-  },
-  text: {
-    color: "#fff",
-    fontFamily: "cairo-400",
-    fontSize: 15,
-    textAlign: "center",
-    textTransform: "capitalize",
-  },
-});

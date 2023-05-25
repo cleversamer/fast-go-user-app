@@ -23,11 +23,11 @@ export default function PassengerHomeScreen3({ navigation }) {
       right: screen.getHorizontalPixelSize(20),
       backgroundColor: "#fff",
       width: screen.getHorizontalPixelSize(45),
-      height: screen.getVerticalPixelSize(45),
+      maxWidth: 45,
+      height: screen.getHorizontalPixelSize(45),
+      maxHeight: 45,
       borderRadius: 50,
       zIndex: 1,
-      paddingHorizontal: screen.getHorizontalPixelSize(12),
-      paddingVertical: screen.getVerticalPixelSize(12),
     },
   });
 

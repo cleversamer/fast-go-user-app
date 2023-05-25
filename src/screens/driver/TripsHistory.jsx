@@ -77,7 +77,7 @@ export default function TripsHistory({ navigation }) {
     },
     tripsContainer: {
       flex: 1,
-      gap: screen.getVerticalPixelSize(10),
+      gap: screen.getVerticalPixelSize(15),
       marginTop: screen.getVerticalPixelSize(20),
     },
     emptyTripsContainer: {

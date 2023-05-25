@@ -2,6 +2,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import * as theme from "../../constants/theme";
 import useLocale from "../../hooks/useLocale";
+import useScreen from "../../hooks/useScreen";
 
 export default function ScreenSteps({
   containerStyle,
@@ -11,7 +12,66 @@ export default function ScreenSteps({
   showPrev = true,
   disableNext,
 }) {
+  const screen = useScreen();
   const { lang, i18n } = useLocale();
+
+  const styles = StyleSheet.create({
+    arContainer: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+      alignItems: "center",
+    },
+    enContainer: {
+      flexDirection: "row-reverse",
+      justifyContent: "space-between",
+      alignItems: "center",
+    },
+    prevButtonContainer: {
+      paddingVertical: screen.getVerticalPixelSize(10),
+      paddingHorizontal: screen.getHorizontalPixelSize(10),
+      backgroundColor: theme.primaryColor,
+      borderRadius: 100,
+    },
+    prevButtonIcon: {
+      color: "#fff",
+      fontSize: 24,
+      fontFamily: "cairo-400",
+    },
+    activeNextButtonContainer: {
+      gap: screen.getHorizontalPixelSize(7),
+      backgroundColor: theme.primaryColor,
+      borderRadius: 100,
+      paddingHorizontal: screen.getHorizontalPixelSize(20),
+      paddingVertical: screen.getVerticalPixelSize(10),
+    },
+    disabledNextButtonContainer: {
+      gap: screen.getHorizontalPixelSize(7),
+      backgroundColor: "#747474",
+      borderRadius: 100,
+      paddingHorizontal: screen.getHorizontalPixelSize(20),
+      paddingVertical: screen.getVerticalPixelSize(10),
+    },
+    arNextButtonContainer: {
+      flexDirection: "row",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    enNextButtonContainer: {
+      flexDirection: "row-reverse",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    nextButtonText: {
+      color: "#fff",
+      fontSize: 15,
+      fontFamily: "cairo-700",
+    },
+    nextButtonIcon: {
+      color: "#fff",
+      fontSize: 24,
+      fontFamily: "cairo-400",
+    },
+  });
 
   if (!showNext && !showPrev) {
     return null;
@@ -58,60 +118,3 @@ export default function ScreenSteps({
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  arContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  enContainer: {
-    flexDirection: "row-reverse",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  prevButtonContainer: {
-    padding: 10,
-    backgroundColor: theme.primaryColor,
-    borderRadius: 100,
-  },
-  prevButtonIcon: {
-    color: "#fff",
-    fontSize: 24,
-    fontFamily: "cairo-400",
-  },
-  activeNextButtonContainer: {
-    gap: 7,
-    backgroundColor: theme.primaryColor,
-    borderRadius: 100,
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-  },
-  disabledNextButtonContainer: {
-    gap: 7,
-    backgroundColor: "#747474",
-    borderRadius: 100,
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-  },
-  arNextButtonContainer: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  enNextButtonContainer: {
-    flexDirection: "row-reverse",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  nextButtonText: {
-    color: "#fff",
-    fontSize: 15,
-    fontFamily: "cairo-700",
-  },
-  nextButtonIcon: {
-    color: "#fff",
-    fontSize: 24,
-    fontFamily: "cairo-400",
-  },
-});

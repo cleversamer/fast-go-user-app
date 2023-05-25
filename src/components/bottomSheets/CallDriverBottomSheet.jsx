@@ -4,6 +4,7 @@ import useLocale from "../../hooks/useLocale";
 import CircularAvatar from "../common/CircularAvatar";
 import CircularButton from "../buttons/CircularButton";
 import { Ionicons } from "@expo/vector-icons";
+import useScreen from "../../hooks/useScreen";
 
 export default function CallDriverBottomSheet({
   driver,
@@ -12,14 +13,62 @@ export default function CallDriverBottomSheet({
   visible,
   onClose,
 }) {
+  const screen = useScreen();
   const { i18n, lang } = useLocale();
+
+  const styles = StyleSheet.create({
+    container: {
+      gap: screen.getVerticalPixelSize(15),
+      alignItems: "center",
+    },
+    avatarContainer: {
+      alignItems: "center",
+      gap: screen.getVerticalPixelSize(7),
+    },
+    driverName: {
+      fontFamily: "cairo-700",
+      fontSize: 16,
+    },
+    driverCar: {
+      fontFamily: "cairo-700",
+      fontSize: 14,
+      color: "#747474",
+    },
+    arInfoContainer: {
+      alignSelf: "stretch",
+      flexDirection: "row",
+      justifyContent: "space-around",
+      alignItems: "center",
+    },
+    enInfoContainer: {
+      alignSelf: "stretch",
+      flexDirection: "row-reverse",
+      justifyContent: "space-around",
+      alignItems: "center",
+    },
+    callIcon: {
+      color: "#fff",
+      fontSize: 30,
+    },
+    buttonContainer: {
+      justifyContent: "center",
+      alignItems: "center",
+      gap: screen.getVerticalPixelSize(7),
+    },
+    buttonTitle: {
+      fontFamily: "cairo-600",
+      fontSize: 13,
+      color: "#747474",
+      textTransform: "capitalize",
+    },
+  });
 
   return (
     <DraggableBottomSheet
       contentStyle={styles.container}
       visible={visible}
       onClose={onClose}
-      height={320}
+      height={screen.getVerticalPixelSize(320)}
     >
       <View style={styles.avatarContainer}>
         <CircularAvatar url={driver?.avatarURL} />
@@ -55,50 +104,3 @@ export default function CallDriverBottomSheet({
     </DraggableBottomSheet>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    gap: 15,
-    alignItems: "center",
-  },
-  avatarContainer: {
-    alignItems: "center",
-    gap: 7,
-  },
-  driverName: {
-    fontFamily: "cairo-700",
-    fontSize: 16,
-  },
-  driverCar: {
-    fontFamily: "cairo-700",
-    fontSize: 14,
-    color: "#747474",
-  },
-  arInfoContainer: {
-    alignSelf: "stretch",
-    flexDirection: "row",
-    justifyContent: "space-around",
-    alignItems: "center",
-  },
-  enInfoContainer: {
-    alignSelf: "stretch",
-    flexDirection: "row-reverse",
-    justifyContent: "space-around",
-    alignItems: "center",
-  },
-  callIcon: {
-    color: "#fff",
-    fontSize: 30,
-  },
-  buttonContainer: {
-    justifyContent: "center",
-    alignItems: "center",
-    gap: 7,
-  },
-  buttonTitle: {
-    fontFamily: "cairo-600",
-    fontSize: 13,
-    color: "#747474",
-    textTransform: "capitalize",
-  },
-});

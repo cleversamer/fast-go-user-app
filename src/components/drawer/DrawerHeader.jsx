@@ -3,11 +3,76 @@ import * as theme from "../../constants/theme";
 import useDateTimer from "../../hooks/useDateTimer";
 import useLocale from "../../hooks/useLocale";
 import useAuth from "../../auth/useAuth";
+import useScreen from "../../hooks/useScreen";
 
 export default function DrawerHeader({ navigation }) {
+  const screen = useScreen();
   const { user } = useAuth();
   const { i18n, lang } = useLocale();
   const { value: lastLogin } = useDateTimer(user.lastLogin, lang, [lang, user]);
+
+  const styles = StyleSheet.create({
+    arContainer: {
+      width: "100%",
+      height: screen.getVerticalPixelSize(160),
+      backgroundColor: theme.primaryColor,
+      justifyContent: "flex-end",
+      alignItems: "flex-end",
+      paddingVertical: screen.getVerticalPixelSize(15),
+      paddingHorizontal: screen.getHorizontalPixelSize(15),
+      gap: screen.getVerticalPixelSize(10),
+    },
+    enContainer: {
+      width: "100%",
+      height: screen.getVerticalPixelSize(160),
+      backgroundColor: theme.primaryColor,
+      justifyContent: "flex-end",
+      alignItems: "flex-start",
+      paddingVertical: screen.getVerticalPixelSize(15),
+      paddingHorizontal: screen.getHorizontalPixelSize(15),
+      gap: screen.getVerticalPixelSize(10),
+    },
+    arUserInfoContainer: {
+      gap: screen.getHorizontalPixelSize(7),
+      flexDirection: "row",
+      alignItems: "flex-end",
+      justifyContent: "flex-end",
+    },
+    enUserInfoContainer: {
+      gap: screen.getHorizontalPixelSize(7),
+      flexDirection: "row-reverse",
+      alignItems: "flex-end",
+      justifyContent: "flex-end",
+    },
+    welcomingContainer: {
+      gap: screen.getVerticalPixelSize(7),
+      height: screen.getVerticalPixelSize(70),
+      justifyContent: "center",
+    },
+    welcomingMssg: {
+      fontFamily: "cairo-700",
+      fontSize: 12,
+      color: "#fff",
+    },
+    userName: {
+      fontFamily: "cairo-700",
+      fontSize: 15,
+      color: "#fff",
+    },
+    avatar: {
+      backgroundColor: "#fff",
+      paddingVertical: screen.getVerticalPixelSize(10),
+      paddingHorizontal: screen.getHorizontalPixelSize(10),
+      borderRadius: 8,
+      width: screen.getHorizontalPixelSize(65),
+      height: screen.getVerticalPixelSize(65),
+    },
+    lastLoginText: {
+      fontFamily: "cairo-700",
+      fontSize: 12,
+      color: "#fff",
+    },
+  });
 
   const getWelcomingMssg = () => {
     try {
@@ -68,63 +133,3 @@ export default function DrawerHeader({ navigation }) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  arContainer: {
-    width: "100%",
-    height: 160,
-    backgroundColor: theme.primaryColor,
-    justifyContent: "flex-end",
-    alignItems: "flex-end",
-    padding: 15,
-    gap: 10,
-  },
-  enContainer: {
-    width: "100%",
-    height: 160,
-    backgroundColor: theme.primaryColor,
-    justifyContent: "flex-end",
-    alignItems: "flex-start",
-    padding: 15,
-    gap: 10,
-  },
-  arUserInfoContainer: {
-    gap: 7,
-    flexDirection: "row",
-    alignItems: "flex-end",
-    justifyContent: "flex-end",
-  },
-  enUserInfoContainer: {
-    gap: 7,
-    flexDirection: "row-reverse",
-    alignItems: "flex-end",
-    justifyContent: "flex-end",
-  },
-  welcomingContainer: {
-    gap: 7,
-    height: 70,
-    justifyContent: "center",
-  },
-  welcomingMssg: {
-    fontFamily: "cairo-700",
-    fontSize: 12,
-    color: "#fff",
-  },
-  userName: {
-    fontFamily: "cairo-700",
-    fontSize: 15,
-    color: "#fff",
-  },
-  avatar: {
-    backgroundColor: "#fff",
-    padding: 10,
-    borderRadius: 8,
-    width: 65,
-    height: 65,
-  },
-  lastLoginText: {
-    fontFamily: "cairo-700",
-    fontSize: 12,
-    color: "#fff",
-  },
-});

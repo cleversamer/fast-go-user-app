@@ -1,8 +1,78 @@
 import { TouchableOpacity, StyleSheet, Image, View, Text } from "react-native";
 import useLocale from "../../hooks/useLocale";
+import useScreen from "../../hooks/useScreen";
 
 export default function Place({ place, onEdit }) {
+  const screen = useScreen();
   const { i18n, lang } = useLocale();
+
+  const styles = StyleSheet.create({
+    arContainer: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+      alignItems: "center",
+    },
+    enContainer: {
+      flexDirection: "row-reverse",
+      justifyContent: "space-between",
+      alignItems: "center",
+    },
+    arContentContainer: {
+      flex: 1,
+      flexDirection: "row",
+      justifyContent: "flex-end",
+      alignItems: "center",
+      gap: screen.getHorizontalPixelSize(10),
+    },
+    enContentContainer: {
+      flex: 1,
+      flexDirection: "row-reverse",
+      justifyContent: "flex-end",
+      alignItems: "center",
+      gap: screen.getHorizontalPixelSize(10),
+    },
+    arTextContentContainer: {
+      gap: screen.getVerticalPixelSize(10),
+      alignItems: "flex-end",
+    },
+    enTextContentContainer: {
+      gap: screen.getVerticalPixelSize(10),
+      alignItems: "flex-start",
+    },
+    arType: {
+      fontFamily: "cairo-500",
+      fontSize: 14,
+      textAlign: "right",
+    },
+    enType: {
+      fontFamily: "cairo-500",
+      fontSize: 14,
+      textAlign: "left",
+      textTransform: "capitalize",
+    },
+    arTitle: {
+      fontFamily: "cairo-500",
+      fontSize: 11,
+      color: "#747474",
+      textAlign: "right",
+    },
+    enTitle: {
+      fontFamily: "cairo-500",
+      fontSize: 11,
+      color: "#747474",
+      textAlign: "left",
+    },
+    editIconImage: {
+      width: screen.getHorizontalPixelSize(28),
+      minHeight: screen.getHorizontalPixelSize(14),
+      height: screen.getVerticalPixelSize(28),
+    },
+    placeIconImage: {
+      width: screen.getHorizontalPixelSize(35),
+      minHeight: screen.getHorizontalPixelSize(18),
+      height: screen.getVerticalPixelSize(35),
+    },
+  });
 
   const getPlaceIcon = () => {
     try {
@@ -79,69 +149,3 @@ export default function Place({ place, onEdit }) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  arContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  enContainer: {
-    flexDirection: "row-reverse",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  arContentContainer: {
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "flex-end",
-    alignItems: "center",
-    gap: 10,
-  },
-  enContentContainer: {
-    flex: 1,
-    flexDirection: "row-reverse",
-    justifyContent: "flex-end",
-    alignItems: "center",
-    gap: 10,
-  },
-  arTextContentContainer: {
-    gap: 10,
-    alignItems: "flex-end",
-  },
-  enTextContentContainer: {
-    gap: 10,
-    alignItems: "flex-start",
-  },
-  arType: {
-    fontFamily: "cairo-500",
-    fontSize: 14,
-    textAlign: "right",
-  },
-  enType: {
-    fontFamily: "cairo-500",
-    fontSize: 14,
-    textAlign: "left",
-    textTransform: "capitalize",
-  },
-  arTitle: {
-    fontFamily: "cairo-500",
-    fontSize: 11,
-    color: "#747474",
-    textAlign: "right",
-  },
-  enTitle: {
-    fontFamily: "cairo-500",
-    fontSize: 11,
-    color: "#747474",
-    textAlign: "left",
-  },
-  editIconImage: {
-    width: 28,
-    height: 28,
-  },
-  placeIconImage: {
-    width: 35,
-    height: 35,
-  },
-});

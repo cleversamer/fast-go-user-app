@@ -1,8 +1,25 @@
 import { StyleSheet, View, Text } from "react-native";
 import useLocale from "../../hooks/useLocale";
+import useScreen from "../../hooks/useScreen";
 
 export default function Copyrights() {
+  const screen = useScreen();
   const { i18n } = useLocale();
+
+  const styles = StyleSheet.create({
+    container: {
+      alignSelf: "center",
+      marginBottom: screen.getVerticalPixelSize(20),
+      justifyContent: "center",
+      alignItems: "center",
+      gap: screen.getVerticalPixelSize(7),
+    },
+    text: {
+      fontFamily: "cairo-600",
+      fontSize: 14,
+      color: "#747474",
+    },
+  });
 
   return (
     <View style={styles.container}>
@@ -11,18 +28,3 @@ export default function Copyrights() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    alignSelf: "center",
-    marginBottom: 20,
-    justifyContent: "center",
-    alignItems: "center",
-    gap: 7,
-  },
-  text: {
-    fontFamily: "cairo-600",
-    fontSize: 14,
-    color: "#747474",
-  },
-});

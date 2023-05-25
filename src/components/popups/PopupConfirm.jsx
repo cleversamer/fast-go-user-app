@@ -3,6 +3,7 @@ import { Ionicons } from "@expo/vector-icons";
 import * as theme from "../../constants/theme";
 import CustomButton from "../buttons/CustomButton";
 import useLocale from "../../hooks/useLocale";
+import useScreen from "../../hooks/useScreen";
 
 export default function PopupConfirm({
   title,
@@ -15,7 +16,81 @@ export default function PopupConfirm({
   subtitleStyle,
   hintStyle,
 }) {
+  const screen = useScreen();
   const { i18n } = useLocale();
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      alignItems: "center",
+      justifyContent: "center",
+      backgroundColor: "rgba(0,0,0,0.5)",
+    },
+    boxContainer: {
+      width: screen.getScreenWidth() * 0.9,
+      paddingVertical: screen.getVerticalPixelSize(20),
+      paddingHorizontal: screen.getHorizontalPixelSize(20),
+      backgroundColor: "#fff",
+      borderRadius: 8,
+      alignItems: "center",
+      gap: screen.getVerticalPixelSize(10),
+    },
+    closeIcon: {
+      position: "absolute",
+      top: screen.getVerticalPixelSize(20),
+      left: screen.getHorizontalPixelSize(20),
+      fontSize: 26,
+    },
+    title: {
+      fontFamily: "cairo-700",
+      color: "#000",
+      fontSize: 16,
+      textAlign: "center",
+      textTransform: "capitalize",
+    },
+    middleBox: {
+      gap: screen.getVerticalPixelSize(10),
+    },
+    subtitle: {
+      fontFamily: "cairo-600",
+      color: "#000",
+      fontSize: 15,
+      textAlign: "center",
+    },
+    hint: {
+      fontFamily: "cairo-400",
+      color: "#000",
+      fontSize: 13,
+    },
+    buttonsContainer: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+      alignItems: "center",
+      gap: screen.getVerticalPixelSize(10),
+    },
+    closeButtonContainer: {
+      flex: 1,
+      paddingVertical: screen.getVerticalPixelSize(7),
+      backgroundColor: "#fff",
+      borderColor: theme.primaryColor,
+      borderWidth: screen.getHorizontalPixelSize(1.5),
+    },
+    closeButtonText: {
+      fontFamily: "cairo-700",
+      fontSize: 15,
+      color: "#000",
+    },
+    confirmButtonContainer: {
+      flex: 1,
+      paddingVertical: screen.getVerticalPixelSize(9),
+      backgroundColor: theme.primaryColor,
+    },
+    confirmButtonText: {
+      fontFamily: "cairo-700",
+      fontSize: 15,
+      color: "#fff",
+    },
+  });
 
   return (
     <>
@@ -68,75 +143,3 @@ export default function PopupConfirm({
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "rgba(0,0,0,0.5)",
-  },
-  boxContainer: {
-    width: "90%", // TODO: fix
-    padding: 20,
-    backgroundColor: "#fff",
-    borderRadius: 8,
-    alignItems: "center",
-    gap: 20,
-  },
-  closeIcon: {
-    position: "absolute",
-    top: 20,
-    left: 20,
-    fontSize: 26,
-  },
-  title: {
-    fontFamily: "cairo-700",
-    color: "#000",
-    fontSize: 16,
-    textAlign: "center",
-    textTransform: "capitalize",
-  },
-  middleBox: {
-    gap: 10,
-  },
-  subtitle: {
-    fontFamily: "cairo-600",
-    color: "#000",
-    fontSize: 15,
-    textAlign: "center",
-  },
-  hint: {
-    fontFamily: "cairo-400",
-    color: "#000",
-    fontSize: 13,
-  },
-  buttonsContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    gap: 10,
-  },
-  closeButtonContainer: {
-    flex: 1,
-    paddingVertical: 7,
-    backgroundColor: "#fff",
-    borderColor: theme.primaryColor,
-    borderWidth: 2,
-  },
-  closeButtonText: {
-    fontFamily: "cairo-700",
-    fontSize: 15,
-    color: "#000",
-  },
-  confirmButtonContainer: {
-    flex: 1,
-    paddingVertical: 9,
-    backgroundColor: theme.primaryColor,
-  },
-  confirmButtonText: {
-    fontFamily: "cairo-700",
-    fontSize: 15,
-    color: "#fff",
-  },
-});

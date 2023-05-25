@@ -9,6 +9,7 @@ import * as theme from "../../constants/theme";
 import placeTypes from "../../constants/placeTypes";
 import CustomButton from "../buttons/CustomButton";
 import GoogleMap from "../common/GoogleMap";
+import useScreen from "../../hooks/useScreen";
 
 export default function AddPlaceBottomSheet({
   place,
@@ -18,8 +19,56 @@ export default function AddPlaceBottomSheet({
   onSelectLocation,
   onMarkerPress,
 }) {
+  const screen = useScreen();
   const { i18n, lang } = useLocale();
   const [placeType, setPlaceType] = useState(place.type);
+
+  const styles = StyleSheet.create({
+    container: {
+      gap: screen.getVerticalPixelSize(15),
+      paddingHorizontal: screen.getHorizontalPixelSize(15),
+    },
+    arTopContainer: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+      alignItems: "center",
+    },
+    enTopContainer: {
+      flexDirection: "row-reverse",
+      justifyContent: "space-between",
+      alignItems: "center",
+    },
+    arIconContainer: {
+      flexDirection: "row",
+      alignItems: "center",
+      gap: screen.getHorizontalPixelSize(4),
+    },
+    enIconContainer: {
+      flexDirection: "row-reverse",
+      alignItems: "center",
+      gap: screen.getHorizontalPixelSize(4),
+    },
+    iconText: {
+      fontFamily: "cairo-700",
+      fontSize: 15,
+      color: theme.primaryColor,
+    },
+    icon: {
+      fontSize: 24,
+      color: theme.primaryColor,
+    },
+    title: {
+      fontFamily: "cairo-800",
+      fontSize: 15,
+    },
+    buttonContainerStyle: {
+      paddingVertical: screen.getVerticalPixelSize(10),
+    },
+    buttonTextStyle: {
+      fontFamily: "cairo-800",
+      fontSize: 18,
+    },
+  });
 
   const _placesTypes = placeTypes?.map?.((type, index) => ({
     key: index + 1,
@@ -37,7 +86,7 @@ export default function AddPlaceBottomSheet({
       contentStyle={styles.container}
       visible={visible}
       onClose={onClose}
-      height={700}
+      height={screen.getVerticalPixelSize(700)}
     >
       <View
         style={lang === "ar" ? styles.arTopContainer : styles.enTopContainer}
@@ -80,50 +129,3 @@ export default function AddPlaceBottomSheet({
     </DraggableBottomSheet>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    gap: 15,
-    paddingHorizontal: 15,
-  },
-  arTopContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  enTopContainer: {
-    flexDirection: "row-reverse",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  arIconContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 4,
-  },
-  enIconContainer: {
-    flexDirection: "row-reverse",
-    alignItems: "center",
-    gap: 4,
-  },
-  iconText: {
-    fontFamily: "cairo-700",
-    fontSize: 15,
-    color: theme.primaryColor,
-  },
-  icon: {
-    fontSize: 24,
-    color: theme.primaryColor,
-  },
-  title: {
-    fontFamily: "cairo-800",
-    fontSize: 15,
-  },
-  buttonContainerStyle: {
-    paddingVertical: 10,
-  },
-  buttonTextStyle: {
-    fontFamily: "cairo-800",
-    fontSize: 18,
-  },
-});

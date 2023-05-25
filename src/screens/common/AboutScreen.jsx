@@ -18,20 +18,21 @@ export default function AboutScreen({ navigation }) {
     container: {
       flex: 1,
       paddingHorizontal: screen.getHorizontalPixelSize(15),
-      paddingVertical: screen.getVerticalPixelSize(15),
       paddingTop: screen.getVerticalPixelSize(50),
       gap: screen.getVerticalPixelSize(40),
     },
     image: {
       alignSelf: "center",
       width: screen.getHorizontalPixelSize(250),
+      maxWidth: 250,
       height: screen.getVerticalPixelSize(250),
-      backgroundColor: "red",
+      maxHeight: 250,
       marginBottom: screen.getVerticalPixelSize(20),
     },
     text: {
       fontFamily: "cairo-500",
       fontSize: 14,
+      paddingBottom: screen.getVerticalPixelSize(20),
     },
   });
 

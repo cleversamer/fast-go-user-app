@@ -6,6 +6,7 @@ import { EvilIcons } from "@expo/vector-icons";
 import * as theme from "../../constants/theme";
 import useTimer from "../../hooks/useTimer";
 import CustomButton from "../../components/buttons/CustomButton";
+import useScreen from "../../hooks/useScreen";
 
 const defaultTrip = {
   carType: "luxury",
@@ -20,8 +21,124 @@ export default function NewRequestBottomSheet({
   onTimerDone,
   trip = defaultTrip,
 }) {
+  const screen = useScreen();
   const { i18n, lang } = useLocale();
   const { remainingSeconds, isTimerDone } = useTimer(30);
+
+  const styles = StyleSheet.create({
+    container: {
+      gap: screen.getVerticalPixelSize(20),
+    },
+    arTitle: {
+      fontFamily: "cairo-700",
+      fontSize: 18,
+      textAlign: "right",
+    },
+    enTitle: {
+      fontFamily: "cairo-700",
+      fontSize: 18,
+      textAlign: "left",
+      textTransform: "capitalize",
+    },
+    arFromContainer: {
+      flexDirection: "row",
+      gap: screen.getHorizontalPixelSize(7),
+      alignItems: "center",
+    },
+    enFromContainer: {
+      flexDirection: "row-reverse",
+      gap: screen.getHorizontalPixelSize(7),
+      alignItems: "center",
+    },
+    arFromText: {
+      textAlign: "right",
+      fontFamily: "cairo-500",
+      fontSize: 12,
+      flexWrap: "wrap",
+      flex: 1,
+    },
+    enFromText: {
+      textAlign: "left",
+      fontFamily: "cairo-500",
+      fontSize: 12,
+      flexWrap: "wrap",
+      flex: 1,
+    },
+    arFromIcon: {
+      width: screen.getHorizontalPixelSize(30),
+      height: screen.getVerticalPixelSize(30),
+      marginRight: screen.getHorizontalPixelSize(10),
+    },
+    enFromIcon: {
+      width: screen.getHorizontalPixelSize(30),
+      height: screen.getVerticalPixelSize(30),
+      marginLeft: screen.getHorizontalPixelSize(10),
+    },
+    arToContainer: {
+      flexDirection: "row",
+      gap: screen.getHorizontalPixelSize(7),
+      alignItems: "center",
+    },
+    enToContainer: {
+      flexDirection: "row-reverse",
+      gap: screen.getHorizontalPixelSize(7),
+      alignItems: "center",
+    },
+    arToText: {
+      textAlign: "right",
+      fontFamily: "cairo-500",
+      fontSize: 11,
+      flex: 1,
+    },
+    enToText: {
+      textAlign: "left",
+      fontFamily: "cairo-500",
+      fontSize: 11,
+      flex: 1,
+    },
+    toIcon: {
+      fontSize: 40,
+      color: theme.primaryColor,
+    },
+    timerText: {
+      color: theme.primaryColor,
+      fontFamily: "cairo-700",
+      fontSize: 32,
+      alignSelf: "center",
+    },
+    arButtonsContainer: {
+      flexDirection: "row-reverse",
+      justifyContent: "space-around",
+      alignItems: "center",
+      gap: screen.getHorizontalPixelSize(15),
+    },
+    enButtonsContainer: {
+      flexDirection: "row",
+      justifyContent: "space-around",
+      alignItems: "center",
+      gap: screen.getHorizontalPixelSize(15),
+    },
+    approveButtonContainer: {
+      flex: 1,
+      borderWidth: screen.getHorizontalPixelSize(1.5),
+      borderColor: theme.primaryColor,
+    },
+    approveButtonText: {
+      fontFamily: "cairo-800",
+      fontSize: 18,
+    },
+    rejectButtonContainer: {
+      flex: 1,
+      backgroundColor: "#fff",
+      borderWidth: screen.getHorizontalPixelSize(1.5),
+      borderColor: theme.primaryColor,
+    },
+    rejectButtonText: {
+      fontFamily: "cairo-800",
+      fontSize: 18,
+      color: "#000",
+    },
+  });
 
   useEffect(() => {
     try {
@@ -80,118 +197,3 @@ export default function NewRequestBottomSheet({
     </StaticBottomSheet>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    gap: 20,
-  },
-  arTitle: {
-    fontFamily: "cairo-700",
-    fontSize: 18,
-    textAlign: "right",
-  },
-  enTitle: {
-    fontFamily: "cairo-700",
-    fontSize: 18,
-    textAlign: "left",
-    textTransform: "capitalize",
-  },
-  arFromContainer: {
-    flexDirection: "row",
-    gap: 7,
-    alignItems: "center",
-  },
-  enFromContainer: {
-    flexDirection: "row-reverse",
-    gap: 7,
-    alignItems: "center",
-  },
-  arFromText: {
-    textAlign: "right",
-    fontFamily: "cairo-500",
-    fontSize: 12,
-    flexWrap: "wrap",
-    flex: 1,
-  },
-  enFromText: {
-    textAlign: "left",
-    fontFamily: "cairo-500",
-    fontSize: 12,
-    flexWrap: "wrap",
-    flex: 1,
-  },
-  arFromIcon: {
-    width: 30,
-    height: 30,
-    marginRight: 10,
-  },
-  enFromIcon: {
-    width: 30,
-    height: 30,
-    marginLeft: 10,
-  },
-  arToContainer: {
-    flexDirection: "row",
-    gap: 7,
-    alignItems: "center",
-  },
-  enToContainer: {
-    flexDirection: "row-reverse",
-    gap: 7,
-    alignItems: "center",
-  },
-  arToText: {
-    textAlign: "right",
-    fontFamily: "cairo-500",
-    fontSize: 11,
-    flex: 1,
-  },
-  enToText: {
-    textAlign: "left",
-    fontFamily: "cairo-500",
-    fontSize: 11,
-    flex: 1,
-  },
-  toIcon: {
-    fontSize: 40,
-    color: theme.primaryColor,
-  },
-  timerText: {
-    color: theme.primaryColor,
-    fontFamily: "cairo-700",
-    fontSize: 32,
-    alignSelf: "center",
-  },
-  arButtonsContainer: {
-    flexDirection: "row-reverse",
-    justifyContent: "space-around",
-    alignItems: "center",
-    gap: 15,
-  },
-  enButtonsContainer: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    alignItems: "center",
-    gap: 15,
-  },
-  approveButtonContainer: {
-    flex: 1,
-    borderWidth: 2,
-    borderColor: theme.primaryColor,
-  },
-  approveButtonText: {
-    fontFamily: "cairo-800",
-    fontSize: 18,
-  },
-  rejectButtonContainer: {
-    flex: 1,
-    backgroundColor: "#fff",
-    borderWidth: 2,
-    borderColor: theme.primaryColor,
-  },
-  rejectButtonText: {
-    fontFamily: "cairo-800",
-    fontSize: 18,
-    color: "#000",
-  },
-});

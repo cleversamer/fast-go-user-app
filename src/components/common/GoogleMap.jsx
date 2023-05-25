@@ -7,9 +7,6 @@ import useLocale from "../../hooks/useLocale";
 
 Geocoder.init("AIzaSyAo9_6OiQ96Z-D2V8a4iiq5Yz3LDmrrM78");
 
-// API KEY
-// AIzaSyAo9_6OiQ96Z-D2V8a4iiq5Yz3LDmrrM78
-
 const initialRegion = {
   latitude: 32.86806972,
   longitude: 13.1172586594,

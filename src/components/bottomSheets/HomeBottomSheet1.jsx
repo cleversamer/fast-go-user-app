@@ -5,6 +5,7 @@ import Location from "../common/Location";
 import AddLocationButton from "../buttons/AddLocationButton";
 import CustomButton from "../buttons/CustomButton";
 import useLocale from "../../hooks/useLocale";
+import useScreen from "../../hooks/useScreen";
 
 const userFavLocations = ["فلسطين,قطاع غزة,غزة,محافظةغزةالزيتون,890"];
 
@@ -14,10 +15,25 @@ export default function HomeBottomSheet1({
   disableAddLocation,
   locationTitle,
 }) {
+  const screen = useScreen();
   const { i18n } = useLocale();
 
+  const styles = StyleSheet.create({
+    container: {
+      gap: screen.getVerticalPixelSize(15),
+    },
+    title: {
+      fontFamily: "cairo-800",
+      fontSize: 15,
+    },
+    buttonText: {
+      fontFamily: "cairo-800",
+      fontSize: 16,
+    },
+  });
+
   return (
-    <StaticBottomSheet contentStyle={styles.container} snapPoints={["40%"]}>
+    <StaticBottomSheet contentStyle={styles.container}>
       <Text style={styles.title}>{i18n("whereTo")}</Text>
 
       <AddressInput
@@ -44,17 +60,3 @@ export default function HomeBottomSheet1({
     </StaticBottomSheet>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    gap: 15,
-  },
-  title: {
-    fontFamily: "cairo-800",
-    fontSize: 15,
-  },
-  buttonText: {
-    fontFamily: "cairo-800",
-    fontSize: 16,
-  },
-});

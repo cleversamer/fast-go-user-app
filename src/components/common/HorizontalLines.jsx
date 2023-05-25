@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet } from "react-native";
-import * as theme from "../../constants/theme";
+import useScreen from "../../hooks/useScreen";
 
 export default function HorizontalLines({
   text,
@@ -7,6 +7,23 @@ export default function HorizontalLines({
   lineStyle,
   textStyle,
 }) {
+  const screen = useScreen();
+
+  const styles = StyleSheet.create({
+    container: {
+      flexDirection: "row",
+      alignItems: "center",
+    },
+    line: {
+      borderBottomWidth: screen.getHorizontalPixelSize(2),
+      borderColor: "#ccc",
+      flex: 1,
+    },
+    text: {
+      paddingHorizontal: screen.getHorizontalPixelSize(10),
+    },
+  });
+
   return (
     <View style={[styles.container, containerStyle || {}]}>
       <View style={[styles.line, lineStyle || {}]} />
@@ -15,18 +32,3 @@ export default function HorizontalLines({
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  line: {
-    borderBottomWidth: 2,
-    borderColor: "#ccc",
-    flex: 1,
-  },
-  text: {
-    paddingHorizontal: 10,
-  },
-});

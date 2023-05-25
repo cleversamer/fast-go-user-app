@@ -4,6 +4,11 @@ import { StatusBar, Dimensions } from "react-native";
 import useFonts from "./src/hooks/useFonts";
 import useNetworkStatus from "./src/hooks/useNetworkStatus";
 
+import {
+  lockAsync,
+  OrientationLock,
+  unlockAsync,
+} from "expo-screen-orientation";
 import { NavigationContainer } from "@react-navigation/native";
 import AuthNavigation from "./src/navigation/AuthNavigation";
 import PassengerNavigation from "./src/navigation/PassengerNavigation";
@@ -40,6 +45,19 @@ export default function App() {
 
     return () => {
       subscription.remove();
+    };
+  }, []);
+
+  useEffect(() => {
+    const lockScreenOrientation = async () => {
+      // await lockAsync(OrientationLock.PORTRAIT);
+    };
+
+    lockScreenOrientation();
+
+    return () => {
+      // Unlock the screen orientation when the component is unmounted
+      unlockAsync();
     };
   }, []);
 

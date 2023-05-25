@@ -1,6 +1,7 @@
 import { TouchableOpacity, StyleSheet, View, Text } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import useLocale from "../../hooks/useLocale";
+import useScreen from "../../hooks/useScreen";
 
 const defaultText = "إضافة الموقع للمفضلة";
 
@@ -9,7 +10,41 @@ export default function AddLocationButton({
   disabled,
   onPress,
 }) {
+  const screen = useScreen();
   const { lang } = useLocale();
+
+  const styles = StyleSheet.create({
+    arContainer: {
+      flexDirection: "row",
+      justifyContent: "flex-end",
+      alignItems: "center",
+      gap: screen.getHorizontalPixelSize(10),
+    },
+    enContainer: {
+      flexDirection: "row-reverse",
+      justifyContent: "flex-end",
+      alignItems: "center",
+      gap: screen.getHorizontalPixelSize(10),
+    },
+    enabledTitle: {
+      fontFamily: "cairo-500",
+      fontSize: 12,
+    },
+    disabledTitle: {
+      fontFamily: "cairo-500",
+      fontSize: 12,
+      color: "#747474",
+    },
+    iconContainer: {
+      backgroundColor: "#EFEFEF",
+      borderRadius: 6,
+      padding: 4,
+      width: screen.getHorizontalPixelSize(40),
+      height: screen.getVerticalPixelSize(40),
+      justifyContent: "center",
+      alignItems: "center",
+    },
+  });
 
   return (
     <TouchableOpacity disabled={disabled} onPress={onPress}>
@@ -25,36 +60,3 @@ export default function AddLocationButton({
     </TouchableOpacity>
   );
 }
-
-const styles = StyleSheet.create({
-  arContainer: {
-    flexDirection: "row",
-    justifyContent: "flex-end",
-    alignItems: "center",
-    gap: 10,
-  },
-  enContainer: {
-    flexDirection: "row-reverse",
-    justifyContent: "flex-end",
-    alignItems: "center",
-    gap: 10,
-  },
-  enabledTitle: {
-    fontFamily: "cairo-500",
-    fontSize: 12,
-  },
-  disabledTitle: {
-    fontFamily: "cairo-500",
-    fontSize: 12,
-    color: "#747474",
-  },
-  iconContainer: {
-    backgroundColor: "#EFEFEF",
-    borderRadius: 6,
-    padding: 4,
-    width: 40,
-    height: 40,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-});

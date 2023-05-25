@@ -54,7 +54,7 @@ export default function WelcomeScreen({ navigation }) {
     },
     registerButtonContainer: {
       backgroundColor: "#fff",
-      borderWidth: screen.getHorizontalPixelSize(2),
+      borderWidth: screen.getHorizontalPixelSize(1.5),
       borderColor: theme.primaryColor,
       borderRadius: 4,
     },

@@ -12,13 +12,28 @@ import useLocale from "../../hooks/useLocale";
 import PopupError from "../popups/PopupError";
 import PopupConfirm from "../popups/PopupConfirm";
 import screens from "../../static/screens.json";
+import useScreen from "../../hooks/useScreen";
 
 export default function DrawerItems({ navigation }) {
+  const screen = useScreen();
   const { user, displayMode, returnToDriver, switchToPassenger, logout } =
     useAuth();
   const { switchLang, i18n } = useLocale();
   const [showPopupError, setShowPopupError] = useState(false);
   const [showPopupConfirm, setShowPopupConfirm] = useState(false);
+
+  const styles = StyleSheet.create({
+    container: {
+      paddingHorizontal: screen.getHorizontalPixelSize(10),
+      paddingVertical: screen.getVerticalPixelSize(10),
+    },
+    itemIcon: {
+      width: 30,
+      textAlign: "center",
+      color: "#747474",
+      fontSize: 28,
+    },
+  });
 
   const navigateTo = (screen) => () => {
     try {
@@ -212,15 +227,3 @@ export default function DrawerItems({ navigation }) {
     </ScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    padding: 10,
-  },
-  itemIcon: {
-    width: 30,
-    textAlign: "center",
-    color: "#747474",
-    fontSize: 28,
-  },
-});

@@ -8,6 +8,7 @@ import ButtonIcon from "../buttons/ButtonIcon";
 import * as theme from "../../constants/theme";
 import { AntDesign } from "@expo/vector-icons";
 import useLocale from "../../hooks/useLocale";
+import useScreen from "../../hooks/useScreen";
 
 export default function HomeBottomSheet2({
   paymentType,
@@ -16,10 +17,49 @@ export default function HomeBottomSheet2({
   onCarTypeChange,
   onRequestNow,
 }) {
+  const screen = useScreen();
   const { i18n, lang } = useLocale();
 
+  const styles = StyleSheet.create({
+    container: {
+      gap: screen.getVerticalPixelSize(15),
+    },
+    carTypesContainer: {
+      gap: screen.getVerticalPixelSize(10),
+    },
+    paymentContainer: {
+      gap: screen.getVerticalPixelSize(10),
+    },
+    breakLine: {
+      borderWidth: screen.getHorizontalPixelSize(0.5),
+      borderColor: "#ababab",
+      backgroundColor: "#ababab",
+    },
+    radioButtonsContainer: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+      alignItems: "center",
+    },
+    radioButtonText: {
+      fontFamily: "cairo-600",
+      fontSize: 14,
+    },
+    buttonsContainer: {
+      flexDirection: "row",
+      alignItems: "center",
+      gap: screen.getHorizontalPixelSize(10),
+    },
+    submitButtonContainer: {
+      flex: 1,
+    },
+    submitButtonText: {
+      fontFamily: "cairo-800",
+      fontSize: 16,
+    },
+  });
+
   return (
-    <StaticBottomSheet contentStyle={styles.container} snapPoints={["51%"]}>
+    <StaticBottomSheet contentStyle={styles.container}>
       <View style={styles.carTypesContainer}>
         <CarType
           selected={carType === "luxury"}
@@ -92,41 +132,3 @@ export default function HomeBottomSheet2({
     </StaticBottomSheet>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    gap: 15,
-  },
-  carTypesContainer: {
-    gap: 10,
-  },
-  paymentContainer: {
-    gap: 10,
-  },
-  breakLine: {
-    borderWidth: 0.5,
-    borderColor: "#ababab",
-    backgroundColor: "#ababab",
-  },
-  radioButtonsContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  radioButtonText: {
-    fontFamily: "cairo-600",
-    fontSize: 14,
-  },
-  buttonsContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 10,
-  },
-  submitButtonContainer: {
-    flex: 1,
-  },
-  submitButtonText: {
-    fontFamily: "cairo-800",
-    fontSize: 16,
-  },
-});
