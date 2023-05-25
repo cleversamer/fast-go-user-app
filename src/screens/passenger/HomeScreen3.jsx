@@ -4,10 +4,32 @@ import GoogleMap from "../../components/common/GoogleMap";
 import HomeBottomSheet2 from "../../components/bottomSheets/HomeBottomSheet2";
 import { AntDesign } from "@expo/vector-icons";
 import NetworkStatusLine from "../../components/common/NetworkStatusLine";
+import useScreen from "../../hooks/useScreen";
 
 export default function PassengerHomeScreen3({ navigation }) {
+  const screen = useScreen();
   const [paymentType, setPaymentType] = useState("cash");
   const [carType, setCarType] = useState("luxury");
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+    },
+    iconContainer: {
+      justifyContent: "center",
+      alignItems: "center",
+      position: "absolute",
+      top: screen.getVerticalPixelSize(55),
+      right: screen.getHorizontalPixelSize(20),
+      backgroundColor: "#fff",
+      width: screen.getHorizontalPixelSize(45),
+      height: screen.getVerticalPixelSize(45),
+      borderRadius: 50,
+      zIndex: 1,
+      paddingHorizontal: screen.getHorizontalPixelSize(12),
+      paddingVertical: screen.getVerticalPixelSize(12),
+    },
+  });
 
   const handleRequestNow = () => {};
 
@@ -49,23 +71,3 @@ export default function PassengerHomeScreen3({ navigation }) {
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  iconContainer: {
-    justifyContent: "center",
-    alignItems: "center",
-    gap: 4,
-    position: "absolute",
-    top: 55,
-    right: 20,
-    backgroundColor: "#fff",
-    width: 45,
-    height: 45,
-    borderRadius: 50,
-    zIndex: 1,
-    padding: 12,
-  },
-});
