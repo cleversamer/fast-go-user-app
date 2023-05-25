@@ -12,10 +12,45 @@ import useLocale from "../../hooks/useLocale";
 import NetworkStatusLine from "../../components/common/NetworkStatusLine";
 import screens from "../../static/screens.json";
 import useAuth from "../../auth/useAuth";
+import useScreen from "../../hooks/useScreen";
 
 export default function NotificationsScreen({ navigation }) {
+  const screen = useScreen();
   const { user } = useAuth();
   const { i18n } = useLocale();
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      paddingHorizontal: screen.getHorizontalPixelSize(15),
+      paddingVertical: screen.getVerticalPixelSize(15),
+      paddingTop: screen.getVerticalPixelSize(60),
+    },
+    notificationsContainer: {
+      flex: 1,
+      gap: screen.getVerticalPixelSize(10),
+      marginTop: screen.getVerticalPixelSize(20),
+    },
+    emptyNotificationsContainer: {
+      position: "absolute",
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      justifyContent: "center",
+      alignItems: "center",
+      gap: screen.getVerticalPixelSize(25),
+    },
+    emptyImage: {
+      alignSelf: "center",
+      width: screen.getHorizontalPixelSize(200),
+      height: screen.getVerticalPixelSize(200),
+    },
+    emptyText: {
+      fontFamily: "cairo-700",
+      fontSize: 15,
+    },
+  });
 
   const handleToggleNotifications = () => {};
 
@@ -66,41 +101,9 @@ export default function NotificationsScreen({ navigation }) {
             style={styles.emptyImage}
           />
 
-          <Text style={styles.emptyText}>لا يوجد إشعارات حتى الآن</Text>
+          <Text style={styles.emptyText}>{i18n("noNotifications")}</Text>
         </View>
       )}
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 15,
-    paddingTop: 50,
-  },
-  notificationsContainer: {
-    flex: 1,
-    gap: 10,
-    marginTop: 20,
-  },
-  emptyNotificationsContainer: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    justifyContent: "center",
-    alignItems: "center",
-    gap: 25,
-  },
-  emptyImage: {
-    alignSelf: "center",
-    width: 200,
-    height: 200,
-  },
-  emptyText: {
-    fontFamily: "cairo-700",
-    fontSize: 15,
-  },
-});

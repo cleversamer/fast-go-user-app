@@ -538,5 +538,9 @@
   "selectGender": {
     "en": "Select gender",
     "ar": "اختر الجنس"
+  },
+  "noNotifications": {
+    "en": "There're no notifications yet",
+    "ar": "لا يوجد إشعارات حتى الآن"
   }
 }
