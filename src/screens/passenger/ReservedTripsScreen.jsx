@@ -144,7 +144,7 @@ export default function ReservedTripsScreen({ navigation }) {
             style={styles.emptyImage}
           />
 
-          <Text style={styles.emptyText}>لا يوجد حجوزات قادمة</Text>
+          <Text style={styles.emptyText}>{i18n("noTrips")}</Text>
         </View>
       )}
     </SafeAreaView>
