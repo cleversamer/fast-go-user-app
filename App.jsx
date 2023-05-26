@@ -20,12 +20,6 @@ import AuthContext from "./src/auth/context";
 
 import Onboarding from "./src/screens/common/Onboarding";
 
-// import * as Sentry from "@sentry/react-native";
-
-// Sentry.init({
-//   dsn: "https://1b1394cc8661464a8d042e8af7aba4d4@o4505238497984512.ingest.sentry.io/4505238497984512",
-// });
-
 export default function App() {
   // Hooks
   const { fontLoaded } = useFonts();
