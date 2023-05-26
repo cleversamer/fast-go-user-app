@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   Keyboard,
   Pressable,
@@ -16,7 +16,7 @@ import NetworkStatusLine from "../../components/common/NetworkStatusLine";
 import * as theme from "../../constants/theme";
 import useScreen from "../../hooks/useScreen";
 
-const MAX_CODE_LENGTH = 4;
+const MAX_CODE_LENGTH = 6;
 
 export default function LoginScrseen2({ navigation }) {
   const screen = useScreen();
@@ -65,24 +65,6 @@ export default function LoginScrseen2({ navigation }) {
       marginBottom: screen.getVerticalPixelSize(50),
     },
   });
-
-  useEffect(() => {
-    try {
-      let timeoutId;
-
-      if (code.length === MAX_CODE_LENGTH) {
-        timeoutId = setTimeout(() => {
-          login();
-        }, 1500);
-      }
-
-      return () => {
-        if (timeoutId) {
-          clearTimeout(timeoutId);
-        }
-      };
-    } catch (err) {}
-  }, [code]);
 
   const handleGoBack = () => {
     try {

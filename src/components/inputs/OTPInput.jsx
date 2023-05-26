@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { View, StyleSheet, TextInput, Pressable, Text } from "react-native";
 import * as theme from "../../constants/theme";
 import useScreen from "../../hooks/useScreen";
+import checkOTP from "../../utils/checkOTP";
 
 export default function OTPInput({
   code,
@@ -29,13 +30,14 @@ export default function OTPInput({
       opacity: 0,
     },
     otpInputContainer: {
-      width: "70%",
+      width: "100%",
       flexDirection: "row",
-      justifyContent: "space-around",
+      gap: screen.getHorizontalPixelSize(7),
     },
     otpInput: {
       borderColor: theme.primaryColor,
-      minWidth: "15%",
+      flex: 1,
+      maxWidth: 60,
       borderWidth: screen.getHorizontalPixelSize(1.5),
       borderRadius: 5,
       paddingVertical: screen.getVerticalPixelSize(12),
@@ -55,7 +57,8 @@ export default function OTPInput({
 
   useEffect(() => {
     try {
-      setReadyPin(code.length === maxLength);
+      const isValidPin = checkOTP(code);
+      setReadyPin(isValidPin);
 
       return () => {
         setReadyPin(false);
