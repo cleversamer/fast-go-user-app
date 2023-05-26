@@ -12,15 +12,18 @@ export default function Location({ title, onPress, showDelete, onDelete }) {
   const styles = StyleSheet.create({
     arContainer: {
       flexDirection: "row",
-      justifyContent: "space-between",
+      justifyContent: "flex-end",
       alignItems: "center",
       gap: screen.getHorizontalPixelSize(10),
     },
     enContainer: {
       flexDirection: "row-reverse",
-      justifyContent: "space-between",
+      justifyContent: "flex-end",
       alignItems: "center",
       gap: screen.getHorizontalPixelSize(10),
+    },
+    deleteContainer: {
+      justifyContent: "space-between",
     },
     title: {
       fontFamily: "cairo-500",
@@ -38,21 +41,23 @@ export default function Location({ title, onPress, showDelete, onDelete }) {
     },
   });
 
+  const getContainerStyle = () => {
+    try {
+      const langStyle = lang === "ar" ? styles.arContainer : styles.enContainer;
+      const themeStyle = showDelete ? styles.deleteContainer : {};
+      return [langStyle, themeStyle];
+    } catch (err) {}
+  };
+
   return (
-    <View
-      onPress={onPress}
-      style={lang === "ar" ? styles.arContainer : styles.enContainer}
-    >
+    <View onPress={onPress} style={getContainerStyle()}>
       {showDelete && (
         <TouchableOpacity onPress={onDelete}>
           <MaterialIcons name="delete" size={30} color={theme.primaryColor} />
         </TouchableOpacity>
       )}
 
-      <TouchableOpacity
-        style={lang === "ar" ? styles.arContainer : styles.enContainer}
-        onPress={onPress}
-      >
+      <TouchableOpacity style={getContainerStyle()} onPress={onPress}>
         <Text style={styles.title}>{title}</Text>
 
         <View style={styles.iconContainer}>
