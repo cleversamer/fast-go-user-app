@@ -24,7 +24,7 @@ export default function ICCInput({ value = "+218", onChange }) {
     },
     icc: {
       fontWeight: "bold",
-      fontSize: 16,
+      fontSize: screen.getResponsiveFontSize(16),
     },
   });
 

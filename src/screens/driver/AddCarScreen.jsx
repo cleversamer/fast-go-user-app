@@ -23,13 +23,13 @@ export default function AddCarScreen({ navigation }) {
     },
     arTitle: {
       fontFamily: "cairo-700",
-      fontSize: 18,
+      fontSize: screen.getResponsiveFontSize(18),
       textAlign: "right",
       marginBottom: screen.getVerticalPixelSize(7),
     },
     enTitle: {
       fontFamily: "cairo-700",
-      fontSize: 18,
+      fontSize: screen.getResponsiveFontSize(18),
       textAlign: "left",
       textTransform: "capitalize",
       marginBottom: screen.getVerticalPixelSize(7),

@@ -34,7 +34,7 @@ export default function ScreenSteps({
     },
     prevButtonIcon: {
       color: "#fff",
-      fontSize: 24,
+      fontSize: screen.getResponsiveFontSize(24),
       fontFamily: "cairo-400",
     },
     activeNextButtonContainer: {
@@ -63,12 +63,12 @@ export default function ScreenSteps({
     },
     nextButtonText: {
       color: "#fff",
-      fontSize: 15,
+      fontSize: screen.getResponsiveFontSize(15),
       fontFamily: "cairo-700",
     },
     nextButtonIcon: {
       color: "#fff",
-      fontSize: 24,
+      fontSize: screen.getResponsiveFontSize(24),
       fontFamily: "cairo-400",
     },
   });

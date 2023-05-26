@@ -42,7 +42,7 @@ export default function HomeBottomSheet2({
     },
     radioButtonText: {
       fontFamily: "cairo-600",
-      fontSize: 14,
+      fontSize: screen.getResponsiveFontSize(14),
     },
     buttonsContainer: {
       flexDirection: "row",
@@ -54,7 +54,7 @@ export default function HomeBottomSheet2({
     },
     submitButtonText: {
       fontFamily: "cairo-800",
-      fontSize: 16,
+      fontSize: screen.getResponsiveFontSize(16),
     },
   });
 

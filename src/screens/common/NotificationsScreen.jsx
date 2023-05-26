@@ -48,7 +48,7 @@ export default function NotificationsScreen({ navigation }) {
     },
     emptyText: {
       fontFamily: "cairo-700",
-      fontSize: 15,
+      fontSize: screen.getResponsiveFontSize(15),
     },
   });
 

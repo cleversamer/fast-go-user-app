@@ -31,12 +31,12 @@ export default function Challenge({ challenge }) {
     },
     rewardAmount: {
       fontFamily: "cairo-700",
-      fontSize: 18,
+      fontSize: screen.getResponsiveFontSize(18),
       color: theme.primaryColor,
     },
     scoresText: {
       fontFamily: "cairo-600",
-      fontSize: 14,
+      fontSize: screen.getResponsiveFontSize(14),
       color: "#747474",
     },
     title: {
@@ -44,7 +44,7 @@ export default function Challenge({ challenge }) {
       alignSelf: "stretch",
       flexWrap: "wrap",
       fontFamily: "cairo-600",
-      fontSize: 13,
+      fontSize: screen.getResponsiveFontSize(13),
       paddingVertical: screen.getVerticalPixelSize(3),
     },
     iconContainer: {
@@ -59,7 +59,7 @@ export default function Challenge({ challenge }) {
     },
     icon: {
       color: "#fff",
-      fontSize: 50,
+      fontSize: screen.getResponsiveFontSize(50),
     },
   });
 

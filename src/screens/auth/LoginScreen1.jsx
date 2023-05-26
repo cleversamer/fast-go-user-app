@@ -25,12 +25,12 @@ export default function LoginScreen1({ navigation, route }) {
     },
     title: {
       fontFamily: "cairo-800",
-      fontSize: 28,
+      fontSize: screen.getResponsiveFontSize(28),
       marginBottom: screen.getVerticalPixelSize(5),
     },
     subtitle: {
       fontFamily: "cairo-600",
-      fontSize: 16,
+      fontSize: screen.getResponsiveFontSize(16),
       color: "#747474",
     },
     phoneContainer: {
@@ -42,7 +42,7 @@ export default function LoginScreen1({ navigation, route }) {
     },
     buttonText: {
       fontFamily: "cairo-800",
-      fontSize: 16,
+      fontSize: screen.getResponsiveFontSize(16),
     },
     horizontalLinesContainer: {
       marginVertical: screen.getVerticalPixelSize(25),

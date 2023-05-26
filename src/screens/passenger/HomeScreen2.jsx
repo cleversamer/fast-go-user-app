@@ -29,7 +29,7 @@ export default function PassengerHomeScreen2({ navigation }) {
     },
     title: {
       fontFamily: "cairo-800",
-      fontSize: 15,
+      fontSize: screen.getResponsiveFontSize(15),
     },
     buttonText: {
       fontFamily: "cairo-800",

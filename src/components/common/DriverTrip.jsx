@@ -57,7 +57,7 @@ export default function DriverTrip({ trip, onPress }) {
     },
     priceText: {
       fontFamily: "cairo-700",
-      fontSize: 12,
+      fontSize: screen.getResponsiveFontSize(12),
       color: "#fff",
     },
     infoContainer: {
@@ -76,7 +76,7 @@ export default function DriverTrip({ trip, onPress }) {
     },
     carTypeText: {
       fontFamily: "cairo-700",
-      fontSize: 16,
+      fontSize: screen.getResponsiveFontSize(16),
       textTransform: "capitalize",
     },
     carTypeImage: {
@@ -97,14 +97,14 @@ export default function DriverTrip({ trip, onPress }) {
     arFromText: {
       textAlign: "right",
       fontFamily: "cairo-500",
-      fontSize: 12,
+      fontSize: screen.getResponsiveFontSize(12),
       flexWrap: "wrap",
       flex: 1,
     },
     enFromText: {
       textAlign: "left",
       fontFamily: "cairo-500",
-      fontSize: 12,
+      fontSize: screen.getResponsiveFontSize(12),
       flexWrap: "wrap",
       flex: 1,
     },
@@ -126,27 +126,27 @@ export default function DriverTrip({ trip, onPress }) {
     arToText: {
       textAlign: "right",
       fontFamily: "cairo-500",
-      fontSize: 11,
+      fontSize: screen.getResponsiveFontSize(11),
       flex: 1,
     },
     enToText: {
       textAlign: "left",
       fontFamily: "cairo-500",
-      fontSize: 11,
+      fontSize: screen.getResponsiveFontSize(11),
       flex: 1,
     },
     toIcon: {
-      fontSize: 40,
+      fontSize: screen.getResponsiveFontSize(40),
       color: theme.primaryColor,
     },
     happeningNow: {
       fontFamily: "cairo-800",
       color: theme.primaryColor,
-      fontSize: 11,
+      fontSize: screen.getResponsiveFontSize(11),
     },
     date: {
       fontFamily: "cairo-400",
-      fontSize: 11,
+      fontSize: screen.getResponsiveFontSize(11),
     },
     arDate: {
       alignSelf: "flex-start",

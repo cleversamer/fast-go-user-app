@@ -35,7 +35,7 @@ export default function ContinueButton({ text, onPress, icon }) {
     text: {
       color: "#000",
       fontFamily: "cairo-700",
-      fontSize: 15,
+      fontSize: screen.getResponsiveFontSize(15),
       textAlign: "center",
     },
     icon: {

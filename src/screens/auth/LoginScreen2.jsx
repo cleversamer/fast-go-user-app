@@ -35,11 +35,11 @@ export default function LoginScreen2({ navigation, route }) {
     },
     title: {
       fontFamily: "cairo-800",
-      fontSize: 28,
+      fontSize: screen.getResponsiveFontSize(28),
     },
     subtitle: {
       fontFamily: "cairo-600",
-      fontSize: 16,
+      fontSize: screen.getResponsiveFontSize(16),
       color: "#747474",
     },
     inputsContainer: {
@@ -61,12 +61,12 @@ export default function LoginScreen2({ navigation, route }) {
     },
     arInputIcon: {
       marginRight: screen.getHorizontalPixelSize(10),
-      fontSize: 20,
+      fontSize: screen.getResponsiveFontSize(20),
       color: theme.primaryColor,
     },
     enInputIcon: {
       marginLeft: screen.getHorizontalPixelSize(10),
-      fontSize: 20,
+      fontSize: screen.getResponsiveFontSize(20),
       color: theme.primaryColor,
     },
     screenStepsContainer: {

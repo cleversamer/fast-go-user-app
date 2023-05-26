@@ -41,24 +41,24 @@ export default function Place({ place, onEdit }) {
     },
     arType: {
       fontFamily: "cairo-500",
-      fontSize: 14,
+      fontSize: screen.getResponsiveFontSize(14),
       textAlign: "right",
     },
     enType: {
       fontFamily: "cairo-500",
-      fontSize: 14,
+      fontSize: screen.getResponsiveFontSize(14),
       textAlign: "left",
       textTransform: "capitalize",
     },
     arTitle: {
       fontFamily: "cairo-500",
-      fontSize: 11,
+      fontSize: screen.getResponsiveFontSize(11),
       color: "#747474",
       textAlign: "right",
     },
     enTitle: {
       fontFamily: "cairo-500",
-      fontSize: 11,
+      fontSize: screen.getResponsiveFontSize(11),
       color: "#747474",
       textAlign: "left",
     },

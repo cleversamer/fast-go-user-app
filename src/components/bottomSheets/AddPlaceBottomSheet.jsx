@@ -50,23 +50,23 @@ export default function AddPlaceBottomSheet({
     },
     iconText: {
       fontFamily: "cairo-700",
-      fontSize: 15,
+      fontSize: screen.getResponsiveFontSize(15),
       color: theme.primaryColor,
     },
     icon: {
-      fontSize: 24,
+      fontSize: screen.getResponsiveFontSize(24),
       color: theme.primaryColor,
     },
     title: {
       fontFamily: "cairo-800",
-      fontSize: 15,
+      fontSize: screen.getResponsiveFontSize(15),
     },
     buttonContainerStyle: {
       paddingVertical: screen.getVerticalPixelSize(10),
     },
     buttonTextStyle: {
       fontFamily: "cairo-800",
-      fontSize: 18,
+      fontSize: screen.getResponsiveFontSize(18),
     },
   });
 

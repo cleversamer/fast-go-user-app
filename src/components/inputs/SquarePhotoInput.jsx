@@ -22,7 +22,7 @@ export default function SquarePhotoInput({ title }) {
       textAlign: "center",
     },
     galleryIcon: {
-      fontSize: 56,
+      fontSize: screen.getResponsiveFontSize(56),
       color: "#fff",
     },
     cameraIconContainer: {
@@ -41,11 +41,11 @@ export default function SquarePhotoInput({ title }) {
     },
     cameraIcon: {
       color: theme.primaryColor,
-      fontSize: 20,
+      fontSize: screen.getResponsiveFontSize(20),
     },
     title: {
       fontFamily: "cairo-500",
-      fontSize: 13,
+      fontSize: screen.getResponsiveFontSize(13),
       color: "#747474",
     },
   });

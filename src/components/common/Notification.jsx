@@ -41,34 +41,34 @@ export default function Notification({ notification, onPress }) {
     arTitle: {
       textAlign: "right",
       fontFamily: "cairo-700",
-      fontSize: 12,
+      fontSize: screen.getResponsiveFontSize(12),
     },
     enTitle: {
       textAlign: "left",
       fontFamily: "cairo-700",
-      fontSize: 12,
+      fontSize: screen.getResponsiveFontSize(12),
     },
     arBody: {
       textAlign: "right",
       fontFamily: "cairo-500",
-      fontSize: 11,
+      fontSize: screen.getResponsiveFontSize(11),
     },
     enBody: {
       textAlign: "left",
       fontFamily: "cairo-500",
-      fontSize: 11,
+      fontSize: screen.getResponsiveFontSize(11),
     },
     arDate: {
       alignSelf: "flex-start",
       textAlign: "left",
       fontFamily: "cairo-400",
-      fontSize: 11,
+      fontSize: screen.getResponsiveFontSize(11),
     },
     enDate: {
       alignSelf: "flex-end",
       textAlign: "right",
       fontFamily: "cairo-400",
-      fontSize: 11,
+      fontSize: screen.getResponsiveFontSize(11),
     },
     image: {
       width: screen.getHorizontalPixelSize(90),

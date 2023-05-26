@@ -35,7 +35,7 @@ export default function LoginScrseen2({ navigation }) {
     },
     title: {
       fontFamily: "cairo-700",
-      fontSize: 18,
+      fontSize: screen.getResponsiveFontSize(18),
     },
     otpInputContainer: {
       alignSelf: "center",
@@ -51,7 +51,7 @@ export default function LoginScrseen2({ navigation }) {
       textAlign: "center",
       paddingVertical: screen.getVerticalPixelSize(5),
       paddingHorizontal: screen.getHorizontalPixelSize(5),
-      fontSize: 16,
+      fontSize: screen.getResponsiveFontSize(16),
     },
     remainingSeconds: {
       fontFamily: "cairo-700",

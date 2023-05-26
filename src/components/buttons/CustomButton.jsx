@@ -27,7 +27,7 @@ export default function CustomButton({
     text: {
       color: "#fff",
       fontFamily: "cairo-400",
-      fontSize: 15,
+      fontSize: screen.getResponsiveFontSize(15),
       textAlign: "center",
       textTransform: "capitalize",
     },

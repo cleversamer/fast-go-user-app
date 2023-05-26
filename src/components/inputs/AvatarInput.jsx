@@ -34,7 +34,7 @@ export default function AvatarInput({ value, onChange, containerStyles }) {
     },
     cameraIcon: {
       color: theme.primaryColor,
-      fontSize: 24,
+      fontSize: screen.getResponsiveFontSize(24),
     },
     avatar: {
       backgroundColor: "#fff",

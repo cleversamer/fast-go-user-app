@@ -31,7 +31,7 @@ export default function AboutScreen({ navigation }) {
     },
     text: {
       fontFamily: "cairo-500",
-      fontSize: 14,
+      fontSize: screen.getResponsiveFontSize(14),
       paddingBottom: screen.getVerticalPixelSize(20),
     },
   });

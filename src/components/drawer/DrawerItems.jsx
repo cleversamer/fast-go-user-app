@@ -31,7 +31,7 @@ export default function DrawerItems({ navigation }) {
       width: 30,
       textAlign: "center",
       color: "#747474",
-      fontSize: 28,
+      fontSize: screen.getResponsiveFontSize(28),
     },
   });
 

@@ -38,12 +38,12 @@ export default function PopupError({
     title: {
       fontFamily: "cairo-700",
       color: "#fff",
-      fontSize: 17,
+      fontSize: screen.getResponsiveFontSize(17),
     },
     errorText: {
       fontFamily: "cairo-500",
       color: "#fff",
-      fontSize: 13,
+      fontSize: screen.getResponsiveFontSize(13),
     },
     buttonContainer: {
       backgroundColor: "#fff",

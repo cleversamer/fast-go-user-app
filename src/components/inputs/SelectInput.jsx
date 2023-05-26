@@ -41,23 +41,23 @@ export default function SelectInput({
     },
     arDropdownTextStyles: {
       fontFamily: "cairo-600",
-      fontSize: 13,
+      fontSize: screen.getResponsiveFontSize(13),
       textAlign: "right",
     },
     enDropdownTextStyles: {
       fontFamily: "cairo-600",
-      fontSize: 13,
+      fontSize: screen.getResponsiveFontSize(13),
       textAlign: "left",
       textTransform: "capitalize",
     },
     inputStyles: {
       fontFamily: "cairo-600",
-      fontSize: 13,
+      fontSize: screen.getResponsiveFontSize(13),
       color: "#747474",
       textTransform: "capitalize",
     },
     arrowDownIcon: {
-      fontSize: 20,
+      fontSize: screen.getResponsiveFontSize(20),
       color: theme.primaryColor,
     },
   });

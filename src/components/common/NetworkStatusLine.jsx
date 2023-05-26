@@ -21,7 +21,7 @@ export default function NetworkStatusLine() {
       color: "#fff",
       fontFamily: "cairo-700",
       textAlign: "center",
-      fontSize: 13,
+      fontSize: screen.getResponsiveFontSize(13),
     },
   });
 

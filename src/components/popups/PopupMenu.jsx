@@ -18,7 +18,7 @@ export default function PopupMenu({ onRequestAccountDeletion }) {
 
   const styles = StyleSheet.create({
     moreIcon: {
-      fontSize: 26,
+      fontSize: screen.getResponsiveFontSize(26),
       paddingVertical: screen.getVerticalPixelSize(5),
       paddingHorizontal: screen.getHorizontalPixelSize(5),
     },
@@ -40,12 +40,12 @@ export default function PopupMenu({ onRequestAccountDeletion }) {
     },
     arOptionText: {
       fontFamily: "cairo-700",
-      fontSize: 13,
+      fontSize: screen.getResponsiveFontSize(13),
       textAlign: "right",
     },
     enOptionText: {
       fontFamily: "cairo-700",
-      fontSize: 13,
+      fontSize: screen.getResponsiveFontSize(13),
       textAlign: "left",
     },
   });

@@ -28,11 +28,11 @@ export default function AddLocationButton({
     },
     enabledTitle: {
       fontFamily: "cairo-500",
-      fontSize: 12,
+      fontSize: screen.getResponsiveFontSize(12),
     },
     disabledTitle: {
       fontFamily: "cairo-500",
-      fontSize: 12,
+      fontSize: screen.getResponsiveFontSize(12),
       color: "#747474",
     },
     iconContainer: {

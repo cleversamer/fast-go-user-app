@@ -35,13 +35,13 @@ export default function WelcomeScreen({ navigation }) {
       textAlign: "center",
       marginBottom: screen.getVerticalPixelSize(20),
       fontFamily: "cairo-800",
-      fontSize: 22,
+      fontSize: screen.getResponsiveFontSize(22),
     },
     text: {
       textAlign: "center",
       marginBottom: screen.getVerticalPixelSize(50),
       fontFamily: "cairo-500",
-      fontSize: 14,
+      fontSize: screen.getResponsiveFontSize(14),
     },
     loginButtonContainer: {
       backgroundColor: theme.primaryColor,
@@ -49,7 +49,7 @@ export default function WelcomeScreen({ navigation }) {
       borderRadius: 4,
     },
     loginButtonText: {
-      fontSize: 16,
+      fontSize: screen.getResponsiveFontSize(16),
       fontFamily: "cairo-800",
     },
     registerButtonContainer: {
@@ -60,7 +60,7 @@ export default function WelcomeScreen({ navigation }) {
     },
     registerButtonText: {
       color: "#000",
-      fontSize: 16,
+      fontSize: screen.getResponsiveFontSize(16),
       fontFamily: "cairo-800",
     },
   });

@@ -19,7 +19,7 @@ export default function CarType({ amount, title, image, selected, onPress }) {
     },
     amount: {
       fontFamily: "cairo-600",
-      fontSize: 15,
+      fontSize: screen.getResponsiveFontSize(15),
     },
     infoContainer: {
       flexDirection: "row",
@@ -28,7 +28,7 @@ export default function CarType({ amount, title, image, selected, onPress }) {
     },
     title: {
       fontFamily: "cairo-600",
-      fontSize: 15,
+      fontSize: screen.getResponsiveFontSize(15),
       textTransform: "capitalize",
     },
     image: {

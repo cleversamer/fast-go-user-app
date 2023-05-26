@@ -16,7 +16,7 @@ export default function Copyrights() {
     },
     text: {
       fontFamily: "cairo-600",
-      fontSize: 14,
+      fontSize: screen.getResponsiveFontSize(14),
       color: "#747474",
     },
   });

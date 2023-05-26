@@ -28,12 +28,12 @@ export default function PendingRequestScreen({ navigation }) {
     },
     title: {
       fontFamily: "cairo-800",
-      fontSize: 18,
+      fontSize: screen.getResponsiveFontSize(18),
       marginBottom: screen.getVerticalPixelSize(15),
     },
     subtitle: {
       fontFamily: "cairo-700",
-      fontSize: 14,
+      fontSize: screen.getResponsiveFontSize(14),
       color: "#747474",
       marginBottom: screen.getVerticalPixelSize(50),
     },
@@ -43,7 +43,7 @@ export default function PendingRequestScreen({ navigation }) {
     },
     buttonText: {
       fontFamily: "cairo-800",
-      fontSize: 16,
+      fontSize: screen.getResponsiveFontSize(16),
     },
   });
 

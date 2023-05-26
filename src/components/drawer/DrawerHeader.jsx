@@ -51,12 +51,12 @@ export default function DrawerHeader({ navigation }) {
     },
     welcomingMssg: {
       fontFamily: "cairo-700",
-      fontSize: 12,
+      fontSize: screen.getResponsiveFontSize(12),
       color: "#fff",
     },
     userName: {
       fontFamily: "cairo-700",
-      fontSize: 15,
+      fontSize: screen.getResponsiveFontSize(15),
       color: "#fff",
     },
     avatar: {
@@ -69,7 +69,7 @@ export default function DrawerHeader({ navigation }) {
     },
     lastLoginText: {
       fontFamily: "cairo-700",
-      fontSize: 12,
+      fontSize: screen.getResponsiveFontSize(12),
       color: "#fff",
     },
   });

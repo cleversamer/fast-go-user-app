@@ -36,13 +36,13 @@ export default function EarnMoreScreen({ navigation }) {
     },
     title: {
       fontFamily: "cairo-700",
-      fontSize: 18,
+      fontSize: screen.getResponsiveFontSize(18),
       marginTop: screen.getVerticalPixelSize(20),
       textTransform: "capitalize",
     },
     subtitle: {
       fontFamily: "cairo-500",
-      fontSize: 14,
+      fontSize: screen.getResponsiveFontSize(14),
       marginTop: screen.getVerticalPixelSize(10),
       textAlign: "center",
       color: "#747474",
@@ -76,16 +76,16 @@ export default function EarnMoreScreen({ navigation }) {
     },
     codeText: {
       fontFamily: "cairo-700",
-      fontSize: 14,
+      fontSize: screen.getResponsiveFontSize(14),
       color: "#fff",
     },
     copyIcon: {
-      fontSize: 20,
+      fontSize: screen.getResponsiveFontSize(20),
       color: "#fff",
     },
     giftHintText: {
       fontFamily: "cairo-500",
-      fontSize: 14,
+      fontSize: screen.getResponsiveFontSize(14),
       color: "#747474",
       marginTop: screen.getVerticalPixelSize(35),
       textAlign: "center",

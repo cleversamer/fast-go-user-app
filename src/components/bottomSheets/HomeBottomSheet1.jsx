@@ -24,11 +24,11 @@ export default function HomeBottomSheet1({
     },
     title: {
       fontFamily: "cairo-800",
-      fontSize: 15,
+      fontSize: screen.getResponsiveFontSize(15),
     },
     buttonText: {
       fontFamily: "cairo-800",
-      fontSize: 16,
+      fontSize: screen.getResponsiveFontSize(16),
     },
   });
 

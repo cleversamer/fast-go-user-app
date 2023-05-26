@@ -34,12 +34,12 @@ export default function ReferralCodeInput({ value, onChange }) {
       alignItems: "center",
     },
     arAboutIcon: {
-      fontSize: 26,
+      fontSize: screen.getResponsiveFontSize(26),
       marginLeft: screen.getHorizontalPixelSize(10),
       color: "#747474",
     },
     enAboutIcon: {
-      fontSize: 26,
+      fontSize: screen.getResponsiveFontSize(26),
       marginRight: screen.getHorizontalPixelSize(10),
       color: "#747474",
     },
@@ -60,12 +60,12 @@ export default function ReferralCodeInput({ value, onChange }) {
       textAlign: "left",
     },
     arIcon: {
-      fontSize: 30,
+      fontSize: screen.getResponsiveFontSize(30),
       color: theme.primaryColor,
       marginRight: screen.getHorizontalPixelSize(10),
     },
     enIcon: {
-      fontSize: 30,
+      fontSize: screen.getResponsiveFontSize(30),
       color: theme.primaryColor,
       marginLeft: screen.getHorizontalPixelSize(10),
     },
@@ -82,7 +82,7 @@ export default function ReferralCodeInput({ value, onChange }) {
       paddingVertical: screen.getVerticalPixelSize(10),
       borderRadius: 7,
       fontFamily: "cairo-500",
-      fontSize: 12,
+      fontSize: screen.getResponsiveFontSize(12),
     },
     enPopupHint: {
       backgroundColor: "#f7f7f7",
@@ -97,7 +97,7 @@ export default function ReferralCodeInput({ value, onChange }) {
       paddingVertical: screen.getVerticalPixelSize(10),
       borderRadius: 7,
       fontFamily: "cairo-500",
-      fontSize: 12,
+      fontSize: screen.getResponsiveFontSize(12),
     },
   });
 

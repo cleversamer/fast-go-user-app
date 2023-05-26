@@ -20,14 +20,14 @@ export default function ProfileScreenTitle({
     },
     title: {
       fontFamily: "cairo-700",
-      fontSize: 16,
+      fontSize: screen.getResponsiveFontSize(16),
       textAlign: "center",
       position: "absolute",
       left: "50%",
       transform: [{ translateX: -(screen.getScreenWidth() / 6) }],
     },
     backIcon: {
-      fontSize: 26,
+      fontSize: screen.getResponsiveFontSize(26),
       paddingVertical: screen.getVerticalPixelSize(5),
       paddingHorizontal: screen.getHorizontalPixelSize(5),
     },

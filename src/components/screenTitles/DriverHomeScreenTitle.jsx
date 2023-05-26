@@ -33,12 +33,12 @@ export default function DriverHomeScreenTitle({
     },
     title: {
       fontFamily: "cairo-700",
-      fontSize: 16,
+      fontSize: screen.getResponsiveFontSize(16),
       textAlign: "center",
       color: theme.primaryColor,
     },
     backIcon: {
-      fontSize: 32,
+      fontSize: screen.getResponsiveFontSize(32),
       paddingVertical: screen.getVerticalPixelSize(5),
       paddingHorizontal: screen.getHorizontalPixelSize(5),
       color: theme.primaryColor,

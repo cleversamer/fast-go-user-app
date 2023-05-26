@@ -46,11 +46,11 @@ export default function DrawerItem({
     badgeCount: {
       color: "#fff",
       fontFamily: "cairo-800",
-      fontSize: 16,
+      fontSize: screen.getResponsiveFontSize(16),
     },
     itemTitle: {
       fontFamily: "cairo-600",
-      fontSize: 14,
+      fontSize: screen.getResponsiveFontSize(14),
       textTransform: "capitalize",
     },
   });

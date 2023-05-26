@@ -42,11 +42,11 @@ export default function CallScreen({ navigation }) {
     },
     receiverName: {
       fontFamily: "cairo-700",
-      fontSize: 20,
+      fontSize: screen.getResponsiveFontSize(20),
     },
     callStatus: {
       fontFamily: "cairo-600",
-      fontSize: 14,
+      fontSize: screen.getResponsiveFontSize(14),
       color: "#747474",
     },
     callActionsContainer: {
@@ -56,7 +56,7 @@ export default function CallScreen({ navigation }) {
     },
     callIcon: {
       color: "#fff",
-      fontSize: 30,
+      fontSize: screen.getResponsiveFontSize(30),
     },
     iconContainer: {
       borderRadius: 50,

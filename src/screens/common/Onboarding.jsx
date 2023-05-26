@@ -38,8 +38,7 @@ export default function Onboarding({ onDone }) {
     sliderContainer: {
       flex: 1,
       alignItems: "center",
-      padding: 15,
-      paddingVertical: screen.getVerticalPixelSize(15),
+      paddingBottom: screen.getVerticalPixelSize(15),
       paddingHorizontal: screen.getHorizontalPixelSize(15),
       paddingTop: screen.getHorizontalPixelSize(100),
     },
@@ -50,7 +49,7 @@ export default function Onboarding({ onDone }) {
     },
     sliderTitle: {
       fontFamily: "cairo-800",
-      fontSize: 22,
+      fontSize: screen.getResponsiveFontSize(22),
       color: "#000",
       marginBottom: screen.getVerticalPixelSize(15),
       textAlign: "center",
@@ -73,7 +72,7 @@ export default function Onboarding({ onDone }) {
     },
     nextButtonIcon: {
       color: "#fff",
-      fontSize: 24,
+      fontSize: screen.getResponsiveFontSize(24),
       fontFamily: "cairo-400",
     },
     skipButtonContainer: {
@@ -82,7 +81,7 @@ export default function Onboarding({ onDone }) {
     },
     skipButtonText: {
       color: "#747474",
-      fontSize: 15,
+      fontSize: screen.getResponsiveFontSize(15),
       fontFamily: "cairo-500",
     },
   });

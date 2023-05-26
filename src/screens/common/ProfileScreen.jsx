@@ -38,12 +38,12 @@ export default function ProfileScreen({ navigation }) {
     },
     arIcon: {
       marginRight: screen.getHorizontalPixelSize(10),
-      fontSize: 24,
+      fontSize: screen.getResponsiveFontSize(24),
       color: theme.primaryColor,
     },
     enIcon: {
       marginLeft: screen.getHorizontalPixelSize(10),
-      fontSize: 24,
+      fontSize: screen.getResponsiveFontSize(24),
       color: theme.primaryColor,
     },
     inputsContainer: {
@@ -54,7 +54,7 @@ export default function ProfileScreen({ navigation }) {
     },
     buttonText: {
       fontFamily: "cairo-800",
-      fontSize: 18,
+      fontSize: screen.getResponsiveFontSize(18),
     },
   });
 

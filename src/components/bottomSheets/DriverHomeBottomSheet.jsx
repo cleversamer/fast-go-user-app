@@ -21,13 +21,13 @@ export default function DriverHomeBottomSheet({
     },
     titleConnected: {
       fontFamily: "cairo-700",
-      fontSize: 18,
+      fontSize: screen.getResponsiveFontSize(18),
       color: theme.primaryColor,
       textAlign: "center",
     },
     titleNotConnected: {
       fontFamily: "cairo-700",
-      fontSize: 18,
+      fontSize: screen.getResponsiveFontSize(18),
       color: "#f00",
       textAlign: "center",
     },
@@ -41,11 +41,11 @@ export default function DriverHomeBottomSheet({
       paddingHorizontal: screen.getHorizontalPixelSize(10),
     },
     icon: {
-      fontSize: 28,
+      fontSize: screen.getResponsiveFontSize(28),
       color: "#747474",
     },
     activeIcon: {
-      fontSize: 28,
+      fontSize: screen.getResponsiveFontSize(28),
       color: theme.primaryColor,
     },
   });

@@ -31,12 +31,12 @@ export default function NewRequestBottomSheet({
     },
     arTitle: {
       fontFamily: "cairo-700",
-      fontSize: 18,
+      fontSize: screen.getResponsiveFontSize(18),
       textAlign: "right",
     },
     enTitle: {
       fontFamily: "cairo-700",
-      fontSize: 18,
+      fontSize: screen.getResponsiveFontSize(18),
       textAlign: "left",
       textTransform: "capitalize",
     },
@@ -53,14 +53,14 @@ export default function NewRequestBottomSheet({
     arFromText: {
       textAlign: "right",
       fontFamily: "cairo-500",
-      fontSize: 12,
+      fontSize: screen.getResponsiveFontSize(12),
       flexWrap: "wrap",
       flex: 1,
     },
     enFromText: {
       textAlign: "left",
       fontFamily: "cairo-500",
-      fontSize: 12,
+      fontSize: screen.getResponsiveFontSize(12),
       flexWrap: "wrap",
       flex: 1,
     },
@@ -87,23 +87,23 @@ export default function NewRequestBottomSheet({
     arToText: {
       textAlign: "right",
       fontFamily: "cairo-500",
-      fontSize: 11,
+      fontSize: screen.getResponsiveFontSize(11),
       flex: 1,
     },
     enToText: {
       textAlign: "left",
       fontFamily: "cairo-500",
-      fontSize: 11,
+      fontSize: screen.getResponsiveFontSize(11),
       flex: 1,
     },
     toIcon: {
-      fontSize: 40,
+      fontSize: screen.getResponsiveFontSize(40),
       color: theme.primaryColor,
     },
     timerText: {
       color: theme.primaryColor,
       fontFamily: "cairo-700",
-      fontSize: 32,
+      fontSize: screen.getResponsiveFontSize(32),
       alignSelf: "center",
     },
     arButtonsContainer: {
@@ -125,7 +125,7 @@ export default function NewRequestBottomSheet({
     },
     approveButtonText: {
       fontFamily: "cairo-800",
-      fontSize: 18,
+      fontSize: screen.getResponsiveFontSize(18),
     },
     rejectButtonContainer: {
       flex: 1,
@@ -135,7 +135,7 @@ export default function NewRequestBottomSheet({
     },
     rejectButtonText: {
       fontFamily: "cairo-800",
-      fontSize: 18,
+      fontSize: screen.getResponsiveFontSize(18),
       color: "#000",
     },
   });

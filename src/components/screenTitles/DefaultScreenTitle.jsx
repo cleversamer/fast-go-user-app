@@ -16,7 +16,7 @@ export default function DefaultScreenTitle({ title, onPrev }) {
     },
     title: {
       fontFamily: "cairo-700",
-      fontSize: 16,
+      fontSize: screen.getResponsiveFontSize(16),
       textAlign: "center",
       textTransform: "capitalize",
     },
@@ -26,7 +26,7 @@ export default function DefaultScreenTitle({ title, onPrev }) {
       right: 0,
     },
     backIcon: {
-      fontSize: 26,
+      fontSize: screen.getResponsiveFontSize(26),
       paddingVertical: screen.getVerticalPixelSize(5),
       paddingHorizontal: screen.getHorizontalPixelSize(5),
     },

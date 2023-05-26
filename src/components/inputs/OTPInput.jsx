@@ -46,7 +46,7 @@ export default function OTPInput({
       backgroundColor: theme.primaryColorLight,
     },
     otpInputText: {
-      fontSize: 22,
+      fontSize: screen.getResponsiveFontSize(22),
       fontFamily: "cairo-700",
       textAlign: "center",
       color: "#000",

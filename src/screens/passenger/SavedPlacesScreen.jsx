@@ -58,7 +58,7 @@ export default function SavedPlacesScreen({ navigation }) {
     },
     arHintText: {
       fontFamily: "cairo-600",
-      fontSize: 12,
+      fontSize: screen.getResponsiveFontSize(12),
       color: "#747474",
       marginTop: screen.getVerticalPixelSize(10),
       marginBottom: screen.getVerticalPixelSize(20),
@@ -66,7 +66,7 @@ export default function SavedPlacesScreen({ navigation }) {
     },
     enHintText: {
       fontFamily: "cairo-600",
-      fontSize: 12,
+      fontSize: screen.getResponsiveFontSize(12),
       color: "#747474",
       marginTop: screen.getVerticalPixelSize(10),
       marginBottom: screen.getVerticalPixelSize(20),

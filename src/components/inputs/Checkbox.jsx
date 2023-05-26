@@ -29,7 +29,7 @@ export default function Checkbox({
     },
     text: {
       fontFamily: "cairo-500",
-      fontSize: 13,
+      fontSize: screen.getResponsiveFontSize(13),
     },
     boxContainer: {
       height: screen.getVerticalPixelSize(24),

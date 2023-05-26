@@ -55,7 +55,7 @@ export default function WalletScreen({ navigation }) {
     },
     walletBoxTitle: {
       fontFamily: "cairo-800",
-      fontSize: 16,
+      fontSize: screen.getResponsiveFontSize(16),
       color: "#fff",
     },
     arWalletBoxBottomContainer: {
@@ -70,7 +70,7 @@ export default function WalletScreen({ navigation }) {
     },
     balanceText: {
       fontFamily: "cairo-700",
-      fontSize: 26,
+      fontSize: screen.getResponsiveFontSize(26),
       color: "#fff",
     },
     balanceIconContainer: {
@@ -84,7 +84,7 @@ export default function WalletScreen({ navigation }) {
       maxHeight: 40,
     },
     balanceIcon: {
-      fontSize: 30,
+      fontSize: screen.getResponsiveFontSize(30),
       color: theme.primaryColor,
     },
     addBalanceFormContainer: {
@@ -92,30 +92,30 @@ export default function WalletScreen({ navigation }) {
     },
     addBalanceFormTitle: {
       fontFamily: "cairo-700",
-      fontSize: 20,
+      fontSize: screen.getResponsiveFontSize(20),
       color: theme.primaryColor,
       textTransform: "capitalize",
     },
     arCardIcon: {
       color: theme.primaryColor,
-      fontSize: 24,
+      fontSize: screen.getResponsiveFontSize(24),
       marginRight: screen.getHorizontalPixelSize(10),
     },
     enCardIcon: {
       color: theme.primaryColor,
-      fontSize: 24,
+      fontSize: screen.getResponsiveFontSize(24),
       marginLeft: screen.getHorizontalPixelSize(10),
     },
     buttonText: {
       fontFamily: "cairo-700",
-      fontSize: 20,
+      fontSize: screen.getResponsiveFontSize(20),
     },
     buttonContainer: {
       paddingVertical: screen.getVerticalPixelSize(8),
     },
     popupSubtitle: {
       fontFamily: "cairo-700",
-      fontSize: 32,
+      fontSize: screen.getResponsiveFontSize(32),
       color: theme.primaryColor,
     },
   });

@@ -37,7 +37,7 @@ export default function InputIcon({
     },
     title: {
       fontFamily: "cairo-700",
-      fontSize: 15,
+      fontSize: screen.getResponsiveFontSize(15),
     },
     arInput: {
       flex: 1,
@@ -45,7 +45,7 @@ export default function InputIcon({
       paddingVertical: screen.getVerticalPixelSize(10),
       paddingHorizontal: screen.getHorizontalPixelSize(10),
       fontFamily: "cairo-500",
-      fontSize: 13,
+      fontSize: screen.getResponsiveFontSize(13),
       textAlign: "right",
     },
     enInput: {
@@ -54,7 +54,7 @@ export default function InputIcon({
       paddingVertical: screen.getVerticalPixelSize(10),
       paddingHorizontal: screen.getHorizontalPixelSize(10),
       fontFamily: "cairo-500",
-      fontSize: 13,
+      fontSize: screen.getResponsiveFontSize(13),
       textAlign: "left",
     },
   });

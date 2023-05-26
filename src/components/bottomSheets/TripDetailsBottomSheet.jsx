@@ -21,11 +21,11 @@ export default function TripDetailsBottomSheet({ driver, onCallDriver }) {
     },
     driverName: {
       fontFamily: "cairo-700",
-      fontSize: 16,
+      fontSize: screen.getResponsiveFontSize(16),
     },
     driverCar: {
       fontFamily: "cairo-700",
-      fontSize: 14,
+      fontSize: screen.getResponsiveFontSize(14),
       color: "#747474",
     },
     arInfoContainer: {
@@ -50,19 +50,19 @@ export default function TripDetailsBottomSheet({ driver, onCallDriver }) {
     },
     statsTitle: {
       fontFamily: "cairo-700",
-      fontSize: 16,
+      fontSize: screen.getResponsiveFontSize(16),
       textAlign: "center",
     },
     statsSubtitle: {
       fontFamily: "cairo-500",
-      fontSize: 12,
+      fontSize: screen.getResponsiveFontSize(12),
       color: "#747474",
       textAlign: "center",
       textTransform: "capitalize",
     },
     callIcon: {
       color: "#fff",
-      fontSize: 30,
+      fontSize: screen.getResponsiveFontSize(30),
     },
   });
 

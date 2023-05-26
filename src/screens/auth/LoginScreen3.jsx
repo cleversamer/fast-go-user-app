@@ -42,7 +42,7 @@ export default function LoginScreen2({ navigation, route }) {
     },
     privacyText: {
       fontFamily: "cairo-400",
-      fontSize: 13,
+      fontSize: screen.getResponsiveFontSize(13),
       marginTop: screen.getVerticalPixelSize(40),
     },
     screenStepsContainer: {

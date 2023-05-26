@@ -97,7 +97,7 @@ export default function ReservedTripsScreen({ navigation }) {
     },
     emptyText: {
       fontFamily: "cairo-700",
-      fontSize: 15,
+      fontSize: screen.getResponsiveFontSize(15),
     },
   });
 

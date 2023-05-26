@@ -39,12 +39,12 @@ export default function PopupConfirm({
       position: "absolute",
       top: screen.getVerticalPixelSize(20),
       left: screen.getHorizontalPixelSize(20),
-      fontSize: 26,
+      fontSize: screen.getResponsiveFontSize(26),
     },
     title: {
       fontFamily: "cairo-700",
       color: "#000",
-      fontSize: 16,
+      fontSize: screen.getResponsiveFontSize(16),
       textAlign: "center",
       textTransform: "capitalize",
     },
@@ -54,13 +54,13 @@ export default function PopupConfirm({
     subtitle: {
       fontFamily: "cairo-600",
       color: "#000",
-      fontSize: 15,
+      fontSize: screen.getResponsiveFontSize(15),
       textAlign: "center",
     },
     hint: {
       fontFamily: "cairo-400",
       color: "#000",
-      fontSize: 13,
+      fontSize: screen.getResponsiveFontSize(13),
     },
     buttonsContainer: {
       flexDirection: "row",
@@ -77,7 +77,7 @@ export default function PopupConfirm({
     },
     closeButtonText: {
       fontFamily: "cairo-700",
-      fontSize: 15,
+      fontSize: screen.getResponsiveFontSize(15),
       color: "#000",
     },
     confirmButtonContainer: {
@@ -87,7 +87,7 @@ export default function PopupConfirm({
     },
     confirmButtonText: {
       fontFamily: "cairo-700",
-      fontSize: 15,
+      fontSize: screen.getResponsiveFontSize(15),
       color: "#fff",
     },
   });

@@ -24,7 +24,7 @@ export default function Location({ title, onPress, showDelete, onDelete }) {
     },
     title: {
       fontFamily: "cairo-500",
-      fontSize: 12,
+      fontSize: screen.getResponsiveFontSize(12),
     },
     iconContainer: {
       backgroundColor: "#EFEFEF",
