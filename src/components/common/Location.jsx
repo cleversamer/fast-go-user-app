@@ -12,13 +12,13 @@ export default function Location({ title, onPress, showDelete, onDelete }) {
   const styles = StyleSheet.create({
     arContainer: {
       flexDirection: "row",
-      justifyContent: "flex-end",
+      justifyContent: "space-between",
       alignItems: "center",
       gap: screen.getHorizontalPixelSize(10),
     },
     enContainer: {
       flexDirection: "row-reverse",
-      justifyContent: "flex-end",
+      justifyContent: "space-between",
       alignItems: "center",
       gap: screen.getHorizontalPixelSize(10),
     },
