@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { StyleSheet, View, Image, Text, SafeAreaView } from "react-native";
 import AppIntroSlider from "react-native-app-intro-slider";
 import { AntDesign } from "@expo/vector-icons";
@@ -5,10 +6,25 @@ import useLocale from "../../hooks/useLocale";
 import NetworkStatusLine from "../../components/common/NetworkStatusLine";
 import * as theme from "../../constants/theme";
 import useScreen from "../../hooks/useScreen";
+import authStorage from "../../auth/storage";
 
 export default function Onboarding({ onDone }) {
+  const [isLoading, setIsLoading] = useState(true);
   const { i18n } = useLocale();
   const screen = useScreen();
+
+  useEffect(() => {
+    const prepare = async () => {
+      const isShownBefore = await authStorage.getOnboardingShown();
+      if (isShownBefore) {
+        onDone();
+      } else {
+        setIsLoading(false);
+      }
+    };
+
+    prepare();
+  }, []);
 
   const slides = [
     {
@@ -102,6 +118,17 @@ export default function Onboarding({ onDone }) {
     );
   };
 
+  const handleDone = async () => {
+    try {
+      onDone();
+      await authStorage.markOnboardingShown();
+    } catch (err) {}
+  };
+
+  if (isLoading) {
+    return null;
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <NetworkStatusLine />
@@ -113,8 +140,8 @@ export default function Onboarding({ onDone }) {
         renderSkipButton={renderSkipButton}
         showSkipButton
         renderDoneButton={renderNextButton}
-        onDone={onDone}
-        onSkip={onDone}
+        onDone={handleDone}
+        onSkip={handleDone}
         renderItem={({ item }) => (
           <View style={styles.sliderContainer}>
             <Image

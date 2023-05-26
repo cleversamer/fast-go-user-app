@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import AuthContext from "./context";
+import storage from "./storage";
 
 const testUser = {
   _id: "645d0e29d49689779757f9d9",
@@ -70,30 +71,25 @@ const testUser = {
   lastLogin: "2023-05-11T15:47:53.286Z",
 };
 
-const useAuth = () => {
-  const {
-    user,
-    setUser,
-    isOnline,
-    displayMode,
-    setDisplayMode,
-    getHorizontalPixelSize,
-    getVerticalPixelSize,
-    getScreenWidth,
-    getScreenHeight,
-  } = useContext(AuthContext);
+const testToken =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDMxYTU5NzNmMGI3ZDAzZjhhZWM1OTciLCJlbWFpbCI6InRlYWNoZXJAZXhhbXBsZS5jb20iLCJpYXQiOjE2ODE4MTU4NjJ9.FZlFS9qUoQVuBJO3Rrw7orMKxmMJmsNJkeDg6JzqmdU";
 
-  const login = async () => {
+const useAuth = () => {
+  const { user, setUser, isOnline, displayMode, setDisplayMode } =
+    useContext(AuthContext);
+
+  const login = async (user = testUser, token = testToken) => {
     try {
-      const user = testUser;
       setUser(user);
       setDisplayMode(user.role);
+      await storage.storeToken(token);
     } catch (err) {}
   };
 
   const logout = async () => {
     try {
       setUser(null);
+      await storage.removeToken();
     } catch (err) {}
   };
 
@@ -121,10 +117,6 @@ const useAuth = () => {
     displayMode,
     switchToPassenger,
     returnToDriver,
-    getHorizontalPixelSize,
-    getVerticalPixelSize,
-    getScreenWidth,
-    getScreenHeight,
   };
 };
 

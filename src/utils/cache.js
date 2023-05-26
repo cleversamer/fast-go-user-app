@@ -2,20 +2,20 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const CACHE_PREFIX = "fastgo_cache_";
 
-const store = (key, value, expiryInMins = 0) => {
+const store = async (key, value, expiryInMins = 0) => {
   try {
     const item = {
       value,
       expiryDate: Date.now() + expiryInMins * 60 * 1000,
     };
 
-    AsyncStorage.setItem(CACHE_PREFIX + key, JSON.stringify(item));
+    await AsyncStorage.setItem(CACHE_PREFIX + key, JSON.stringify(item));
   } catch (err) {}
 };
 
-const get = (key) => {
+const get = async (key) => {
   try {
-    const value = AsyncStorage.getItem(CACHE_PREFIX + key);
+    const value = await AsyncStorage.getItem(CACHE_PREFIX + key);
     const item = JSON.parse(value);
 
     if (!item) {
@@ -23,7 +23,7 @@ const get = (key) => {
     }
 
     if (isExpired(item)) {
-      AsyncStorage.removeItem(CACHE_PREFIX + key);
+      await AsyncStorage.removeItem(CACHE_PREFIX + key);
       return null;
     }
 
@@ -31,6 +31,12 @@ const get = (key) => {
   } catch (err) {
     return null;
   }
+};
+
+const remove = async (key) => {
+  try {
+    await AsyncStorage.removeItem(CACHE_PREFIX + key);
+  } catch (err) {}
 };
 
 const isExpired = (item) => {
@@ -45,4 +51,5 @@ const isExpired = (item) => {
 export default {
   store,
   get,
+  remove,
 };
