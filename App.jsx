@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { StatusBar, Dimensions } from "react-native";
 import useFonts from "./src/hooks/useFonts";
 import useNetworkStatus from "./src/hooks/useNetworkStatus";
+import useLocation from "./src/hooks/useLocation";
+import useSystemLanguage from "./src/hooks/useSystemLanguage";
 
 import {
   lockAsync,
@@ -27,10 +29,12 @@ import Onboarding from "./src/screens/common/Onboarding";
 export default function App() {
   // Hooks
   const { fontLoaded } = useFonts();
+  useLocation();
+  const { loading: isLoadingLanguage, systemLanguage } = useSystemLanguage();
   const isOnline = useNetworkStatus();
 
   // States
-  const [lang, setLang] = useState("ar");
+  const [lang, setLang] = useState(systemLanguage);
   const [showHomeScreen, setShowHomeScreen] = useState(false);
   const [user, setUser] = useState(null);
   const [displayMode, setDisplayMode] = useState("");
@@ -47,6 +51,12 @@ export default function App() {
       subscription.remove();
     };
   }, []);
+
+  useEffect(() => {
+    if (!isLoadingLanguage) {
+      setLang(systemLanguage);
+    }
+  }, [isLoadingLanguage]);
 
   useEffect(() => {
     const lockScreenOrientation = async () => {
@@ -77,7 +87,7 @@ export default function App() {
     }
   };
 
-  if (!fontLoaded) {
+  if (!fontLoaded || isLoadingLanguage) {
     return null;
   }
 
