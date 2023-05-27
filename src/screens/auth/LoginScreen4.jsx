@@ -15,6 +15,7 @@ import useLocale from "../../hooks/useLocale";
 import NetworkStatusLine from "../../components/common/NetworkStatusLine";
 import * as theme from "../../constants/theme";
 import useScreen from "../../hooks/useScreen";
+import { FirebaseRecaptchaVerifierModal } from "expo-firebase-recaptcha";
 
 const MAX_CODE_LENGTH = 6;
 

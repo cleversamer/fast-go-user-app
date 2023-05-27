@@ -37,6 +37,7 @@
     "axios": "^1.4.0",
     "expo": "^48.0.17",
     "expo-clipboard": "~4.1.2",
+    "expo-firebase-core": "^6.0.0",
     "expo-firebase-recaptcha": "^2.3.1",
     "expo-font": "~11.1.1",
     "expo-localization": "~14.1.1",
