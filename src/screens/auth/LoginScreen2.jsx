@@ -16,10 +16,10 @@ import useScreen from "../../hooks/useScreen";
 
 export default function LoginScreen2({ navigation, route }) {
   const screen = useScreen();
-  const { authType, role } = route.params;
+  const { authType, role, phone } = route.params;
   const { i18n, lang } = useLocale();
   const [context, setContext] = useState({
-    phone: { icc: "+218", nsn: "" },
+    phone,
     firstName: "",
     lastName: "",
     email: "",

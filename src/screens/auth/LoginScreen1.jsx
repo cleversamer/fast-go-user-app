@@ -81,25 +81,29 @@ export default function LoginScreen1({ navigation, route }) {
 
   const handleContinue = () => {
     try {
-      navigation.navigate(screens.login2, { authType: "email" });
+      navigation.navigate(screens.login2, { authType: "email", phone, role });
     } catch (err) {}
   };
 
   const handleContinueWithGoogle = () => {
     try {
-      navigation.navigate(screens.login2, { authType: "google" });
+      navigation.navigate(screens.login2, { authType: "google", phone, role });
     } catch (err) {}
   };
 
   const handleContinueWithFacebook = () => {
     try {
-      navigation.navigate(screens.login2, { authType: "facebook" });
+      navigation.navigate(screens.login2, {
+        authType: "facebook",
+        phone,
+        role,
+      });
     } catch (err) {}
   };
 
   const handleContinueWithApple = () => {
     try {
-      navigation.navigate(screens.login2, { authType: "apple" });
+      navigation.navigate(screens.login2, { authType: "apple", phone, role });
     } catch (err) {}
   };
 
@@ -107,7 +111,10 @@ export default function LoginScreen1({ navigation, route }) {
     <SafeAreaView style={styles.container}>
       <NetworkStatusLine />
 
-      <ScrollView>
+      <ScrollView
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+      >
         <Text style={styles.title}>{i18n("loginScreen1Title")}</Text>
         <Text style={styles.subtitle}>{i18n("loginScreen1Subtitle")}</Text>
 
