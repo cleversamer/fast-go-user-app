@@ -13,11 +13,13 @@ import NetworkStatusLine from "../../components/common/NetworkStatusLine";
 import screens from "../../static/screens.json";
 import useAuth from "../../auth/useAuth";
 import useScreen from "../../hooks/useScreen";
+import { useState } from "react";
 
 export default function NotificationsScreen({ navigation }) {
   const screen = useScreen();
   const { user } = useAuth();
   const { i18n } = useLocale();
+  const [isEnabled, setIsEnabled] = useState(user.notifications.active);
 
   const styles = StyleSheet.create({
     container: {
@@ -52,7 +54,9 @@ export default function NotificationsScreen({ navigation }) {
     },
   });
 
-  const handleToggleNotifications = () => {};
+  const handleToggleNotifications = () => {
+    setIsEnabled(!isEnabled);
+  };
 
   const handleGoBack = () => {
     try {
@@ -74,6 +78,7 @@ export default function NotificationsScreen({ navigation }) {
         title={i18n("notifications")}
         onPrev={handleGoBack}
         onToggleNotifications={handleToggleNotifications}
+        isEnabled={isEnabled}
       />
 
       {!!user?.notifications?.list?.length && (

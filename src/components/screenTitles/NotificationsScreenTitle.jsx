@@ -7,6 +7,7 @@ export default function NotificationsScreenTitle({
   title,
   onPrev,
   onToggleNotifications,
+  isEnabled,
 }) {
   const screen = useScreen();
 
@@ -35,7 +36,7 @@ export default function NotificationsScreenTitle({
 
   return (
     <View style={styles.container}>
-      <SwitchButton enabled onToggle={onToggleNotifications} />
+      <SwitchButton enabled={isEnabled} onToggle={onToggleNotifications} />
 
       <Text style={styles.title}>{title}</Text>
 
