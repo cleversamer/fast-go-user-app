@@ -35,7 +35,7 @@
     "@react-navigation/native": "^6.1.6",
     "@react-navigation/native-stack": "^6.9.12",
     "axios": "^1.4.0",
-    "expo": "^48.0.17",
+    "expo": "48.0.18",
     "expo-clipboard": "~4.1.2",
     "expo-firebase-core": "^6.0.0",
     "expo-firebase-recaptcha": "^2.3.1",
