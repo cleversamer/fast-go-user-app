@@ -12,14 +12,17 @@ const api = axios.create({
 
 const get = api.get;
 api.get = async (url, axiosConfig, expiryInMins = 0) => {
-  const value = cache.get(url);
+  const value = await cache.get(url);
   if (value) {
     return { ok: true, data: value };
   }
 
   const response = await get(url, axiosConfig);
 
-  cache.store(url, response.data, expiryInMins || 0);
+  if (Number.isInteger(expiryInMins) && expiryInMins > 0) {
+    await cache.store(url, response.data, expiryInMins || 0);
+  }
+
   return response;
 };
 

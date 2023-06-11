@@ -3,17 +3,23 @@ import { Image, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import ScreenSteps from "../../components/common/ScreenSteps";
 import Checkbox from "../../components/inputs/Checkbox";
 import PopupError from "../../components/popups/PopupError";
+import PopupLoading from "../../components/popups/PopupLoading";
 import useLocale from "../../hooks/useLocale";
 import NetworkStatusLine from "../../components/common/NetworkStatusLine";
 import screens from "../../static/screens.json";
 import useScreen from "../../hooks/useScreen";
+import * as authApi from "../../api/user/auth";
+import useAuth from "../../auth/useAuth";
 
-export default function LoginScreen2({ navigation, route }) {
+export default function LoginScreen3({ navigation, route }) {
+  const { role, authType, phone, firstName, lastName, email, referralCode } =
+    route.params;
   const screen = useScreen();
-  const { authType, role } = route.params;
+  const { login } = useAuth();
   const { i18n, lang } = useLocale();
   const [error, setError] = useState(false);
-  const [isPrivacyApproved, setIsPrivacyApproved] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isPrivacyApproved, setIsPrivacyApproved] = useState("");
 
   const styles = StyleSheet.create({
     container: {
@@ -73,17 +79,49 @@ export default function LoginScreen2({ navigation, route }) {
     } catch (err) {}
   };
 
-  const handleNext = () => {
+  const handleNext = async () => {
     try {
-      navigation.navigate(screens.login4, { authType });
-    } catch (err) {}
+      setIsLoading(true);
+
+      const res = await authApi.join(
+        firstName,
+        lastName,
+        email,
+        phone.icc,
+        phone.nsn,
+        role,
+        "male",
+        lang,
+        "device-token",
+        referralCode
+      );
+
+      const { user, token } = res.data;
+      login(user, token);
+
+      if (!user.verified.phone) {
+        navigation.navigate(screens.verifyPhone);
+      }
+    } catch (err) {
+      const errorMssg =
+        err?.response?.data?.message?.[lang] || i18n("networkError");
+      setError(errorMssg);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
     <SafeAreaView style={styles.container}>
       <NetworkStatusLine />
 
-      <PopupError visible={error} onClose={handleClosePopup} />
+      <PopupLoading visible={isLoading} />
+
+      <PopupError
+        visible={!!error}
+        onClose={handleClosePopup}
+        message={error}
+      />
 
       <View
         style={

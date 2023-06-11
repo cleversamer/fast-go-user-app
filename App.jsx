@@ -5,6 +5,7 @@ import useFonts from "./src/hooks/useFonts";
 import useNetworkStatus from "./src/hooks/useNetworkStatus";
 import useLocation from "./src/hooks/useLocation";
 import useSystemLanguage from "./src/hooks/useSystemLanguage";
+import * as usersApi from "./src/api/user/users";
 
 import {
   lockAsync,
@@ -31,10 +32,19 @@ export default function App() {
   const [lang, setLang] = useState(systemLanguage);
   const [showHomeScreen, setShowHomeScreen] = useState(false);
   const [user, setUser] = useState(null);
+  const [isUserLoading, setIsUserLoading] = useState(true);
   const [displayMode, setDisplayMode] = useState("");
   const [screenDimensions, setScreenDimensions] = useState(
     Dimensions.get("screen")
   );
+
+  useEffect(() => {
+    usersApi
+      .authenticate(lang)
+      .then((res) => setUser(res.data))
+      .catch(() => {})
+      .finally(() => setIsUserLoading(false));
+  }, []);
 
   useEffect(() => {
     const subscription = Dimensions.addEventListener("change", ({ screen }) => {
@@ -81,7 +91,7 @@ export default function App() {
     }
   };
 
-  if (!fontLoaded || isLoadingLanguage) {
+  if (!fontLoaded || isLoadingLanguage || isUserLoading) {
     return null;
   }
 

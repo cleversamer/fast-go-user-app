@@ -5,7 +5,6 @@ import WelcomeScreen from "../screens/common/WelcomeScreen";
 import LoginScreen1 from "../screens/auth/LoginScreen1";
 import LoginScreen2 from "../screens/auth/LoginScreen2";
 import LoginScreen3 from "../screens/auth/LoginScreen3";
-import LoginScreen4 from "../screens/auth/LoginScreen4";
 
 import screens from "../static/screens.json";
 
@@ -23,7 +22,6 @@ export default function AuthNavigation() {
       <Stack.Screen name={screens.login1} component={LoginScreen1} />
       <Stack.Screen name={screens.login2} component={LoginScreen2} />
       <Stack.Screen name={screens.login3} component={LoginScreen3} />
-      <Stack.Screen name={screens.login4} component={LoginScreen4} />
     </Stack.Navigator>
   );
 }

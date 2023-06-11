@@ -4,7 +4,7 @@
   "login1": "LoginScreen1",
   "login2": "LoginScreen2",
   "login3": "LoginScreen3",
-  "login4": "LoginScreen4",
+  "verifyPhone": "VerifyPhoneScreen",
   "passengerHome1": "PassengerHomeScreen1",
   "passengerHome2": "PassengerHomeScreen2",
   "passengerHome3": "PassengerHomeScreen3",

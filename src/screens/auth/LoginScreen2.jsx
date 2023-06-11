@@ -87,8 +87,14 @@ export default function LoginScreen2({ navigation, route }) {
 
   const handleNext = () => {
     try {
-      navigation.navigate(screens.login3, { authType });
-    } catch (err) {}
+      navigation.navigate(screens.login3, {
+        authType,
+        role,
+        ...context,
+      });
+    } catch (err) {
+      console.log("Err", err);
+    }
   };
 
   const handlePhoneNSNChange = (phoneNSN) => {

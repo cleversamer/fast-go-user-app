@@ -9,6 +9,7 @@ import NetworkStatusLine from "../../components/common/NetworkStatusLine";
 import screens from "../../static/screens.json";
 import checkPhoneNSN from "../../utils/checkPhoneNSN";
 import useScreen from "../../hooks/useScreen";
+import { signInWithGoogle } from "../../firebase";
 
 export default function LoginScreen1({ navigation, route }) {
   const screen = useScreen();
@@ -85,10 +86,14 @@ export default function LoginScreen1({ navigation, route }) {
     } catch (err) {}
   };
 
-  const handleContinueWithGoogle = () => {
+  const handleContinueWithGoogle = async () => {
     try {
-      navigation.navigate(screens.login2, { authType: "google", phone, role });
-    } catch (err) {}
+      // navigation.navigate(screens.login2, { authType: "google", phone, role });
+      const res = await signInWithGoogle();
+      console.log("res", res);
+    } catch (err) {
+      console.log("err", err);
+    }
   };
 
   const handleContinueWithFacebook = () => {

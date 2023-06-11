@@ -546,5 +546,13 @@
   "noTrips": {
     "en": "There're no upcoming reservations",
     "ar": "لا يوجد حجوزات قادمة"
+  },
+  "loading": {
+    "en": "Just a second ...",
+    "ar": "لحظات من فضلك ..."
+  },
+  "networkError": {
+    "en": "Network error",
+    "ar": "خطأ في الشبكة"
   }
 }

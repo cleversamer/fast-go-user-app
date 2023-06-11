@@ -23,6 +23,7 @@ export default function PopupError({
     },
     boxContainer: {
       width: screen.getScreenWidth() * 0.9,
+      maxWidth: screen.getHorizontalPixelSize(400),
       paddingVertical: screen.getVerticalPixelSize(20),
       paddingHorizontal: screen.getHorizontalPixelSize(20),
       paddingBottom: 80,

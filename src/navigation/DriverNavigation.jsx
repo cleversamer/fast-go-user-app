@@ -7,6 +7,7 @@ import DriverHomeSceen from "../screens/driver/HomeSceen";
 import NewRequestScreen from "../screens/driver/NewRequestScreen";
 import TripsHistory from "../screens/driver/TripsHistory";
 
+import VerifyPhoneScreen from "../screens/common/VerifyPhoneScreen";
 import ProfileScreen from "../screens/common/ProfileScreen";
 import NotificationsScreen from "../screens/common/NotificationsScreen";
 import AboutScreen from "../screens/common/AboutScreen";
@@ -42,6 +43,8 @@ export default function DriverNavigation() {
       />
 
       <Stack.Screen name={screens.driverHome} component={DriverHomeSceen} />
+
+      <Stack.Screen name={screens.verifyPhone} component={VerifyPhoneScreen} />
 
       <Stack.Screen name={screens.profile} component={ProfileScreen} />
 

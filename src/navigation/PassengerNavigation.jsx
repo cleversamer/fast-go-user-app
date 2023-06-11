@@ -9,6 +9,7 @@ import ChallengesScreen from "../screens/passenger/ChallengesScreen";
 import TripDetailsScreen from "../screens/passenger/TripDetailsScreen";
 import CallScreen from "../screens/passenger/CallScreen";
 
+import VerifyPhoneScreen from "../screens/common/VerifyPhoneScreen";
 import ProfileScreen from "../screens/common/ProfileScreen";
 import NotificationsScreen from "../screens/common/NotificationsScreen";
 import AboutScreen from "../screens/common/AboutScreen";
@@ -45,6 +46,8 @@ export default function PassengerNavigation() {
         name={screens.passengerHome3}
         component={PassengerHomeScreen3}
       />
+
+      <Stack.Screen name={screens.verifyPhone} component={VerifyPhoneScreen} />
 
       <Stack.Screen name={screens.profile} component={ProfileScreen} />
 
