@@ -6,7 +6,7 @@ const onboardingKey = "onboarding-00934";
 export const storeToken = async (token) => {
   try {
     const bearerToken = `Bearer ${token}`;
-    await cache.store(tokenKey, bearerToken);
+    await cache.store(tokenKey, bearerToken, Number.MAX_SAFE_INTEGER);
   } catch (err) {}
 };
 

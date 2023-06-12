@@ -3,13 +3,13 @@ import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDT2xAneWg8-8_y_fsy2suiaWhbs948sro",
-  authDomain: "fast-go2023.firebaseapp.com",
-  projectId: "fast-go2023",
-  storageBucket: "fast-go2023.appspot.com",
-  messagingSenderId: "797806113782",
-  appId: "1:797806113782:web:d379e9b90e4227b7174dd7",
-  measurementId: "G-4RG0PL7W18",
+  apiKey: "AIzaSyCxOdvhDDw_Uj-HeMyhDs34drnvF5uPQEU",
+  authDomain: "fast-go-2023.firebaseapp.com",
+  projectId: "fast-go-2023",
+  storageBucket: "fast-go-2023.appspot.com",
+  messagingSenderId: "38206081103",
+  appId: "1:38206081103:web:3a74841b497ec689f7423a",
+  measurementId: "G-32C3GLPQLF",
 };
 
 const app = initializeApp(firebaseConfig);

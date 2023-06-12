@@ -81,7 +81,7 @@ export default function Notification({ notification, onPress }) {
 
   const getContainerStyles = () => {
     try {
-      const themeStyle = notification.seen
+      const themeStyle = !notification.seen
         ? styles.seenContainer
         : styles.unseenContainer;
 

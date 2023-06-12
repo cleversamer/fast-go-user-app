@@ -8,25 +8,37 @@ import PhoneInput from "../../components/inputs/PhoneInput";
 import SelectInput from "../../components/inputs/SelectInput";
 import CustomButton from "../../components/buttons/CustomButton";
 import PopupConfirm from "../../components/popups/PopupConfirm";
+import PopupLoading from "../../components/popups/PopupLoading";
+import PopupError from "../../components/popups/PopupError";
 import useLocale from "../../hooks/useLocale";
 import NetworkStatusLine from "../../components/common/NetworkStatusLine";
 import AvatarInput from "../../components/inputs/AvatarInput";
 import useAuth from "../../auth/useAuth";
 import data from "../../static/data.json";
 import useScreen from "../../hooks/useScreen";
+import * as usersApi from "../../api/user/users";
+import useCameraRoll from "../../hooks/useCameraRoll";
+import imagePicker from "../../utils/imagePicker";
+import checkEmail from "../../utils/checkEmail";
 
 export default function ProfileScreen({ navigation }) {
   const screen = useScreen();
-  const { user } = useAuth();
+  const { user, setUser, login } = useAuth();
   const { i18n, lang } = useLocale();
-  const [showPopup, setShowPopup] = useState(false);
-  const [selectedGender, setSelectedGender] = useState(user.gender);
+  const [showDeleteAccountPopup, setShowDeleteAccountPopup] = useState(false);
+  const [showDeletionLinkSentPopup, setShowDeletionLinkSentPopup] =
+    useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const { cameraRollPermissionsStatus, requestCameraRollPermissions } =
+    useCameraRoll();
+  const [error, setError] = useState("");
   const [context, setContext] = useState({
-    firstName: user.firstName,
-    lastName: user.lastName,
-    email: user.email,
-    phoneICC: user.phone.icc,
-    phoneNSN: user.phone.nsn,
+    firstName: user?.firstName || "",
+    lastName: user?.lastName || "",
+    email: user?.email || "",
+    phoneICC: user?.phone?.icc || "+218",
+    phoneNSN: user?.phone?.nsn || "",
+    gender: user?.gender || data.genders[0],
   });
 
   const styles = StyleSheet.create({
@@ -61,12 +73,6 @@ export default function ProfileScreen({ navigation }) {
   const handleKeyChange = (key) => (value) =>
     setContext({ ...context, [key]: value });
 
-  const handleSelectGender = (gender) => {
-    try {
-      setSelectedGender(gender);
-    } catch (err) {}
-  };
-
   const handleGoBack = () => {
     try {
       navigation.goBack();
@@ -75,21 +81,39 @@ export default function ProfileScreen({ navigation }) {
 
   const handleRequestAccountDeletion = () => {
     try {
-      setShowPopup(true);
+      setShowDeleteAccountPopup(true);
     } catch (err) {}
   };
 
-  const handleConfirmAccountDeletion = () => {
+  const handleConfirmAccountDeletion = async () => {
     try {
-      setShowPopup(false);
-    } catch (err) {}
+      setShowDeleteAccountPopup(false);
+      setIsLoading(true);
+
+      await usersApi.requestAccountDeletion();
+      setShowDeletionLinkSentPopup(true);
+    } catch (err) {
+      const error =
+        err?.response?.data?.message?.[lang] || i18n("networkError");
+      setError(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  const handleChangeAvatar = () => {};
-
-  const handleClosePopup = () => {
+  const handleChangeAvatar = async () => {
     try {
-      setShowPopup(false);
+      if (!cameraRollPermissionsStatus) {
+        return await requestCameraRollPermissions();
+      }
+
+      const image = await imagePicker.pickImage();
+      if (image) {
+        setIsLoading(true);
+        const res = await usersApi.updateAvatar(image);
+        setUser(res.data);
+        setIsLoading(false);
+      }
     } catch (err) {}
   };
 
@@ -105,16 +129,62 @@ export default function ProfileScreen({ navigation }) {
     }
   };
 
+  const checkIfSaveButtonDisabled = () => {
+    return (
+      (context.firstName === user.firstName &&
+        context.lastName === user.lastName &&
+        context.email === user.email &&
+        context.phoneNSN === user.phone.nsn &&
+        context.gender === user.gender) ||
+      context.firstName.length < 3 ||
+      context.firstName.length > 32 ||
+      context.lastName.length < 3 ||
+      context.lastName.length > 32 ||
+      !checkEmail(context.email) ||
+      context.phoneNSN.length !== 9
+    );
+  };
+
+  const handleUpdateProfile = async () => {
+    try {
+      setIsLoading(true);
+      const res = await usersApi.updateProfile(context);
+      const { user, token } = res.data;
+      await login(user, token);
+    } catch (err) {
+      const message = err.response.data.message[lang] || i18n("networkError");
+      setError(message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <NetworkStatusLine />
+
+      <PopupLoading visible={isLoading} />
+
+      <PopupError
+        onClose={() => setError("")}
+        visible={!!error}
+        message={error}
+      />
+
+      <PopupConfirm
+        title={i18n("popupDeletionLinkSentTitle")}
+        subtitle={i18n("popupDeletionLinkSentSubtitle")}
+        visible={showDeletionLinkSentPopup}
+        onClose={() => setShowDeletionLinkSentPopup(false)}
+        onConfirm={() => setShowDeletionLinkSentPopup(false)}
+      />
 
       <PopupConfirm
         title={i18n("popupDeleteAccountTitle")}
         subtitle={i18n("popupDeleteAccountSubtitle")}
         hint={i18n("popupDeleteAccountHint")}
-        visible={showPopup}
-        onClose={handleClosePopup}
+        visible={showDeleteAccountPopup}
+        onClose={() => setShowDeleteAccountPopup(false)}
         onConfirm={handleConfirmAccountDeletion}
       />
 
@@ -178,9 +248,9 @@ export default function ProfileScreen({ navigation }) {
           />
 
           <SelectInput
-            value={selectedGender}
+            value={context.gender}
             options={data.genders}
-            onChange={handleSelectGender}
+            onChange={handleKeyChange("gender")}
             placeholder={i18n("selectGender")}
           />
 
@@ -188,6 +258,8 @@ export default function ProfileScreen({ navigation }) {
             text={i18n("save")}
             containerStyle={styles.buttonContainer}
             textStyle={styles.buttonText}
+            disabled={checkIfSaveButtonDisabled()}
+            onPress={handleUpdateProfile}
           />
         </View>
       </ScrollView>

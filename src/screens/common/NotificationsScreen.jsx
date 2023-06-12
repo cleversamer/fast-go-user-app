@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import {
   SafeAreaView,
   ScrollView,
@@ -13,20 +14,34 @@ import NetworkStatusLine from "../../components/common/NetworkStatusLine";
 import screens from "../../static/screens.json";
 import useAuth from "../../auth/useAuth";
 import useScreen from "../../hooks/useScreen";
-import { useState } from "react";
+import * as usersApi from "../../api/user/users";
 
 export default function NotificationsScreen({ navigation }) {
   const screen = useScreen();
-  const { user } = useAuth();
+  const { user, setUser } = useAuth();
   const { i18n } = useLocale();
-  const [isEnabled, setIsEnabled] = useState(user.notifications.active);
+
+  useEffect(() => {
+    usersApi
+      .seeNotifications()
+      .then((res) => {
+        setUser({
+          ...user,
+          notifications: {
+            ...user.notifications,
+            list: res.data.notifications,
+          },
+        });
+      })
+      .catch(() => {});
+  }, []);
 
   const styles = StyleSheet.create({
     container: {
       flex: 1,
       paddingHorizontal: screen.getHorizontalPixelSize(15),
       paddingVertical: screen.getVerticalPixelSize(15),
-      paddingTop: screen.getVerticalPixelSize(60),
+      paddingTop: screen.getVerticalPixelSize(40),
     },
     notificationsContainer: {
       flex: 1,
@@ -34,11 +49,7 @@ export default function NotificationsScreen({ navigation }) {
       marginTop: screen.getVerticalPixelSize(20),
     },
     emptyNotificationsContainer: {
-      position: "absolute",
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
+      flex: 1,
       justifyContent: "center",
       alignItems: "center",
       gap: screen.getVerticalPixelSize(25),
@@ -53,10 +64,6 @@ export default function NotificationsScreen({ navigation }) {
       fontSize: screen.getResponsiveFontSize(15),
     },
   });
-
-  const handleToggleNotifications = () => {
-    setIsEnabled(!isEnabled);
-  };
 
   const handleGoBack = () => {
     try {
@@ -77,8 +84,6 @@ export default function NotificationsScreen({ navigation }) {
       <NotificationsScreenTitle
         title={i18n("notifications")}
         onPrev={handleGoBack}
-        onToggleNotifications={handleToggleNotifications}
-        isEnabled={isEnabled}
       />
 
       {!!user?.notifications?.list?.length && (

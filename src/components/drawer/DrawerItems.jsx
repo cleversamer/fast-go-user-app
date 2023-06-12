@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { StyleSheet, ScrollView, Linking } from "react-native";
 import {
   Ionicons,
@@ -13,6 +13,7 @@ import PopupError from "../popups/PopupError";
 import PopupConfirm from "../popups/PopupConfirm";
 import screens from "../../static/screens.json";
 import useScreen from "../../hooks/useScreen";
+import * as usersApi from "../../api/user/users";
 
 export default function DrawerItems({ navigation }) {
   const screen = useScreen();
@@ -59,6 +60,21 @@ export default function DrawerItems({ navigation }) {
         });
     } catch (err) {
       setShowPopupError(true);
+    }
+  };
+
+  const handleSwitchLanguage = async () => {
+    try {
+      switchLang();
+      await usersApi.switchLanguage();
+    } catch (err) {}
+  };
+
+  const getUnseenNotificationsCount = () => {
+    try {
+      return user?.notifications?.list?.filter?.((n) => !n.seen).length || 0;
+    } catch (err) {
+      return 0;
     }
   };
 
@@ -117,7 +133,7 @@ export default function DrawerItems({ navigation }) {
         title={i18n("notifications")}
         onPress={navigateTo(screens.notifications)}
         badge
-        badgeCount={7}
+        badgeCount={getUnseenNotificationsCount() || 0}
         Icon={() => <Ionicons name="notifications" style={styles.itemIcon} />}
       />
 
@@ -176,7 +192,7 @@ export default function DrawerItems({ navigation }) {
 
       <DrawerItem
         title={i18n("switchLang")}
-        onPress={switchLang}
+        onPress={handleSwitchLanguage}
         Icon={() => (
           <MaterialCommunityIcons
             name="google-translate"

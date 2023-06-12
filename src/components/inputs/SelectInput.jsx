@@ -17,6 +17,7 @@ const defaultOptions = [
 ];
 
 export default function SelectInput({
+  value,
   options = defaultOptions,
   placeholder,
   onChange,
@@ -53,7 +54,7 @@ export default function SelectInput({
     inputStyles: {
       fontFamily: "cairo-600",
       fontSize: screen.getResponsiveFontSize(13),
-      color: "#747474",
+      color: "#000",
       textTransform: "capitalize",
     },
     arrowDownIcon: {
@@ -71,6 +72,7 @@ export default function SelectInput({
   return (
     <SelectList
       save="value"
+      defaultOption={{ key: value, value }}
       data={options}
       setSelected={handleSelect}
       placeholder={placeholder}

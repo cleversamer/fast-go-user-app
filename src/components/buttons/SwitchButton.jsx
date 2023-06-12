@@ -1,7 +1,7 @@
 import { View, Switch, StyleSheet } from "react-native";
 import * as theme from "../../constants/theme";
 
-const SwitchButton = ({ enabled = true, onToggle }) => {
+const SwitchButton = ({ enabled, onToggle }) => {
   return (
     <View style={styles.container}>
       <Switch

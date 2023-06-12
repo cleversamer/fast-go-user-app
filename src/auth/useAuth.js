@@ -3,7 +3,7 @@ import AuthContext from "./context";
 import storage from "./storage";
 
 const useAuth = () => {
-  const { user, setUser, isOnline, displayMode, setDisplayMode } =
+  const { user, setUser, isOnline, displayMode, setDisplayMode, socket } =
     useContext(AuthContext);
 
   const login = async (user, token) => {
@@ -39,12 +39,14 @@ const useAuth = () => {
 
   return {
     user,
+    setUser,
     login,
     logout,
     isOnline,
     displayMode,
     switchToPassenger,
     returnToDriver,
+    socket,
   };
 };
 

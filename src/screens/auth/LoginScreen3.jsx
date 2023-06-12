@@ -97,7 +97,7 @@ export default function LoginScreen3({ navigation, route }) {
       );
 
       const { user, token } = res.data;
-      login(user, token);
+      await login(user, token);
 
       if (!user.verified.phone) {
         navigation.navigate(screens.verifyPhone);

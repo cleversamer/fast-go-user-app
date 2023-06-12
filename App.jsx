@@ -4,8 +4,9 @@ import { StatusBar, Dimensions } from "react-native";
 import useFonts from "./src/hooks/useFonts";
 import useNetworkStatus from "./src/hooks/useNetworkStatus";
 import useLocation from "./src/hooks/useLocation";
-import useSystemLanguage from "./src/hooks/useSystemLanguage";
+// import useSystemLanguage from "./src/hooks/useSystemLanguage";
 import * as usersApi from "./src/api/user/users";
+import socket from "./src/socket/client";
 
 import {
   lockAsync,
@@ -25,25 +26,53 @@ export default function App() {
   // Hooks
   const { fontLoaded } = useFonts();
   useLocation();
-  const { loading: isLoadingLanguage, systemLanguage } = useSystemLanguage();
+  // const { loading: isLoadingLanguage, systemLanguage } = useSystemLanguage();
   const isOnline = useNetworkStatus();
 
   // States
-  const [lang, setLang] = useState(systemLanguage);
+  const [lang, setLang] = useState("ar");
   const [showHomeScreen, setShowHomeScreen] = useState(false);
   const [user, setUser] = useState(null);
   const [isUserLoading, setIsUserLoading] = useState(true);
-  const [displayMode, setDisplayMode] = useState("");
+  const [displayMode, setDisplayMode] = useState("driver");
   const [screenDimensions, setScreenDimensions] = useState(
     Dimensions.get("screen")
   );
 
   useEffect(() => {
+    socket.on("connect", () => {
+      usersApi
+        .joinSocket(socket.id)
+        .then(() => {})
+        .catch(() => {});
+    });
+
+    socket.on("notification received", (notification) => {
+      try {
+        setUser({
+          ...user,
+          notifications: {
+            ...user.notifications,
+            list: [notification, ...user.notifications.list],
+          },
+        });
+      } catch (err) {}
+    });
+
     usersApi
-      .authenticate(lang)
-      .then((res) => setUser(res.data))
+      .authenticate()
+      .then((res) => {
+        const user = res.data;
+        setUser(user);
+        setDisplayMode(user.role);
+        setLang(user.display.language);
+      })
       .catch(() => {})
-      .finally(() => setIsUserLoading(false));
+      .finally(() => {
+        if (isUserLoading) {
+          setIsUserLoading(false);
+        }
+      });
   }, []);
 
   useEffect(() => {
@@ -55,12 +84,6 @@ export default function App() {
       subscription.remove();
     };
   }, []);
-
-  useEffect(() => {
-    if (!isLoadingLanguage) {
-      setLang(systemLanguage);
-    }
-  }, [isLoadingLanguage]);
 
   useEffect(() => {
     const lockScreenOrientation = async () => {
@@ -91,7 +114,7 @@ export default function App() {
     }
   };
 
-  if (!fontLoaded || isLoadingLanguage || isUserLoading) {
+  if (!fontLoaded || isUserLoading) {
     return null;
   }
 
@@ -113,6 +136,7 @@ export default function App() {
           displayMode,
           setDisplayMode,
           screenDimensions,
+          socket,
         }}
       >
         {!showHomeScreen && (

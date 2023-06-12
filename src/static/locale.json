@@ -554,5 +554,13 @@
   "networkError": {
     "en": "Network error",
     "ar": "خطأ في الشبكة"
+  },
+  "popupDeletionLinkSentTitle": {
+    "en": "Check your email",
+    "ar": "تفقد بريدك الإلكتروني"
+  },
+  "popupDeletionLinkSentSubtitle": {
+    "en": "An email has been sent to you to confirm your account deletion",
+    "ar": "تم إرسال بريد إلكتروني إليك لتأكيد حذف حسابك"
   }
 }
