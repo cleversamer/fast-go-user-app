@@ -1,4 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import useAuth from "../auth/useAuth";
 
 import AddCarScreen from "../screens/driver/AddCarScreen";
 import AddLegalDocumentsScreen from "../screens/driver/AddLegalDocumentsScreen";
@@ -26,42 +27,85 @@ const globalScreenOptions = {
 const Stack = createNativeStackNavigator();
 
 export default function DriverNavigation() {
+  const { user } = useAuth();
+
+  const isFullyVerified = () => {
+    return (
+      user.role === "driver" && user.verified.phone && user.verified.driver
+    );
+  };
+
+  const isDriverVerified = () => {
+    return user.role === "driver" && user.verified.driver;
+  };
+
+  const isPhoneVerified = () => {
+    return user.role === "driver" && user.verified.phone;
+  };
+
   return (
     <Stack.Navigator screenOptions={globalScreenOptions}>
-      <Stack.Screen name={screens.drawer} component={DrawerNavigation} />
+      {isFullyVerified() && (
+        <Stack.Screen name={screens.drawer} component={DrawerNavigation} />
+      )}
+
+      {!isDriverVerified() && (
+        <Stack.Screen
+          name={screens.addLegalDocuments}
+          component={AddLegalDocumentsScreen}
+        />
+      )}
+
+      {!isPhoneVerified() && (
+        <Stack.Screen
+          name={screens.verifyPhone}
+          component={VerifyPhoneScreen}
+        />
+      )}
+
+      {!isDriverVerified() && (
+        <Stack.Screen
+          name={screens.pendingRequest}
+          component={PendingRequestScreen}
+        />
+      )}
 
       <Stack.Screen name={screens.addCar} component={AddCarScreen} />
 
-      <Stack.Screen
-        name={screens.addLegalDocuments}
-        component={AddLegalDocumentsScreen}
-      />
+      {isFullyVerified() && (
+        <Stack.Screen name={screens.driverHome} component={DriverHomeSceen} />
+      )}
 
-      <Stack.Screen
-        name={screens.pendingRequest}
-        component={PendingRequestScreen}
-      />
+      {isFullyVerified() && (
+        <Stack.Screen name={screens.profile} component={ProfileScreen} />
+      )}
 
-      <Stack.Screen name={screens.driverHome} component={DriverHomeSceen} />
+      {isFullyVerified() && (
+        <Stack.Screen
+          name={screens.notifications}
+          component={NotificationsScreen}
+        />
+      )}
 
-      <Stack.Screen name={screens.verifyPhone} component={VerifyPhoneScreen} />
+      {isFullyVerified() && (
+        <Stack.Screen name={screens.about} component={AboutScreen} />
+      )}
 
-      <Stack.Screen name={screens.profile} component={ProfileScreen} />
+      {isFullyVerified() && (
+        <Stack.Screen name={screens.wallet} component={WalletScreen} />
+      )}
 
-      <Stack.Screen
-        name={screens.notifications}
-        component={NotificationsScreen}
-      />
+      {isFullyVerified() && (
+        <Stack.Screen name={screens.earnMore} component={EarnMoreScreen} />
+      )}
 
-      <Stack.Screen name={screens.about} component={AboutScreen} />
+      {isFullyVerified() && (
+        <Stack.Screen name={screens.newRequest} component={NewRequestScreen} />
+      )}
 
-      <Stack.Screen name={screens.wallet} component={WalletScreen} />
-
-      <Stack.Screen name={screens.earnMore} component={EarnMoreScreen} />
-
-      <Stack.Screen name={screens.newRequest} component={NewRequestScreen} />
-
-      <Stack.Screen name={screens.tripsHistory} component={TripsHistory} />
+      {isFullyVerified() && (
+        <Stack.Screen name={screens.tripsHistory} component={TripsHistory} />
+      )}
     </Stack.Navigator>
   );
 }

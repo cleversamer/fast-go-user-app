@@ -51,6 +51,7 @@ export default function AddLegalDocumentsScreen({ navigation }) {
       alignSelf: "flex-end",
       marginVertical: 0,
       marginTop: screen.getVerticalPixelSize(15),
+      marginHorizontal: screen.getHorizontalPixelSize(10),
     },
     photosRowContainer: {
       flexDirection: "row",
@@ -62,12 +63,6 @@ export default function AddLegalDocumentsScreen({ navigation }) {
       marginBottom: screen.getVerticalPixelSize(20),
     },
   });
-
-  const handleGoBack = () => {
-    try {
-      navigation.goBack();
-    } catch (err) {}
-  };
 
   const handleNext = () => {
     try {
@@ -111,8 +106,8 @@ export default function AddLegalDocumentsScreen({ navigation }) {
 
       <ScreenSteps
         containerStyle={styles.screenStepsContainer}
+        showPrev={false}
         onNext={handleNext}
-        onPrev={handleGoBack}
       />
     </SafeAreaView>
   );

@@ -18,10 +18,10 @@ import useScreen from "../../hooks/useScreen";
 
 const MAX_CODE_LENGTH = 6;
 
-export default function VerifyPhoneScreen({ navigation }) {
+export default function VerifyPhoneScreen() {
   const screen = useScreen();
   const { i18n } = useLocale();
-  const { login } = useAuth();
+  const { user, setUser } = useAuth();
   const { remainingSeconds, resetTimer, isTimerDone } = useTimer(150);
   const [code, setCode] = useState("");
   const [readyPin, setReadyPin] = useState(false);
@@ -66,16 +66,18 @@ export default function VerifyPhoneScreen({ navigation }) {
     },
   });
 
-  const handleGoBack = () => {
-    try {
-      navigation.goBack();
-    } catch (err) {}
-  };
-
   const handleSubmit = () => {
     try {
       if (code.length === MAX_CODE_LENGTH) {
-        login();
+        // TODO: validate code from firebase auth
+
+        setUser({
+          ...user,
+          verified: {
+            ...user.verified,
+            phone: true,
+          },
+        });
       }
     } catch (err) {}
   };
@@ -132,7 +134,7 @@ export default function VerifyPhoneScreen({ navigation }) {
         <View style={styles.screenStepsContainer}>
           <ScreenSteps
             disableNext={!readyPin}
-            onPrev={handleGoBack}
+            showPrev={false}
             onNext={handleSubmit}
           />
         </View>

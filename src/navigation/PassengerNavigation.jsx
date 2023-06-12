@@ -1,4 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import useAuth from "../auth/useAuth";
 
 import PassengerHomeScreen1 from "../screens/passenger/HomeScreen1";
 import PassengerHomeScreen2 from "../screens/passenger/HomeScreen2";
@@ -28,52 +29,101 @@ const globalScreenOptions = {
 const Stack = createNativeStackNavigator();
 
 export default function PassengerNavigation() {
+  const { user } = useAuth();
+
+  const isFullyVerified = () => {
+    return user.role === "passenger" && user.verified.phone;
+  };
+
+  const isPhoneVerified = () => {
+    return user.role === "passenger" && user.verified.phone;
+  };
+
   return (
     <Stack.Navigator screenOptions={globalScreenOptions}>
-      <Stack.Screen name={screens.drawer} component={DrawerNavigation} />
+      {isFullyVerified() && (
+        <Stack.Screen name={screens.drawer} component={DrawerNavigation} />
+      )}
 
-      <Stack.Screen
-        name={screens.passengerHome1}
-        component={PassengerHomeScreen1}
-      />
+      {!isPhoneVerified() && (
+        <Stack.Screen
+          name={screens.verifyPhone}
+          component={VerifyPhoneScreen}
+        />
+      )}
 
-      <Stack.Screen
-        name={screens.passengerHome2}
-        component={PassengerHomeScreen2}
-      />
+      {isFullyVerified() && (
+        <Stack.Screen
+          name={screens.passengerHome1}
+          component={PassengerHomeScreen1}
+        />
+      )}
 
-      <Stack.Screen
-        name={screens.passengerHome3}
-        component={PassengerHomeScreen3}
-      />
+      {isFullyVerified() && (
+        <Stack.Screen
+          name={screens.passengerHome2}
+          component={PassengerHomeScreen2}
+        />
+      )}
 
-      <Stack.Screen name={screens.verifyPhone} component={VerifyPhoneScreen} />
+      {isFullyVerified() && (
+        <Stack.Screen
+          name={screens.passengerHome3}
+          component={PassengerHomeScreen3}
+        />
+      )}
 
-      <Stack.Screen name={screens.profile} component={ProfileScreen} />
+      {isFullyVerified() && (
+        <Stack.Screen name={screens.profile} component={ProfileScreen} />
+      )}
 
-      <Stack.Screen
-        name={screens.notifications}
-        component={NotificationsScreen}
-      />
+      {isFullyVerified() && (
+        <Stack.Screen
+          name={screens.notifications}
+          component={NotificationsScreen}
+        />
+      )}
 
-      <Stack.Screen name={screens.savedPlaces} component={SavedPlacesScreen} />
+      {isFullyVerified() && (
+        <Stack.Screen
+          name={screens.savedPlaces}
+          component={SavedPlacesScreen}
+        />
+      )}
 
-      <Stack.Screen
-        name={screens.reservedTrips}
-        component={ReservedTripsScreen}
-      />
+      {isFullyVerified() && (
+        <Stack.Screen
+          name={screens.reservedTrips}
+          component={ReservedTripsScreen}
+        />
+      )}
 
-      <Stack.Screen name={screens.about} component={AboutScreen} />
+      {isFullyVerified() && (
+        <Stack.Screen name={screens.about} component={AboutScreen} />
+      )}
 
-      <Stack.Screen name={screens.wallet} component={WalletScreen} />
+      {isFullyVerified() && (
+        <Stack.Screen name={screens.wallet} component={WalletScreen} />
+      )}
 
-      <Stack.Screen name={screens.earnMore} component={EarnMoreScreen} />
+      {isFullyVerified() && (
+        <Stack.Screen name={screens.earnMore} component={EarnMoreScreen} />
+      )}
 
-      <Stack.Screen name={screens.challenges} component={ChallengesScreen} />
+      {isFullyVerified() && (
+        <Stack.Screen name={screens.challenges} component={ChallengesScreen} />
+      )}
 
-      <Stack.Screen name={screens.tripDetails} component={TripDetailsScreen} />
+      {isFullyVerified() && (
+        <Stack.Screen
+          name={screens.tripDetails}
+          component={TripDetailsScreen}
+        />
+      )}
 
-      <Stack.Screen name={screens.call} component={CallScreen} />
+      {isFullyVerified() && (
+        <Stack.Screen name={screens.call} component={CallScreen} />
+      )}
     </Stack.Navigator>
   );
 }
