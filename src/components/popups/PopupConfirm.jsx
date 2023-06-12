@@ -34,7 +34,7 @@ export default function PopupConfirm({
       backgroundColor: "#fff",
       borderRadius: 8,
       alignItems: "center",
-      gap: screen.getVerticalPixelSize(10),
+      gap: screen.getVerticalPixelSize(20),
     },
     closeIcon: {
       position: "absolute",
