@@ -45,7 +45,7 @@ export default function DrawerItems({ navigation }) {
   const openWhatsAppChat = () => {
     try {
       const phoneNumber = "+971544274978";
-      const url = `whatsapp://send?phone=${phoneNumber}`;
+      const url = `https://wa.me/${phoneNumber}`;
 
       Linking.canOpenURL(url)
         .then((supported) => {
