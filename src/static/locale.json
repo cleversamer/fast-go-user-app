@@ -598,5 +598,9 @@
   "female": {
     "en": "Female",
     "ar": "أنثى"
+  },
+  "balanceAdded": {
+    "en": "Balance has been added successfully",
+    "ar": "تم إضافة الرصيد بنجاح"
   }
 }

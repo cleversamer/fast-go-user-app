@@ -16,7 +16,7 @@ import * as paymentCardsApi from "../../api/user/paymentCards";
 
 export default function WalletScreen({ navigation }) {
   const screen = useScreen();
-  const { user } = useAuth();
+  const { user, setUser } = useAuth();
   const { i18n, lang } = useLocale();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -25,7 +25,7 @@ export default function WalletScreen({ navigation }) {
   const [popupAddBalance, setPopupAddBalance] = useState({
     visible: false,
     title: i18n("cardBalance"),
-    subtitle: "20 LYD",
+    subtitle: "",
     hint: "",
     onConfirm: () => {},
     onClose: () => {},
@@ -120,6 +120,11 @@ export default function WalletScreen({ navigation }) {
     buttonContainer: {
       paddingVertical: screen.getVerticalPixelSize(8),
     },
+    popupHint: {
+      fontFamily: "cairo-700",
+      fontSize: screen.getResponsiveFontSize(18),
+      color: theme.primaryColor,
+    },
     popupSubtitle: {
       fontFamily: "cairo-700",
       fontSize: screen.getResponsiveFontSize(32),
@@ -171,20 +176,54 @@ export default function WalletScreen({ navigation }) {
         setPopupAddBalance({ ...popupAddBalance, visible: false });
       };
 
-      const onConfirm = () => {
-        setPopupAddBalance({ ...popupAddBalance, visible: false });
+      const onConfirm = async () => {
+        try {
+          setPopupAddBalance({ ...popupAddBalance, visible: false });
+          setIsLoading(true);
+          const { data: card } = await paymentCardsApi.chargePaymentCard(code);
+          setIsLoading(false);
+          setUser({ ...user, balance: user.balance + card.balance });
+          setPopupAddBalance({
+            ...popupAddBalance,
+            subtitle: "",
+            hint: i18n("balanceAdded"),
+            visible: true,
+            onConfirm: () =>
+              setPopupAddBalance({
+                ...popupAddBalance,
+                visible: false,
+                subtitle: "",
+                onConfirm: () => {},
+                onClose: () => {},
+              }),
+            onClose: () =>
+              setPopupAddBalance({
+                ...popupAddBalance,
+                visible: false,
+                subtitle: "",
+                onConfirm: () => {},
+                onClose: () => {},
+              }),
+          });
+        } catch (err) {
+          setIsLoading(false);
+          const message =
+            err?.response?.data?.message?.[lang] || i18n("networkError");
+          setError(message);
+        }
       };
 
       setPopupAddBalance({
         ...popupAddBalance,
-        title: `${paymentCard.balance} LYD`,
+        subtitle: `${paymentCard.balance} LYD`,
         visible: true,
         onClose,
         onConfirm,
       });
     } catch (err) {
       setIsLoading(false);
-      const message = err.response.data.message[lang] || i18n("networkError");
+      const message =
+        err?.response?.data?.message?.[lang] || i18n("networkError");
       setError(message);
     }
   };
@@ -203,6 +242,7 @@ export default function WalletScreen({ navigation }) {
         onClose={popupAddBalance.onClose}
         onConfirm={popupAddBalance.onConfirm}
         subtitleStyle={styles.popupSubtitle}
+        hintStyle={styles.popupHint}
       />
 
       <PopupError

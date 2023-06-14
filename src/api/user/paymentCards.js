@@ -14,3 +14,17 @@ export const checkPaymentCard = async (cardCode) => {
     }
   );
 };
+
+export const chargePaymentCard = async (cardCode) => {
+  const token = await authStorage.getToken();
+
+  return await client.post(
+    "/cards/payment/charge",
+    { cardCode },
+    {
+      headers: {
+        Authorization: token,
+      },
+    }
+  );
+};
