@@ -21,7 +21,10 @@ export default function DrawerItems({ navigation }) {
     useAuth();
   const { switchLang, i18n } = useLocale();
   const [showPopupError, setShowPopupError] = useState(false);
-  const [showPopupConfirm, setShowPopupConfirm] = useState(false);
+  const [showPopupConfirmLogout, setShowPopupConfirmLogout] = useState(false);
+  const [showPopupReturnToDriver, setShowPopupReturnToDriver] = useState(false);
+  const [showPopupSwitchToPassenger, setShowPopupSwitchToPassenger] =
+    useState(false);
 
   const styles = StyleSheet.create({
     container: {
@@ -118,9 +121,27 @@ export default function DrawerItems({ navigation }) {
         title={i18n("popupLogoutTitle")}
         subtitle={i18n("popupLogoutSubtitle")}
         hint={i18n("popupLogoutHint")}
-        visible={showPopupConfirm}
-        onClose={() => setShowPopupConfirm(false)}
+        visible={showPopupConfirmLogout}
+        onClose={() => setShowPopupConfirmLogout(false)}
         onConfirm={logout}
+      />
+
+      <PopupConfirm
+        title={i18n("popupSwitchToPassengerTitle")}
+        subtitle={i18n("popupSwitchToPassengerSubtitle")}
+        hint={i18n("popupSwitchToPassengerHint")}
+        visible={showPopupSwitchToPassenger}
+        onClose={() => setShowPopupSwitchToPassenger(false)}
+        onConfirm={switchToPassenger}
+      />
+
+      <PopupConfirm
+        title={i18n("popupReturnToDriverTitle")}
+        subtitle={i18n("popupReturnToDriverSubtitle")}
+        hint={i18n("popupReturnToDriverHint")}
+        visible={showPopupReturnToDriver}
+        onClose={() => setShowPopupReturnToDriver(false)}
+        onConfirm={returnToDriver}
       />
 
       <DrawerItem
@@ -215,7 +236,7 @@ export default function DrawerItems({ navigation }) {
 
       <DrawerItem
         title={i18n("logout")}
-        onPress={() => setShowPopupConfirm(true)}
+        onPress={() => setShowPopupConfirmLogout(true)}
         Icon={() => (
           <MaterialCommunityIcons name="logout" style={styles.itemIcon} />
         )}
@@ -224,7 +245,7 @@ export default function DrawerItems({ navigation }) {
       {checkIfDriver() && (
         <DrawerItem
           title={i18n("switchToPassenger")}
-          onPress={switchToPassenger}
+          onPress={() => setShowPopupSwitchToPassenger(true)}
           Icon={() => (
             <MaterialCommunityIcons name="steering" style={styles.itemIcon} />
           )}
@@ -234,7 +255,7 @@ export default function DrawerItems({ navigation }) {
       {checkIfDriverInPassengerMode() && (
         <DrawerItem
           title={i18n("returnToDriver")}
-          onPress={returnToDriver}
+          onPress={() => setShowPopupReturnToDriver(true)}
           Icon={() => (
             <MaterialCommunityIcons name="steering" style={styles.itemIcon} />
           )}

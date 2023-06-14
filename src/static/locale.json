@@ -131,6 +131,30 @@
     "en": "If you logout, then you will have to retype your phone number and verify it again.",
     "ar": "إذا قمت بتسجيل الخروج، فسيتعين عليك إعادة كتابة رقم الهاتف والتحقق منه مرة أخرى."
   },
+  "popupSwitchToPassengerTitle": {
+    "en": "Switch to passenger",
+    "ar": "التبديل إلى راكب"
+  },
+  "popupSwitchToPassengerSubtitle": {
+    "en": "Are you sure you want to switch to a passenger?",
+    "ar": "هل أنت متأكد أنك تريد التبديل إلى راكب؟"
+  },
+  "popupSwitchToPassengerHint": {
+    "en": "If you switch to a passenger, you can easily switch back to driver.",
+    "ar": "إذا قمت بالتبديل إلى راكب، يمكنك الرجوع إلى سائق بكل سهولة."
+  },
+  "popupReturnToDriverTitle": {
+    "en": "Return to driver",
+    "ar": "الرجوع إلى سائق"
+  },
+  "popupReturnToDriverSubtitle": {
+    "en": "Are you sure you want to switch back to a driver?",
+    "ar": "هل أنت متأكد أنك تريد الرجوع إلى سائق؟"
+  },
+  "popupReturnToDriverHint": {
+    "en": "If you switch back to a driver, you can easily switch to passenger again.",
+    "ar": "إذا قمت بالرجوع إلى سائق، يمكنك التبديل إلى راكب مرة أخرى بكل سهولة."
+  },
   "ok": {
     "en": "Ok",
     "ar": "حسنًا"
