@@ -65,7 +65,8 @@ export default function SelectInput({
 
   const handleSelect = (value) => {
     try {
-      onChange(value);
+      const index = options.findIndex((o) => o.value === value);
+      onChange(options[index].key);
     } catch (err) {}
   };
 

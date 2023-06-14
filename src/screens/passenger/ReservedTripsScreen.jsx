@@ -1,10 +1,13 @@
+import { useEffect, useState } from "react";
 import {
   StyleSheet,
   SafeAreaView,
-  ScrollView,
   View,
   Text,
   Image,
+  FlatList,
+  ActivityIndicator,
+  ScrollView,
 } from "react-native";
 import DefaultScreenTitle from "../../components/screenTitles/DefaultScreenTitle";
 import ReservedTrip from "../../components/common/ReservedTrip";
@@ -12,6 +15,9 @@ import useLocale from "../../hooks/useLocale";
 import NetworkStatusLine from "../../components/common/NetworkStatusLine";
 import screens from "../../static/screens.json";
 import useScreen from "../../hooks/useScreen";
+import * as tripsApi from "../../api/user/trips";
+import * as theme from "../../constants/theme";
+import PopupLoading from "../../components/popups/PopupLoading";
 
 const reservedTrips = [
   {
@@ -67,6 +73,19 @@ const reservedTrips = [
 export default function ReservedTripsScreen({ navigation }) {
   const screen = useScreen();
   const { i18n } = useLocale();
+  const [trips, setTrips] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    setIsLoading(true);
+
+    tripsApi
+      .getMyPassengerTrips(currentPage, 10)
+      .then((res) => setTrips([...trips, ...res.data.trips]))
+      .catch(() => {})
+      .finally(() => setIsLoading(false));
+  }, [currentPage]);
 
   const styles = StyleSheet.create({
     container: {
@@ -76,7 +95,6 @@ export default function ReservedTripsScreen({ navigation }) {
       paddingTop: screen.getVerticalPixelSize(50),
     },
     tripsContainer: {
-      flex: 1,
       gap: screen.getVerticalPixelSize(10),
       marginTop: screen.getVerticalPixelSize(20),
     },
@@ -113,30 +131,40 @@ export default function ReservedTripsScreen({ navigation }) {
     } catch (err) {}
   };
 
+  const renderItem = ({ item }) => {
+    return <ReservedTrip trip={item} onPress={() => handleTripPress(item)} />;
+  };
+
+  const renderLoader = () => {
+    return isLoading ? (
+      <ActivityIndicator size="large" color={theme.primaryColor} />
+    ) : null;
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <NetworkStatusLine />
 
       <DefaultScreenTitle title={i18n("reservedTrips")} onPrev={handleGoBack} />
 
-      {!!reservedTrips.length && (
-        <ScrollView
-          showsHorizontalScrollIndicator={false}
+      <PopupLoading visible={currentPage === 1 && isLoading} />
+
+      {!!trips.length && (
+        <FlatList
+          contentContainerStyle={styles.tripsContainer}
+          data={trips}
+          renderItem={renderItem}
+          keyExtractor={(item, index) => index}
+          onEndReached={() => setCurrentPage(currentPage + 1)}
+          onEndReachedThreshold={0}
+          scrollEnabled={true}
+          ListFooterComponent={renderLoader}
           showsVerticalScrollIndicator={false}
-        >
-          <View style={styles.tripsContainer}>
-            {reservedTrips.map((trip, index) => (
-              <ReservedTrip
-                key={index}
-                trip={trip}
-                onPress={() => handleTripPress(trip)}
-              />
-            ))}
-          </View>
-        </ScrollView>
+          showsHorizontalScrollIndicator={false}
+        />
       )}
 
-      {!reservedTrips.length && (
+      {!trips.length && (
         <View style={styles.emptyTripsContainer}>
           <Image
             source={require("../../assets/images/empty-trips.png")}

@@ -4,51 +4,22 @@ import DefaultScreenTitle from "../../components/screenTitles/DefaultScreenTitle
 import AddLocationButton from "../../components/buttons/AddLocationButton";
 import Place from "../../components/common/Place";
 import AddPlaceBottomSheet from "../../components/bottomSheets/AddPlaceBottomSheet";
+import EditPlaceBottomSheet from "../../components/bottomSheets/EditPlaceBottomSheet";
 import useLocale from "../../hooks/useLocale";
 import NetworkStatusLine from "../../components/common/NetworkStatusLine";
 import useScreen from "../../hooks/useScreen";
-
-const _savedPlaces = [
-  {
-    type: "main",
-    title: "فلسطين,قطاع غزة,غزة,محافظةغزةالزيتون,890",
-  },
-  {
-    type: "work",
-    title: "فلسطين,قطاع غزة,غزة,محافظةغزةالزيتون,890",
-  },
-  {
-    type: "club",
-    title: "فلسطين,قطاع غزة,غزة,محافظةغزةالزيتون,890",
-  },
-  {
-    type: "cafe",
-    title: "فلسطين,قطاع غزة,غزة,محافظةغزةالزيتون,890",
-  },
-  {
-    type: "park",
-    title: "فلسطين,قطاع غزة,غزة,محافظةغزةالزيتون,890",
-  },
-  {
-    type: "family-home",
-    title: "فلسطين,قطاع غزة,غزة,محافظةغزةالزيتون,890",
-  },
-  {
-    type: "partners",
-    title: "فلسطين,قطاع غزة,غزة,محافظةغزةالزيتون,890",
-  },
-  {
-    type: "other",
-    title: "فلسطين,قطاع غزة,غزة,محافظةغزةالزيتون,890",
-  },
-];
+import useAuth from "../../auth/useAuth";
+import * as usersApi from "../../api/user/users";
+import PopupLoading from "../../components/popups/PopupLoading";
 
 export default function SavedPlacesScreen({ navigation }) {
   const screen = useScreen();
+  const { user, setUser } = useAuth();
   const { i18n, lang } = useLocale();
-  const [locations, setLocations] = useState([]);
-  const [place, setPlace] = useState({ type: "", title: "" });
-  const [showSheet, setShowSheet] = useState(false);
+  const [place, setPlace] = useState(null);
+  const [showAddPlaceSheet, setShowAddPlaceSheet] = useState(false);
+  const [showEditPlaceSheet, setShowEditPlaceSheet] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const styles = StyleSheet.create({
     container: {
@@ -89,42 +60,89 @@ export default function SavedPlacesScreen({ navigation }) {
     } catch (err) {}
   };
 
-  const handleSelectLocation = (location) => {
+  const handleAddPlace = async (type, location) => {
     try {
-      setLocations([location]);
-    } catch (err) {}
+      setShowAddPlaceSheet(false);
+      setIsLoading(true);
+
+      const body = {
+        ...location,
+        type,
+      };
+
+      const res = await usersApi.savePlace(body);
+      const { savedPlaces } = res.data;
+      setUser({ ...user, savedPlaces });
+      setIsLoading(false);
+    } catch (err) {
+      setIsLoading(false);
+    }
   };
 
-  const handleDeleteLocation = (markerLocation) => {
+  const handleEditPlace = async (placeId, type, location) => {
     try {
-      const newLocations = locations.filter(
-        (location) =>
-          location.latitude !== markerLocation.latitude &&
-          location.longitude !== markerLocation.longitude
-      );
+      setShowEditPlaceSheet(false);
+      setPlace(null);
+      setIsLoading(true);
 
-      setLocations(newLocations);
-    } catch (err) {}
+      const { title, longitude, latitude } = location;
+
+      const res = await usersApi.updatePlace(
+        placeId,
+        title,
+        type,
+        longitude,
+        latitude
+      );
+      const { savedPlaces } = res.data;
+      setUser({ ...user, savedPlaces });
+      setIsLoading(false);
+    } catch (err) {
+      setIsLoading(false);
+    }
+  };
+
+  const handleDeletePlace = async (placeId) => {
+    try {
+      setShowEditPlaceSheet(false);
+      setPlace(null);
+      setIsLoading(true);
+
+      const res = await usersApi.deletePlace(placeId);
+      const { savedPlaces } = res.data;
+      setUser({ ...user, savedPlaces });
+      setIsLoading(false);
+    } catch (err) {
+      setIsLoading(false);
+    }
   };
 
   return (
     <SafeAreaView style={styles.container}>
       <NetworkStatusLine />
 
-      <ScrollView>
+      <PopupLoading visible={isLoading} />
+
+      <ScrollView
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+      >
         <DefaultScreenTitle title={i18n("savedPlaces")} onPrev={handleGoBack} />
 
         <Text style={lang === "ar" ? styles.arHintText : styles.enHintText}>
           {i18n("savedPlacesScreenHint")}
         </Text>
 
-        {!!_savedPlaces.length && (
+        {!!user?.savedPlaces?.length && (
           <View style={styles.placesContainer}>
-            {_savedPlaces.map((place, index) => (
+            {user?.savedPlaces?.map?.((place, index) => (
               <Place
                 key={index}
                 place={place}
-                onEdit={() => setShowSheet(true)}
+                onEdit={() => {
+                  setPlace(place);
+                  setShowEditPlaceSheet(true);
+                }}
               />
             ))}
 
@@ -134,18 +152,30 @@ export default function SavedPlacesScreen({ navigation }) {
 
         <AddLocationButton
           text={i18n("addFavLocation")}
-          onPress={() => setShowSheet(true)}
+          onPress={() => {
+            setPlace(null);
+            setShowAddPlaceSheet(true);
+          }}
         />
       </ScrollView>
 
-      <AddPlaceBottomSheet
-        onClose={() => setShowSheet(false)}
-        visible={showSheet}
-        place={place}
-        locations={locations}
-        onMarkerPress={handleDeleteLocation}
-        onSelectLocation={handleSelectLocation}
-      />
+      {showAddPlaceSheet && (
+        <AddPlaceBottomSheet
+          onClose={() => setShowAddPlaceSheet(false)}
+          visible={showAddPlaceSheet}
+          onAddPlace={handleAddPlace}
+        />
+      )}
+
+      {!!place && showEditPlaceSheet && (
+        <EditPlaceBottomSheet
+          place={place}
+          onClose={() => setShowEditPlaceSheet(false)}
+          visible={!!place && showEditPlaceSheet}
+          onEditPlace={handleEditPlace}
+          onDeletePlace={handleDeletePlace}
+        />
+      )}
     </SafeAreaView>
   );
 }

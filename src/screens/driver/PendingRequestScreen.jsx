@@ -47,11 +47,11 @@ export default function PendingRequestScreen({ navigation }) {
     },
   });
 
-  const handleEditRequest = () => {
-    try {
-      navigation.navigate(screens.driverHome);
-    } catch (err) {}
-  };
+  // const handleEditRequest = () => {
+  //   try {
+  //     navigation.navigate(screens.driverHome);
+  //   } catch (err) {}
+  // };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -71,12 +71,12 @@ export default function PendingRequestScreen({ navigation }) {
 
       <Text style={styles.subtitle}>{i18n("requestUnderReview")}</Text>
 
-      <CustomButton
+      {/* <CustomButton
         text={i18n("editRequest")}
         onPress={handleEditRequest}
         containerStyle={styles.buttonContainer}
         textStyle={styles.buttonText}
-      />
+      /> */}
     </SafeAreaView>
   );
 }

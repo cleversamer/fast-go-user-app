@@ -18,6 +18,7 @@ export default function GoogleMap({
   locations = [],
   onSelectLocation,
   onMarkerPress,
+  containerStyles,
 }) {
   const { i18n } = useLocale();
   const [region, setRegion] = useState(initialRegion);
@@ -67,7 +68,11 @@ export default function GoogleMap({
   };
 
   return (
-    <MapView style={styles.map} region={region} onPress={handleSelectLocation}>
+    <MapView
+      style={[styles.map, containerStyles || {}]}
+      region={region}
+      onPress={handleSelectLocation}
+    >
       <Marker
         coordinate={{
           latitude: region.latitude,
@@ -92,5 +97,7 @@ export default function GoogleMap({
 const styles = StyleSheet.create({
   map: {
     flex: 1,
+    minHeight: "100%",
+    minWidth: "100%",
   },
 });

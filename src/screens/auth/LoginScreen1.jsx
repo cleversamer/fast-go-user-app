@@ -10,6 +10,7 @@ import screens from "../../static/screens.json";
 import checkPhoneNSN from "../../utils/checkPhoneNSN";
 import useScreen from "../../hooks/useScreen";
 import { signInWithGoogle } from "../../firebase";
+import auth from "@react-native-firebase/auth";
 
 export default function LoginScreen1({ navigation, route }) {
   const screen = useScreen();
@@ -88,9 +89,8 @@ export default function LoginScreen1({ navigation, route }) {
 
   const handleContinueWithGoogle = async () => {
     try {
+      const res = await auth().signInWithPhoneNumber(phone.icc + phone.nsn);
       // navigation.navigate(screens.login2, { authType: "google", phone, role });
-      const res = await signInWithGoogle();
-      console.log("res", res);
     } catch (err) {
       console.log("err", err);
     }

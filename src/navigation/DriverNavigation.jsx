@@ -43,17 +43,14 @@ export default function DriverNavigation() {
     return user.role === "driver" && user.verified.phone;
   };
 
+  const hadAddedCar = () => {
+    return !!user.carId;
+  };
+
   return (
     <Stack.Navigator screenOptions={globalScreenOptions}>
       {isFullyVerified() && (
         <Stack.Screen name={screens.drawer} component={DrawerNavigation} />
-      )}
-
-      {!isDriverVerified() && (
-        <Stack.Screen
-          name={screens.addLegalDocuments}
-          component={AddLegalDocumentsScreen}
-        />
       )}
 
       {!isPhoneVerified() && (
@@ -63,14 +60,23 @@ export default function DriverNavigation() {
         />
       )}
 
+      {!isDriverVerified() && !hadAddedCar() && (
+        <Stack.Screen name={screens.addCar} component={AddCarScreen} />
+      )}
+
+      {!isDriverVerified() && !hadAddedCar() && (
+        <Stack.Screen
+          name={screens.addLegalDocuments}
+          component={AddLegalDocumentsScreen}
+        />
+      )}
+
       {!isDriverVerified() && (
         <Stack.Screen
           name={screens.pendingRequest}
           component={PendingRequestScreen}
         />
       )}
-
-      <Stack.Screen name={screens.addCar} component={AddCarScreen} />
 
       {isFullyVerified() && (
         <Stack.Screen name={screens.driverHome} component={DriverHomeSceen} />

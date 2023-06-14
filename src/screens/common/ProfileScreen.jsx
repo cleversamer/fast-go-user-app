@@ -70,8 +70,10 @@ export default function ProfileScreen({ navigation }) {
     },
   });
 
-  const handleKeyChange = (key) => (value) =>
-    setContext({ ...context, [key]: value });
+  const handleKeyChange = (key) => (value) => {
+    if (key === "phoneNSN" && value.length > 9) return;
+    setContext({ ...context, [key]: value.trim?.() || value });
+  };
 
   const handleGoBack = () => {
     try {

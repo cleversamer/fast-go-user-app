@@ -15,10 +15,9 @@ export default function PopupLoading({ visible }) {
       backgroundColor: "rgba(0,0,0,0.5)",
     },
     boxContainer: {
-      width: screen.getScreenWidth() * 0.9,
-      maxWidth: screen.getHorizontalPixelSize(400),
-      height: screen.getVerticalPixelSize(180),
       backgroundColor: "#fff",
+      paddingHorizontal: screen.getHorizontalPixelSize(20),
+      paddingVertical: screen.getVerticalPixelSize(15),
       borderRadius: 8,
       justifyContent: "center",
       alignItems: "center",
@@ -26,7 +25,7 @@ export default function PopupLoading({ visible }) {
     },
     text: {
       fontFamily: "cairo-700",
-      fontSize: screen.getResponsiveFontSize(18),
+      fontSize: screen.getResponsiveFontSize(16),
       color: "#303030",
     },
   });

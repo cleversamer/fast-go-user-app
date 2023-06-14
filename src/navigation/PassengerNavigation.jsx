@@ -32,11 +32,11 @@ export default function PassengerNavigation() {
   const { user } = useAuth();
 
   const isFullyVerified = () => {
-    return user.role === "passenger" && user.verified.phone;
+    return user.verified.phone;
   };
 
   const isPhoneVerified = () => {
-    return user.role === "passenger" && user.verified.phone;
+    return user.verified.phone;
   };
 
   return (

@@ -12,6 +12,7 @@
       "fadeInDuration": 1500,
       "fadeOutDuration": 1500
     },
+    "plugins": ["@react-native-firebase/app", "@react-native-firebase/auth"],
     "platforms": ["ios", "android"],
     "extra": {
       "eas": {

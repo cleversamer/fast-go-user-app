@@ -1,7 +1,7 @@
 import client from "../client";
 import authStorage from "../../auth/storage";
 
-export const authenticate = async (lang) => {
+export const authenticate = async () => {
   const token = await authStorage.getToken();
   if (!token) {
     throw new Error("");
@@ -96,6 +96,49 @@ export const updateProfile = async (data) => {
   const token = await authStorage.getToken();
 
   return await client.patch("/users/profile/update", data, {
+    headers: {
+      Authorization: token,
+    },
+  });
+};
+
+export const savePlace = async (data) => {
+  const token = await authStorage.getToken();
+
+  return await client.post("/users/places/add", data, {
+    headers: {
+      Authorization: token,
+    },
+  });
+};
+
+export const updatePlace = async (
+  placeId,
+  title,
+  type,
+  longitude,
+  latitude
+) => {
+  const token = await authStorage.getToken();
+
+  const body = {
+    title,
+    type,
+    longitude,
+    latitude,
+  };
+
+  return await client.patch(`/users/places/${placeId}/update`, body, {
+    headers: {
+      Authorization: token,
+    },
+  });
+};
+
+export const deletePlace = async (placeId) => {
+  const token = await authStorage.getToken();
+
+  return await client.delete(`/users/places/${placeId}/delete`, {
     headers: {
       Authorization: token,
     },

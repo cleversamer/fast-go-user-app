@@ -45,6 +45,10 @@ export default function DraggableBottomSheet({
     } catch (err) {}
   }, [ref, visible]);
 
+  if (!visible) {
+    return null;
+  }
+
   return (
     <RBSheet
       ref={ref}

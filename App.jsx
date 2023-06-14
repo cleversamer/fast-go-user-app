@@ -7,6 +7,7 @@ import useLocation from "./src/hooks/useLocation";
 // import useSystemLanguage from "./src/hooks/useSystemLanguage";
 import * as usersApi from "./src/api/user/users";
 import socket from "./src/socket/client";
+import authStorage from "./src/auth/storage";
 
 import {
   lockAsync,
@@ -17,6 +18,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import AuthNavigation from "./src/navigation/AuthNavigation";
 import PassengerNavigation from "./src/navigation/PassengerNavigation";
 import DriverNavigation from "./src/navigation/DriverNavigation";
+import PopupError from "./src/components/popups/PopupError";
 
 import AuthContext from "./src/auth/context";
 
@@ -35,6 +37,11 @@ export default function App() {
   const [user, setUser] = useState(null);
   const [isUserLoading, setIsUserLoading] = useState(true);
   const [displayMode, setDisplayMode] = useState("driver");
+  const [popupAccountDeleted, setPopupAccountDeleted] = useState({
+    visible: false,
+    message: "",
+    onClose: () => {},
+  });
   const [screenDimensions, setScreenDimensions] = useState(
     Dimensions.get("screen")
   );
@@ -57,6 +64,14 @@ export default function App() {
           },
         });
       } catch (err) {}
+    });
+
+    socket.on("account deleted", async () => {
+      setPopupAccountDeleted({
+        message: "Your account has been deleted",
+        onClose: handleDeleteAccount,
+        visible: true,
+      });
     });
 
     usersApi
@@ -97,6 +112,14 @@ export default function App() {
       unlockAsync();
     };
   }, []);
+
+  const handleDeleteAccount = async () => {
+    try {
+      setPopupAccountDeleted({ ...popupAccountDeleted, visible: false });
+      setUser(null);
+      await authStorage.removeToken();
+    } catch (err) {}
+  };
 
   const checkIfPassenger = () => {
     try {
@@ -139,6 +162,12 @@ export default function App() {
           socket,
         }}
       >
+        <PopupError
+          onClose={popupAccountDeleted.onClose}
+          visible={popupAccountDeleted.visible}
+          message={popupAccountDeleted.message}
+        />
+
         {!showHomeScreen && (
           <Onboarding onDone={() => setShowHomeScreen(true)} />
         )}

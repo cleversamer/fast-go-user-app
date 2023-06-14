@@ -9,12 +9,19 @@ import useAuth from "../../auth/useAuth";
 import InputIcon from "../../components/inputs/InputIcon";
 import CustomButton from "../../components/buttons/CustomButton";
 import PopupConfirm from "../../components/popups/PopupConfirm";
+import PopupLoading from "../../components/popups/PopupLoading";
+import PopupError from "../../components/popups/PopupError";
 import useScreen from "../../hooks/useScreen";
+import * as paymentCardsApi from "../../api/user/paymentCards";
 
 export default function WalletScreen({ navigation }) {
   const screen = useScreen();
   const { user } = useAuth();
   const { i18n, lang } = useLocale();
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [paymentCard, setPaymentCard] = useState(null);
+  const [code, setCode] = useState("");
   const [popupAddBalance, setPopupAddBalance] = useState({
     visible: false,
     title: i18n("cardBalance"),
@@ -126,25 +133,6 @@ export default function WalletScreen({ navigation }) {
     } catch (err) {}
   };
 
-  const handleAddBalance = () => {
-    try {
-      const onClose = () => {
-        setPopupAddBalance({ ...popupAddBalance, visible: false });
-      };
-
-      const onConfirm = () => {
-        setPopupAddBalance({ ...popupAddBalance, visible: false });
-      };
-
-      setPopupAddBalance({
-        ...popupAddBalance,
-        visible: true,
-        onClose,
-        onConfirm,
-      });
-    } catch (err) {}
-  };
-
   const mapBalance = (balance = 0) => {
     try {
       // Convert the number to a string with two decimal places
@@ -163,9 +151,49 @@ export default function WalletScreen({ navigation }) {
     }
   };
 
+  const handleCodeChange = (code) => {
+    if (code.length > 14) return;
+    const alphanumericRegex = /^[a-zA-Z0-9]+$/;
+    const isValid = !code || alphanumericRegex.test(code);
+    if (isValid) {
+      setCode(code);
+    }
+  };
+
+  const handleCheckCode = async () => {
+    try {
+      setIsLoading(true);
+      const res = await paymentCardsApi.checkPaymentCard(code);
+      setPaymentCard(res.data);
+      setIsLoading(false);
+
+      const onClose = () => {
+        setPopupAddBalance({ ...popupAddBalance, visible: false });
+      };
+
+      const onConfirm = () => {
+        setPopupAddBalance({ ...popupAddBalance, visible: false });
+      };
+
+      setPopupAddBalance({
+        ...popupAddBalance,
+        title: `${paymentCard.balance} LYD`,
+        visible: true,
+        onClose,
+        onConfirm,
+      });
+    } catch (err) {
+      setIsLoading(false);
+      const message = err.response.data.message[lang] || i18n("networkError");
+      setError(message);
+    }
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <NetworkStatusLine />
+
+      <PopupLoading visible={isLoading} />
 
       <PopupConfirm
         title={popupAddBalance.title}
@@ -175,6 +203,12 @@ export default function WalletScreen({ navigation }) {
         onClose={popupAddBalance.onClose}
         onConfirm={popupAddBalance.onConfirm}
         subtitleStyle={styles.popupSubtitle}
+      />
+
+      <PopupError
+        visible={!!error}
+        onClose={() => setError("")}
+        message={error}
       />
 
       <DefaultScreenTitle title={i18n("wallet")} onPrev={handleGoBack} />
@@ -208,8 +242,10 @@ export default function WalletScreen({ navigation }) {
           <Text style={styles.addBalanceFormTitle}>{i18n("addBalance")}</Text>
 
           <InputIcon
-            placeholder={i18n("cardCode")}
+            placeholder={i18n("cardCodeInputTitle")}
             title={i18n("cardCode")}
+            value={code}
+            onChange={handleCodeChange}
             Icon={() => (
               <AntDesign
                 name="creditcard"
@@ -222,7 +258,8 @@ export default function WalletScreen({ navigation }) {
             text={i18n("add")}
             containerStyle={styles.buttonContainer}
             textStyle={styles.buttonText}
-            onPress={handleAddBalance}
+            onPress={handleCheckCode}
+            disabled={code.length !== 14}
           />
         </View>
       )}
