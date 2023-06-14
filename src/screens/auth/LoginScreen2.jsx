@@ -13,6 +13,8 @@ import checkPhoneNSN from "../../utils/checkPhoneNSN";
 import checkRealName from "../../utils/checkForRealName";
 import checkEmail from "../../utils/checkEmail";
 import useScreen from "../../hooks/useScreen";
+import SelectInput from "../../components/inputs/SelectInput";
+import data from "../../static/data.json";
 
 export default function LoginScreen2({ navigation, route }) {
   const screen = useScreen();
@@ -24,6 +26,7 @@ export default function LoginScreen2({ navigation, route }) {
     lastName: "",
     email: "",
     referralCode: "",
+    gender: "",
   });
 
   const styles = StyleSheet.create({
@@ -128,7 +131,8 @@ export default function LoginScreen2({ navigation, route }) {
 
   const isValidForm = () => {
     try {
-      const { phone, email, firstName, lastName, referralCode } = context;
+      const { phone, email, firstName, lastName, referralCode, gender } =
+        context;
 
       const isValidPhone = checkPhoneNSN(phone.nsn);
       const isValidFirstName = firstName.length >= 3 && firstName.length <= 16;
@@ -136,15 +140,18 @@ export default function LoginScreen2({ navigation, route }) {
       const isRealName = checkRealName(firstName + lastName);
       const isValidReferralCode = !referralCode || referralCode.length === 14;
       const isValidEmail = checkEmail(email);
+      const isValidGender = data.genders.includes(gender);
 
       const isValidEmailLogin =
         isValidFirstName &&
         isValidLastName &&
         isRealName &&
         isValidEmail &&
+        isValidGender &&
         isValidReferralCode;
 
-      const isValidOuterLogin = isValidPhone && isValidReferralCode;
+      const isValidOuterLogin =
+        isValidPhone && isValidGender && isValidReferralCode;
 
       return authType === "email" ? isValidEmailLogin : isValidOuterLogin;
     } catch (err) {
@@ -222,6 +229,13 @@ export default function LoginScreen2({ navigation, route }) {
             )}
           />
         )}
+
+        <SelectInput
+          value={context.gender ? i18n(context.gender) : ""}
+          options={data.genders.map((g) => ({ key: g, value: i18n(g) }))}
+          onChange={handleKeyChange("gender")}
+          placeholder={i18n("selectGender")}
+        />
 
         <ReferralCodeInput
           value={context.referralCode}

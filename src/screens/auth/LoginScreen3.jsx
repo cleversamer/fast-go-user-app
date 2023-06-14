@@ -12,8 +12,16 @@ import * as authApi from "../../api/user/auth";
 import useAuth from "../../auth/useAuth";
 
 export default function LoginScreen3({ navigation, route }) {
-  const { role, authType, phone, firstName, lastName, email, referralCode } =
-    route.params;
+  const {
+    role,
+    authType,
+    phone,
+    firstName,
+    lastName,
+    email,
+    referralCode,
+    gender,
+  } = route.params;
   const screen = useScreen();
   const { login } = useAuth();
   const { i18n, lang } = useLocale();
@@ -90,7 +98,7 @@ export default function LoginScreen3({ navigation, route }) {
         phone.icc,
         phone.nsn,
         role,
-        "male",
+        gender,
         lang,
         "device-token",
         referralCode
