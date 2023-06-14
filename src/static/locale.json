@@ -566,5 +566,13 @@
   "popupDeletionLinkSentSubtitle": {
     "en": "An email has been sent to you to confirm your account deletion",
     "ar": "تم إرسال بريد إلكتروني إليك لتأكيد حذف حسابك"
+  },
+  "male": {
+    "en": "Male",
+    "ar": "ذكر"
+  },
+  "female": {
+    "en": "Female",
+    "ar": "أنثى"
   }
 }

@@ -250,8 +250,8 @@ export default function ProfileScreen({ navigation }) {
           />
 
           <SelectInput
-            value={context.gender}
-            options={data.genders}
+            value={i18n(context.gender)}
+            options={data.genders.map((g) => ({ key: g, value: i18n(g) }))}
             onChange={handleKeyChange("gender")}
             placeholder={i18n("selectGender")}
           />
