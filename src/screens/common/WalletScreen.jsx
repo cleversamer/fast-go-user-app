@@ -182,6 +182,7 @@ export default function WalletScreen({ navigation }) {
           setIsLoading(true);
           const { data: card } = await paymentCardsApi.chargePaymentCard(code);
           setIsLoading(false);
+          setCode("");
           setUser({ ...user, balance: user.balance + card.balance });
           setPopupAddBalance({
             ...popupAddBalance,
@@ -206,6 +207,7 @@ export default function WalletScreen({ navigation }) {
               }),
           });
         } catch (err) {
+          setCode("");
           setIsLoading(false);
           const message =
             err?.response?.data?.message?.[lang] || i18n("networkError");
