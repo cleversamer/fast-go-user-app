@@ -5,12 +5,9 @@
     "version": "1.0.0",
     "icon": "./icon.png",
     "splash": {
-      "image": "./src/assets/images/splash.jpg",
+      "image": "./src/assets/images/splash.png",
       "resizeMode": "cover",
-      "backgroundColor": "#ffffff",
-      "orientation": "portrait",
-      "fadeInDuration": 1500,
-      "fadeOutDuration": 1500
+      "backgroundColor": "#ffffff"
     },
     "platforms": ["ios", "android"],
     "extra": {
@@ -24,7 +21,6 @@
     "android": {
       "package": "com.thirtydigits.fastgo",
       "versionCode": 29,
-      "versionName": "1.0.0",
       "config": {
         "googleMaps": {
           "apiKey": "AIzaSyD-R5BPnawb8WoCgL6agXYv8MrjIe-i_m8"

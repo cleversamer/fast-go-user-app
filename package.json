@@ -18,7 +18,7 @@
     "email": "digitsthirty@gmail.com"
   },
   "scripts": {
-    "start": "expo start --dev-client",
+    "start": "expo start --clear",
     "android": "expo run:android",
     "ios": "expo run:ios",
     "web": "expo start --web",
@@ -41,7 +41,6 @@
     "expo-image-picker": "~14.1.1",
     "expo-localization": "~14.1.1",
     "expo-location": "~15.1.1",
-    "expo-modules-core": "^1.2.7",
     "expo-notifications": "~0.18.1",
     "expo-screen-orientation": "~5.1.1",
     "expo-splash-screen": "~0.18.2",

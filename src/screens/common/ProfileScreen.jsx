@@ -118,7 +118,12 @@ export default function ProfileScreen({ navigation }) {
         setUser(res.data);
         setIsLoading(false);
       }
-    } catch (err) {}
+    } catch (err) {
+      setIsLoading(false);
+      const message =
+        err?.response?.data?.message?.[lang] || i18n("networkError");
+      setError(message);
+    }
   };
 
   const getAvatarSource = () => {
