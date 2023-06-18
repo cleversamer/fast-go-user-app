@@ -31,7 +31,10 @@ export default function PassengerHomeScreen3({ navigation }) {
     },
   });
 
-  const handleRequestNow = () => {};
+  const handleRequestNow = () => {
+    try {
+    } catch (err) {}
+  };
 
   const handlePaymentTypeChange = (paymentType) => {
     try {

@@ -95,9 +95,7 @@ export default function LoginScreen2({ navigation, route }) {
         role,
         ...context,
       });
-    } catch (err) {
-      console.log("Err", err);
-    }
+    } catch (err) {}
   };
 
   const handlePhoneNSNChange = (phoneNSN) => {

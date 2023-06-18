@@ -4,7 +4,6 @@ import { StatusBar, Dimensions } from "react-native";
 import useFonts from "./src/hooks/useFonts";
 import useNetworkStatus from "./src/hooks/useNetworkStatus";
 import useLocation from "./src/hooks/useLocation";
-// import useSystemLanguage from "./src/hooks/useSystemLanguage";
 import * as usersApi from "./src/api/user/users";
 import socket from "./src/socket/client";
 import authStorage from "./src/auth/storage";
@@ -18,17 +17,17 @@ import { NavigationContainer } from "@react-navigation/native";
 import AuthNavigation from "./src/navigation/AuthNavigation";
 import PassengerNavigation from "./src/navigation/PassengerNavigation";
 import DriverNavigation from "./src/navigation/DriverNavigation";
-import PopupError from "./src/components/popups/PopupError";
+import AdminNavigation from "./src/navigation/AdminNavigation";
 
 import AuthContext from "./src/auth/context";
 
 import Onboarding from "./src/screens/common/Onboarding";
+import PopupError from "./src/components/popups/PopupError";
 
 export default function App() {
   // Hooks
   const { fontLoaded } = useFonts();
   useLocation();
-  // const { loading: isLoadingLanguage, systemLanguage } = useSystemLanguage();
   const isOnline = useNetworkStatus();
 
   // States
@@ -79,8 +78,10 @@ export default function App() {
       .then((res) => {
         const user = res.data;
         setUser(user);
-        setDisplayMode(user.role);
         setLang(user.display.language);
+        if (user.role !== "admin") {
+          setDisplayMode(user.role);
+        }
       })
       .catch(() => {})
       .finally(() => {
@@ -137,6 +138,14 @@ export default function App() {
     }
   };
 
+  const checkIfAdmin = () => {
+    try {
+      return user && user.role === "admin";
+    } catch (err) {
+      return false;
+    }
+  };
+
   if (!fontLoaded || isUserLoading) {
     return null;
   }
@@ -177,6 +186,7 @@ export default function App() {
             {!user && <AuthNavigation />}
             {checkIfPassenger() && <PassengerNavigation />}
             {checkIfDriver() && <DriverNavigation />}
+            {checkIfAdmin() && <AdminNavigation />}
           </NavigationContainer>
         )}
       </AuthContext.Provider>

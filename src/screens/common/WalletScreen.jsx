@@ -157,12 +157,14 @@ export default function WalletScreen({ navigation }) {
   };
 
   const handleCodeChange = (code) => {
-    if (code.length > 14) return;
-    const alphanumericRegex = /^[a-zA-Z0-9]+$/;
-    const isValid = !code || alphanumericRegex.test(code);
-    if (isValid) {
-      setCode(code);
-    }
+    try {
+      if (code.length > 14) return;
+      const alphanumericRegex = /^[a-zA-Z0-9]+$/;
+      const isValid = !code || alphanumericRegex.test(code);
+      if (isValid) {
+        setCode(code);
+      }
+    } catch (err) {}
   };
 
   const handleCheckCode = async () => {

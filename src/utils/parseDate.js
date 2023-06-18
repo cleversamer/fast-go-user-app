@@ -1,17 +1,17 @@
 // eslint-disable-next-line import/no-anonymous-default-export
 export default function (strDate, lang = "ar") {
-  if (!strDate) return;
-
-  const day = lang === "ar" ? "يوم" : "day";
-  const days = lang === "ar" ? "أيام" : "days";
-  const hour = lang === "ar" ? "ساعة" : "hour";
-  const hours = lang === "ar" ? "ساعات" : "hours";
-  const min = lang === "ar" ? "دقيقة" : "min";
-  const mins = lang === "ar" ? "دقائق" : "mins";
-  const sec = lang === "ar" ? "ثانية" : "sec";
-  const secs = lang === "ar" ? "ثواني" : "secs";
-
   try {
+    if (!strDate) return;
+
+    const day = lang === "ar" ? "يوم" : "day";
+    const days = lang === "ar" ? "أيام" : "days";
+    const hour = lang === "ar" ? "ساعة" : "hour";
+    const hours = lang === "ar" ? "ساعات" : "hours";
+    const min = lang === "ar" ? "دقيقة" : "min";
+    const mins = lang === "ar" ? "دقائق" : "mins";
+    const sec = lang === "ar" ? "ثانية" : "sec";
+    const secs = lang === "ar" ? "ثواني" : "secs";
+
     const secInMs = 1000;
     const minInMs = secInMs * 60;
     const hourInMs = minInMs * 60;

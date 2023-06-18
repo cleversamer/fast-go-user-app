@@ -196,18 +196,22 @@ export default function ReservedTrip({ trip, onPress }) {
   };
 
   const getCarTypeIcon = () => {
-    switch (trip.carType) {
-      case "luxury":
-        return require("../../assets/images/luxury-car.png");
+    try {
+      switch (trip.carType) {
+        case "luxury":
+          return require("../../assets/images/luxury-car.png");
 
-      case "women":
-        return require("../../assets/images/women-car.png");
+        case "women":
+          return require("../../assets/images/women-car.png");
 
-      case "commercial":
-        return require("../../assets/images/commercial-car.png");
+        case "commercial":
+          return require("../../assets/images/commercial-car.png");
 
-      default:
-        return require("../../assets/images/luxury-car.png");
+        default:
+          return require("../../assets/images/luxury-car.png");
+      }
+    } catch (err) {
+      return { uri: "" };
     }
   };
 

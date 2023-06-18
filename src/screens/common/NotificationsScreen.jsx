@@ -22,18 +22,20 @@ export default function NotificationsScreen({ navigation }) {
   const { i18n } = useLocale();
 
   useEffect(() => {
-    usersApi
-      .seeNotifications()
-      .then((res) => {
-        setUser({
-          ...user,
-          notifications: {
-            ...user.notifications,
-            list: res.data.notifications,
-          },
-        });
-      })
-      .catch(() => {});
+    try {
+      usersApi
+        .seeNotifications()
+        .then((res) => {
+          setUser({
+            ...user,
+            notifications: {
+              ...user.notifications,
+              list: res.data.notifications,
+            },
+          });
+        })
+        .catch(() => {});
+    } catch (err) {}
   }, []);
 
   const styles = StyleSheet.create({

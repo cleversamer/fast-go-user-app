@@ -71,8 +71,10 @@ export default function ProfileScreen({ navigation }) {
   });
 
   const handleKeyChange = (key) => (value) => {
-    if (key === "phoneNSN" && value.length > 9) return;
-    setContext({ ...context, [key]: value.trim?.() || value });
+    try {
+      if (key === "phoneNSN" && value.length > 9) return;
+      setContext({ ...context, [key]: value.trim?.() || value });
+    } catch (err) {}
   };
 
   const handleGoBack = () => {
@@ -132,19 +134,23 @@ export default function ProfileScreen({ navigation }) {
   };
 
   const checkIfSaveButtonDisabled = () => {
-    return (
-      (context.firstName === user.firstName &&
-        context.lastName === user.lastName &&
-        context.email === user.email &&
-        context.phoneNSN === user.phone.nsn &&
-        context.gender === user.gender) ||
-      context.firstName.length < 3 ||
-      context.firstName.length > 32 ||
-      context.lastName.length < 3 ||
-      context.lastName.length > 32 ||
-      !checkEmail(context.email) ||
-      context.phoneNSN.length !== 9
-    );
+    try {
+      return (
+        (context.firstName === user.firstName &&
+          context.lastName === user.lastName &&
+          context.email === user.email &&
+          context.phoneNSN === user.phone.nsn &&
+          context.gender === user.gender) ||
+        context.firstName.length < 3 ||
+        context.firstName.length > 32 ||
+        context.lastName.length < 3 ||
+        context.lastName.length > 32 ||
+        !checkEmail(context.email) ||
+        context.phoneNSN.length !== 9
+      );
+    } catch (err) {
+      return false;
+    }
   };
 
   const handleUpdateProfile = async () => {

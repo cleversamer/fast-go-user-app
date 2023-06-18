@@ -31,20 +31,20 @@ export default function DriverNavigation() {
 
   const isFullyVerified = () => {
     return (
-      user.role === "driver" && user.verified.phone && user.verified.driver
+      user?.role === "driver" && user?.verified?.phone && user?.verified?.driver
     );
   };
 
   const isDriverVerified = () => {
-    return user.role === "driver" && user.verified.driver;
+    return user?.role === "driver" && user?.verified?.driver;
   };
 
   const isPhoneVerified = () => {
-    return user.role === "driver" && user.verified.phone;
+    return user?.role === "driver" && user?.verified?.phone;
   };
 
   const hadAddedCar = () => {
-    return !!user.carId;
+    return !!user?.carId;
   };
 
   return (

@@ -78,13 +78,17 @@ export default function ReservedTripsScreen({ navigation }) {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    setIsLoading(true);
+    try {
+      setIsLoading(true);
 
-    tripsApi
-      .getMyPassengerTrips(currentPage, 10)
-      .then((res) => setTrips([...trips, ...res.data.trips]))
-      .catch(() => {})
-      .finally(() => setIsLoading(false));
+      tripsApi
+        .getMyPassengerTrips(currentPage, 10)
+        .then((res) => setTrips([...trips, ...res.data.trips]))
+        .catch(() => {})
+        .finally(() => setIsLoading(false));
+    } catch (err) {
+      setIsLoading(false);
+    }
   }, [currentPage]);
 
   const styles = StyleSheet.create({
@@ -136,9 +140,13 @@ export default function ReservedTripsScreen({ navigation }) {
   };
 
   const renderLoader = () => {
-    return isLoading ? (
-      <ActivityIndicator size="large" color={theme.primaryColor} />
-    ) : null;
+    try {
+      return isLoading ? (
+        <ActivityIndicator size="large" color={theme.primaryColor} />
+      ) : null;
+    } catch (err) {
+      return null;
+    }
   };
 
   return (

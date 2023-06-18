@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "38206081103",
+    "project_id": "fast-go-2023",
+    "storage_bucket": "fast-go-2023.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:38206081103:android:09fec6520f6a193af7423a",
+        "android_client_info": {
+          "package_name": "com.thirtydigits.fastgo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "38206081103-558t5b4cikrvoh2d1bfd50c3srnmsebn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCEmVrr0YEw2JDMpYpXMfhSztRyeu1ycw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "38206081103-558t5b4cikrvoh2d1bfd50c3srnmsebn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { StyleSheet, ScrollView, Linking } from "react-native";
 import {
   Ionicons,
@@ -45,22 +45,14 @@ export default function DrawerItems({ navigation }) {
     } catch (err) {}
   };
 
-  const openWhatsAppChat = () => {
+  const openWhatsAppChat = async () => {
     try {
       const phoneNumber = "+971544274978";
       const url = `https://wa.me/${phoneNumber}`;
 
-      Linking.canOpenURL(url)
-        .then((supported) => {
-          if (!supported) {
-            setShowPopupError(true);
-          } else {
-            return Linking.openURL(url);
-          }
-        })
-        .catch((err) => {
-          setShowPopupError(true);
-        });
+      const isOk = await Linking.canOpenURL(url);
+      if (!isOk) setShowPopupError(true);
+      else return Linking.openURL(url);
     } catch (err) {
       setShowPopupError(true);
     }
@@ -102,6 +94,14 @@ export default function DrawerItems({ navigation }) {
       return user.role === "driver" && displayMode === "passenger";
     } catch (err) {
       return true;
+    }
+  };
+
+  const checkIfAdmin = () => {
+    try {
+      return user.role === "admin";
+    } catch (err) {
+      return false;
     }
   };
 
@@ -199,17 +199,21 @@ export default function DrawerItems({ navigation }) {
         />
       )}
 
-      <DrawerItem
-        title={i18n("wallet")}
-        onPress={navigateTo(screens.wallet)}
-        Icon={() => <FontAwesome name="dollar" style={styles.itemIcon} />}
-      />
+      {!checkIfAdmin() && (
+        <DrawerItem
+          title={i18n("wallet")}
+          onPress={navigateTo(screens.wallet)}
+          Icon={() => <FontAwesome name="dollar" style={styles.itemIcon} />}
+        />
+      )}
 
-      <DrawerItem
-        title={i18n("earnMore")}
-        onPress={navigateTo(screens.earnMore)}
-        Icon={() => <FontAwesome5 name="gift" style={styles.itemIcon} />}
-      />
+      {!checkIfAdmin() && (
+        <DrawerItem
+          title={i18n("earnMore")}
+          onPress={navigateTo(screens.earnMore)}
+          Icon={() => <FontAwesome5 name="gift" style={styles.itemIcon} />}
+        />
+      )}
 
       <DrawerItem
         title={i18n("switchLang")}
@@ -222,11 +226,13 @@ export default function DrawerItems({ navigation }) {
         )}
       />
 
-      <DrawerItem
-        title={i18n("contactWhatsapp")}
-        onPress={openWhatsAppChat}
-        Icon={() => <FontAwesome5 name="whatsapp" style={styles.itemIcon} />}
-      />
+      {!checkIfAdmin() && (
+        <DrawerItem
+          title={i18n("contactWhatsapp")}
+          onPress={openWhatsAppChat}
+          Icon={() => <FontAwesome5 name="whatsapp" style={styles.itemIcon} />}
+        />
+      )}
 
       <DrawerItem
         title={i18n("about")}

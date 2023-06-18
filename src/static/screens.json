@@ -23,5 +23,6 @@
   "pendingRequest": "PendingRequestScreen",
   "driverHome": "DriverHomeSceen1",
   "tripsHistory": "TripsHistoryScreen",
-  "newRequest": "newRequestScreen"
+  "newRequest": "newRequestScreen",
+  "adminHome": "AdminHomeScreen"
 }

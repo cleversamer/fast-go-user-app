@@ -602,5 +602,25 @@
   "balanceAdded": {
     "en": "Balance has been added successfully",
     "ar": "تم إضافة الرصيد بنجاح"
+  },
+  "pendingDrivers": {
+    "en": "Pending drivers",
+    "ar": "السائقين المعلقين"
+  },
+  "activeDrivers": {
+    "en": "Active drivers",
+    "ar": "السائقين النشطين"
+  },
+  "approvedDrivers": {
+    "en": "Approved drivers",
+    "ar": "السائقين المقبولين"
+  },
+  "noOfTrips": {
+    "en": "NO. of trips",
+    "ar": "عدد الرحلات"
+  },
+  "more": {
+    "en": "More",
+    "ar": "المزيد"
   }
 }

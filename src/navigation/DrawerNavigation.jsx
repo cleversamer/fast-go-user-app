@@ -1,10 +1,12 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import DrawerContent from "../components/drawer";
-import PassengerHomeScreen1 from "../screens/passenger/HomeScreen1";
-import DriverHomeScreen from "../screens/driver/HomeSceen";
 import useLocale from "../hooks/useLocale";
 import useAuth from "../auth/useAuth";
 
+import AdminHomeSceen from "../screens/admin/HomeScreen";
+import PassengerHomeScreen1 from "../screens/passenger/HomeScreen1";
+import DriverHomeScreen from "../screens/driver/HomeSceen";
+
+import DrawerContent from "../components/drawer";
 import screens from "../static/screens.json";
 
 const Drawer = createDrawerNavigator();
@@ -40,6 +42,14 @@ export default function DrawerNavigation() {
     }
   };
 
+  const checkIfAdmin = () => {
+    try {
+      return user && user.role === "admin";
+    } catch (err) {
+      return false;
+    }
+  };
+
   return (
     <Drawer.Navigator
       drawerContent={DrawerContent}
@@ -54,6 +64,10 @@ export default function DrawerNavigation() {
 
       {checkIfDriver() && (
         <Drawer.Screen name={screens.driverHome} component={DriverHomeScreen} />
+      )}
+
+      {checkIfAdmin() && (
+        <Drawer.Screen name={screens.adminHome} component={AdminHomeSceen} />
       )}
     </Drawer.Navigator>
   );

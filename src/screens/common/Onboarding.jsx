@@ -14,16 +14,18 @@ export default function Onboarding({ onDone }) {
   const screen = useScreen();
 
   useEffect(() => {
-    const prepare = async () => {
-      const isShownBefore = await authStorage.getOnboardingShown();
-      if (isShownBefore) {
-        onDone();
-      } else {
-        setIsLoading(false);
-      }
-    };
+    try {
+      const prepare = async () => {
+        const isShownBefore = await authStorage.getOnboardingShown();
+        if (isShownBefore) {
+          onDone();
+        } else {
+          setIsLoading(false);
+        }
+      };
 
-    prepare();
+      prepare();
+    } catch (err) {}
   }, []);
 
   const slides = [
@@ -103,19 +105,27 @@ export default function Onboarding({ onDone }) {
   });
 
   const renderNextButton = () => {
-    return (
-      <View style={styles.nextButtonContainer}>
-        <AntDesign name="arrowright" style={styles.nextButtonIcon} />
-      </View>
-    );
+    try {
+      return (
+        <View style={styles.nextButtonContainer}>
+          <AntDesign name="arrowright" style={styles.nextButtonIcon} />
+        </View>
+      );
+    } catch (err) {
+      return null;
+    }
   };
 
   const renderSkipButton = () => {
-    return (
-      <View style={styles.skipButtonContainer}>
-        <Text style={styles.skipButtonText}>{i18n("skip")}</Text>
-      </View>
-    );
+    try {
+      return (
+        <View style={styles.skipButtonContainer}>
+          <Text style={styles.skipButtonText}>{i18n("skip")}</Text>
+        </View>
+      );
+    } catch (err) {
+      return null;
+    }
   };
 
   const handleDone = async () => {

@@ -6,14 +6,18 @@ const useCameraRoll = () => {
   const [status, setStatus] = useState(null);
 
   useEffect(() => {
-    requestCameraRollPermissions();
+    try {
+      requestCameraRollPermissions();
+    } catch (err) {}
   }, []);
 
   const requestCameraRollPermissions = async () => {
-    if (Platform.OS !== "web") {
-      const { status } = await requestMediaLibraryPermissionsAsync();
-      setStatus(status);
-    }
+    try {
+      if (Platform.OS !== "web") {
+        const { status } = await requestMediaLibraryPermissionsAsync();
+        setStatus(status);
+      }
+    } catch (err) {}
   };
 
   return {

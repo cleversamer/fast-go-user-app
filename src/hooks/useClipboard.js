@@ -38,9 +38,7 @@ const useClipboard = () => {
       }
 
       return timeoutId;
-    } catch (error) {
-      setIsCopied(false);
-    }
+    } catch (error) {}
   };
 
   return { isCopied, copyText, showCopiedIcon };
