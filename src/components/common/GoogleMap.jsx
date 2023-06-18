@@ -5,7 +5,7 @@ import useLocation from "../../hooks/useLocation";
 import Geocoder from "react-native-geocoding";
 import useLocale from "../../hooks/useLocale";
 
-Geocoder.init("AIzaSyAo9_6OiQ96Z-D2V8a4iiq5Yz3LDmrrM78");
+Geocoder.init("AIzaSyD-R5BPnawb8WoCgL6agXYv8MrjIe-i_m8");
 
 const initialRegion = {
   latitude: 32.86806972,
