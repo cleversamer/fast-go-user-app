@@ -9,6 +9,7 @@ export default function Copyrights() {
   const styles = StyleSheet.create({
     container: {
       alignSelf: "center",
+      marginTop: screen.getVerticalPixelSize(10),
       marginBottom: screen.getVerticalPixelSize(20),
       justifyContent: "center",
       alignItems: "center",

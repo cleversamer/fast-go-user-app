@@ -622,5 +622,37 @@
   "more": {
     "en": "More",
     "ar": "المزيد"
+  },
+  "drivers": {
+    "en": "Drivers",
+    "ar": "السائقين"
+  },
+  "requests": {
+    "en": "Requests",
+    "ar": "الطلبات"
+  },
+  "financialManagement": {
+    "en": "Financial management",
+    "ar": "الإدارة المالية"
+  },
+  "addDriver": {
+    "en": "Add driver",
+    "ar": "إضافة سائق"
+  },
+  "regions": {
+    "en": "Regions",
+    "ar": "المناطق"
+  },
+  "sendNotification": {
+    "en": "Send notification",
+    "ar": "إرسال إشعار"
+  },
+  "searchUser": {
+    "en": "Search user",
+    "ar": "البحث عن مستخدم"
+  },
+  "exportExcelFile": {
+    "en": "Export excel file",
+    "ar": "تصدير ملف اكسل"
   }
 }
