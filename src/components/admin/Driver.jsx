@@ -70,13 +70,15 @@ export default function Driver({ data, onCall }) {
       position: "absolute",
       bottom: screen.getVerticalPixelSize(7),
       left: screen.getHorizontalPixelSize(7),
-      fontSize: screen.getResponsiveFontSize(12),
+      fontSize: screen.getResponsiveFontSize(11),
+      fontFamily: "cairo-400",
     },
     enDate: {
       position: "absolute",
       bottom: screen.getVerticalPixelSize(7),
       right: screen.getHorizontalPixelSize(7),
-      fontSize: screen.getResponsiveFontSize(12),
+      fontSize: screen.getResponsiveFontSize(11),
+      fontFamily: "cairo-400",
     },
   });
 
