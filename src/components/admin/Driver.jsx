@@ -47,7 +47,7 @@ export default function Driver({ data, onCall }) {
       color: "#fff",
     },
     infoContainer: {
-      flexDirection: "row",
+      flexDirection: lang === "ar" ? "row" : "row-reverse",
       justifyContent: "space-between",
       alignItems: "center",
       paddingHorizontal: screen.getHorizontalPixelSize(10),
@@ -66,10 +66,16 @@ export default function Driver({ data, onCall }) {
       borderWidth: screen.getHorizontalPixelSize(0.5),
       borderColor: "#ababab",
     },
-    date: {
+    arDate: {
       position: "absolute",
       bottom: screen.getVerticalPixelSize(7),
       left: screen.getHorizontalPixelSize(7),
+      fontSize: screen.getResponsiveFontSize(12),
+    },
+    enDate: {
+      position: "absolute",
+      bottom: screen.getVerticalPixelSize(7),
+      right: screen.getHorizontalPixelSize(7),
       fontSize: screen.getResponsiveFontSize(12),
     },
   });
@@ -107,7 +113,7 @@ export default function Driver({ data, onCall }) {
         <CircularAvatar url={data.avatarURL} imageStyle={styles.avatar} />
       </View>
 
-      <Text style={styles.date}>{date}</Text>
+      <Text style={lang === "ar" ? styles.arDate : styles.enDate}>{date}</Text>
     </TouchableOpacity>
   );
 }
