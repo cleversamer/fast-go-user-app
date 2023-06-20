@@ -11,6 +11,7 @@ import ProfileScreen from "../screens/common/ProfileScreen";
 import VerifyPhoneScreen from "../screens/common/VerifyPhoneScreen";
 import CallScreen from "../screens/common/CallScreen";
 import DriverRequestScreen from "../screens/admin/DriverRequestScreen";
+import PhotoDisplayScreen from "../screens/admin/PhotoDisplayScreen";
 
 const globalScreenOptions = {
   contentStyle: { backgroundColor: "#fff" },
@@ -44,6 +45,11 @@ export default function AdminNavigation() {
       <Stack.Screen
         name={screens.driverRequest}
         component={DriverRequestScreen}
+      />
+
+      <Stack.Screen
+        name={screens.photoDisplay}
+        component={PhotoDisplayScreen}
       />
     </Stack.Navigator>
   );

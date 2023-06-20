@@ -26,5 +26,6 @@
   "newRequest": "newRequestScreen",
   "adminHome": "AdminHomeScreen",
   "drivers": "DriversScreen",
-  "driverRequest": "DriverRequestScreen"
+  "driverRequest": "DriverRequestScreen",
+  "photoDisplay": "PhotoDisplayScreen"
 }

@@ -22,6 +22,7 @@ import {
 } from "@expo/vector-icons";
 import * as theme from "../../constants/theme";
 import CustomButton from "../../components/buttons/CustomButton";
+import screens from "../../static/screens.json";
 
 export default function DriverRequestScreen({ navigation, route }) {
   const { driver } = route.params;
@@ -52,8 +53,10 @@ export default function DriverRequestScreen({ navigation, route }) {
     contentContainer: {
       gap: screen.getVerticalPixelSize(15),
     },
-    avatar: {
+    avatarContainer: {
       alignSelf: "center",
+    },
+    avatar: {
       width: screen.getHorizontalPixelSize(100),
       height: screen.getVerticalPixelSize(100),
       borderWidth: screen.getHorizontalPixelSize(1),
@@ -142,6 +145,13 @@ export default function DriverRequestScreen({ navigation, route }) {
 
   const handleRejectDriver = () => {};
 
+  const getOpenPhotoHandler = (url) => () => {
+    try {
+      const source = { uri: url };
+      navigation.navigate(screens.photoDisplay, { source });
+    } catch (err) {}
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <DefaultScreenTitle title={i18n("driverRequest")} onPrev={handleGoBack} />
@@ -151,7 +161,12 @@ export default function DriverRequestScreen({ navigation, route }) {
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
       >
-        <CircularAvatar url={driver?.avatarURL} imageStyle={styles.avatar} />
+        <TouchableOpacity
+          style={styles.avatarContainer}
+          onPress={getOpenPhotoHandler(driver.avatarURL)}
+        >
+          <CircularAvatar url={driver?.avatarURL} imageStyle={styles.avatar} />
+        </TouchableOpacity>
 
         <View style={styles.boxContainer}>
           <View style={styles.itemContainer}>
@@ -183,19 +198,31 @@ export default function DriverRequestScreen({ navigation, route }) {
           <Text style={styles.imagesTitle}>{i18n("requiredDocuments")}</Text>
 
           <View style={styles.imagesListContainer}>
-            <TouchableOpacity style={styles.imageContainer}>
+            <TouchableOpacity
+              style={styles.imageContainer}
+              onPress={getOpenPhotoHandler(driver.avatarURL)}
+            >
               <Image source={{ uri: driver.avatarURL }} style={styles.image} />
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.imageContainer}>
+            <TouchableOpacity
+              style={styles.imageContainer}
+              onPress={getOpenPhotoHandler(driver.avatarURL)}
+            >
               <Image source={{ uri: driver.avatarURL }} style={styles.image} />
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.imageContainer}>
+            <TouchableOpacity
+              style={styles.imageContainer}
+              onPress={getOpenPhotoHandler(driver.avatarURL)}
+            >
               <Image source={{ uri: driver.avatarURL }} style={styles.image} />
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.imageContainer}>
+            <TouchableOpacity
+              style={styles.imageContainer}
+              onPress={getOpenPhotoHandler(driver.avatarURL)}
+            >
               <Image source={{ uri: driver.avatarURL }} style={styles.image} />
             </TouchableOpacity>
           </View>
@@ -236,19 +263,31 @@ export default function DriverRequestScreen({ navigation, route }) {
           <Text style={styles.imagesTitle}>{i18n("requiredDocuments")}</Text>
 
           <View style={styles.imagesListContainer}>
-            <TouchableOpacity style={styles.imageContainer}>
+            <TouchableOpacity
+              style={styles.imageContainer}
+              onPress={getOpenPhotoHandler(driver.avatarURL)}
+            >
               <Image source={{ uri: driver.avatarURL }} style={styles.image} />
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.imageContainer}>
+            <TouchableOpacity
+              style={styles.imageContainer}
+              onPress={getOpenPhotoHandler(driver.avatarURL)}
+            >
               <Image source={{ uri: driver.avatarURL }} style={styles.image} />
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.imageContainer}>
+            <TouchableOpacity
+              style={styles.imageContainer}
+              onPress={getOpenPhotoHandler(driver.avatarURL)}
+            >
               <Image source={{ uri: driver.avatarURL }} style={styles.image} />
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.imageContainer}>
+            <TouchableOpacity
+              style={styles.imageContainer}
+              onPress={getOpenPhotoHandler(driver.avatarURL)}
+            >
               <Image source={{ uri: driver.avatarURL }} style={styles.image} />
             </TouchableOpacity>
           </View>
