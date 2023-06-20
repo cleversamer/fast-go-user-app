@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   StyleSheet,
   SafeAreaView,
@@ -13,12 +13,21 @@ import CircularButton from "../../components/buttons/CircularButton";
 import useLocale from "../../hooks/useLocale";
 import * as theme from "../../constants/theme";
 import useScreen from "../../hooks/useScreen";
+import useSoundPlayer from "../../hooks/useSoundPlayer";
 
-export default function CallScreen({ navigation }) {
+export default function CallScreen({ navigation, route }) {
+  const receiver = route?.params?.receiver;
+  useSoundPlayer(require("../../assets/audio/dial.mp3"), false, true, 10);
   const screen = useScreen();
   const [isSpeaker, setIsSpeaker] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const { i18n } = useLocale();
+
+  useEffect(() => {
+    if (!receiver) {
+      navigation.goBack();
+    }
+  }, []);
 
   const styles = StyleSheet.create({
     container: {
@@ -93,11 +102,17 @@ export default function CallScreen({ navigation }) {
     } catch (err) {}
   };
 
+  if (!receiver) {
+    return null;
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.receiverContainer}>
-        <CircularAvatar imageStyle={styles.image} />
-        <Text style={styles.receiverName}>معتز أبو نهيان</Text>
+        <CircularAvatar url={receiver.avatarURL} imageStyle={styles.image} />
+        <Text style={styles.receiverName}>
+          {receiver.firstName} {receiver.lastName}
+        </Text>
         <Text style={styles.callStatus}>{i18n("calling")}</Text>
       </View>
 

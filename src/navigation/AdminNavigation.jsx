@@ -1,15 +1,15 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import VerifyPhoneScreen from "../screens/common/VerifyPhoneScreen";
-import ProfileScreen from "../screens/common/ProfileScreen";
-import NotificationsScreen from "../screens/common/NotificationsScreen";
-import AboutScreen from "../screens/common/AboutScreen";
-
-import AdminHomeSceen from "../screens/admin/HomeScreen";
-
+import DrawerNavigation from "./DrawerNavigation";
 import screens from "../static/screens.json";
 
-import DrawerNavigation from "./DrawerNavigation";
+import AboutScreen from "../screens/common/AboutScreen";
+import AdminHomeSceen from "../screens/admin/HomeScreen";
+import DriversScreen from "../screens/admin/DriversScreen";
+import NotificationsScreen from "../screens/common/NotificationsScreen";
+import ProfileScreen from "../screens/common/ProfileScreen";
+import VerifyPhoneScreen from "../screens/common/VerifyPhoneScreen";
+import CallScreen from "../screens/common/CallScreen";
 
 const globalScreenOptions = {
   contentStyle: { backgroundColor: "#fff" },
@@ -35,6 +35,10 @@ export default function AdminNavigation() {
       />
 
       <Stack.Screen name={screens.about} component={AboutScreen} />
+
+      <Stack.Screen name={screens.drivers} component={DriversScreen} />
+
+      <Stack.Screen name={screens.call} component={CallScreen} />
     </Stack.Navigator>
   );
 }

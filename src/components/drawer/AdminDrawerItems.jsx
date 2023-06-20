@@ -38,7 +38,9 @@ export default function AdminDrawerItems({ navigation }) {
   const navigateTo = (screen) => () => {
     try {
       navigation.navigate(screen);
-    } catch (err) {}
+    } catch (err) {
+      console.log("err", err);
+    }
   };
 
   const handleSwitchLanguage = async () => {
@@ -87,7 +89,7 @@ export default function AdminDrawerItems({ navigation }) {
 
       <DrawerItem
         title={i18n("drivers")}
-        onPress={navigateTo(screens.profile)}
+        onPress={navigateTo(screens.drivers)}
         Icon={() => (
           <MaterialCommunityIcons name="taxi" style={styles.itemIcon} />
         )}

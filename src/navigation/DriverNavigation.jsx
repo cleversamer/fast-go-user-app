@@ -14,6 +14,7 @@ import NotificationsScreen from "../screens/common/NotificationsScreen";
 import AboutScreen from "../screens/common/AboutScreen";
 import WalletScreen from "../screens/common/WalletScreen";
 import EarnMoreScreen from "../screens/common/EarnMoreScreen";
+import CallScreen from "../screens/common/CallScreen";
 
 import screens from "../static/screens.json";
 
@@ -111,6 +112,10 @@ export default function DriverNavigation() {
 
       {isFullyVerified() && (
         <Stack.Screen name={screens.tripsHistory} component={TripsHistory} />
+      )}
+
+      {isFullyVerified() && (
+        <Stack.Screen name={screens.call} component={CallScreen} />
       )}
     </Stack.Navigator>
   );

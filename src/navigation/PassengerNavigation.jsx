@@ -8,7 +8,7 @@ import SavedPlacesScreen from "../screens/passenger/SavedPlacesScreen";
 import ReservedTripsScreen from "../screens/passenger/ReservedTripsScreen";
 import ChallengesScreen from "../screens/passenger/ChallengesScreen";
 import TripDetailsScreen from "../screens/passenger/TripDetailsScreen";
-import CallScreen from "../screens/passenger/CallScreen";
+import CallScreen from "../screens/common/CallScreen";
 
 import VerifyPhoneScreen from "../screens/common/VerifyPhoneScreen";
 import ProfileScreen from "../screens/common/ProfileScreen";

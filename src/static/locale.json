@@ -654,5 +654,21 @@
   "exportExcelFile": {
     "en": "Export excel file",
     "ar": "تصدير ملف اكسل"
+  },
+  "noDrivers": {
+    "en": "There are no drivers yet",
+    "ar": "لا يوجد سائقين بعد"
+  },
+  "all": {
+    "en": "All",
+    "ar": "الكل"
+  },
+  "pending": {
+    "en": "Pending",
+    "ar": "المعلقين"
+  },
+  "rejected": {
+    "en": "Rejected",
+    "ar": "المرفوضين"
   }
 }

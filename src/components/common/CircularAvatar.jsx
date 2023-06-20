@@ -12,9 +12,15 @@ export default function CircularAvatar({ url, imageStyle }) {
     },
   });
 
+  const getImageSource = () => {
+    return !!url
+      ? { uri: url }
+      : require("../../assets/images/default-avatar.png");
+  };
+
   return (
     <Image
-      source={url || require("../../assets/images/default-avatar.png")}
+      source={getImageSource()}
       resizeMode="contain"
       style={[styles.image, imageStyle || {}]}
     />

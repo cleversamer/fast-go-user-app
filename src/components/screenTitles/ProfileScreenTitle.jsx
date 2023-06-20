@@ -2,12 +2,14 @@ import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import PopupMenu from "../popups/PopupMenu";
 import useScreen from "../../hooks/useScreen";
+import useAuth from "../../auth/useAuth";
 
 export default function ProfileScreenTitle({
   title,
   onPrev,
   onRequestAccountDeletion,
 }) {
+  const { user } = useAuth();
   const screen = useScreen();
 
   const styles = StyleSheet.create({
@@ -35,7 +37,11 @@ export default function ProfileScreenTitle({
 
   return (
     <View style={styles.container}>
-      <PopupMenu onRequestAccountDeletion={onRequestAccountDeletion} />
+      {user.role === "admin" ? (
+        <View></View>
+      ) : (
+        <PopupMenu onRequestAccountDeletion={onRequestAccountDeletion} />
+      )}
 
       <Text style={styles.title}>{title}</Text>
 
