@@ -670,5 +670,25 @@
   "rejected": {
     "en": "Rejected",
     "ar": "المرفوضين"
+  },
+  "driverRequest": {
+    "en": "Driver request",
+    "ar": "طلب السائق"
+  },
+  "driverInfo": {
+    "en": "Driver information",
+    "ar": "معلومات السائق"
+  },
+  "notSpecified": {
+    "en": "Not specified",
+    "ar": "غير محدد"
+  },
+  "carInfo": {
+    "en": "Car information",
+    "ar": "معلومات السيّارة"
+  },
+  "requiredDocuments": {
+    "en": "Required docuemnts",
+    "ar": "المستندات المطلوبة"
   }
 }

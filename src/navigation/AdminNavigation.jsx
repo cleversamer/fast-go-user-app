@@ -10,6 +10,7 @@ import NotificationsScreen from "../screens/common/NotificationsScreen";
 import ProfileScreen from "../screens/common/ProfileScreen";
 import VerifyPhoneScreen from "../screens/common/VerifyPhoneScreen";
 import CallScreen from "../screens/common/CallScreen";
+import DriverRequestScreen from "../screens/admin/DriverRequestScreen";
 
 const globalScreenOptions = {
   contentStyle: { backgroundColor: "#fff" },
@@ -39,6 +40,11 @@ export default function AdminNavigation() {
       <Stack.Screen name={screens.drivers} component={DriversScreen} />
 
       <Stack.Screen name={screens.call} component={CallScreen} />
+
+      <Stack.Screen
+        name={screens.driverRequest}
+        component={DriverRequestScreen}
+      />
     </Stack.Navigator>
   );
 }

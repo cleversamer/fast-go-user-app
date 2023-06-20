@@ -25,5 +25,6 @@
   "tripsHistory": "TripsHistoryScreen",
   "newRequest": "newRequestScreen",
   "adminHome": "AdminHomeScreen",
-  "drivers": "DriversScreen"
+  "drivers": "DriversScreen",
+  "driverRequest": "DriverRequestScreen"
 }

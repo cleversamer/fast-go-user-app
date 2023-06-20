@@ -13,7 +13,7 @@ export default function CircularAvatar({ url, imageStyle }) {
   });
 
   const getImageSource = () => {
-    return !!url
+    return url
       ? { uri: url }
       : require("../../assets/images/default-avatar.png");
   };

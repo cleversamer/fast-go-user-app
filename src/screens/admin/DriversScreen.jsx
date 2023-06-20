@@ -109,7 +109,13 @@ export default function DriversScreen({ navigation }) {
           contentContainerStyle={styles.driversList}
           data={drivers}
           renderItem={({ item }) => (
-            <Driver data={item} onCall={() => handleCall(item)} />
+            <Driver
+              data={item}
+              onCall={() => handleCall(item)}
+              onPress={() =>
+                navigation.navigate(screens.driverRequest, { driver: item })
+              }
+            />
           )}
           showsHorizontalScrollIndicator={false}
           showsVerticalScrollIndicator={false}

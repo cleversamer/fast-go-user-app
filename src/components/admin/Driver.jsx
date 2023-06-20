@@ -1,13 +1,12 @@
 import { StyleSheet, TouchableOpacity, View, Text } from "react-native";
 import useLocale from "../../hooks/useLocale";
 import useDateTimer from "../../hooks/useDateTimer";
-import * as theme from "../../constants/theme";
 import useScreen from "../../hooks/useScreen";
 import CircularButton from "../buttons/CircularButton";
 import { Ionicons } from "@expo/vector-icons";
 import CircularAvatar from "../common/CircularAvatar";
 
-export default function Driver({ data, onCall }) {
+export default function Driver({ data, onCall, onPress }) {
   const screen = useScreen();
   const { i18n, lang } = useLocale();
   const { value: date } = useDateTimer(data.lastLogin, lang, [lang]);
@@ -46,7 +45,7 @@ export default function Driver({ data, onCall }) {
       fontSize: screen.getResponsiveFontSize(12),
       color: "#fff",
     },
-    infoContainer: {
+    middleContainer: {
       flexDirection: lang === "ar" ? "row" : "row-reverse",
       justifyContent: "space-between",
       alignItems: "center",
@@ -59,6 +58,15 @@ export default function Driver({ data, onCall }) {
     callButton: {
       width: screen.getHorizontalPixelSize(40),
       height: screen.getVerticalPixelSize(40),
+    },
+    infoContainer: {
+      flexDirection: lang === "ar" ? "row" : "row-reverse",
+      alignItems: "center",
+      gap: screen.getHorizontalPixelSize(10),
+    },
+    driverName: {
+      fontFamily: "cairo-700",
+      fontSize: screen.getResponsiveFontSize(12),
     },
     avatar: {
       width: screen.getHorizontalPixelSize(40),
@@ -96,7 +104,7 @@ export default function Driver({ data, onCall }) {
   }
 
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       <View
         style={
           lang === "ar" ? styles.arStatusContainer : styles.enStatusContainer
@@ -105,14 +113,19 @@ export default function Driver({ data, onCall }) {
         <Text style={styles.statusText}>{i18n(data.status)}</Text>
       </View>
 
-      <View style={styles.infoContainer}>
+      <View style={styles.middleContainer}>
         <CircularButton
           Icon={() => <Ionicons name="call-outline" style={styles.callIcon} />}
           containerStyle={styles.callButton}
           onPress={onCall}
         />
 
-        <CircularAvatar url={data.avatarURL} imageStyle={styles.avatar} />
+        <View style={styles.infoContainer}>
+          <Text style={styles.driverName}>
+            {data.firstName} {data.lastName}
+          </Text>
+          <CircularAvatar url={data.avatarURL} imageStyle={styles.avatar} />
+        </View>
       </View>
 
       <Text style={lang === "ar" ? styles.arDate : styles.enDate}>{date}</Text>
