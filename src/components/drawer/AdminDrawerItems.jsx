@@ -105,6 +105,17 @@ export default function AdminDrawerItems({ navigation }) {
       />
 
       <DrawerItem
+        title={i18n("passengers")}
+        onPress={navigateTo(screens.trips)}
+        Icon={() => (
+          <MaterialCommunityIcons
+            name="seat-passenger"
+            style={styles.itemIcon}
+          />
+        )}
+      />
+
+      <DrawerItem
         title={i18n("financialManagement")}
         onPress={navigateTo(screens.about)}
         Icon={() => <FontAwesome name="dollar" style={styles.itemIcon} />}
