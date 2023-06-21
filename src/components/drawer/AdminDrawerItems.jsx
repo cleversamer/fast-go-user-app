@@ -117,7 +117,7 @@ export default function AdminDrawerItems({ navigation }) {
 
       <DrawerItem
         title={i18n("financialManagement")}
-        onPress={navigateTo(screens.about)}
+        onPress={navigateTo(screens.financialManagement)}
         Icon={() => <FontAwesome name="dollar" style={styles.itemIcon} />}
       />
 

@@ -726,5 +726,29 @@
   "noPassengers": {
     "en": "There are no passengers yet",
     "ar": "لا يوجد هناك ركاب بعد"
+  },
+  "tripsPricing": {
+    "en": "Trips pricing",
+    "ar": "تسعير الرحلات"
+  },
+  "tripsPricingDescription": {
+    "en": "Setting a price according to car type and kilometers",
+    "ar": "وضع تسعيرة حسب نوع السيارة وعدد الكيلو مترات"
+  },
+  "couponCodes": {
+    "en": "Coupon codes",
+    "ar": "أكواد الخصم"
+  },
+  "couponCodesDescription": {
+    "en": "Add coupon codes with discount percentage",
+    "ar": "إضافة أكواد الخصم ووضع تسعيرة لنسبة الخصم"
+  },
+  "chargeCards": {
+    "en": "Charge cards",
+    "ar": "بطاقات الشحن"
+  },
+  "chargeCardsDescription": {
+    "en": "Add charge cards with any amount",
+    "ar": "أضف بطاقات شحن بأي مبلغ"
   }
 }
