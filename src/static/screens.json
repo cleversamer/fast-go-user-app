@@ -28,5 +28,6 @@
   "drivers": "DriversScreen",
   "driverRequest": "DriverRequestScreen",
   "photoDisplay": "PhotoDisplayScreen",
-  "trips": "TripsScreen"
+  "trips": "TripsScreen",
+  "passengers": "PassengersScreen"
 }

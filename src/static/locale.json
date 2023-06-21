@@ -722,5 +722,9 @@
   "passengers": {
     "en": "Passengers",
     "ar": "الركاب"
+  },
+  "noPassengers": {
+    "en": "There are no passengers yet",
+    "ar": "لا يوجد هناك ركاب بعد"
   }
 }

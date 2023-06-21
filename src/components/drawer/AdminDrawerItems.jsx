@@ -106,7 +106,7 @@ export default function AdminDrawerItems({ navigation }) {
 
       <DrawerItem
         title={i18n("passengers")}
-        onPress={navigateTo(screens.trips)}
+        onPress={navigateTo(screens.passengers)}
         Icon={() => (
           <MaterialCommunityIcons
             name="seat-passenger"
