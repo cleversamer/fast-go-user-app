@@ -750,5 +750,25 @@
   "chargeCardsDescription": {
     "en": "Add charge cards with any amount",
     "ar": "أضف بطاقات شحن بأي مبلغ"
+  },
+  "carType": {
+    "en": "Car type",
+    "ar": "نوع السيّارة"
+  },
+  "distance": {
+    "en": "Distance",
+    "ar": "المسافة"
+  },
+  "price": {
+    "en": "Price",
+    "ar": "السعر"
+  },
+  "doorOpening": {
+    "en": "Door opening",
+    "ar": "فتحة الباب"
+  },
+  "edit": {
+    "en": "Edit",
+    "ar": "تعديل"
   }
 }

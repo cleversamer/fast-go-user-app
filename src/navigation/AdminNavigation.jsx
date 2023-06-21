@@ -15,6 +15,7 @@ import PhotoDisplayScreen from "../screens/admin/PhotoDisplayScreen";
 import TripsScreen from "../screens/admin/TripsScreen";
 import PassengersScreen from "../screens/admin/PassengersScreen";
 import FinancialManagementScreen from "../screens/admin/FinancialManagementScreen";
+import TripPricingScreen from "../screens/admin/TripPricingScreen";
 
 const globalScreenOptions = {
   contentStyle: { backgroundColor: "#fff" },
@@ -63,6 +64,8 @@ export default function AdminNavigation() {
         name={screens.financialManagement}
         component={FinancialManagementScreen}
       />
+
+      <Stack.Screen name={screens.tripPricing} component={TripPricingScreen} />
     </Stack.Navigator>
   );
 }

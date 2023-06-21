@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 import { SelectList } from "react-native-dropdown-select-list";
 import { AntDesign } from "@expo/vector-icons";
 import * as theme from "../../constants/theme";
@@ -17,6 +17,7 @@ const defaultOptions = [
 ];
 
 export default function SelectInput({
+  title,
   value,
   options = defaultOptions,
   placeholder,
@@ -26,6 +27,14 @@ export default function SelectInput({
   const { lang } = useLocale();
 
   const styles = StyleSheet.create({
+    container: {
+      gap: screen.getVerticalPixelSize(7),
+    },
+    title: {
+      fontFamily: "cairo-700",
+      fontSize: screen.getResponsiveFontSize(15),
+      paddingHorizontal: screen.getHorizontalPixelSize(10),
+    },
     arBoxStyles: {
       borderColor: theme.primaryColor,
       borderWidth: screen.getHorizontalPixelSize(1.5),
@@ -71,22 +80,26 @@ export default function SelectInput({
   };
 
   return (
-    <SelectList
-      save="value"
-      defaultOption={{ key: value, value }}
-      data={options}
-      setSelected={handleSelect}
-      placeholder={placeholder}
-      arrowicon={<AntDesign name="down" style={styles.arrowDownIcon} />}
-      search={false}
-      boxStyles={lang === "ar" ? styles.arBoxStyles : styles.enBoxStyles}
-      dropdownStyles={styles.dropdownStyles}
-      inputStyles={styles.inputStyles}
-      dropdownTextStyles={
-        lang === "ar"
-          ? styles.arDropdownTextStyles
-          : styles.enDropdownTextStyles
-      }
-    />
+    <View style={styles.container}>
+      {!!title && <Text style={styles.title}>{title}</Text>}
+
+      <SelectList
+        save="value"
+        defaultOption={{ key: value, value }}
+        data={options}
+        setSelected={handleSelect}
+        placeholder={placeholder}
+        arrowicon={<AntDesign name="down" style={styles.arrowDownIcon} />}
+        search={false}
+        boxStyles={lang === "ar" ? styles.arBoxStyles : styles.enBoxStyles}
+        dropdownStyles={styles.dropdownStyles}
+        inputStyles={styles.inputStyles}
+        dropdownTextStyles={
+          lang === "ar"
+            ? styles.arDropdownTextStyles
+            : styles.enDropdownTextStyles
+        }
+      />
+    </View>
   );
 }

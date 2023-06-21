@@ -30,5 +30,6 @@
   "photoDisplay": "PhotoDisplayScreen",
   "trips": "TripsScreen",
   "passengers": "PassengersScreen",
-  "financialManagement": "FinancialManagementScreen"
+  "financialManagement": "FinancialManagementScreen",
+  "tripPricing": "TripPricingScreen"
 }

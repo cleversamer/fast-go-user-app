@@ -10,6 +10,7 @@ import DefaultScreenTitle from "../../components/screenTitles/DefaultScreenTitle
 import useLocale from "../../hooks/useLocale";
 import { FontAwesome, FontAwesome5 } from "@expo/vector-icons";
 import * as theme from "../../constants/theme";
+import screens from "../../static/screens.json";
 
 export default function FinancialManagementScreen({ navigation }) {
   const screen = useScreen();
@@ -62,6 +63,12 @@ export default function FinancialManagementScreen({ navigation }) {
     } catch (err) {}
   };
 
+  const getNavigatorHandler = (screen) => () => {
+    try {
+      navigation.navigate(screen);
+    } catch (err) {}
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <DefaultScreenTitle
@@ -70,7 +77,10 @@ export default function FinancialManagementScreen({ navigation }) {
       />
 
       <View style={styles.contentContainer}>
-        <TouchableOpacity style={styles.itemContainer}>
+        <TouchableOpacity
+          style={styles.itemContainer}
+          onPress={getNavigatorHandler(screens.tripPricing)}
+        >
           <View style={styles.itemTitleContainer}>
             <FontAwesome name="dollar" style={styles.icon} />
             <Text style={styles.itemTitle}>{i18n("tripsPricing")}</Text>

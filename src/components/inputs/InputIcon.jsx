@@ -38,6 +38,7 @@ export default function InputIcon({
     title: {
       fontFamily: "cairo-700",
       fontSize: screen.getResponsiveFontSize(15),
+      paddingHorizontal: screen.getHorizontalPixelSize(10),
     },
     arInput: {
       flex: 1,
