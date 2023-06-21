@@ -27,5 +27,6 @@
   "adminHome": "AdminHomeScreen",
   "drivers": "DriversScreen",
   "driverRequest": "DriverRequestScreen",
-  "photoDisplay": "PhotoDisplayScreen"
+  "photoDisplay": "PhotoDisplayScreen",
+  "trips": "TripsScreen"
 }

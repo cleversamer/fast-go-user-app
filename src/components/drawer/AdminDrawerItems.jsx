@@ -38,9 +38,7 @@ export default function AdminDrawerItems({ navigation }) {
   const navigateTo = (screen) => () => {
     try {
       navigation.navigate(screen);
-    } catch (err) {
-      console.log("err", err);
-    }
+    } catch (err) {}
   };
 
   const handleSwitchLanguage = async () => {
@@ -97,7 +95,7 @@ export default function AdminDrawerItems({ navigation }) {
 
       <DrawerItem
         title={i18n("requests")}
-        onPress={navigateTo(screens.profile)}
+        onPress={navigateTo(screens.trips)}
         Icon={() => (
           <MaterialCommunityIcons
             name="file-document-outline"

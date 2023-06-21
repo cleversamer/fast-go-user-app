@@ -690,5 +690,33 @@
   "requiredDocuments": {
     "en": "Required docuemnts",
     "ar": "المستندات المطلوبة"
+  },
+  "noRequests": {
+    "en": "There are no requests yet",
+    "ar": "لا يوجد طلبات بعد"
+  },
+  "activeRequests": {
+    "en": "Active",
+    "ar": "النشطة"
+  },
+  "reservedRequests": {
+    "en": "Reserved",
+    "ar": "المحجوزة"
+  },
+  "rejectedRequests": {
+    "en": "Rejected",
+    "ar": "المرفوضة"
+  },
+  "activeTrip": {
+    "en": "Active",
+    "ar": "جاري الآن"
+  },
+  "reservedTrip": {
+    "en": "Reserved",
+    "ar": "محجوز"
+  },
+  "rejectedTrip": {
+    "en": "Rejected",
+    "ar": "مرفوض"
   }
 }
