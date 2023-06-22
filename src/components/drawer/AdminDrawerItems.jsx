@@ -57,11 +57,7 @@ export default function AdminDrawerItems({ navigation }) {
   };
 
   return (
-    <ScrollView
-      style={styles.container}
-      showsHorizontalScrollIndicator={false}
-      showsVerticalScrollIndicator={false}
-    >
+    <ScrollView style={styles.container} showsHorizontalScrollIndicator={false}>
       <PopupConfirm
         title={i18n("popupLogoutTitle")}
         subtitle={i18n("popupLogoutSubtitle")}

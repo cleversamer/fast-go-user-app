@@ -70,11 +70,7 @@ export default function PassengerDrawerItems({ navigation }) {
   };
 
   return (
-    <ScrollView
-      style={styles.container}
-      showsHorizontalScrollIndicator={false}
-      showsVerticalScrollIndicator={false}
-    >
+    <ScrollView style={styles.container} showsHorizontalScrollIndicator={false}>
       <PopupError
         visible={showPopupError}
         onClose={() => setShowPopupError(false)}
