@@ -32,5 +32,6 @@
   "passengers": "PassengersScreen",
   "financialManagement": "FinancialManagementScreen",
   "tripPricing": "TripPricingScreen",
-  "couponCodes": "CouponCodesScreen"
+  "couponCodes": "CouponCodesScreen",
+  "chargeCards": "ChargeCardsScreen"
 }

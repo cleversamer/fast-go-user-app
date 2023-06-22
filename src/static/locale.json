@@ -778,5 +778,13 @@
   "discountPercentage": {
     "en": "Discount percentage",
     "ar": "نسبة الخصم"
+  },
+  "autoCode": {
+    "en": "Auto code",
+    "ar": "كود تلقائي"
+  },
+  "cardsCount": {
+    "en": "Cards count",
+    "ar": "عدد الأكواد"
   }
 }

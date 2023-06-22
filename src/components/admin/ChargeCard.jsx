@@ -4,13 +4,13 @@ import useScreen from "../../hooks/useScreen";
 import * as theme from "../../constants/theme";
 import useLocale from "../../hooks/useLocale";
 
-export default function CouponCode({ couponCode, showBreakline = true }) {
+export default function ChargeCard({ chargeCard, showBreakline = true }) {
   const screen = useScreen();
   const { lang } = useLocale();
 
   const styles = StyleSheet.create({
     container: {
-      flexDirection: lang == "ar" ? "row" : "row-reverse",
+      flexDirection: lang === "ar" ? "row" : "row-reverse",
       justifyContent: "space-between",
       alignItems: "center",
       paddingHorizontal: screen.getHorizontalPixelSize(7),
@@ -31,7 +31,7 @@ export default function CouponCode({ couponCode, showBreakline = true }) {
       alignSelf: "center",
     },
     rightContainer: {
-      flexDirection: lang == "ar" ? "row" : "row-reverse",
+      flexDirection: lang === "ar" ? "row" : "row-reverse",
       gap: screen.getHorizontalPixelSize(15),
     },
     textContainer: {
@@ -62,8 +62,8 @@ export default function CouponCode({ couponCode, showBreakline = true }) {
 
         <View style={styles.rightContainer}>
           <View style={styles.textContainer}>
-            <Text style={styles.couponCode}>65656566</Text>
-            <Text style={styles.discount}>نسبة الخصم: 10%</Text>
+            <Text style={styles.couponCode}>1234567891234</Text>
+            <Text style={styles.discount}>الرصيد: 100 LYD</Text>
           </View>
 
           <Entypo name="credit-card" style={styles.cardIcon} />
