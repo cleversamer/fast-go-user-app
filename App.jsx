@@ -1,6 +1,6 @@
 import "react-native-gesture-handler";
 import { useEffect, useState } from "react";
-import { StatusBar, Dimensions } from "react-native";
+import { StatusBar, Dimensions, I18nManager } from "react-native";
 import useFonts from "./src/hooks/useFonts";
 import useNetworkStatus from "./src/hooks/useNetworkStatus";
 import useLocation from "./src/hooks/useLocation";
@@ -23,6 +23,11 @@ import AuthContext from "./src/auth/context";
 
 import Onboarding from "./src/screens/common/Onboarding";
 import PopupError from "./src/components/popups/PopupError";
+
+// Set text direction to LTR
+I18nManager.forceRTL(false);
+I18nManager.allowRTL(false);
+I18nManager.doLeftAndRightSwapInRTL = false;
 
 export default function App() {
   // Hooks
