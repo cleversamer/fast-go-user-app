@@ -34,5 +34,6 @@
   "tripPricing": "TripPricingScreen",
   "couponCodes": "CouponCodesScreen",
   "chargeCards": "ChargeCardsScreen",
-  "addDriver1": "AddDriverScreen1"
+  "addDriver1": "AddDriverScreen1",
+  "addDriver2": "AddDriverScreen2"
 }

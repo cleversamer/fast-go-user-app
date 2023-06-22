@@ -128,11 +128,7 @@ export default function AddDriverScreen1({ navigation }) {
 
   const handleNext = () => {
     try {
-      navigation.navigate(screens.login3, {
-        authType,
-        role,
-        ...context,
-      });
+      navigation.navigate(screens.addDriver1, { context });
     } catch (err) {}
   };
 

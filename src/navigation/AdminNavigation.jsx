@@ -19,6 +19,7 @@ import TripPricingScreen from "../screens/admin/TripPricingScreen";
 import CouponCodesScreen from "../screens/admin/CouponCodesScreen";
 import ChargeCardsScreen from "../screens/admin/ChargeCardsScreen";
 import AddDriverScreen1 from "../screens/admin/AddDriverScreen1";
+import AddDriverScreen2 from "../screens/admin/AddDriverScreen2";
 
 const globalScreenOptions = {
   contentStyle: { backgroundColor: "#fff" },
@@ -75,6 +76,8 @@ export default function AdminNavigation() {
       <Stack.Screen name={screens.chargeCards} component={ChargeCardsScreen} />
 
       <Stack.Screen name={screens.addDriver1} component={AddDriverScreen1} />
+
+      <Stack.Screen name={screens.addDriver2} component={AddDriverScreen2} />
     </Stack.Navigator>
   );
 }
