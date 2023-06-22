@@ -1,14 +1,14 @@
-import { StyleSheet, SafeAreaView, View, ScrollView } from "react-native";
+import { StyleSheet, SafeAreaView, ScrollView, Text } from "react-native";
 import useScreen from "../../hooks/useScreen";
 import DefaultScreenTitle from "../../components/screenTitles/DefaultScreenTitle";
 import useLocale from "../../hooks/useLocale";
-import { FontAwesome } from "@expo/vector-icons";
+import { Entypo, Feather } from "@expo/vector-icons";
 import * as theme from "../../constants/theme";
-import SelectInput from "../../components/inputs/SelectInput";
 import InputIcon from "../../components/inputs/InputIcon";
 import CustomButton from "../../components/buttons/CustomButton";
+import CouponCode from "../../components/admin/CouponCode";
 
-export default function TripPricingScreen({ navigation }) {
+export default function CouponCodesScreen({ navigation }) {
   const screen = useScreen();
   const { i18n, lang } = useLocale();
 
@@ -23,6 +23,7 @@ export default function TripPricingScreen({ navigation }) {
     contentContainer: {
       gap: screen.getVerticalPixelSize(17),
       marginTop: screen.getVerticalPixelSize(15),
+      paddingBottom: screen.getVerticalPixelSize(50),
     },
     arIcon: {
       marginRight: screen.getHorizontalPixelSize(10),
@@ -38,6 +39,12 @@ export default function TripPricingScreen({ navigation }) {
       fontFamily: "cairo-700",
       fontSize: screen.getResponsiveFontSize(16),
     },
+    couponCodesTitle: {
+      marginTop: screen.getVerticalPixelSize(10),
+      marginBottom: screen.getVerticalPixelSize(5),
+      fontFamily: "cairo-700",
+      fontSize: screen.getResponsiveFontSize(16),
+    },
   });
 
   const handleGoBack = () => {
@@ -48,38 +55,52 @@ export default function TripPricingScreen({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <DefaultScreenTitle title={i18n("tripsPricing")} onPrev={handleGoBack} />
+      <DefaultScreenTitle title={i18n("couponCodes")} onPrev={handleGoBack} />
 
-      <ScrollView contentContainerStyle={styles.contentContainer}>
-        <SelectInput title={i18n("carType")} placeholder={i18n("carType")} />
-
-        <SelectInput title={i18n("distance")} placeholder={i18n("distance")} />
-
+      <ScrollView
+        contentContainerStyle={styles.contentContainer}
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+      >
         <InputIcon
-          title={i18n("price")}
-          placeholder={i18n("price")}
-          keyboardType="number-pad"
+          title={i18n("couponCode")}
+          placeholder={i18n("couponCode")}
           Icon={() => (
-            <FontAwesome
-              name="dollar"
+            <Entypo
+              name="credit-card"
               style={lang === "ar" ? styles.arIcon : styles.enIcon}
             />
           )}
         />
 
         <InputIcon
-          title={i18n("doorOpening")}
-          placeholder={i18n("doorOpening")}
+          title={i18n("discountPercentage")}
+          placeholder={i18n("discountPercentage")}
           keyboardType="number-pad"
           Icon={() => (
-            <FontAwesome
-              name="dollar"
+            <Feather
+              name="percent"
               style={lang === "ar" ? styles.arIcon : styles.enIcon}
             />
           )}
         />
 
-        <CustomButton text={i18n("edit")} textStyle={styles.buttonText} />
+        <CustomButton text={i18n("add")} textStyle={styles.buttonText} />
+
+        <Text style={styles.couponCodesTitle}>{i18n("couponCodes")}</Text>
+
+        <CouponCode />
+        <CouponCode />
+        <CouponCode />
+        <CouponCode />
+        <CouponCode />
+        <CouponCode />
+        <CouponCode />
+        <CouponCode />
+        <CouponCode />
+        <CouponCode />
+        <CouponCode />
+        <CouponCode showBreakline={false} />
       </ScrollView>
     </SafeAreaView>
   );

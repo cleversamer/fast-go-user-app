@@ -16,6 +16,7 @@ import TripsScreen from "../screens/admin/TripsScreen";
 import PassengersScreen from "../screens/admin/PassengersScreen";
 import FinancialManagementScreen from "../screens/admin/FinancialManagementScreen";
 import TripPricingScreen from "../screens/admin/TripPricingScreen";
+import CouponCodesScreen from "../screens/admin/CouponCodesScreen";
 
 const globalScreenOptions = {
   contentStyle: { backgroundColor: "#fff" },
@@ -66,6 +67,8 @@ export default function AdminNavigation() {
       />
 
       <Stack.Screen name={screens.tripPricing} component={TripPricingScreen} />
+
+      <Stack.Screen name={screens.couponCodes} component={CouponCodesScreen} />
     </Stack.Navigator>
   );
 }

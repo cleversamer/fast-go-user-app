@@ -93,7 +93,10 @@ export default function FinancialManagementScreen({ navigation }) {
           <View style={styles.breakLine}></View>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.itemContainer}>
+        <TouchableOpacity
+          style={styles.itemContainer}
+          onPress={getNavigatorHandler(screens.couponCodes)}
+        >
           <View style={styles.itemTitleContainer}>
             <FontAwesome name="credit-card-alt" style={styles.icon} />
             <Text style={styles.itemTitle}>{i18n("couponCodes")}</Text>

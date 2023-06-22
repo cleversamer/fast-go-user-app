@@ -770,5 +770,13 @@
   "edit": {
     "en": "Edit",
     "ar": "تعديل"
+  },
+  "couponCode": {
+    "en": "Coupon code",
+    "ar": "كود الخصم"
+  },
+  "discountPercentage": {
+    "en": "Discount percentage",
+    "ar": "نسبة الخصم"
   }
 }
