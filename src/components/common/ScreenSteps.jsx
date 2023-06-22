@@ -11,6 +11,7 @@ export default function ScreenSteps({
   showNext = true,
   showPrev = true,
   disableNext,
+  nextButtonTitle,
 }) {
   const screen = useScreen();
   const { lang, i18n } = useLocale();
@@ -100,7 +101,9 @@ export default function ScreenSteps({
               name={lang === "ar" ? "arrowleft" : "arrowright"}
               style={styles.nextButtonIcon}
             />
-            <Text style={styles.nextButtonText}>{i18n("next")}</Text>
+            <Text style={styles.nextButtonText}>
+              {nextButtonTitle || i18n("next")}
+            </Text>
           </View>
         </TouchableOpacity>
       )}

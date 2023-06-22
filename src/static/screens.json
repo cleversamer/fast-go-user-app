@@ -35,5 +35,6 @@
   "couponCodes": "CouponCodesScreen",
   "chargeCards": "ChargeCardsScreen",
   "addDriver1": "AddDriverScreen1",
-  "addDriver2": "AddDriverScreen2"
+  "addDriver2": "AddDriverScreen2",
+  "addDriver3": "AddDriverScreen3"
 }

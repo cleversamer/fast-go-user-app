@@ -119,7 +119,7 @@ export default function AdminDrawerItems({ navigation }) {
 
       <DrawerItem
         title={i18n("addDriver")}
-        onPress={navigateTo(screens.addDriver2)}
+        onPress={navigateTo(screens.addDriver3)}
         Icon={() => <Entypo name="add-user" style={styles.itemIcon} />}
       />
 
