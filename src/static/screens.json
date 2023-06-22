@@ -33,5 +33,6 @@
   "financialManagement": "FinancialManagementScreen",
   "tripPricing": "TripPricingScreen",
   "couponCodes": "CouponCodesScreen",
-  "chargeCards": "ChargeCardsScreen"
+  "chargeCards": "ChargeCardsScreen",
+  "addDriver1": "AddDriverScreen1"
 }

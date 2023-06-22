@@ -786,5 +786,9 @@
   "cardsCount": {
     "en": "Cards count",
     "ar": "عدد الأكواد"
+  },
+  "addDriverInfo": {
+    "en": "Add driver info",
+    "ar": "أضف معلومات السائق"
   }
 }
