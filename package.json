@@ -43,10 +43,9 @@
     "expo-image-picker": "~14.1.1",
     "expo-localization": "~14.1.1",
     "expo-location": "~15.1.1",
-    "expo-notifications": "~0.18.1",
     "expo-screen-orientation": "~5.1.1",
+    "expo-sharing": "~11.2.2",
     "expo-splash-screen": "~0.18.2",
-    "expo-status-bar": "~1.4.4",
     "react": "18.2.0",
     "react-native": "0.71.8",
     "react-native-app-intro-slider": "^4.0.4",
@@ -59,11 +58,8 @@
     "react-native-paper": "^5.8.0",
     "react-native-raw-bottom-sheet": "^2.2.0",
     "react-native-reanimated": "~2.14.4",
-    "react-native-safe-area-context": "4.5.0",
     "react-native-screens": "~3.20.0",
-    "react-native-webview": "11.26.0",
-    "socket.io-client": "^4.6.2",
-    "expo-sharing": "~11.2.2"
+    "socket.io-client": "^4.6.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
