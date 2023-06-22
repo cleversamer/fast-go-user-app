@@ -36,5 +36,6 @@
   "chargeCards": "ChargeCardsScreen",
   "addDriver1": "AddDriverScreen1",
   "addDriver2": "AddDriverScreen2",
-  "addDriver3": "AddDriverScreen3"
+  "addDriver3": "AddDriverScreen3",
+  "addDriver4": "AddDriverScreen4"
 }

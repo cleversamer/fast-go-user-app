@@ -790,5 +790,13 @@
   "addDriverInfo": {
     "en": "Add driver info",
     "ar": "أضف معلومات السائق"
+  },
+  "successMssg": {
+    "en": "Process accomplished successfully",
+    "ar": "تمت العملية بنجاح"
+  },
+  "backToHome": {
+    "en": "Back to home",
+    "ar": "الرجوع للرئيسية"
   }
 }
