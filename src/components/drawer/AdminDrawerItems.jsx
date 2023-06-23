@@ -133,7 +133,7 @@ export default function AdminDrawerItems({ navigation }) {
 
       <DrawerItem
         title={i18n("challenges")}
-        onPress={navigateTo(screens.challenges)}
+        onPress={navigateTo(screens.challengesPanel)}
         Icon={() => (
           <MaterialCommunityIcons
             name="google-analytics"

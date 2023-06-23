@@ -810,5 +810,25 @@
   "addedRegions": {
     "en": "Regions added",
     "ar": "المناطق المضافة"
+  },
+  "tripsNumber": {
+    "en": "Trips target",
+    "ar": "عدد الرحلات"
+  },
+  "referralsNumber": {
+    "en": "Referrals target",
+    "ar": "عدد الإحالات"
+  },
+  "reward": {
+    "en": "Reward",
+    "ar": "المكافأة"
+  },
+  "userCategory": {
+    "en": "User category",
+    "ar": "فئة المستخدم"
+  },
+  "addedChallenges": {
+    "en": "Challenges added",
+    "ar": "التحديات المضافة"
   }
 }

@@ -38,5 +38,6 @@
   "addDriver2": "AddDriverScreen2",
   "addDriver3": "AddDriverScreen3",
   "addDriver4": "AddDriverScreen4",
-  "regions": "RegionsScreen"
+  "regions": "RegionsScreen",
+  "challengesPanel": "ChallengesPanelScreen"
 }
