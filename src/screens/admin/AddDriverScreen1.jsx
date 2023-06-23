@@ -128,7 +128,7 @@ export default function AddDriverScreen1({ navigation }) {
 
   const handleNext = () => {
     try {
-      navigation.navigate(screens.addDriver1, { context });
+      navigation.navigate(screens.addDriver2, { context });
     } catch (err) {}
   };
 

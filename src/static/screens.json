@@ -37,5 +37,6 @@
   "addDriver1": "AddDriverScreen1",
   "addDriver2": "AddDriverScreen2",
   "addDriver3": "AddDriverScreen3",
-  "addDriver4": "AddDriverScreen4"
+  "addDriver4": "AddDriverScreen4",
+  "regions": "RegionsScreen"
 }

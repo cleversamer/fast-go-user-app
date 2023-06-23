@@ -798,5 +798,17 @@
   "backToHome": {
     "en": "Back to home",
     "ar": "الرجوع للرئيسية"
+  },
+  "region": {
+    "en": "Region",
+    "ar": "المنطقة"
+  },
+  "addRegion": {
+    "en": "Choose the region you want to add",
+    "ar": "اختر المنطقة التي تريد إضافتها"
+  },
+  "addedRegions": {
+    "en": "Regions added",
+    "ar": "المناطق المضافة"
   }
 }

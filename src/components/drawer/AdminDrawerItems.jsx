@@ -125,7 +125,7 @@ export default function AdminDrawerItems({ navigation }) {
 
       <DrawerItem
         title={i18n("regions")}
-        onPress={navigateTo(screens.about)}
+        onPress={navigateTo(screens.regions)}
         Icon={() => (
           <MaterialIcons name="location-city" style={styles.itemIcon} />
         )}

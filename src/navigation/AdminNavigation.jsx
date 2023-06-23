@@ -22,6 +22,7 @@ import AddDriverScreen1 from "../screens/admin/AddDriverScreen1";
 import AddDriverScreen2 from "../screens/admin/AddDriverScreen2";
 import AddDriverScreen3 from "../screens/admin/AddDriverScreen3";
 import AddDriverScreen4 from "../screens/admin/AddDriverScreen4";
+import RegionsScreen from "../screens/admin/RegionsScreen";
 
 const globalScreenOptions = {
   contentStyle: { backgroundColor: "#fff" },
@@ -84,6 +85,8 @@ export default function AdminNavigation() {
       <Stack.Screen name={screens.addDriver3} component={AddDriverScreen3} />
 
       <Stack.Screen name={screens.addDriver4} component={AddDriverScreen4} />
+
+      <Stack.Screen name={screens.regions} component={RegionsScreen} />
     </Stack.Navigator>
   );
 }
