@@ -830,5 +830,17 @@
   "addedChallenges": {
     "en": "Challenges added",
     "ar": "التحديات المضافة"
+  },
+  "notificationTitle": {
+    "en": "Notification title",
+    "ar": "عنوان الإشعار"
+  },
+  "notificationBody": {
+    "en": "Notification body",
+    "ar": "محتوى الإشعار"
+  },
+  "send": {
+    "en": "Send",
+    "ar": "إرسال"
   }
 }

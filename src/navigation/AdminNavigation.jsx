@@ -24,6 +24,7 @@ import AddDriverScreen3 from "../screens/admin/AddDriverScreen3";
 import AddDriverScreen4 from "../screens/admin/AddDriverScreen4";
 import RegionsScreen from "../screens/admin/RegionsScreen";
 import ChallengesPanelScreen from "../screens/admin/ChallengesPanelScreen";
+import SendNotificationScreen from "../screens/admin/SendNotificationScreen";
 
 const globalScreenOptions = {
   contentStyle: { backgroundColor: "#fff" },
@@ -92,6 +93,11 @@ export default function AdminNavigation() {
       <Stack.Screen
         name={screens.challengesPanel}
         component={ChallengesPanelScreen}
+      />
+
+      <Stack.Screen
+        name={screens.sendNotification}
+        component={SendNotificationScreen}
       />
     </Stack.Navigator>
   );

@@ -144,7 +144,7 @@ export default function AdminDrawerItems({ navigation }) {
 
       <DrawerItem
         title={i18n("sendNotification")}
-        onPress={navigateTo(screens.challenges)}
+        onPress={navigateTo(screens.sendNotification)}
         Icon={() => <FontAwesome name="send" style={styles.itemIcon} />}
       />
 
