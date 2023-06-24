@@ -25,6 +25,7 @@ import AddDriverScreen4 from "../screens/admin/AddDriverScreen4";
 import RegionsScreen from "../screens/admin/RegionsScreen";
 import ChallengesPanelScreen from "../screens/admin/ChallengesPanelScreen";
 import SendNotificationScreen from "../screens/admin/SendNotificationScreen";
+import ExcelExportScreen from "../screens/admin/ExcelExportScreen";
 
 const globalScreenOptions = {
   contentStyle: { backgroundColor: "#fff" },
@@ -98,6 +99,11 @@ export default function AdminNavigation() {
       <Stack.Screen
         name={screens.sendNotification}
         component={SendNotificationScreen}
+      />
+
+      <Stack.Screen
+        name={screens.exportToExcel}
+        component={ExcelExportScreen}
       />
     </Stack.Navigator>
   );

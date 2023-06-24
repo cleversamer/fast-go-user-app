@@ -40,5 +40,6 @@
   "addDriver4": "AddDriverScreen4",
   "regions": "RegionsScreen",
   "challengesPanel": "ChallengesPanelScreen",
-  "sendNotification": "SendNotificationScreen"
+  "sendNotification": "SendNotificationScreen",
+  "exportToExcel": "ExcelExportScreen"
 }

@@ -158,7 +158,7 @@ export default function AdminDrawerItems({ navigation }) {
 
       <DrawerItem
         title={i18n("exportExcelFile")}
-        onPress={navigateTo(screens.challenges)}
+        onPress={navigateTo(screens.exportToExcel)}
         Icon={() => (
           <MaterialCommunityIcons
             name="microsoft-excel"
