@@ -7,6 +7,7 @@ import useLocation from "./src/hooks/useLocation";
 import * as usersApi from "./src/api/user/users";
 import socket from "./src/socket/client";
 import authStorage from "./src/auth/storage";
+import SplashScreen from "./src/screens/common/SplashScreen";
 
 import {
   lockAsync,
@@ -37,6 +38,7 @@ export default function App() {
 
   // States
   const [lang, setLang] = useState("ar");
+  const [isAppReady, setIsAppReady] = useState(false);
   const [showHomeScreen, setShowHomeScreen] = useState(false);
   const [user, setUser] = useState(null);
   const [isUserLoading, setIsUserLoading] = useState(true);
@@ -49,6 +51,12 @@ export default function App() {
   const [screenDimensions, setScreenDimensions] = useState(
     Dimensions.get("screen")
   );
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsAppReady(true);
+    }, 3000);
+  }, []);
 
   useEffect(() => {
     socket.on("connect", () => {
@@ -151,8 +159,8 @@ export default function App() {
     }
   };
 
-  if (!fontLoaded || isUserLoading) {
-    return null;
+  if (!fontLoaded || isUserLoading || !isAppReady) {
+    return <SplashScreen screen={screenDimensions} />;
   }
 
   return (
