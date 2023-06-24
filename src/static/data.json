@@ -1,3 +1,4 @@
 {
-  "genders": ["male", "female"]
+  "genders": ["male", "female"],
+  "carTypes": ["commercial", "luxury", "women"]
 }

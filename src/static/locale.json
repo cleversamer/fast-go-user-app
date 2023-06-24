@@ -850,5 +850,41 @@
   "saveFile": {
     "en": "Save file",
     "ar": "حفظ الملف"
+  },
+  "emailOrPhone": {
+    "en": "Email or phone number",
+    "ar": "البريد الإلكتروني أو رقم الهاتف"
+  },
+  "passengerInfo": {
+    "en": "Passenger information",
+    "ar": "معلومات الراكب"
+  },
+  "adminInfo": {
+    "en": "Admin information",
+    "ar": "معلومات الآدمن"
+  },
+  "phone": {
+    "en": "Phone number",
+    "ar": "رقم الهاتف"
+  },
+  "gender": {
+    "en": "Gender",
+    "ar": "الجنس"
+  },
+  "balance": {
+    "en": "Balance",
+    "ar": "الرصيد"
+  },
+  "driverProfitRate": {
+    "en": "Profit rate",
+    "ar": "نسبة الأرباح"
+  },
+  "saveUser": {
+    "en": "Save user",
+    "ar": "حفظ المستخدم"
+  },
+  "blockUser": {
+    "en": "Block user",
+    "ar": "حظر المستخدم"
   }
 }

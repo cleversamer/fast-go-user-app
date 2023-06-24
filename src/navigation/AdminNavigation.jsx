@@ -26,6 +26,7 @@ import RegionsScreen from "../screens/admin/RegionsScreen";
 import ChallengesPanelScreen from "../screens/admin/ChallengesPanelScreen";
 import SendNotificationScreen from "../screens/admin/SendNotificationScreen";
 import ExcelExportScreen from "../screens/admin/ExcelExportScreen";
+import SearchUserScreen from "../screens/admin/SearchUserScreen";
 
 const globalScreenOptions = {
   contentStyle: { backgroundColor: "#fff" },
@@ -105,6 +106,8 @@ export default function AdminNavigation() {
         name={screens.exportToExcel}
         component={ExcelExportScreen}
       />
+
+      <Stack.Screen name={screens.searchUser} component={SearchUserScreen} />
     </Stack.Navigator>
   );
 }

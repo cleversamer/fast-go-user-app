@@ -41,5 +41,6 @@
   "regions": "RegionsScreen",
   "challengesPanel": "ChallengesPanelScreen",
   "sendNotification": "SendNotificationScreen",
-  "exportToExcel": "ExcelExportScreen"
+  "exportToExcel": "ExcelExportScreen",
+  "searchUser": "SearchUserScreen"
 }

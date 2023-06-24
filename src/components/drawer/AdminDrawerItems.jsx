@@ -150,7 +150,7 @@ export default function AdminDrawerItems({ navigation }) {
 
       <DrawerItem
         title={i18n("searchUser")}
-        onPress={navigateTo(screens.challenges)}
+        onPress={navigateTo(screens.searchUser)}
         Icon={() => (
           <MaterialIcons name="person-search" style={styles.itemIcon} />
         )}
