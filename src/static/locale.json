@@ -886,5 +886,17 @@
   "blockUser": {
     "en": "Block user",
     "ar": "حظر المستخدم"
+  },
+  "popupBlockUserTitle": {
+    "en": "Block user",
+    "ar": "حظر المستخدم"
+  },
+  "popupBlockUserSubtitle": {
+    "en": "Are you sure want to block the user?",
+    "ar": "هل أنت متأكد أنك تريد حظر المستخدم؟"
+  },
+  "popupBlockUserHint": {
+    "en": "If you block the user, they won't be able to benefit from the services of our application",
+    "ar": "إذا قمت بحظر المستحدم، فانه لن يتمكن من الاستفادة من خدمات البرنامج"
   }
 }

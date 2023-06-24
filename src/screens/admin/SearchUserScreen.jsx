@@ -11,12 +11,14 @@ import PhoneInput from "../../components/inputs/PhoneInput";
 import data from "../../static/data.json";
 import SelectInput from "../../components/inputs/SelectInput";
 import CustomButton from "../../components/buttons/CustomButton";
+import PopupConfirm from "../../components/popups/PopupConfirm";
 
 export default function SearchUserScreen({ navigation }) {
   const { user: admin } = useAuth();
   const screen = useScreen();
   const { i18n, lang } = useLocale();
   const [user, setUser] = useState(admin);
+  const [showPopupConfirm, setShowPopupConfirm] = useState(false);
 
   const styles = StyleSheet.create({
     container: {
@@ -83,6 +85,15 @@ export default function SearchUserScreen({ navigation }) {
           placeholder={i18n("emailOrPhone")}
           Icon={() => <Feather name="search" style={styles.icon} />}
           keyboardType="email-address"
+        />
+
+        <PopupConfirm
+          title={i18n("popupBlockUserTitle")}
+          subtitle={i18n("popupBlockUserSubtitle")}
+          hint={i18n("popupBlockUserHint")}
+          visible={showPopupConfirm}
+          onClose={() => setShowPopupConfirm(false)}
+          onConfirm={() => setShowPopupConfirm(false)}
         />
 
         {!!user && (
@@ -164,6 +175,7 @@ export default function SearchUserScreen({ navigation }) {
                 text={i18n("blockUser")}
                 containerStyle={styles.blockButtonContainer}
                 textStyle={styles.buttonText}
+                onPress={() => setShowPopupConfirm(true)}
               />
             </View>
           </>
