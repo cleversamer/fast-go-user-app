@@ -40,7 +40,7 @@ export default function App() {
 
   // States
   const [lang, setLang] = useState("ar");
-  const [isAppReady, setIsAppReady] = useState(false);
+  // const [isAppReady, setIsAppReady] = useState(false);
   const [showHomeScreen, setShowHomeScreen] = useState(false);
   const [user, setUser] = useState(null);
   const [isUserLoading, setIsUserLoading] = useState(true);
@@ -54,11 +54,11 @@ export default function App() {
     Dimensions.get("screen")
   );
 
-  useEffect(() => {
-    setTimeout(() => {
-      setIsAppReady(true);
-    }, 3000 - (Date.now() - runDate));
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setIsAppReady(true);
+  //   }, 3000 - (Date.now() - runDate));
+  // }, []);
 
   useEffect(() => {
     socket.on("connect", () => {
@@ -165,9 +165,9 @@ export default function App() {
     return null;
   }
 
-  if (!isAppReady) {
-    return <SplashScreen screen={screenDimensions} />;
-  }
+  // if (!isAppReady) {
+  //   return <SplashScreen screen={screenDimensions} />;
+  // }
 
   return (
     <>
