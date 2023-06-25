@@ -30,6 +30,8 @@ I18nManager.forceRTL(false);
 I18nManager.allowRTL(false);
 I18nManager.doLeftAndRightSwapInRTL = false;
 
+const runDate = Date.now();
+
 export default function App() {
   // Hooks
   const { fontLoaded } = useFonts();
@@ -55,7 +57,7 @@ export default function App() {
   useEffect(() => {
     setTimeout(() => {
       setIsAppReady(true);
-    }, 3000);
+    }, 3000 - (Date.now() - runDate));
   }, []);
 
   useEffect(() => {
@@ -159,7 +161,11 @@ export default function App() {
     }
   };
 
-  if (!fontLoaded || isUserLoading || !isAppReady) {
+  if (!fontLoaded || isUserLoading) {
+    return null;
+  }
+
+  if (!isAppReady) {
     return <SplashScreen screen={screenDimensions} />;
   }
 
