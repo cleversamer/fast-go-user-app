@@ -4,7 +4,7 @@ export default function SplashScreen({ screen }) {
   const styles = StyleSheet.create({
     container: {
       flex: 1,
-      paddingTop: StatusBar.currentHeight || 0,
+      paddingTop: StatusBar.currentHeight ? StatusBar.currentHeight / 2 : 0,
       justifyContent: "center",
       alignItems: "center",
     },
