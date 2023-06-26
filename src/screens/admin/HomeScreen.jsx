@@ -4,9 +4,9 @@ import {
   SafeAreaView,
   View,
   FlatList,
-  ScrollView,
   Text,
   TouchableOpacity,
+  ScrollView,
 } from "react-native";
 import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 import useLocale from "../../hooks/useLocale";
@@ -16,9 +16,12 @@ import * as theme from "../../constants/theme";
 import AdminHomeScreenTitle from "../../components/screenTitles/AdminHomeScreenTitle";
 import GoogleMap from "../../components/common/GoogleMap";
 import StatsCard from "../../components/admin/StatsCard";
-import PendingDriver from "../../components/admin/PendingDriver";
+import useAuth from "../../auth/useAuth";
+import Driver from "../../components/admin/Driver";
+import screens from "../../static/screens.json";
 
 export default function AdminHomeSceen({ navigation }) {
+  const { user } = useAuth();
   const screen = useScreen();
   const { i18n, lang } = useLocale();
   const [statsCards, setStatsCards] = useState([
@@ -27,12 +30,27 @@ export default function AdminHomeSceen({ navigation }) {
     { title: "approvedDrivers", value: 10, iconName: "taxi" },
     { title: "noOfTrips", value: 10, iconName: "file-document-outline" },
   ]);
+  const [pendingDrivers, setPendingDrivers] = useState([
+    { ...user, status: "pending" },
+    { ...user, status: "rejected" },
+    { ...user, status: "pending" },
+    { ...user, status: "rejected" },
+    { ...user, status: "pending" },
+    { ...user, status: "rejected" },
+    { ...user, status: "pending" },
+    { ...user, status: "rejected" },
+  ]);
 
   const styles = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: "#fff",
       paddingHorizontal: screen.getHorizontalPixelSize(10),
+      gap: screen.getVerticalPixelSize(20),
+    },
+    contentContainer: {
+      flex: 1,
+      backgroundColor: "#fff",
       gap: screen.getVerticalPixelSize(20),
     },
     header: {
@@ -60,12 +78,12 @@ export default function AdminHomeSceen({ navigation }) {
       gap: screen.getHorizontalPixelSize(12),
     },
     pendingDriversTopContainer: {
-      flexDirection: "row",
+      flexDirection: lang === "ar" ? "row" : "row-reverse",
       alignItems: "center",
       justifyContent: "space-between",
     },
     morePendingDriversContainer: {
-      flexDirection: "row",
+      flexDirection: lang === "ar" ? "row" : "row-reverse",
       alignItems: "center",
     },
     arrowIcon: {
@@ -80,7 +98,7 @@ export default function AdminHomeSceen({ navigation }) {
       textTransform: "capitalize",
     },
     pendingDriversTitleContainer: {
-      flexDirection: "row",
+      flexDirection: lang === "ar" ? "row" : "row-reverse",
       alignItems: "center",
       gap: screen.getHorizontalPixelSize(7),
     },
@@ -95,18 +113,35 @@ export default function AdminHomeSceen({ navigation }) {
       fontSize: screen.getResponsiveFontSize(32),
       color: theme.primaryColor,
     },
-    pendingDriversList: {
-      flex: 1,
+    driversContainer: {
+      maxHeight: screen.getVerticalPixelSize(130),
+    },
+    driversContentContainer: {
       flexDirection: "row",
       alignItems: "center",
       gap: screen.getHorizontalPixelSize(12),
-      maxHeight: screen.getVerticalPixelSize(100),
+      maxHeight: screen.getVerticalPixelSize(130),
+    },
+    driverContainer: {
+      width: screen.getHorizontalPixelSize(240),
     },
   });
 
   const handleOpenDrawer = () => {
     try {
       navigation.openDrawer();
+    } catch (err) {}
+  };
+
+  const handleMoreDrivers = () => {
+    try {
+      navigation.navigate(screens.drivers);
+    } catch (err) {}
+  };
+
+  const handleCallDriver = (driver) => {
+    try {
+      navigation.navigate(screens.call, { receiver: driver });
     } catch (err) {}
   };
 
@@ -119,52 +154,73 @@ export default function AdminHomeSceen({ navigation }) {
         />
       </View>
 
-      <FlatList
-        style={styles.cardsContainer}
-        contentContainerStyle={styles.cardsContentContainer}
-        showsHorizontalScrollIndicator={false}
-        showsVerticalScrollIndicator={false}
-        scrollEnabled
-        scrollToOverflowEnabled
-        alwaysBounceHorizontal
-        horizontal
-        data={statsCards}
-        renderItem={({ item }) => <StatsCard item={item} />}
-        keyExtractor={(item, index) => index}
-      />
-
-      <GoogleMap containerStyles={styles.mapContainer} />
-
-      <View style={styles.pendingDriversContainer}>
-        <View style={styles.pendingDriversTopContainer}>
-          <TouchableOpacity style={styles.morePendingDriversContainer}>
-            <MaterialIcons name="arrow-back-ios" style={styles.arrowIcon} />
-
-            <Text style={styles.morePendingDriversTitle}>{i18n("more")}</Text>
-          </TouchableOpacity>
-
-          <View style={styles.pendingDriversTitleContainer}>
-            <Text style={styles.pendingDriversTitle}>
-              {i18n("pendingDrivers")}
-            </Text>
-
-            <MaterialCommunityIcons
-              name="timer-sand"
-              style={styles.timerIcon}
-            />
-          </View>
-        </View>
-
-        <ScrollView
-          contentContainerStyle={styles.pendingDriversList}
+      <ScrollView contentContainerStyle={styles.contentContainer}>
+        <FlatList
+          style={styles.cardsContainer}
+          contentContainerStyle={styles.cardsContentContainer}
           showsHorizontalScrollIndicator={false}
           showsVerticalScrollIndicator={false}
-        >
-          <PendingDriver />
-          <PendingDriver />
-          <PendingDriver />
-        </ScrollView>
-      </View>
+          scrollEnabled
+          scrollToOverflowEnabled
+          alwaysBounceHorizontal
+          horizontal
+          data={statsCards}
+          renderItem={({ item }) => <StatsCard item={item} />}
+          keyExtractor={(item, index) => index}
+        />
+
+        <GoogleMap containerStyles={styles.mapContainer} />
+
+        <View style={styles.pendingDriversContainer}>
+          <View style={styles.pendingDriversTopContainer}>
+            <TouchableOpacity
+              style={styles.morePendingDriversContainer}
+              onPress={handleMoreDrivers}
+            >
+              <MaterialIcons
+                name={lang === "ar" ? "arrow-back-ios" : "arrow-forward-ios"}
+                style={styles.arrowIcon}
+              />
+
+              <Text style={styles.morePendingDriversTitle}>{i18n("more")}</Text>
+            </TouchableOpacity>
+
+            <View style={styles.pendingDriversTitleContainer}>
+              <Text style={styles.pendingDriversTitle}>
+                {i18n("pendingDrivers")}
+              </Text>
+
+              <MaterialCommunityIcons
+                name="timer-sand"
+                style={styles.timerIcon}
+              />
+            </View>
+          </View>
+
+          <FlatList
+            style={styles.driversContainer}
+            contentContainerStyle={styles.driversContentContainer}
+            showsHorizontalScrollIndicator={false}
+            showsVerticalScrollIndicator={false}
+            scrollEnabled
+            scrollToOverflowEnabled
+            alwaysBounceHorizontal
+            horizontal
+            data={pendingDrivers}
+            renderItem={({ item }) => (
+              <Driver
+                data={item}
+                containerStyle={styles.driverContainer}
+                onCall={() => handleCallDriver(item)}
+                onPress={() =>
+                  navigation.navigate(screens.driverRequest, { driver: item })
+                }
+              />
+            )}
+            keyExtractor={(item, index) => item._id + index}
+          />
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }

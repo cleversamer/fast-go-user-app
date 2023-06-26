@@ -6,7 +6,7 @@ import CircularButton from "../buttons/CircularButton";
 import { Ionicons } from "@expo/vector-icons";
 import CircularAvatar from "../common/CircularAvatar";
 
-export default function Driver({ data, onCall, onPress }) {
+export default function Driver({ data, onCall, onPress, containerStyle }) {
   const screen = useScreen();
   const { i18n, lang } = useLocale();
   const { value: date } = useDateTimer(data.lastLogin, lang, [lang]);
@@ -104,7 +104,10 @@ export default function Driver({ data, onCall, onPress }) {
   }
 
   return (
-    <TouchableOpacity style={styles.container} onPress={onPress}>
+    <TouchableOpacity
+      style={[styles.container, containerStyle || {}]}
+      onPress={onPress}
+    >
       <View
         style={
           lang === "ar" ? styles.arStatusContainer : styles.enStatusContainer

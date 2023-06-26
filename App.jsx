@@ -7,7 +7,7 @@ import useLocation from "./src/hooks/useLocation";
 import * as usersApi from "./src/api/user/users";
 import socket from "./src/socket/client";
 import authStorage from "./src/auth/storage";
-import SplashScreen from "./src/screens/common/SplashScreen";
+// import SplashScreen from "./src/screens/common/SplashScreen";
 
 import {
   lockAsync,
@@ -30,7 +30,7 @@ I18nManager.forceRTL(false);
 I18nManager.allowRTL(false);
 I18nManager.doLeftAndRightSwapInRTL = false;
 
-const runDate = Date.now();
+// const runDate = Date.now();
 
 export default function App() {
   // Hooks
