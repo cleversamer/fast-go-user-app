@@ -13,7 +13,7 @@ export default function DriversScreen({ navigation }) {
   const screen = useScreen();
   const { i18n, lang } = useLocale();
   const { user } = useAuth();
-  const [drivers, setDrivers] = useState([
+  const [allDrivers, setAllDrivers] = useState([
     { ...user, status: "pending" },
     { ...user, status: "rejected" },
     { ...user, status: "pending" },
@@ -23,12 +23,18 @@ export default function DriversScreen({ navigation }) {
     { ...user, status: "pending" },
     { ...user, status: "rejected" },
   ]);
+  const [displayDrivers, setDisplayDrivers] = useState(allDrivers);
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [filter, setFilter] = useState("all");
 
   useEffect(() => {
     // TODO: fetch pending and rejected drivers
+    const newDrivers =
+      filter === "all"
+        ? [...allDrivers]
+        : allDrivers.filter((driver) => driver.status === filter);
+    setDisplayDrivers(newDrivers);
   }, [currentPage, filter]);
 
   const styles = StyleSheet.create({
@@ -82,7 +88,7 @@ export default function DriversScreen({ navigation }) {
     <SafeAreaView style={styles.container}>
       <DefaultScreenTitle title={i18n("drivers")} onPrev={handleGoBack} />
 
-      {!!drivers.length && (
+      {!!displayDrivers.length && (
         <View style={styles.filtersContainer}>
           <FilterItem
             title={i18n("all")}
@@ -104,10 +110,10 @@ export default function DriversScreen({ navigation }) {
         </View>
       )}
 
-      {!!drivers.length && (
+      {!!displayDrivers.length && (
         <FlatList
           contentContainerStyle={styles.driversList}
-          data={drivers}
+          data={displayDrivers}
           renderItem={({ item }) => (
             <Driver
               data={item}
@@ -122,7 +128,7 @@ export default function DriversScreen({ navigation }) {
         />
       )}
 
-      {!drivers.length && (
+      {!displayDrivers.length && (
         <View style={styles.emptyDriversContainer}>
           <Image
             source={require("../../assets/images/no-drivers.png")}
