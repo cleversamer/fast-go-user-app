@@ -7,6 +7,7 @@ import * as theme from "../../constants/theme";
 import SelectInput from "../../components/inputs/SelectInput";
 import InputIcon from "../../components/inputs/InputIcon";
 import CustomButton from "../../components/buttons/CustomButton";
+import data from "../../static/data.json";
 
 export default function TripPricingScreen({ navigation }) {
   const screen = useScreen();
@@ -46,6 +47,14 @@ export default function TripPricingScreen({ navigation }) {
     } catch (err) {}
   };
 
+  const getDistanceOptions = () => {
+    return data.distances.map((distance) => {
+      const from = distance[0];
+      const to = distance[1];
+      return `${from}-${to} Km`;
+    });
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <DefaultScreenTitle title={i18n("tripsPricing")} onPrev={handleGoBack} />
@@ -53,7 +62,11 @@ export default function TripPricingScreen({ navigation }) {
       <ScrollView contentContainerStyle={styles.contentContainer}>
         <SelectInput title={i18n("carType")} placeholder={i18n("carType")} />
 
-        <SelectInput title={i18n("distance")} placeholder={i18n("distance")} />
+        <SelectInput
+          title={i18n("distance")}
+          placeholder={i18n("distance")}
+          options={getDistanceOptions()}
+        />
 
         <InputIcon
           title={i18n("price")}

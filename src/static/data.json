@@ -1,5 +1,12 @@
 {
   "genders": ["male", "female"],
   "carTypes": ["commercial", "luxury", "women"],
-  "userTypes": ["passenger", "driver"]
+  "userTypes": ["passenger", "driver"],
+  "distances": [
+    [0, 10],
+    [10, 15],
+    [15, 25],
+    [25, 30],
+    [30, 45]
+  ]
 }
