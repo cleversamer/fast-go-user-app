@@ -26,9 +26,9 @@ import Onboarding from "./src/screens/common/Onboarding";
 import PopupError from "./src/components/popups/PopupError";
 
 // Set text direction to LTR
-I18nManager.forceRTL(false);
-I18nManager.allowRTL(false);
-I18nManager.doLeftAndRightSwapInRTL = false;
+// I18nManager.forceRTL(false);
+// I18nManager.allowRTL(false);
+// I18nManager.doLeftAndRightSwapInRTL = false;
 
 const runDate = Date.now();
 
