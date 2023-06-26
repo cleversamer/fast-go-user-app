@@ -69,13 +69,19 @@ export default function TripsScreen({ navigation }) {
   const screen = useScreen();
   const { i18n, lang } = useLocale();
   const { user } = useAuth();
-  const [trips, setTrips] = useState(_trips);
+  const [allTrips, setAllTrips] = useState(_trips);
+  const [displayTrips, setDisplayTrips] = useState(allTrips);
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [filter, setFilter] = useState("all");
 
   useEffect(() => {
     // TODO: fetch requests
+    const newTrips =
+      filter === "all"
+        ? allTrips
+        : allTrips.filter((trip) => trip.status === filter);
+    setDisplayTrips(newTrips);
   }, [currentPage, filter]);
 
   const styles = StyleSheet.create({
@@ -123,7 +129,7 @@ export default function TripsScreen({ navigation }) {
     <SafeAreaView style={styles.container}>
       <DefaultScreenTitle title={i18n("requests")} onPrev={handleGoBack} />
 
-      {!!trips.length && (
+      {!!displayTrips.length && (
         <View style={styles.filtersContainer}>
           <FilterItem
             title={i18n("all")}
@@ -151,17 +157,17 @@ export default function TripsScreen({ navigation }) {
         </View>
       )}
 
-      {!!trips.length && (
+      {!!displayTrips.length && (
         <FlatList
           contentContainerStyle={styles.driversList}
-          data={trips}
+          data={displayTrips}
           renderItem={({ item }) => <Trip trip={item} />}
           showsHorizontalScrollIndicator={false}
           showsVerticalScrollIndicator={false}
         />
       )}
 
-      {!trips.length && (
+      {!displayTrips.length && (
         <View style={styles.emptyDriversContainer}>
           <Image
             source={require("../../assets/images/no-drivers.png")}
