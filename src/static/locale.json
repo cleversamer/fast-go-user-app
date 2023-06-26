@@ -902,5 +902,13 @@
   "deleteRegion": {
     "en": "Delete region",
     "ar": "حذف المطقة"
+  },
+  "passenger": {
+    "en": "Passenger",
+    "ar": "راكب"
+  },
+  "driver": {
+    "en": "Driver",
+    "ar": "سائق"
   }
 }

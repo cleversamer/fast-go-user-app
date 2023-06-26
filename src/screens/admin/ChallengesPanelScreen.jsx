@@ -12,6 +12,7 @@ import * as theme from "../../constants/theme";
 import SelectInput from "../../components/inputs/SelectInput";
 import CustomButton from "../../components/buttons/CustomButton";
 import Challenge from "../../components/admin/Challenge";
+import data from "../../static/data.json";
 
 const _challenges = [
   {
@@ -166,6 +167,7 @@ export default function ChallengesPanelScreen({ navigation }) {
         <SelectInput
           title={i18n("userCategory")}
           placeholder={i18n("userCategory")}
+          options={data.userTypes.map((g) => ({ key: g, value: i18n(g) }))}
         />
 
         <CustomButton text={i18n("add")} textStyle={styles.buttonText} />
