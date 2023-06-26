@@ -1,6 +1,6 @@
 import "react-native-gesture-handler";
 import { useEffect, useState } from "react";
-import { StatusBar, Dimensions } from "react-native";
+import { StatusBar, Dimensions, I18nManager } from "react-native";
 import useFonts from "./src/hooks/useFonts";
 import useNetworkStatus from "./src/hooks/useNetworkStatus";
 import useLocation from "./src/hooks/useLocation";
