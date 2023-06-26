@@ -898,5 +898,9 @@
   "popupBlockUserHint": {
     "en": "If you block the user, they won't be able to benefit from the services of our application",
     "ar": "إذا قمت بحظر المستحدم، فانه لن يتمكن من الاستفادة من خدمات البرنامج"
+  },
+  "deleteRegion": {
+    "en": "Delete region",
+    "ar": "حذف المطقة"
   }
 }

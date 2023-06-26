@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import useLocation from "../../hooks/useLocation";
-import Geocoder from "react-native-geocoding";
 import useLocale from "../../hooks/useLocale";
+import Geocoder from "react-native-geocoding";
 
 Geocoder.init("AIzaSyCCEmVrr0YEw2JDMpYpXMfhSztRyeu1ycw");
 
