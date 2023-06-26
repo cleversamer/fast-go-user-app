@@ -1,13 +1,12 @@
 import "react-native-gesture-handler";
 import { useEffect, useState } from "react";
-import { StatusBar, Dimensions, I18nManager } from "react-native";
+import { StatusBar, Dimensions } from "react-native";
 import useFonts from "./src/hooks/useFonts";
 import useNetworkStatus from "./src/hooks/useNetworkStatus";
 import useLocation from "./src/hooks/useLocation";
 import * as usersApi from "./src/api/user/users";
 import socket from "./src/socket/client";
 import authStorage from "./src/auth/storage";
-import SplashScreen from "./src/screens/common/SplashScreen";
 
 import {
   lockAsync,
@@ -26,11 +25,9 @@ import Onboarding from "./src/screens/common/Onboarding";
 import PopupError from "./src/components/popups/PopupError";
 
 // Set text direction to LTR
-// I18nManager.forceRTL(false);
-// I18nManager.allowRTL(false);
-// I18nManager.doLeftAndRightSwapInRTL = false;
-
-const runDate = Date.now();
+I18nManager.forceRTL(false);
+I18nManager.allowRTL(false);
+I18nManager.doLeftAndRightSwapInRTL = false;
 
 export default function App() {
   // Hooks
@@ -40,7 +37,6 @@ export default function App() {
 
   // States
   const [lang, setLang] = useState("ar");
-  const [isAppReady, setIsAppReady] = useState(false);
   const [showHomeScreen, setShowHomeScreen] = useState(false);
   const [user, setUser] = useState(null);
   const [isUserLoading, setIsUserLoading] = useState(true);
@@ -53,12 +49,6 @@ export default function App() {
   const [screenDimensions, setScreenDimensions] = useState(
     Dimensions.get("screen")
   );
-
-  useEffect(() => {
-    setTimeout(() => {
-      setIsAppReady(true);
-    }, 3000 - (Date.now() - runDate));
-  }, []);
 
   useEffect(() => {
     socket.on("connect", () => {
@@ -163,10 +153,6 @@ export default function App() {
 
   if (!fontLoaded || isUserLoading) {
     return null;
-  }
-
-  if (!isAppReady) {
-    return <SplashScreen screen={screenDimensions} />;
   }
 
   return (
