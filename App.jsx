@@ -71,11 +71,13 @@ export default function App() {
     });
 
     socket.on("account deleted", async () => {
-      setPopupAccountDeleted({
-        message: "Your account has been deleted",
-        onClose: handleDeleteAccount,
-        visible: true,
-      });
+      try {
+        setPopupAccountDeleted({
+          message: "Your account has been deleted",
+          onClose: handleDeleteAccount,
+          visible: true,
+        });
+      } catch (err) {}
     });
 
     usersApi
@@ -93,26 +95,37 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    const subscription = Dimensions.addEventListener("change", ({ screen }) => {
-      setScreenDimensions(screen);
-    });
+    try {
+      const subscription = Dimensions.addEventListener(
+        "change",
+        ({ screen }) => {
+          setScreenDimensions(screen);
+        }
+      );
 
-    return () => {
-      subscription.remove();
-    };
+      return () => {
+        subscription.remove();
+      };
+    } catch (err) {}
   }, []);
 
   useEffect(() => {
-    const lockScreenOrientation = async () => {
-      await lockAsync(OrientationLock.PORTRAIT);
-    };
+    try {
+      const lockScreenOrientation = async () => {
+        try {
+          await lockAsync(OrientationLock.PORTRAIT);
+        } catch (err) {}
+      };
 
-    lockScreenOrientation();
+      lockScreenOrientation();
 
-    return () => {
-      // Unlock the screen orientation when the component is unmounted
-      unlockAsync();
-    };
+      return () => {
+        try {
+          // Unlock the screen orientation when the component is unmounted
+          unlockAsync();
+        } catch (err) {}
+      };
+    } catch (err) {}
   }, []);
 
   const handleDeleteAccount = async () => {
