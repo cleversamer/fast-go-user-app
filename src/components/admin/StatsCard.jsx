@@ -1,4 +1,10 @@
-import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  TouchableOpacity,
+  ActivityIndicator,
+} from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import useScreen from "../../hooks/useScreen";
 import useLocale from "../../hooks/useLocale";
@@ -49,7 +55,12 @@ export default function StatsCard({ item }) {
       <Text style={styles.title}>{i18n(item.title)}</Text>
 
       <View style={styles.bottomContainer}>
-        <Text style={styles.value}>{item.value}</Text>
+        {item.loading ? (
+          <ActivityIndicator animating={true} size="small" color="#fff" />
+        ) : (
+          <Text style={styles.value}>{item.value}</Text>
+        )}
+
         <MaterialCommunityIcons name={item.iconName} style={styles.icon} />
       </View>
     </TouchableOpacity>

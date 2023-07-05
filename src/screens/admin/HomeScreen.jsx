@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   StyleSheet,
   SafeAreaView,
@@ -7,11 +7,13 @@ import {
   Text,
   TouchableOpacity,
   ScrollView,
+  ActivityIndicator,
 } from "react-native";
 import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 import useLocale from "../../hooks/useLocale";
 import useScreen from "../../hooks/useScreen";
 import * as theme from "../../constants/theme";
+import * as usersApi from "../../api/user/users";
 
 import AdminHomeScreenTitle from "../../components/screenTitles/AdminHomeScreenTitle";
 import GoogleMap from "../../components/common/GoogleMap";
@@ -20,26 +22,88 @@ import useAuth from "../../auth/useAuth";
 import Driver from "../../components/admin/Driver";
 import screens from "../../static/screens.json";
 
+const defaultStatsCards = [
+  {
+    title: "pendingDrivers",
+    value: 0,
+    iconName: "timer-sand",
+    loading: true,
+  },
+  { title: "activeDrivers", value: 0, iconName: "taxi", loading: true },
+  { title: "approvedDrivers", value: 0, iconName: "taxi", loading: true },
+  {
+    title: "noOfTrips",
+    value: 0,
+    iconName: "file-document-outline",
+    loading: true,
+  },
+];
+
 export default function AdminHomeSceen({ navigation }) {
   const { user } = useAuth();
   const screen = useScreen();
   const { i18n, lang } = useLocale();
-  const [statsCards, setStatsCards] = useState([
-    { title: "pendingDrivers", value: 10, iconName: "timer-sand" },
-    { title: "activeDrivers", value: 10, iconName: "taxi" },
-    { title: "approvedDrivers", value: 10, iconName: "taxi" },
-    { title: "noOfTrips", value: 10, iconName: "file-document-outline" },
-  ]);
-  const [pendingDrivers, setPendingDrivers] = useState([
-    { ...user, status: "pending" },
-    { ...user, status: "rejected" },
-    { ...user, status: "pending" },
-    { ...user, status: "rejected" },
-    { ...user, status: "pending" },
-    { ...user, status: "rejected" },
-    { ...user, status: "pending" },
-    { ...user, status: "rejected" },
-  ]);
+  const [statsCards, setStatsCards] = useState(defaultStatsCards);
+  const [pendingDrivers, setPendingDrivers] = useState({
+    list: [],
+    loading: true,
+  });
+
+  useEffect(() => {
+    usersApi
+      .getDriversStats()
+      .then((res) => {
+        const {
+          pendingDriversNo,
+          activeDriversNo,
+          verifiedDriversNo,
+          allTripsNo,
+        } = res.data;
+
+        setStatsCards([
+          {
+            title: "pendingDrivers",
+            value: pendingDriversNo,
+            iconName: "timer-sand",
+            loading: false,
+          },
+          {
+            title: "activeDrivers",
+            value: activeDriversNo,
+            iconName: "taxi",
+            loading: false,
+          },
+          {
+            title: "approvedDrivers",
+            value: verifiedDriversNo,
+            iconName: "taxi",
+            loading: false,
+          },
+          {
+            title: "noOfTrips",
+            value: allTripsNo,
+            iconName: "file-document-outline",
+            loading: false,
+          },
+        ]);
+      })
+      .catch(() => {});
+
+    usersApi
+      .getInverifiedDrivers(1, 10)
+      .then((res) => {
+        setPendingDrivers({
+          list: res.data.inverifiedDrivers,
+          loading: false,
+        });
+      })
+      .catch(() => {
+        setPendingDrivers({
+          list: [],
+          loading: false,
+        });
+      });
+  }, []);
 
   const styles = StyleSheet.create({
     container: {
@@ -197,28 +261,36 @@ export default function AdminHomeSceen({ navigation }) {
             </View>
           </View>
 
-          <FlatList
-            style={styles.driversContainer}
-            contentContainerStyle={styles.driversContentContainer}
-            showsHorizontalScrollIndicator={false}
-            showsVerticalScrollIndicator={false}
-            scrollEnabled
-            scrollToOverflowEnabled
-            alwaysBounceHorizontal
-            horizontal
-            data={pendingDrivers}
-            renderItem={({ item }) => (
-              <Driver
-                data={item}
-                containerStyle={styles.driverContainer}
-                onCall={() => handleCallDriver(item)}
-                onPress={() =>
-                  navigation.navigate(screens.driverRequest, { driver: item })
-                }
-              />
-            )}
-            keyExtractor={(item, index) => item._id + index}
-          />
+          {pendingDrivers.loading ? (
+            <ActivityIndicator
+              animating={true}
+              size="large"
+              color={theme.primaryColor}
+            />
+          ) : (
+            <FlatList
+              style={styles.driversContainer}
+              contentContainerStyle={styles.driversContentContainer}
+              showsHorizontalScrollIndicator={false}
+              showsVerticalScrollIndicator={false}
+              scrollEnabled
+              scrollToOverflowEnabled
+              alwaysBounceHorizontal
+              horizontal
+              data={pendingDrivers}
+              renderItem={({ item }) => (
+                <Driver
+                  data={item}
+                  containerStyle={styles.driverContainer}
+                  onCall={() => handleCallDriver(item)}
+                  onPress={() =>
+                    navigation.navigate(screens.driverRequest, { driver: item })
+                  }
+                />
+              )}
+              keyExtractor={(item, index) => item._id + index}
+            />
+          )}
         </View>
       </ScrollView>
     </SafeAreaView>

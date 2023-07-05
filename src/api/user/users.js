@@ -144,3 +144,23 @@ export const deletePlace = async (placeId) => {
     },
   });
 };
+
+export const getDriversStats = async () => {
+  const token = await authStorage.getToken();
+
+  return await client.get("/users/admin/stats", {
+    headers: {
+      Authorization: token,
+    },
+  });
+};
+
+export const getInverifiedDrivers = async (page = 1, limit = 10) => {
+  const token = await authStorage.getToken();
+
+  return await client.get("/admin/drivers/inverified", {
+    headers: {
+      Authorization: token,
+    },
+  });
+};
