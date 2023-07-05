@@ -910,5 +910,9 @@
   "driver": {
     "en": "Driver",
     "ar": "سائق"
+  },
+  "noPendingDrivers": {
+    "en": "No pending drivers right now",
+    "ar": "لا يوجد سائقين معلقين"
   }
 }

@@ -18,7 +18,6 @@ import * as usersApi from "../../api/user/users";
 import AdminHomeScreenTitle from "../../components/screenTitles/AdminHomeScreenTitle";
 import GoogleMap from "../../components/common/GoogleMap";
 import StatsCard from "../../components/admin/StatsCard";
-import useAuth from "../../auth/useAuth";
 import Driver from "../../components/admin/Driver";
 import screens from "../../static/screens.json";
 
@@ -40,7 +39,6 @@ const defaultStatsCards = [
 ];
 
 export default function AdminHomeSceen({ navigation }) {
-  const { user } = useAuth();
   const screen = useScreen();
   const { i18n, lang } = useLocale();
   const [statsCards, setStatsCards] = useState(defaultStatsCards);
@@ -189,6 +187,11 @@ export default function AdminHomeSceen({ navigation }) {
     driverContainer: {
       width: screen.getHorizontalPixelSize(240),
     },
+    noDriversText: {
+      fontFamily: "cairo-600",
+      fontSize: screen.getResponsiveFontSize(14),
+      textAlign: lang === "ar" ? "right" : "left",
+    },
   });
 
   const handleOpenDrawer = () => {
@@ -267,7 +270,7 @@ export default function AdminHomeSceen({ navigation }) {
               size="large"
               color={theme.primaryColor}
             />
-          ) : (
+          ) : !!pendingDrivers.list.length ? (
             <FlatList
               style={styles.driversContainer}
               contentContainerStyle={styles.driversContentContainer}
@@ -290,6 +293,8 @@ export default function AdminHomeSceen({ navigation }) {
               )}
               keyExtractor={(item, index) => item._id + index}
             />
+          ) : (
+            <Text style={styles.noDriversText}>{i18n("noPendingDrivers")}</Text>
           )}
         </View>
       </ScrollView>
