@@ -4,38 +4,43 @@ import useScreen from "../../hooks/useScreen";
 import DefaultScreenTitle from "../../components/screenTitles/DefaultScreenTitle";
 import useLocale from "../../hooks/useLocale";
 import FilterItem from "../../components/common/FilterItem";
-import useAuth from "../../auth/useAuth";
 import { FlatList } from "react-native";
 import Driver from "../../components/admin/Driver";
 import screens from "../../static/screens.json";
+import * as usersApi from "../../api/user/users";
+import { ActivityIndicator } from "react-native";
+import * as theme from "../../constants/theme";
 
 export default function DriversScreen({ navigation }) {
   const screen = useScreen();
   const { i18n, lang } = useLocale();
-  const { user } = useAuth();
-  const [allDrivers, setAllDrivers] = useState([
-    { ...user, status: "pending" },
-    { ...user, status: "rejected" },
-    { ...user, status: "pending" },
-    { ...user, status: "rejected" },
-    { ...user, status: "pending" },
-    { ...user, status: "rejected" },
-    { ...user, status: "pending" },
-    { ...user, status: "rejected" },
-  ]);
-  const [displayDrivers, setDisplayDrivers] = useState(allDrivers);
-  const [isLoading, setIsLoading] = useState(true);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [filter, setFilter] = useState("all");
+  const [displayDrivers, setDisplayDrivers] = useState({
+    list: [],
+    loading: true,
+  });
+  const [query, setQuery] = useState({ page: 1, filter: "all" });
 
   useEffect(() => {
-    // TODO: fetch pending and rejected drivers
-    const newDrivers =
-      filter === "all"
-        ? [...allDrivers]
-        : allDrivers.filter((driver) => driver.status === filter);
-    setDisplayDrivers(newDrivers);
-  }, [currentPage, filter]);
+    if (!displayDrivers.loading) {
+      setDisplayDrivers({ ...displayDrivers, loading: true });
+    }
+
+    const { filter, page } = query;
+    usersApi
+      .getAllDrivers(filter, page, 10)
+      .then((res) => {
+        setDisplayDrivers({
+          list: res.data.inverifiedDrivers,
+          loading: false,
+        });
+      })
+      .catch(() => {
+        setDisplayDrivers({
+          list: [],
+          loading: false,
+        });
+      });
+  }, [query]);
 
   const styles = StyleSheet.create({
     container: {
@@ -46,8 +51,7 @@ export default function DriversScreen({ navigation }) {
       paddingTop: screen.getVerticalPixelSize(50),
     },
     emptyDriversContainer: {
-      marginTop: -screen.getVerticalPixelSize(100),
-      flex: 1,
+      marginTop: screen.getVerticalPixelSize(100),
       justifyContent: "center",
       alignItems: "center",
     },
@@ -84,36 +88,49 @@ export default function DriversScreen({ navigation }) {
     } catch (err) {}
   };
 
+  const getSelectFilterHandler = (filter) => () => {
+    setQuery({
+      ...query,
+      filter,
+    });
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <DefaultScreenTitle title={i18n("drivers")} onPrev={handleGoBack} />
 
-      {!!displayDrivers.length && (
-        <View style={styles.filtersContainer}>
-          <FilterItem
-            title={i18n("all")}
-            selected={filter === "all"}
-            onSelect={() => setFilter("all")}
-          />
+      <View style={styles.filtersContainer}>
+        <FilterItem
+          title={i18n("all")}
+          selected={query.filter === "all"}
+          onSelect={getSelectFilterHandler("all")}
+        />
 
-          <FilterItem
-            title={i18n("pending")}
-            selected={filter === "pending"}
-            onSelect={() => setFilter("pending")}
-          />
+        <FilterItem
+          title={i18n("pending")}
+          selected={query.filter === "pending"}
+          onSelect={getSelectFilterHandler("pending")}
+        />
 
-          <FilterItem
-            title={i18n("rejected")}
-            selected={filter === "rejected"}
-            onSelect={() => setFilter("rejected")}
+        <FilterItem
+          title={i18n("rejected")}
+          selected={query.filter === "rejected"}
+          onSelect={getSelectFilterHandler("rejected")}
+        />
+      </View>
+
+      {displayDrivers.loading ? (
+        <View style={styles.emptyDriversContainer}>
+          <ActivityIndicator
+            animating={true}
+            size="large"
+            color={theme.primaryColor}
           />
         </View>
-      )}
-
-      {!!displayDrivers.length && (
+      ) : displayDrivers.list.length ? (
         <FlatList
           contentContainerStyle={styles.driversList}
-          data={displayDrivers}
+          data={displayDrivers.list}
           renderItem={({ item }) => (
             <Driver
               data={item}
@@ -126,9 +143,7 @@ export default function DriversScreen({ navigation }) {
           showsHorizontalScrollIndicator={false}
           showsVerticalScrollIndicator={false}
         />
-      )}
-
-      {!displayDrivers.length && (
+      ) : (
         <View style={styles.emptyDriversContainer}>
           <Image
             source={require("../../assets/images/no-drivers.png")}
