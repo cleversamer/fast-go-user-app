@@ -155,12 +155,15 @@ export const getDriversStats = async () => {
   });
 };
 
-export const getInverifiedDrivers = async (page = 1, limit = 10) => {
+export const getAllDrivers = async (driverStatus, page, limit) => {
   const token = await authStorage.getToken();
 
-  return await client.get("/admin/drivers/inverified", {
-    headers: {
-      Authorization: token,
-    },
-  });
+  return await client.get(
+    `/users/admin/drivers/get?driverStatus=${driverStatus}&page=${page}&limit=${limit}`,
+    {
+      headers: {
+        Authorization: token,
+      },
+    }
+  );
 };

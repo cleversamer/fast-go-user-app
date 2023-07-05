@@ -88,7 +88,7 @@ export default function AdminHomeSceen({ navigation }) {
       .catch(() => {});
 
     usersApi
-      .getInverifiedDrivers(1, 10)
+      .getAllDrivers("pending", 1, 10)
       .then((res) => {
         setPendingDrivers({
           list: res.data.inverifiedDrivers,
