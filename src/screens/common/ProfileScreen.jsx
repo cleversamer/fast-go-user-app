@@ -256,11 +256,13 @@ export default function ProfileScreen({ navigation }) {
           />
 
           <PhoneInput
+            title={i18n("phone")}
             nsn={context.phoneNSN}
             onNSNChange={handleKeyChange("phoneNSN")}
           />
 
           <SelectInput
+            title={i18n("gender")}
             value={i18n(context.gender)}
             options={data.genders.map((g) => ({ key: g, value: i18n(g) }))}
             onChange={handleKeyChange("gender")}
