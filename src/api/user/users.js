@@ -167,3 +167,16 @@ export const getAllDrivers = async (driverStatus, page, limit) => {
     }
   );
 };
+
+export const getAllPassengers = async (page, limit) => {
+  const token = await authStorage.getToken();
+
+  return await client.get(
+    `/users/admin/passengers/get?page=${page}&limit=${limit}`,
+    {
+      headers: {
+        Authorization: token,
+      },
+    }
+  );
+};
