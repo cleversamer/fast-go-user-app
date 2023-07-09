@@ -2,14 +2,14 @@ import axios from "axios";
 import cache from "../utils/cache";
 
 // export const serverURL = "https://fast-go.tech";
-export const serverURL = "http://192.168.1.235:4000";
-// export const serverURL = "http://192.168.0.104:4000";
+export const serverURL = "http://192.168.1.28:4000";
 
 const api = axios.create({
   baseURL: serverURL + "/api",
   headers: {
     "Content-Type": "application/json",
   },
+  timeout: 2500,
 });
 
 const get = api.get;

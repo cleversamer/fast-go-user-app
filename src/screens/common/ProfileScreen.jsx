@@ -165,7 +165,8 @@ export default function ProfileScreen({ navigation }) {
       const { user, token } = res.data;
       await login(user, token);
     } catch (err) {
-      const message = err.response.data.message[lang] || i18n("networkError");
+      const message =
+        err?.response?.data?.message?.[lang] || i18n("networkError");
       setError(message);
     } finally {
       setIsLoading(false);

@@ -51,6 +51,23 @@ export default function App() {
   );
 
   useEffect(() => {
+    usersApi
+      .authenticate()
+      .then((res) => {
+        const user = res.data;
+        setUser(user);
+        setLang(user.display.language);
+        if (user.role !== "admin") {
+          setDisplayMode(user.role);
+        }
+      })
+      .catch(() => {})
+      .finally(() => setIsUserLoading(false));
+  }, []);
+
+  useEffect(() => {
+    if (!user) return;
+
     socket.on("connect", () => {
       usersApi
         .joinSocket(socket.id)
@@ -79,20 +96,7 @@ export default function App() {
         });
       } catch (err) {}
     });
-
-    usersApi
-      .authenticate()
-      .then((res) => {
-        const user = res.data;
-        setUser(user);
-        setLang(user.display.language);
-        if (user.role !== "admin") {
-          setDisplayMode(user.role);
-        }
-      })
-      .catch(() => {})
-      .finally(() => setIsUserLoading(false));
-  }, []);
+  }, [user]);
 
   useEffect(() => {
     try {
