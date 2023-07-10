@@ -914,5 +914,9 @@
   "noPendingDrivers": {
     "en": "No pending drivers right now",
     "ar": "لا يوجد سائقين معلقين"
+  },
+  "noCouponCodes": {
+    "en": "No coupon codes added yet",
+    "ar": "لا يوجد أكواد خصم مُضافة بعد"
   }
 }

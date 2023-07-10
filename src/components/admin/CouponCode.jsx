@@ -4,12 +4,19 @@ import useScreen from "../../hooks/useScreen";
 import * as theme from "../../constants/theme";
 import useLocale from "../../hooks/useLocale";
 
-export default function CouponCode({ couponCode, showBreakline = true }) {
+export default function CouponCode({
+  couponCode,
+  showBreakline = true,
+  onDelete,
+}) {
   const screen = useScreen();
   const { lang } = useLocale();
 
   const styles = StyleSheet.create({
     container: {
+      gap: screen.getVerticalPixelSize(7),
+    },
+    contentContainer: {
       flexDirection: lang == "ar" ? "row" : "row-reverse",
       justifyContent: "space-between",
       alignItems: "center",
@@ -26,7 +33,7 @@ export default function CouponCode({ couponCode, showBreakline = true }) {
       color: theme.primaryColor,
     },
     cardIcon: {
-      fontSize: screen.getResponsiveFontSize(36),
+      fontSize: screen.getResponsiveFontSize(42),
       color: theme.primaryColor,
       alignSelf: "center",
     },
@@ -54,16 +61,18 @@ export default function CouponCode({ couponCode, showBreakline = true }) {
   });
 
   return (
-    <>
-      <View style={styles.container}>
-        <TouchableOpacity style={styles.deleteIconContainer}>
+    <View style={styles.container}>
+      <View style={styles.contentContainer}>
+        <TouchableOpacity style={styles.deleteIconContainer} onPress={onDelete}>
           <AntDesign name="delete" style={styles.deleteIcon} />
         </TouchableOpacity>
 
         <View style={styles.rightContainer}>
           <View style={styles.textContainer}>
-            <Text style={styles.couponCode}>65656566</Text>
-            <Text style={styles.discount}>نسبة الخصم: 10%</Text>
+            <Text style={styles.couponCode}>{couponCode.code}</Text>
+            <Text style={styles.discount}>
+              {couponCode.discountPercentage * 100}%
+            </Text>
           </View>
 
           <Entypo name="credit-card" style={styles.cardIcon} />
@@ -71,6 +80,6 @@ export default function CouponCode({ couponCode, showBreakline = true }) {
       </View>
 
       {showBreakline && <View style={styles.breakLine}></View>}
-    </>
+    </View>
   );
 }
