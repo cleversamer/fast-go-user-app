@@ -32,7 +32,7 @@ export default function CouponCodesScreen({ navigation }) {
     }
 
     couponCodesApi
-      .getAllCouponCodes(1, 1000)
+      .getAllCouponCodes(1, 50)
       .then((res) => {
         setCouponCodes({ list: res.data.couponCodes, loading: false });
       })

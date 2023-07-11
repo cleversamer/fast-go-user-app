@@ -4,7 +4,7 @@ import useScreen from "../../hooks/useScreen";
 import { AntDesign } from "@expo/vector-icons";
 import CustomButton from "../buttons/CustomButton";
 
-export default function ChargeCardsScreenTitle({
+export default function PaymentCardsScreenTitle({
   title,
   onPrev,
   onButtonPress,
@@ -61,7 +61,10 @@ export default function ChargeCardsScreenTitle({
       <Text style={styles.title}>{title}</Text>
 
       <TouchableOpacity onPress={onPrev}>
-        <AntDesign name="arrowright" style={styles.backIcon} />
+        <AntDesign
+          name={lang === "ar" ? "arrowright" : "arrowleft"}
+          style={styles.backIcon}
+        />
       </TouchableOpacity>
     </View>
   );

@@ -743,9 +743,9 @@
     "en": "Add coupon codes with discount percentage",
     "ar": "إضافة أكواد الخصم ووضع تسعيرة لنسبة الخصم"
   },
-  "chargeCards": {
-    "en": "Charge cards",
-    "ar": "بطاقات الشحن"
+  "paymentCards": {
+    "en": "Payment cards",
+    "ar": "بطاقات الدفع"
   },
   "chargeCardsDescription": {
     "en": "Add charge cards with any amount",
@@ -918,5 +918,9 @@
   "noCouponCodes": {
     "en": "No coupon codes added yet",
     "ar": "لا يوجد أكواد خصم مُضافة بعد"
+  },
+  "noPaymentCards": {
+    "en": "No payment cards added yet",
+    "ar": "لا يوجد بطاقات دفع مُضافة بعد"
   }
 }

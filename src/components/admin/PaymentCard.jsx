@@ -4,7 +4,11 @@ import useScreen from "../../hooks/useScreen";
 import * as theme from "../../constants/theme";
 import useLocale from "../../hooks/useLocale";
 
-export default function ChargeCard({ chargeCard, showBreakline = true }) {
+export default function PaymentCard({
+  paymentCard,
+  showBreakline = true,
+  onDelete,
+}) {
   const screen = useScreen();
   const { lang } = useLocale();
 
@@ -56,14 +60,14 @@ export default function ChargeCard({ chargeCard, showBreakline = true }) {
   return (
     <>
       <View style={styles.container}>
-        <TouchableOpacity style={styles.deleteIconContainer}>
+        <TouchableOpacity style={styles.deleteIconContainer} onPress={onDelete}>
           <AntDesign name="delete" style={styles.deleteIcon} />
         </TouchableOpacity>
 
         <View style={styles.rightContainer}>
           <View style={styles.textContainer}>
-            <Text style={styles.couponCode}>1234567891234</Text>
-            <Text style={styles.discount}>الرصيد: 100 LYD</Text>
+            <Text style={styles.couponCode}>{paymentCard.code}</Text>
+            <Text style={styles.discount}>{paymentCard.balance} LYD</Text>
           </View>
 
           <Entypo name="credit-card" style={styles.cardIcon} />

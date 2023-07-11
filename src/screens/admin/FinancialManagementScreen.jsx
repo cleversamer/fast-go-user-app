@@ -115,7 +115,7 @@ export default function FinancialManagementScreen({ navigation }) {
         >
           <View style={styles.itemTitleContainer}>
             <FontAwesome5 name="credit-card" style={styles.icon} />
-            <Text style={styles.itemTitle}>{i18n("chargeCards")}</Text>
+            <Text style={styles.itemTitle}>{i18n("paymentCards")}</Text>
           </View>
 
           <Text style={styles.itemDescription}>
