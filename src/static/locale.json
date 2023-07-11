@@ -922,5 +922,29 @@
   "noPaymentCards": {
     "en": "No payment cards added yet",
     "ar": "لا يوجد بطاقات دفع مُضافة بعد"
+  },
+  "mercedes": {
+    "en": "Mercedes",
+    "ar": "مرسيدس"
+  },
+  "toyota": {
+    "en": "Toyota",
+    "ar": "تويوتا"
+  },
+  "blue": {
+    "en": "Blue",
+    "ar": "أزرق"
+  },
+  "yellow": {
+    "en": "Yellow",
+    "ar": "أصفر"
+  },
+  "black": {
+    "en": "Black",
+    "ar": "أسود"
+  },
+  "gray": {
+    "en": "Gray",
+    "ar": "رمادي"
   }
 }

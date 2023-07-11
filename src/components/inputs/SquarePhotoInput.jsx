@@ -1,9 +1,9 @@
-import { StyleSheet, TouchableOpacity, View, Text } from "react-native";
+import { StyleSheet, TouchableOpacity, View, Text, Image } from "react-native";
 import { Ionicons, FontAwesome } from "@expo/vector-icons";
 import * as theme from "../../constants/theme";
 import useScreen from "../../hooks/useScreen";
 
-export default function SquarePhotoInput({ title }) {
+export default function SquarePhotoInput({ title, value, onChange }) {
   const screen = useScreen();
 
   const styles = StyleSheet.create({
@@ -48,16 +48,26 @@ export default function SquarePhotoInput({ title }) {
       fontSize: screen.getResponsiveFontSize(13),
       color: "#747474",
     },
+    avatar: {
+      width: "100%",
+      height: "100%",
+      borderWidth: screen.getHorizontalPixelSize(0.5),
+      borderColor: "#B1B1B190",
+    },
   });
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.boxContainer}>
+      <TouchableOpacity style={styles.boxContainer} onPress={onChange}>
         <View style={styles.cameraIconContainer}>
           <FontAwesome name="camera" style={styles.cameraIcon} />
         </View>
 
-        <Ionicons name="image-sharp" style={styles.galleryIcon} />
+        {value ? (
+          <Image source={value} resizeMode="contain" style={styles.avatar} />
+        ) : (
+          <Ionicons name="image-sharp" style={styles.galleryIcon} />
+        )}
       </TouchableOpacity>
 
       {!!title && <Text style={styles.title}>{title}</Text>}

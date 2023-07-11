@@ -9,7 +9,7 @@ const api = axios.create({
   headers: {
     "Content-Type": "application/json",
   },
-  timeout: 2500,
+  timeout: 1000 * 60 * 2,
 });
 
 const get = api.get;

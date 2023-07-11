@@ -180,3 +180,13 @@ export const getAllPassengers = async (page, limit) => {
     }
   );
 };
+
+export const addDriver = async (formData) => {
+  const token = await authStorage.getToken();
+
+  return await client.post(`/users/admin/drivers/add`, formData, {
+    headers: {
+      Authorization: token,
+    },
+  });
+};
