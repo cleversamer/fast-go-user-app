@@ -946,5 +946,9 @@
   "gray": {
     "en": "Gray",
     "ar": "رمادي"
+  },
+  "approved": {
+    "en": "Approved",
+    "ar": "مقبول"
   }
 }

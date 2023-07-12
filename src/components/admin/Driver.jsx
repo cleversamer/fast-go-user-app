@@ -5,6 +5,7 @@ import useScreen from "../../hooks/useScreen";
 import CircularButton from "../buttons/CircularButton";
 import { Ionicons } from "@expo/vector-icons";
 import CircularAvatar from "../common/CircularAvatar";
+import * as theme from "../../constants/theme";
 
 export default function Driver({ data, onCall, onPress, containerStyle }) {
   const screen = useScreen();
@@ -91,17 +92,34 @@ export default function Driver({ data, onCall, onPress, containerStyle }) {
   });
 
   function getStatusColor() {
-    switch (data.status) {
-      case "pending":
-        return "#eed202";
+    if (data.verified.driver) {
+      return theme.primaryColor;
+    }
 
-      case "rejected":
-        return "#f00";
+    if (data.driverStatus.rejected) {
+      return "#f00";
+    }
 
-      default:
-        return "#eed202";
+    if (!data.driverStatus.active) {
+      return "#eed202";
     }
   }
+
+  const getStatusText = () => {
+    try {
+      if (data.verified.driver) {
+        return i18n("approved");
+      }
+
+      if (data.driverStatus.rejected) {
+        return i18n("rejected");
+      }
+
+      if (!data.driverStatus.active) {
+        return i18n("pending");
+      }
+    } catch (err) {}
+  };
 
   return (
     <TouchableOpacity
@@ -113,7 +131,7 @@ export default function Driver({ data, onCall, onPress, containerStyle }) {
           lang === "ar" ? styles.arStatusContainer : styles.enStatusContainer
         }
       >
-        <Text style={styles.statusText}>{i18n(data.status)}</Text>
+        <Text style={styles.statusText}>{getStatusText()}</Text>
       </View>
 
       <View style={styles.middleContainer}>
