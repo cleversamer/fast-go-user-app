@@ -190,3 +190,23 @@ export const addDriver = async (formData) => {
     },
   });
 };
+
+export const sendNotification = async (
+  userIds,
+  titleEN,
+  titleAR,
+  bodyEN,
+  bodyAR
+) => {
+  const token = await authStorage.getToken();
+
+  return await client.post(
+    `/users/admin/notifications/send`,
+    { userIds, titleEN, titleAR, bodyEN, bodyAR },
+    {
+      headers: {
+        Authorization: token,
+      },
+    }
+  );
+};
