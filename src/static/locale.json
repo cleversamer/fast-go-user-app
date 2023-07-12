@@ -843,13 +843,9 @@
     "en": "Send",
     "ar": "إرسال"
   },
-  "openFile": {
-    "en": "Open file",
-    "ar": "فتح الملف"
-  },
-  "saveFile": {
-    "en": "Save file",
-    "ar": "حفظ الملف"
+  "downloadFile": {
+    "en": "Download file",
+    "ar": "تنزيل الملف"
   },
   "emailOrPhone": {
     "en": "Email or phone number",

@@ -210,3 +210,18 @@ export const sendNotification = async (
     }
   );
 };
+
+export const exportUsersToExcel = async () => {
+  const expiryInMins = 10;
+  const token = await authStorage.getToken();
+
+  return await client.get(
+    `/users/admin/export`,
+    {
+      headers: {
+        Authorization: token,
+      },
+    },
+    expiryInMins
+  );
+};

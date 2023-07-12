@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { StyleSheet, SafeAreaView, View } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import useScreen from "../../hooks/useScreen";
@@ -5,10 +6,16 @@ import * as theme from "../../constants/theme";
 import DefaultScreenTitle from "../../components/screenTitles/DefaultScreenTitle";
 import useLocale from "../../hooks/useLocale";
 import CustomButton from "../../components/buttons/CustomButton";
+import * as usersApi from "../../api/user/users";
+import PopupLoading from "../../components/popups/PopupLoading";
+import PopupError from "../../components/popups/PopupError";
+import downloadFile from "../../utils/downloadFile";
 
 export default function ExcelExportScreen({ navigation }) {
   const screen = useScreen();
-  const { i18n } = useLocale();
+  const { i18n, lang } = useLocale();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const styles = StyleSheet.create({
     container: {
@@ -29,10 +36,6 @@ export default function ExcelExportScreen({ navigation }) {
       color: theme.primaryColor,
       fontSize: screen.getResponsiveFontSize(120),
     },
-    buttonsContainer: {
-      flexDirection: "row",
-      gap: screen.getHorizontalPixelSize(15),
-    },
     buttonContainer: {
       width: screen.getHorizontalPixelSize(150),
     },
@@ -41,6 +44,23 @@ export default function ExcelExportScreen({ navigation }) {
       fontSize: screen.getResponsiveFontSize(16),
     },
   });
+
+  const handleDownloadFile = async () => {
+    try {
+      setLoading(true);
+      const res = await usersApi.exportUsersToExcel();
+
+      const fileName = `fastgo_users_${Date.now()}.xlsx`;
+      await downloadFile(res.data.url, fileName, "file/xlsx");
+
+      setLoading(false);
+    } catch (err) {
+      setLoading(false);
+      const message =
+        err?.response?.data?.message?.[lang] || i18n("networkError");
+      setError(message);
+    }
+  };
 
   const handleGoBack = () => {
     try {
@@ -55,25 +75,26 @@ export default function ExcelExportScreen({ navigation }) {
         onPrev={handleGoBack}
       />
 
+      <PopupLoading visible={loading} />
+
+      <PopupError
+        onClose={() => setError("")}
+        visible={!!error}
+        message={error}
+      />
+
       <View style={styles.contentContainer}>
         <MaterialCommunityIcons
           name="microsoft-excel"
           style={styles.excelIcon}
         />
 
-        <View style={styles.buttonsContainer}>
-          <CustomButton
-            text={i18n("openFile")}
-            containerStyle={styles.buttonContainer}
-            textStyle={styles.buttonText}
-          />
-
-          <CustomButton
-            text={i18n("saveFile")}
-            containerStyle={styles.buttonContainer}
-            textStyle={styles.buttonText}
-          />
-        </View>
+        <CustomButton
+          text={i18n("downloadFile")}
+          containerStyle={styles.buttonContainer}
+          textStyle={styles.buttonText}
+          onPress={handleDownloadFile}
+        />
       </View>
     </SafeAreaView>
   );
