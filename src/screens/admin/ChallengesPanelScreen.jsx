@@ -1,4 +1,12 @@
-import { StyleSheet, SafeAreaView, ScrollView, View, Text } from "react-native";
+import { useEffect, useState } from "react";
+import {
+  StyleSheet,
+  SafeAreaView,
+  ScrollView,
+  View,
+  Text,
+  ActivityIndicator,
+} from "react-native";
 import DefaultScreenTitle from "../../components/screenTitles/DefaultScreenTitle";
 import useScreen from "../../hooks/useScreen";
 import useLocale from "../../hooks/useLocale";
@@ -13,79 +21,33 @@ import SelectInput from "../../components/inputs/SelectInput";
 import CustomButton from "../../components/buttons/CustomButton";
 import Challenge from "../../components/admin/Challenge";
 import data from "../../static/data.json";
-
-const _challenges = [
-  {
-    title: {
-      en: "Complete 100 trips and invite 20 friends",
-      ar: "أنجز 100 رحلة وقم بدعوة 20 من الأصدقاء",
-    },
-    scores: {
-      total: 120,
-      number: 1,
-    },
-    rewardAmount: 120,
-  },
-  {
-    title: {
-      en: "Complete 30 trips and invite 10 friends",
-      ar: "أنجز 30 رحلة وقم بدعوة 10 من الأصدقاء",
-    },
-    scores: {
-      total: 40,
-      number: 1,
-    },
-    rewardAmount: 40,
-  },
-  {
-    title: {
-      en: "Complete 10 trips and invite 5 friends",
-      ar: "أنجز 10 رحلات وقم بدعوة 5 من الأصدقاء",
-    },
-    scores: {
-      total: 15,
-      number: 1,
-    },
-    rewardAmount: 15,
-  },
-  {
-    title: {
-      en: "Complete 100 trips and invite 20 friends",
-      ar: "أنجز 100 رحلة وقم بدعوة 20 من الأصدقاء",
-    },
-    scores: {
-      total: 120,
-      number: 1,
-    },
-    rewardAmount: 120,
-  },
-  {
-    title: {
-      en: "Complete 30 trips and invite 10 friends",
-      ar: "أنجز 30 رحلة وقم بدعوة 10 من الأصدقاء",
-    },
-    scores: {
-      total: 40,
-      number: 1,
-    },
-    rewardAmount: 40,
-  },
-  {
-    title: {
-      en: "Complete 10 trips and invite 5 friends",
-      ar: "أنجز 10 رحلات وقم بدعوة 5 من الأصدقاء",
-    },
-    scores: {
-      total: 15,
-      number: 1,
-    },
-    rewardAmount: 15,
-  },
-];
+import * as challengesApi from "../../api/user/challenges";
+import PopupLoading from "../../components/popups/PopupLoading";
+import PopupError from "../../components/popups/PopupError";
 
 export default function ChallengesPanelScreen({ navigation }) {
   const screen = useScreen();
   const { lang, i18n } = useLocale();
+  const [challenges, setChallenges] = useState({ list: [], loading: true });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [context, setContext] = useState({
+    tripTarget: "",
+    referralTarget: "",
+    reward: "",
+    role: "",
+  });
+
+  useEffect(() => {
+    challengesApi
+      .getAllChallenges()
+      .then((res) => {
+        setChallenges({ list: res.data.challenges, loading: false });
+      })
+      .catch(() => {
+        setChallenges({ list: [], loading: false });
+      });
+  }, []);
 
   const styles = StyleSheet.create({
     container: {
@@ -119,7 +81,58 @@ export default function ChallengesPanelScreen({ navigation }) {
       gap: screen.getVerticalPixelSize(20),
       paddingBottom: screen.getVerticalPixelSize(15),
     },
+    noChallengesText: {
+      fontFamily: "cairo-600",
+      fontSize: screen.getResponsiveFontSize(14),
+      textAlign: lang === "ar" ? "right" : "left",
+    },
   });
+
+  const handleAddChallenge = async () => {
+    try {
+      setLoading(true);
+      const { referralTarget, reward, role, tripTarget } = context;
+
+      const res = await challengesApi.addChallenge(
+        parseInt(tripTarget),
+        parseInt(referralTarget),
+        parseFloat(reward),
+        role
+      );
+
+      setChallenges({ ...challenges, list: [res.data, ...challenges.list] });
+      setContext({ tripTarget: "", referralTarget: "", reward: "", role: "" });
+
+      setLoading(false);
+    } catch (err) {
+      setLoading(false);
+      const message =
+        err?.response?.data?.message?.[lang] || i18n("networkError");
+      setError(message);
+    }
+  };
+
+  const handleDeleteChallenge = async (challenge) => {
+    try {
+      setLoading(true);
+
+      const res = await challengesApi.deleteChallenge(challenge._id);
+
+      const newChallenges = [...challenges.list];
+      const index = newChallenges.findIndex((c) => c._id === challenge._id);
+      if (index >= 0) {
+        newChallenges.splice(index, 1);
+        setChallenges({ ...challenges, list: newChallenges });
+      }
+
+      setLoading(false);
+    } catch (err) {
+      setLoading(false);
+      const message =
+        err?.response?.data?.message?.[lang] || i18n("networkError");
+      setError(message);
+    }
+  };
 
   const handleGoBack = () => {
     try {
@@ -127,9 +140,40 @@ export default function ChallengesPanelScreen({ navigation }) {
     } catch (err) {}
   };
 
+  const handleKeyChange = (key) => (value) => {
+    try {
+      setContext({ ...context, [key]: value });
+    } catch (err) {}
+  };
+
+  const checkIfAddButtonDisabled = () => {
+    try {
+      const { referralTarget, reward, role, tripTarget } = context;
+      return (
+        referralTarget < 0 ||
+        referralTarget > 1000 ||
+        tripTarget < 0 ||
+        tripTarget > 1000 ||
+        reward < 1 ||
+        reward > 10000 ||
+        !["driver", "passenger"].includes(role)
+      );
+    } catch (err) {
+      return false;
+    }
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <DefaultScreenTitle title={i18n("challenges")} onPrev={handleGoBack} />
+
+      <PopupLoading visible={loading} />
+
+      <PopupError
+        onClose={() => setError("")}
+        visible={!!error}
+        message={error}
+      />
 
       <ScrollView
         contentContainerStyle={styles.contentContainer}
@@ -146,6 +190,8 @@ export default function ChallengesPanelScreen({ navigation }) {
               style={styles.inputIcon}
             />
           )}
+          value={`${context.tripTarget}`}
+          onChange={handleKeyChange("tripTarget")}
         />
 
         <InputIcon
@@ -155,6 +201,8 @@ export default function ChallengesPanelScreen({ navigation }) {
           Icon={() => (
             <FontAwesome5 name="user-friends" style={styles.inputIcon} />
           )}
+          value={`${context.referralTarget}`}
+          onChange={handleKeyChange("referralTarget")}
         />
 
         <InputIcon
@@ -162,24 +210,47 @@ export default function ChallengesPanelScreen({ navigation }) {
           placeholder={i18n("reward")}
           keyboardType="number-pad"
           Icon={() => <FontAwesome name="dollar" style={styles.inputIcon} />}
+          value={`${context.reward}`}
+          onChange={handleKeyChange("reward")}
         />
 
         <SelectInput
           title={i18n("userCategory")}
           placeholder={i18n("userCategory")}
           options={data.userTypes.map((g) => ({ key: g, value: i18n(g) }))}
+          value={context.role}
+          onChange={handleKeyChange("role")}
         />
 
-        <CustomButton text={i18n("add")} textStyle={styles.buttonText} />
+        <CustomButton
+          text={i18n("add")}
+          textStyle={styles.buttonText}
+          disabled={checkIfAddButtonDisabled()}
+          onPress={handleAddChallenge}
+        />
 
         <Text style={styles.title}>{i18n("addedChallenges")}</Text>
 
-        {!!_challenges.length && (
+        {challenges.loading ? (
+          <ActivityIndicator
+            animating={true}
+            size="large"
+            color={theme.primaryColor}
+          />
+        ) : challenges.list.length ? (
           <View style={styles.challengesContainer}>
-            {_challenges.map((challenge, index) => (
-              <Challenge key={index} challenge={challenge} />
+            {challenges.list.map((challenge, index) => (
+              <Challenge
+                key={index}
+                challenge={challenge}
+                onDelete={() => handleDeleteChallenge(challenge)}
+              />
             ))}
           </View>
+        ) : (
+          <Text style={styles.noChallengesText}>
+            {i18n("noChallengesAdded")}
+          </Text>
         )}
       </ScrollView>
     </SafeAreaView>

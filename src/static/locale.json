@@ -923,6 +923,10 @@
     "en": "No payment cards added yet",
     "ar": "لا يوجد بطاقات دفع مُضافة بعد"
   },
+  "noChallengesAdded": {
+    "en": "No challenges added yet",
+    "ar": "لا يوجد تحديات مُضافة بعد"
+  },
   "mercedes": {
     "en": "Mercedes",
     "ar": "مرسيدس"

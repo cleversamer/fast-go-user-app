@@ -4,7 +4,7 @@ import useLocale from "../../hooks/useLocale";
 import * as theme from "../../constants/theme";
 import useScreen from "../../hooks/useScreen";
 
-export default function Challenge({ challenge }) {
+export default function Challenge({ challenge, onDelete }) {
   const screen = useScreen();
   const { lang } = useLocale();
 
@@ -64,7 +64,7 @@ export default function Challenge({ challenge }) {
 
   return (
     <View style={lang === "ar" ? styles.arContainer : styles.enContainer}>
-      <TouchableOpacity style={styles.deleteIconContainer}>
+      <TouchableOpacity style={styles.deleteIconContainer} onPress={onDelete}>
         <AntDesign name="delete" style={styles.deleteIcon} />
       </TouchableOpacity>
 
