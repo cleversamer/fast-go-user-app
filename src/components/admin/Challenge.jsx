@@ -6,7 +6,7 @@ import useScreen from "../../hooks/useScreen";
 
 export default function Challenge({ challenge, onDelete }) {
   const screen = useScreen();
-  const { lang } = useLocale();
+  const { i18n, lang } = useLocale();
 
   const styles = StyleSheet.create({
     arContainer: {
@@ -62,6 +62,18 @@ export default function Challenge({ challenge, onDelete }) {
     },
   });
 
+  const getTitle = () => {
+    return lang === "ar"
+      ? `أنجز ${challenge?.tripTarget} رحلة وقم بدعوة ${challenge?.referralTarget} من الأصدقاء`
+      : `Achieve ${challenge?.tripTarget} trips and invite ${challenge?.referralTarget} people to app`;
+  };
+
+  const getDescription = () => {
+    return lang === "ar"
+      ? `الفئة: ${i18n(challenge.role)}، الجائزة: ${challenge.reward} LYD`
+      : `Category: ${i18n(challenge.role)}, Reward: ${challenge.reward} LYD`;
+  };
+
   return (
     <View style={lang === "ar" ? styles.arContainer : styles.enContainer}>
       <TouchableOpacity style={styles.deleteIconContainer} onPress={onDelete}>
@@ -69,8 +81,8 @@ export default function Challenge({ challenge, onDelete }) {
       </TouchableOpacity>
 
       <View style={styles.infoContainer}>
-        <Text style={styles.title}>{challenge?.title?.[lang]}</Text>
-        <Text style={styles.description}>الفئة: الركاب، الجائزة: 120 LYD</Text>
+        <Text style={styles.title}>{getTitle()}</Text>
+        <Text style={styles.description}>{getDescription()}</Text>
       </View>
 
       <View style={styles.iconContainer}>

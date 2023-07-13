@@ -6,7 +6,6 @@ import useLocale from "../../hooks/useLocale";
 import InputIcon from "../../components/inputs/InputIcon";
 import { Feather } from "@expo/vector-icons";
 import * as theme from "../../constants/theme";
-import useAuth from "../../auth/useAuth";
 import PhoneInput from "../../components/inputs/PhoneInput";
 import data from "../../static/data.json";
 import SelectInput from "../../components/inputs/SelectInput";
@@ -14,10 +13,9 @@ import CustomButton from "../../components/buttons/CustomButton";
 import PopupConfirm from "../../components/popups/PopupConfirm";
 
 export default function SearchUserScreen({ navigation }) {
-  const { user: admin } = useAuth();
   const screen = useScreen();
   const { i18n, lang } = useLocale();
-  const [user, setUser] = useState(admin);
+  const [user, setUser] = useState(null);
   const [showPopupConfirm, setShowPopupConfirm] = useState(false);
 
   const styles = StyleSheet.create({
@@ -56,6 +54,12 @@ export default function SearchUserScreen({ navigation }) {
       backgroundColor: "#f00",
     },
   });
+
+  const handleSearchUser = () => {
+    try {
+      //
+    } catch (err) {}
+  };
 
   const handleGoBack = () => {
     try {
